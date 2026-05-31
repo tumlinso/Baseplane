@@ -1,0 +1,10 @@
+build/
+build-*/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.nsys-rep
+*.sqlite
