@@ -1,4 +1,4 @@
-#include <Baseplane/seq/dna2.cuh>
+#include <Baseplane/dna2.hh>
 
 #include "dna2_test_helpers.hh"
 
@@ -8,6 +8,7 @@
 #include <random>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 #ifndef BASEPLANE_ENABLE_HIGHWAY
@@ -332,6 +333,23 @@ void test_char_helpers() {
     }
 }
 
+void test_compile_time_defaults() {
+    require((std::is_same_v<seq::dna2_storage_word, seq::dna2_word64>), "storage alias should be word64");
+    require((std::is_same_v<seq::dna2_warp_word, seq::dna2_planes32>), "warp alias should be planes32");
+    require((std::is_same_v<seq::dna2_default_mask, std::uint32_t>), "default mask should be uint32_t");
+
+#if BASEPLANE_ENABLE_CUDA
+    require(seq::dna2_default_backend == seq::dna2_backend::cuda_warp32, "CUDA builds should default to warp32");
+    require((std::is_same_v<seq::dna2_default_window, seq::dna2_planes32>), "CUDA default window should be planes32");
+#elif BASEPLANE_ENABLE_HIGHWAY
+    require(seq::dna2_default_backend == seq::dna2_backend::highway_simd, "Highway builds should default to SIMD");
+    require((std::is_same_v<seq::dna2_default_window, seq::dna2_word64>), "Highway default window should be word64");
+#else
+    require(seq::dna2_default_backend == seq::dna2_backend::scalar, "CPU scalar builds should default to scalar");
+    require((std::is_same_v<seq::dna2_default_window, seq::dna2_word64>), "scalar default window should be word64");
+#endif
+}
+
 std::string repeat_pattern(const std::string& pattern, std::size_t n) {
     std::string out(n, 'A');
     for (std::size_t i = 0u; i < n; ++i) {
@@ -499,6 +517,7 @@ void test_ascii_bit_primitives_and_batches() {
 int main() {
     try {
         test_char_helpers();
+        test_compile_time_defaults();
         test_pack_roundtrip();
         test_planes_word_equivalence_and_masks();
         test_exact_and_approximate_match();

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 namespace seq = ::baseplane::seq;
@@ -320,6 +321,14 @@ void test_warp_encoder() {
     require(out.lo == expected.lo && out.hi == expected.hi, "warp encoder planes mismatch");
 }
 
+void test_compile_time_defaults() {
+    require((std::is_same_v<seq::dna2_storage_word, seq::dna2_word64>), "storage alias should be word64");
+    require((std::is_same_v<seq::dna2_warp_word, seq::dna2_planes32>), "warp alias should be planes32");
+    require((std::is_same_v<seq::dna2_default_mask, std::uint32_t>), "default mask should be uint32_t");
+    require(seq::dna2_default_backend == seq::dna2_backend::cuda_warp32, "CUDA builds should default to warp32");
+    require((std::is_same_v<seq::dna2_default_window, seq::dna2_planes32>), "CUDA default window should be planes32");
+}
+
 void test_warp_word64_to_planes_conversion() {
     std::vector<std::uint64_t> packed;
     packed.reserve(134u);
@@ -460,6 +469,7 @@ int main() {
         cuda_require(cudaGetDeviceCount(&device_count), "cudaGetDeviceCount");
         require(device_count > 0, "test_dna2_cuda requires a CUDA device");
         test_device_helpers();
+        test_compile_time_defaults();
         test_warp_encoder();
         test_warp_word64_to_planes_conversion();
         test_motif_scan();

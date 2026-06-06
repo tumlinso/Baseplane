@@ -6,6 +6,10 @@ SequenceBits provides Baseplane's first GPU-native regulatory sequence primitive
 
 Packed words are how sequence lives in memory. Bitplanes are how sequence becomes a warp-level biological decision.
 
+The CPU-safe representation and alias vocabulary lives in
+`#include <Baseplane/dna2.hh>`. CUDA warp-level operations live in
+`#include <Baseplane/seq/dna2.cuh>` and build on that vocabulary.
+
 ## Encoding
 
 A = 00
@@ -46,6 +50,9 @@ base_i = (((hi >> i) & 1) << 1) | ((lo >> i) & 1)
 The `planes32` representation is designed so one warp can hold one 32-base
 regulatory word.
 
+Future CUDA-facing work should prefer `dna2_warp_word` or
+`dna2_default_window`, which resolves to `dna2_planes32` when CUDA is enabled.
+
 ## Inline planes
 
 Memory layout for loading a split-plane compute window as one scalar word.
@@ -66,6 +73,10 @@ bits 32..63 = hi plane
 
 These forms recast to `dna2_planes32` with shifts and masks, then use the same
 XOR / OR / POPCOUNT mismatch logic as split planes.
+
+`dna2_word32`, `dna2_planes64`, and `dna2_inlplane32/64` are retained alternate
+representations. Use them when their storage or transport shape is intentional;
+do not treat them as the default for new CUDA warp-level primitives.
 
 ## Conversion
 
@@ -109,6 +120,10 @@ in `docs/sequence_bits_cuda_profile.md`.
 and optional Google Highway backend for the same packed word and bitplane
 semantics. The CPU backend is deliberately kept API-compatible with future
 accelerator implementations.
+
+Backend preference is static at compile time: CUDA warp-native first, then
+Highway/SIMD, then scalar. Benchmarks guide future priority changes manually;
+they are not run during configure.
 
 ## Non-goals
 

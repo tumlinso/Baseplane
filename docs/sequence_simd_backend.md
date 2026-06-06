@@ -5,6 +5,10 @@ work. It is intentionally small: ASCII bases enter as short canonical chunks,
 then kernels operate on packed 2-bit words and bitplanes rather than generic
 strings.
 
+The CPU-safe public include is `#include <Baseplane/dna2.hh>`. The CUDA overlay
+remains `#include <Baseplane/seq/dna2.cuh>` for warp ballot primitives and
+kernels.
+
 ## Packed 2-Bit Words
 
 `dna2_word32` stores up to 16 bases in one `uint32_t`; `dna2_word64` stores up
@@ -23,6 +27,8 @@ primitive layer.
 Packed words make fixed-width sequence chunks cheap to move, compare, and stage
 for later CPU SIMD or accelerator code. Unused positions in shorter chunks
 remain zeroed.
+
+`dna2_storage_word` aliases this 32-base packed storage word.
 
 ## Bitplanes
 
@@ -43,6 +49,9 @@ operations:
 These masks are the CPU-side counterpart of future CUDA warp-level sequence
 primitives. Both backends should preserve these semantic operations rather than
 lowering sequence work to generic byte strings.
+
+`dna2_warp_word` aliases `dna2_planes32`. `dna2_default_window` resolves to
+`dna2_planes32` in CUDA-enabled builds and to `dna2_word64` otherwise.
 
 ## Inline Planes
 
@@ -69,3 +78,7 @@ Highway is not required.
 Highway types stay inside `dna2_highway.cpp`; public headers expose only
 Baseplane sequence types. This keeps room for later AVX2, AVX-512, NEON, or
 CUDA-specialized implementations without changing the public API.
+
+Backend priority is compile-time only: CUDA warp-native when CUDA is enabled,
+then Highway/SIMD when enabled, then scalar. There is no runtime dispatch and
+benchmarks do not generate build configuration.

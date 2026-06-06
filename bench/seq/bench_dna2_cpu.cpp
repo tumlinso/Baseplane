@@ -1,4 +1,4 @@
-#include <Baseplane/seq/dna2.cuh>
+#include <Baseplane/dna2.hh>
 
 #include <bench/benchmark_mutex.hh>
 

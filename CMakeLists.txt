@@ -63,7 +63,7 @@ if(BASEPLANE_ENABLE_HIGHWAY)
     if(BASEPLANE_HIGHWAY_SOURCE_DIR AND EXISTS "${BASEPLANE_HIGHWAY_SOURCE_DIR}/CMakeLists.txt")
         set(HWY_ENABLE_CONTRIB OFF CACHE BOOL "Include Highway contrib/" FORCE)
         set(HWY_ENABLE_EXAMPLES OFF CACHE BOOL "Build Highway examples" FORCE)
-        set(HWY_ENABLE_INSTALL OFF CACHE BOOL "Install Highway" FORCE)
+        set(HWY_ENABLE_INSTALL ON CACHE BOOL "Install Highway" FORCE)
         set(HWY_ENABLE_TESTS OFF CACHE BOOL "Enable Highway tests" FORCE)
         add_subdirectory("${BASEPLANE_HIGHWAY_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/highway" EXCLUDE_FROM_ALL)
         set(BASEPLANE_HAS_HIGHWAY 1)
@@ -95,7 +95,10 @@ if(BASEPLANE_HAS_CUDA)
     target_link_libraries(baseplane_seq PUBLIC CUDA::cudart)
 endif()
 if(BASEPLANE_HAS_HIGHWAY)
-    target_link_libraries(baseplane_seq PRIVATE hwy)
+    target_link_libraries(baseplane_seq PRIVATE
+        $<BUILD_INTERFACE:hwy>
+        $<INSTALL_INTERFACE:hwy>
+    )
 endif()
 set_target_properties(baseplane_seq PROPERTIES
     CXX_STANDARD 17

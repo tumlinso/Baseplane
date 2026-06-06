@@ -28,7 +28,13 @@ cmake --build build-cpu --target baseplaneDna2Test -j 4
 
 ## Public Surface
 
-The first public primitive is `baseplane::seq::dna2` under:
+The core CPU-safe `dna2` vocabulary is available under:
+
+```cpp
+#include <Baseplane/dna2.hh>
+```
+
+CUDA warp-level primitives and kernels are layered on top under:
 
 ```cpp
 #include <Baseplane/seq/dna2.cuh>
@@ -39,3 +45,7 @@ The CMake target is:
 ```cmake
 target_link_libraries(your_target PRIVATE Baseplane::seq)
 ```
+
+`dna2_default_window` is selected at compile time. CUDA-enabled builds default
+to the warp-native `dna2_planes32` representation; non-CUDA builds default to
+packed `dna2_word64`, with Highway/SIMD preferred over scalar when enabled.
