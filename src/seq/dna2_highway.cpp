@@ -13,19 +13,22 @@ constexpr std::size_t lane_cap64 = 8u;
 constexpr std::size_t lane_cap32 = 16u;
 constexpr std::size_t bases_per_word = 32u;
 
-dna2_word dna2_pack_ascii_32_highway(const char* bases) {
+dna2_word64 dna2_pack_ascii_32_highway(const char* bases) {
     const hn::CappedTag<std::uint8_t, bases_per_word> d;
     const auto chars = hn::LoadU(d, reinterpret_cast<const std::uint8_t*>(bases));
     const std::uint64_t c_mask = hn::BitsFromMask(d, hn::Eq(chars, hn::Set(d, static_cast<std::uint8_t>('C'))));
     const std::uint64_t g_mask = hn::BitsFromMask(d, hn::Eq(chars, hn::Set(d, static_cast<std::uint8_t>('G'))));
     const std::uint64_t t_mask = hn::BitsFromMask(d, hn::Eq(chars, hn::Set(d, static_cast<std::uint8_t>('T'))));
-    const dna2_planes planes{c_mask | t_mask, g_mask | t_mask};
+    const dna2_planes32 planes{
+        static_cast<std::uint32_t>(c_mask | t_mask),
+        static_cast<std::uint32_t>(g_mask | t_mask)
+    };
     return planes_to_dna2(planes);
 }
 
-void dna2_unpack_ascii_32_highway(dna2_word input, char* output) {
+void dna2_unpack_ascii_32_highway(dna2_word64 input, char* output) {
     const hn::CappedTag<std::uint8_t, bases_per_word> d;
-    const dna2_planes planes = dna2_to_planes(input);
+    const dna2_planes32 planes = dna2_to_planes(input);
     const std::uint64_t lo = planes.lo & 0xffffffffULL;
     const std::uint64_t hi = planes.hi & 0xffffffffULL;
     const std::uint32_t c_bits = static_cast<std::uint32_t>(lo & ~hi);
@@ -67,7 +70,7 @@ void dna2_unpack_ascii_32_highway(dna2_word input, char* output) {
 void dna2_pack_ascii_batch_highway(
     const char* input,
     std::size_t stride,
-    dna2_word* output,
+    dna2_word64* output,
     std::size_t count,
     std::size_t n_per_seq) {
     assert(input != nullptr || count == 0u || n_per_seq == 0u);
@@ -85,7 +88,7 @@ void dna2_pack_ascii_batch_highway(
 }
 
 void dna2_unpack_ascii_batch_highway(
-    const dna2_word* input,
+    const dna2_word64* input,
     char* output,
     std::size_t stride,
     std::size_t count,
@@ -104,7 +107,7 @@ void dna2_unpack_ascii_batch_highway(
     }
 }
 
-void dna2_to_planes_batch_highway(const dna2_word* input, dna2_planes* output, std::size_t count) {
+void dna2_to_planes_batch_highway(const dna2_word64* input, dna2_planes32* output, std::size_t count) {
     assert(input != nullptr || count == 0u);
     assert(output != nullptr || count == 0u);
     const hn::CappedTag<std::uint64_t, lane_cap64> d;
@@ -115,7 +118,7 @@ void dna2_to_planes_batch_highway(const dna2_word* input, dna2_planes* output, s
     std::size_t i = 0u;
     for (; i + lanes <= count; i += lanes) {
         for (std::size_t lane = 0u; lane < lanes; ++lane) {
-            lane_words[lane] = input[i + lane].bits;
+            lane_words[lane] = input[i + lane].packed;
         }
         const auto words = hn::LoadU(d, lane_words);
         auto lo = words & hn::Set(d, 0x5555555555555555ULL);
@@ -133,7 +136,10 @@ void dna2_to_planes_batch_highway(const dna2_word* input, dna2_planes* output, s
         hn::StoreU(lo, d, lane_lo);
         hn::StoreU(hi, d, lane_hi);
         for (std::size_t lane = 0u; lane < lanes; ++lane) {
-            output[i + lane] = dna2_planes{lane_lo[lane], lane_hi[lane]};
+            output[i + lane] = dna2_planes32{
+                static_cast<std::uint32_t>(lane_lo[lane]),
+                static_cast<std::uint32_t>(lane_hi[lane])
+            };
         }
     }
     for (; i < count; ++i) {
@@ -141,7 +147,7 @@ void dna2_to_planes_batch_highway(const dna2_word* input, dna2_planes* output, s
     }
 }
 
-void planes_gc_mask_batch_highway(const dna2_planes* input, std::uint32_t* output_masks, std::size_t count) {
+void planes_gc_mask_batch_highway(const dna2_planes32* input, std::uint32_t* output_masks, std::size_t count) {
     assert(input != nullptr || count == 0u);
     assert(output_masks != nullptr || count == 0u);
     const hn::CappedTag<std::uint32_t, lane_cap32> d;
@@ -167,7 +173,7 @@ void planes_gc_mask_batch_highway(const dna2_planes* input, std::uint32_t* outpu
     }
 }
 
-void planes_cpg_start_mask_batch_highway(const dna2_planes* input, std::uint32_t* output_masks, std::size_t count) {
+void planes_cpg_start_mask_batch_highway(const dna2_planes32* input, std::uint32_t* output_masks, std::size_t count) {
     assert(input != nullptr || count == 0u);
     assert(output_masks != nullptr || count == 0u);
     const hn::CappedTag<std::uint32_t, lane_cap32> d;

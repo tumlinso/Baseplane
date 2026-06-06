@@ -38,6 +38,21 @@ std::vector<std::uint64_t> pack_sequence(const std::vector<std::uint8_t>& bases)
     return packed;
 }
 
+std::vector<std::uint64_t> pack_inlplane_sequence(const std::vector<std::uint8_t>& bases) {
+    const std::size_t words = bases.size() / 32u;
+    std::vector<std::uint64_t> inlplanes(words, 0ULL);
+    for (std::size_t word = 0; word < words; ++word) {
+        seq::dna2_planes32 planes{0u, 0u};
+        for (int lane = 0; lane < 32; ++lane) {
+            const std::uint8_t base = bases[word * 32u + static_cast<std::size_t>(lane)] & 0x3u;
+            planes.lo |= static_cast<std::uint32_t>(base & 0x1u) << static_cast<unsigned int>(lane);
+            planes.hi |= static_cast<std::uint32_t>((base >> 1u) & 0x1u) << static_cast<unsigned int>(lane);
+        }
+        inlplanes[word] = seq::planes32_to_inlplane64(planes).planes;
+    }
+    return inlplanes;
+}
+
 std::uint64_t pack_window(const std::vector<std::uint8_t>& bases) {
     std::uint64_t packed = 0ULL;
     for (int i = 0; i < 32; ++i) {
@@ -92,10 +107,14 @@ void report_kernel_attributes_once() {
     reported = true;
     cudaFuncAttributes packed_attr{};
     cudaFuncAttributes shifted_attr{};
+    cudaFuncAttributes packed_aligned_attr{};
     cudaFuncAttributes warp_attr{};
+    cudaFuncAttributes inlplane_attr{};
     cuda_require(cudaFuncGetAttributes(&packed_attr, seq::scan_motif_word64_reference), "packed kernel attributes");
     cuda_require(cudaFuncGetAttributes(&shifted_attr, seq::scan_motif_word64_shifted_count), "shifted packed kernel attributes");
+    cuda_require(cudaFuncGetAttributes(&packed_aligned_attr, seq::scan_motif_word64_aligned_count), "aligned packed kernel attributes");
     cuda_require(cudaFuncGetAttributes(&warp_attr, seq::scan_motif_warp32_unpacked), "warp kernel attributes");
+    cuda_require(cudaFuncGetAttributes(&inlplane_attr, seq::scan_motif_inlplane64_aligned_count), "inlplane kernel attributes");
     std::printf("packed_regs_per_thread=%d\n", packed_attr.numRegs);
     std::printf("packed_local_bytes_per_thread=%zu\n", packed_attr.localSizeBytes);
     std::printf("packed_shared_bytes_static=%zu\n", packed_attr.sharedSizeBytes);
@@ -104,10 +123,18 @@ void report_kernel_attributes_once() {
     std::printf("shifted_count_local_bytes_per_thread=%zu\n", shifted_attr.localSizeBytes);
     std::printf("shifted_count_shared_bytes_static=%zu\n", shifted_attr.sharedSizeBytes);
     std::printf("shifted_count_max_threads_per_block=%d\n", shifted_attr.maxThreadsPerBlock);
+    std::printf("packed_word64_aligned_count_regs_per_thread=%d\n", packed_aligned_attr.numRegs);
+    std::printf("packed_word64_aligned_count_local_bytes_per_thread=%zu\n", packed_aligned_attr.localSizeBytes);
+    std::printf("packed_word64_aligned_count_shared_bytes_static=%zu\n", packed_aligned_attr.sharedSizeBytes);
+    std::printf("packed_word64_aligned_count_max_threads_per_block=%d\n", packed_aligned_attr.maxThreadsPerBlock);
     std::printf("warp_regs_per_thread=%d\n", warp_attr.numRegs);
     std::printf("warp_local_bytes_per_thread=%zu\n", warp_attr.localSizeBytes);
     std::printf("warp_shared_bytes_static=%zu\n", warp_attr.sharedSizeBytes);
     std::printf("warp_max_threads_per_block=%d\n", warp_attr.maxThreadsPerBlock);
+    std::printf("inlplane64_aligned_count_regs_per_thread=%d\n", inlplane_attr.numRegs);
+    std::printf("inlplane64_aligned_count_local_bytes_per_thread=%zu\n", inlplane_attr.localSizeBytes);
+    std::printf("inlplane64_aligned_count_shared_bytes_static=%zu\n", inlplane_attr.sharedSizeBytes);
+    std::printf("inlplane64_aligned_count_max_threads_per_block=%d\n", inlplane_attr.maxThreadsPerBlock);
 }
 
 std::vector<std::uint8_t> make_window_segment(
@@ -136,7 +163,9 @@ void run_warp_planes_bench(
     const int motif_length = static_cast<int>(motif.size());
     const int windows = sequence_length - motif_length + 1;
     const int threads = 128;
-    const int blocks = (windows * 32 + threads - 1) / threads;
+    const int blocks = std::min(8192, static_cast<int>(
+        ((static_cast<std::size_t>(windows) * 32u) + static_cast<std::size_t>(threads) - 1u)
+            / static_cast<std::size_t>(threads)));
     const seq::dna2_planes32 motif_planes = seq::unpack_word64_to_planes32(seq::dna2_word64{pack_window(motif)});
     std::uint8_t* d_sequence = nullptr;
     std::uint8_t* d_hits = nullptr;
@@ -299,6 +328,128 @@ void run_packed_word_shifted_count_bench(
     cudaFree(d_hit_count);
 }
 
+void run_packed_word_aligned_count_bench(
+    const std::vector<std::uint8_t>& sequence,
+    const std::vector<std::uint8_t>& motif,
+    int max_mismatches,
+    int iterations,
+    std::uint32_t seed) {
+    const int sequence_length = static_cast<int>((sequence.size() / 32u) * 32u);
+    const int motif_length = static_cast<int>(motif.size());
+    const int word_count = sequence_length / 32;
+    const int threads = 256;
+    const int blocks = std::min(8192, (word_count + threads - 1) / threads);
+    const std::vector<std::uint64_t> packed = pack_sequence(sequence);
+    const seq::dna2_word64 motif_word{pack_window(motif)};
+    std::uint64_t* d_sequence = nullptr;
+    unsigned long long* d_hit_count = nullptr;
+    unsigned long long hits = 0ULL;
+    cudaEvent_t start = nullptr;
+    cudaEvent_t stop = nullptr;
+
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_sequence), static_cast<std::size_t>(word_count) * sizeof(std::uint64_t)),
+        "cudaMalloc aligned packed");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_hit_count), sizeof(unsigned long long)), "cudaMalloc aligned packed hit count");
+    cuda_require(cudaMemcpy(d_sequence, packed.data(), static_cast<std::size_t>(word_count) * sizeof(std::uint64_t), cudaMemcpyHostToDevice),
+        "copy aligned packed");
+    cuda_require(cudaEventCreate(&start), "cudaEventCreate aligned packed start");
+    cuda_require(cudaEventCreate(&stop), "cudaEventCreate aligned packed stop");
+
+    cuda_require(cudaMemset(d_hit_count, 0, sizeof(unsigned long long)), "clear aligned packed warmup count");
+    seq::scan_motif_word64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+        d_sequence, word_count, motif_word, motif_length, max_mismatches, d_hit_count);
+    cuda_require(cudaGetLastError(), "warmup aligned packed scan");
+    cuda_require(cudaDeviceSynchronize(), "warmup aligned packed scan sync");
+
+    cuda_require(cudaEventRecord(start), "record aligned packed start");
+    for (int i = 0; i < iterations; ++i) {
+        cuda_require(cudaMemset(d_hit_count, 0, sizeof(unsigned long long)), "clear aligned packed count");
+        seq::scan_motif_word64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+            d_sequence, word_count, motif_word, motif_length, max_mismatches, d_hit_count);
+    }
+    cuda_require(cudaEventRecord(stop), "record aligned packed stop");
+    cuda_require(cudaEventSynchronize(stop), "sync aligned packed stop");
+    cuda_require(cudaGetLastError(), "aligned packed scan bench");
+    cuda_require(cudaMemcpy(&hits, d_hit_count, sizeof(unsigned long long), cudaMemcpyDeviceToHost), "copy aligned packed count");
+
+    report_result(
+        sequence_length,
+        motif_length,
+        max_mismatches,
+        iterations,
+        seed,
+        "packed_word64_aligned_count",
+        1,
+        hits,
+        elapsed_ms(start, stop) / static_cast<float>(iterations),
+        word_count);
+
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
+    cudaFree(d_sequence);
+    cudaFree(d_hit_count);
+}
+
+void run_inlplane_aligned_count_bench(
+    const std::vector<std::uint8_t>& sequence,
+    const std::vector<std::uint8_t>& motif,
+    int max_mismatches,
+    int iterations,
+    std::uint32_t seed) {
+    const int sequence_length = static_cast<int>((sequence.size() / 32u) * 32u);
+    const int motif_length = static_cast<int>(motif.size());
+    const int word_count = sequence_length / 32;
+    const int threads = 256;
+    const int blocks = std::min(8192, (word_count + threads - 1) / threads);
+    const std::vector<std::uint64_t> inlplanes = pack_inlplane_sequence(sequence);
+    const seq::dna2_inlplane64 motif_inlplane = seq::word64_to_inlplane64(seq::dna2_word64{pack_window(motif)});
+    std::uint64_t* d_sequence = nullptr;
+    unsigned long long* d_hit_count = nullptr;
+    unsigned long long hits = 0ULL;
+    cudaEvent_t start = nullptr;
+    cudaEvent_t stop = nullptr;
+
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_sequence), inlplanes.size() * sizeof(std::uint64_t)), "cudaMalloc inlplane packed");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_hit_count), sizeof(unsigned long long)), "cudaMalloc inlplane hit count");
+    cuda_require(cudaMemcpy(d_sequence, inlplanes.data(), inlplanes.size() * sizeof(std::uint64_t), cudaMemcpyHostToDevice), "copy inlplanes");
+    cuda_require(cudaEventCreate(&start), "cudaEventCreate inlplane start");
+    cuda_require(cudaEventCreate(&stop), "cudaEventCreate inlplane stop");
+
+    cuda_require(cudaMemset(d_hit_count, 0, sizeof(unsigned long long)), "clear inlplane warmup count");
+    seq::scan_motif_inlplane64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+        d_sequence, word_count, motif_inlplane, motif_length, max_mismatches, d_hit_count);
+    cuda_require(cudaGetLastError(), "warmup inlplane scan");
+    cuda_require(cudaDeviceSynchronize(), "warmup inlplane scan sync");
+
+    cuda_require(cudaEventRecord(start), "record inlplane start");
+    for (int i = 0; i < iterations; ++i) {
+        cuda_require(cudaMemset(d_hit_count, 0, sizeof(unsigned long long)), "clear inlplane count");
+        seq::scan_motif_inlplane64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+            d_sequence, word_count, motif_inlplane, motif_length, max_mismatches, d_hit_count);
+    }
+    cuda_require(cudaEventRecord(stop), "record inlplane stop");
+    cuda_require(cudaEventSynchronize(stop), "sync inlplane stop");
+    cuda_require(cudaGetLastError(), "inlplane scan bench");
+    cuda_require(cudaMemcpy(&hits, d_hit_count, sizeof(unsigned long long), cudaMemcpyDeviceToHost), "copy inlplane count");
+
+    report_result(
+        sequence_length,
+        motif_length,
+        max_mismatches,
+        iterations,
+        seed,
+        "inlplane64_aligned_count",
+        1,
+        hits,
+        elapsed_ms(start, stop) / static_cast<float>(iterations),
+        word_count);
+
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
+    cudaFree(d_sequence);
+    cudaFree(d_hit_count);
+}
+
 void run_warp_planes_all_gpus_bench(
     const std::vector<std::uint8_t>& sequence,
     const std::vector<std::uint8_t>& motif,
@@ -338,7 +489,9 @@ void run_warp_planes_all_gpus_bench(
     for (part& p : parts) {
         cuda_require(cudaSetDevice(p.device), "set warmup device");
         cuda_require(cudaMemset(p.d_hits, 0, static_cast<std::size_t>(p.bases) * sizeof(std::uint8_t)), "clear all-gpu warmup hits");
-        const int blocks = (p.windows * 32 + threads - 1) / threads;
+        const int blocks = std::min(8192, static_cast<int>(
+            ((static_cast<std::size_t>(p.windows) * 32u) + static_cast<std::size_t>(threads) - 1u)
+                / static_cast<std::size_t>(threads)));
         seq::scan_motif_warp32_unpacked<<<blocks, threads>>>(p.d_sequence, p.bases, motif_planes, motif_length, max_mismatches, p.d_hits);
         cuda_require(cudaGetLastError(), "warmup all-gpu warp scan");
     }
@@ -352,7 +505,9 @@ void run_warp_planes_all_gpus_bench(
     for (int iter = 0; iter < iterations; ++iter) {
         for (part& p : parts) {
             cuda_require(cudaSetDevice(p.device), "set all-gpu warp device");
-            const int blocks = (p.windows * 32 + threads - 1) / threads;
+            const int blocks = std::min(8192, static_cast<int>(
+                ((static_cast<std::size_t>(p.windows) * 32u) + static_cast<std::size_t>(threads) - 1u)
+                    / static_cast<std::size_t>(threads)));
             seq::scan_motif_warp32_unpacked<<<blocks, threads>>>(p.d_sequence, p.bases, motif_planes, motif_length, max_mismatches, p.d_hits);
             cuda_require(cudaGetLastError(), "launch all-gpu warp scan");
         }
@@ -564,6 +719,194 @@ void run_packed_word_shifted_count_all_gpus_bench(
         windows);
 }
 
+void run_packed_word_aligned_count_all_gpus_bench(
+    const std::vector<std::uint8_t>& sequence,
+    const std::vector<std::uint8_t>& motif,
+    int max_mismatches,
+    int iterations,
+    std::uint32_t seed,
+    int device_count) {
+    const int sequence_length = static_cast<int>((sequence.size() / 32u) * 32u);
+    const int motif_length = static_cast<int>(motif.size());
+    const int word_count = sequence_length / 32;
+    const int threads = 256;
+    const seq::dna2_word64 motif_word{pack_window(motif)};
+    const std::vector<std::uint64_t> packed = pack_sequence(sequence);
+    struct part {
+        int device;
+        int words;
+        std::uint64_t* d_sequence;
+        unsigned long long* d_hit_count;
+    };
+    std::vector<part> parts;
+    for (int device = 0; device < device_count; ++device) {
+        const std::size_t begin = (static_cast<std::size_t>(word_count) * static_cast<std::size_t>(device))
+            / static_cast<std::size_t>(device_count);
+        const std::size_t end = (static_cast<std::size_t>(word_count) * static_cast<std::size_t>(device + 1))
+            / static_cast<std::size_t>(device_count);
+        const int part_words = static_cast<int>(end - begin);
+        if (part_words <= 0) continue;
+        part p{device, part_words, nullptr, nullptr};
+        cuda_require(cudaSetDevice(device), "set aligned packed device");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&p.d_sequence), static_cast<std::size_t>(part_words) * sizeof(std::uint64_t)),
+            "cudaMalloc all-gpu aligned packed");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&p.d_hit_count), sizeof(unsigned long long)), "cudaMalloc all-gpu aligned packed count");
+        cuda_require(cudaMemcpy(
+            p.d_sequence,
+            packed.data() + begin,
+            static_cast<std::size_t>(part_words) * sizeof(std::uint64_t),
+            cudaMemcpyHostToDevice),
+            "copy all-gpu aligned packed");
+        parts.push_back(p);
+    }
+
+    for (part& p : parts) {
+        cuda_require(cudaSetDevice(p.device), "set aligned packed warmup device");
+        cuda_require(cudaMemset(p.d_hit_count, 0, sizeof(unsigned long long)), "clear all-gpu aligned packed warmup count");
+        const int blocks = std::min(8192, (p.words + threads - 1) / threads);
+        seq::scan_motif_word64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+            p.d_sequence, p.words, motif_word, motif_length, max_mismatches, p.d_hit_count);
+        cuda_require(cudaGetLastError(), "warmup all-gpu aligned packed scan");
+    }
+    for (part& p : parts) {
+        cuda_require(cudaSetDevice(p.device), "set aligned packed warmup sync device");
+        cuda_require(cudaDeviceSynchronize(), "sync all-gpu aligned packed warmup");
+    }
+
+    const auto start = std::chrono::steady_clock::now();
+    for (int iter = 0; iter < iterations; ++iter) {
+        for (part& p : parts) {
+            cuda_require(cudaSetDevice(p.device), "set all-gpu aligned packed device");
+            cuda_require(cudaMemset(p.d_hit_count, 0, sizeof(unsigned long long)), "clear all-gpu aligned packed count");
+            const int blocks = std::min(8192, (p.words + threads - 1) / threads);
+            seq::scan_motif_word64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+                p.d_sequence, p.words, motif_word, motif_length, max_mismatches, p.d_hit_count);
+            cuda_require(cudaGetLastError(), "launch all-gpu aligned packed scan");
+        }
+        for (part& p : parts) {
+            cuda_require(cudaSetDevice(p.device), "set all-gpu aligned packed sync device");
+            cuda_require(cudaDeviceSynchronize(), "sync all-gpu aligned packed scan");
+        }
+    }
+    const auto stop = std::chrono::steady_clock::now();
+
+    std::uint64_t hits = 0ULL;
+    for (part& p : parts) {
+        cuda_require(cudaSetDevice(p.device), "set all-gpu aligned packed copy device");
+        unsigned long long part_hits = 0ULL;
+        cuda_require(cudaMemcpy(&part_hits, p.d_hit_count, sizeof(unsigned long long), cudaMemcpyDeviceToHost), "copy all-gpu aligned packed count");
+        hits += part_hits;
+        cudaFree(p.d_sequence);
+        cudaFree(p.d_hit_count);
+    }
+
+    report_result(
+        sequence_length,
+        motif_length,
+        max_mismatches,
+        iterations,
+        seed,
+        "packed_word64_aligned_count_all_gpus",
+        static_cast<int>(parts.size()),
+        hits,
+        static_cast<float>(wall_ms_since(start, stop) / static_cast<double>(iterations)),
+        word_count);
+}
+
+void run_inlplane_aligned_count_all_gpus_bench(
+    const std::vector<std::uint8_t>& sequence,
+    const std::vector<std::uint8_t>& motif,
+    int max_mismatches,
+    int iterations,
+    std::uint32_t seed,
+    int device_count) {
+    const int sequence_length = static_cast<int>((sequence.size() / 32u) * 32u);
+    const int motif_length = static_cast<int>(motif.size());
+    const int word_count = sequence_length / 32;
+    const int threads = 256;
+    const seq::dna2_inlplane64 motif_inlplane = seq::word64_to_inlplane64(seq::dna2_word64{pack_window(motif)});
+    const std::vector<std::uint64_t> inlplanes = pack_inlplane_sequence(sequence);
+    struct part {
+        int device;
+        int words;
+        std::uint64_t* d_sequence;
+        unsigned long long* d_hit_count;
+    };
+    std::vector<part> parts;
+    for (int device = 0; device < device_count; ++device) {
+        const std::size_t begin = (static_cast<std::size_t>(word_count) * static_cast<std::size_t>(device))
+            / static_cast<std::size_t>(device_count);
+        const std::size_t end = (static_cast<std::size_t>(word_count) * static_cast<std::size_t>(device + 1))
+            / static_cast<std::size_t>(device_count);
+        const int part_words = static_cast<int>(end - begin);
+        if (part_words <= 0) continue;
+        part p{device, part_words, nullptr, nullptr};
+        cuda_require(cudaSetDevice(device), "set inlplane device");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&p.d_sequence), static_cast<std::size_t>(part_words) * sizeof(std::uint64_t)),
+            "cudaMalloc all-gpu inlplanes");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&p.d_hit_count), sizeof(unsigned long long)), "cudaMalloc all-gpu inlplane count");
+        cuda_require(cudaMemcpy(
+            p.d_sequence,
+            inlplanes.data() + begin,
+            static_cast<std::size_t>(part_words) * sizeof(std::uint64_t),
+            cudaMemcpyHostToDevice),
+            "copy all-gpu inlplanes");
+        parts.push_back(p);
+    }
+
+    for (part& p : parts) {
+        cuda_require(cudaSetDevice(p.device), "set inlplane warmup device");
+        cuda_require(cudaMemset(p.d_hit_count, 0, sizeof(unsigned long long)), "clear all-gpu inlplane warmup count");
+        const int blocks = std::min(8192, (p.words + threads - 1) / threads);
+        seq::scan_motif_inlplane64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+            p.d_sequence, p.words, motif_inlplane, motif_length, max_mismatches, p.d_hit_count);
+        cuda_require(cudaGetLastError(), "warmup all-gpu inlplane scan");
+    }
+    for (part& p : parts) {
+        cuda_require(cudaSetDevice(p.device), "set inlplane warmup sync device");
+        cuda_require(cudaDeviceSynchronize(), "sync all-gpu inlplane warmup");
+    }
+
+    const auto start = std::chrono::steady_clock::now();
+    for (int iter = 0; iter < iterations; ++iter) {
+        for (part& p : parts) {
+            cuda_require(cudaSetDevice(p.device), "set all-gpu inlplane device");
+            cuda_require(cudaMemset(p.d_hit_count, 0, sizeof(unsigned long long)), "clear all-gpu inlplane count");
+            const int blocks = std::min(8192, (p.words + threads - 1) / threads);
+            seq::scan_motif_inlplane64_aligned_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
+                p.d_sequence, p.words, motif_inlplane, motif_length, max_mismatches, p.d_hit_count);
+            cuda_require(cudaGetLastError(), "launch all-gpu inlplane scan");
+        }
+        for (part& p : parts) {
+            cuda_require(cudaSetDevice(p.device), "set all-gpu inlplane sync device");
+            cuda_require(cudaDeviceSynchronize(), "sync all-gpu inlplane scan");
+        }
+    }
+    const auto stop = std::chrono::steady_clock::now();
+
+    std::uint64_t hits = 0ULL;
+    for (part& p : parts) {
+        cuda_require(cudaSetDevice(p.device), "set all-gpu inlplane copy device");
+        unsigned long long part_hits = 0ULL;
+        cuda_require(cudaMemcpy(&part_hits, p.d_hit_count, sizeof(unsigned long long), cudaMemcpyDeviceToHost), "copy all-gpu inlplane count");
+        hits += part_hits;
+        cudaFree(p.d_sequence);
+        cudaFree(p.d_hit_count);
+    }
+
+    report_result(
+        sequence_length,
+        motif_length,
+        max_mismatches,
+        iterations,
+        seed,
+        "inlplane64_aligned_count_all_gpus",
+        static_cast<int>(parts.size()),
+        hits,
+        static_cast<float>(wall_ms_since(start, stop) / static_cast<double>(iterations)),
+        word_count);
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -578,15 +921,18 @@ int main(int argc, char** argv) {
         if (sequence_length < motif_length || motif_length < 1 || motif_length > 32 || iterations < 1) {
             throw std::runtime_error(
                 "usage: baseplaneDna2Bench [sequence_length] [motif_length 1..32] "
-                "[max_mismatches] [iterations] [both|packed_word64|packed_word64_shifted_count|warp_planes32] "
+                "[max_mismatches] [iterations] [both|packed_word64|packed_word64_shifted_count|packed_word64_aligned_count|warp_planes32|inlplane64_aligned_count] "
                 "[seed] [single_gpu|all_gpus]");
         }
         const bool run_packed = std::strcmp(representation, "both") == 0 || std::strcmp(representation, "packed_word64") == 0;
         const bool run_shifted = std::strcmp(representation, "both") == 0
             || std::strcmp(representation, "packed_word64_shifted_count") == 0;
+        const bool run_packed_aligned = std::strcmp(representation, "both") == 0
+            || std::strcmp(representation, "packed_word64_aligned_count") == 0;
         const bool run_warp = std::strcmp(representation, "both") == 0 || std::strcmp(representation, "warp_planes32") == 0;
-        if (!run_packed && !run_shifted && !run_warp) {
-            throw std::runtime_error("representation must be one of: both, packed_word64, packed_word64_shifted_count, warp_planes32");
+        const bool run_inlplane = std::strcmp(representation, "both") == 0 || std::strcmp(representation, "inlplane64_aligned_count") == 0;
+        if (!run_packed && !run_shifted && !run_packed_aligned && !run_warp && !run_inlplane) {
+            throw std::runtime_error("representation must be one of: both, packed_word64, packed_word64_shifted_count, packed_word64_aligned_count, warp_planes32, inlplane64_aligned_count");
         }
         const bool all_gpus = std::strcmp(device_mode, "all_gpus") == 0;
         if (!all_gpus && std::strcmp(device_mode, "single_gpu") != 0) {
@@ -625,11 +971,15 @@ int main(int argc, char** argv) {
         if (all_gpus) {
             if (run_packed) run_packed_word_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
             if (run_shifted) run_packed_word_shifted_count_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
+            if (run_packed_aligned) run_packed_word_aligned_count_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
             if (run_warp) run_warp_planes_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
+            if (run_inlplane) run_inlplane_aligned_count_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
         } else {
             if (run_packed) run_packed_word_bench(sequence, motif, max_mismatches, iterations, seed);
             if (run_shifted) run_packed_word_shifted_count_bench(sequence, motif, max_mismatches, iterations, seed);
+            if (run_packed_aligned) run_packed_word_aligned_count_bench(sequence, motif, max_mismatches, iterations, seed);
             if (run_warp) run_warp_planes_bench(sequence, motif, max_mismatches, iterations, seed);
+            if (run_inlplane) run_inlplane_aligned_count_bench(sequence, motif, max_mismatches, iterations, seed);
         }
     } catch (const std::exception& e) {
         std::fprintf(stderr, "bench_dna2 failed: %s\n", e.what());

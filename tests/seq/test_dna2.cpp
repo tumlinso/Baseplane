@@ -29,6 +29,18 @@ std::uint32_t active_mask_ref(int length) {
     return (1u << static_cast<unsigned int>(length)) - 1u;
 }
 
+std::uint32_t active_mask16_ref(int length) {
+    if (length <= 0) return 0u;
+    if (length >= 16) return 0x0000ffffu;
+    return (1u << static_cast<unsigned int>(length)) - 1u;
+}
+
+std::uint64_t active_mask64_ref(int length) {
+    if (length <= 0) return 0ULL;
+    if (length >= 64) return 0xffffffffffffffffULL;
+    return (1ULL << static_cast<unsigned int>(length)) - 1ULL;
+}
+
 std::uint8_t make_base_ref(char c) {
     return (c == 'C' || c == 'c') ? 1u
         : (c == 'G' || c == 'g') ? 2u
@@ -84,6 +96,15 @@ int popcount_ref(std::uint32_t value) {
     return count;
 }
 
+int popcount64_ref(std::uint64_t value) {
+    int count = 0;
+    while (value != 0ULL) {
+        count += static_cast<int>(value & 1ULL);
+        value >>= 1u;
+    }
+    return count;
+}
+
 std::uint64_t reverse_complement_ref(std::uint64_t packed, int length) {
     const int n = length <= 0 ? 0 : (length > 32 ? 32 : length);
     std::uint64_t out = 0ULL;
@@ -94,27 +115,65 @@ std::uint64_t reverse_complement_ref(std::uint64_t packed, int length) {
     return out;
 }
 
-std::vector<std::uint8_t> bases_from_pattern(const std::string& pattern) {
-    std::vector<std::uint8_t> bases(32u, 0u);
-    for (int i = 0; i < 32; ++i) {
-        bases[static_cast<std::size_t>(i)] = make_base_ref(pattern[static_cast<std::size_t>(i % static_cast<int>(pattern.size()))]);
+std::vector<std::uint8_t> bases_from_pattern_n(const std::string& pattern, std::size_t count) {
+    std::vector<std::uint8_t> bases(count, 0u);
+    for (std::size_t i = 0; i < count; ++i) {
+        bases[i] = make_base_ref(pattern[i % pattern.size()]);
     }
     return bases;
+}
+
+std::vector<std::uint8_t> bases_from_pattern(const std::string& pattern) {
+    return bases_from_pattern_n(pattern, 32u);
+}
+
+seq::dna2_planes64 planes64_from_bases(const std::vector<std::uint8_t>& bases) {
+    seq::dna2_planes64 p{0ULL, 0ULL};
+    for (int i = 0; i < 64; ++i) {
+        const std::uint8_t base = bases[static_cast<std::size_t>(i)] & 0x3u;
+        p.lo |= static_cast<std::uint64_t>(base & 0x1u) << static_cast<unsigned int>(i);
+        p.hi |= static_cast<std::uint64_t>((base >> 1u) & 0x1u) << static_cast<unsigned int>(i);
+    }
+    return p;
 }
 
 void check_case(const std::vector<std::uint8_t>& bases) {
     const std::uint64_t ref_word = pack_ref(bases);
     seq::dna2_word64 word{0ULL};
+    seq::dna2_word32 word16{0u};
     for (int i = 0; i < 32; ++i) {
         seq::set_base(word, i, bases[static_cast<std::size_t>(i)]);
         require(seq::get_base(word, i) == bases[static_cast<std::size_t>(i)], "get/set base mismatch");
+        if (i < 16) {
+            seq::set_base(word16, i, bases[static_cast<std::size_t>(i)]);
+            require(seq::get_base(word16, i) == bases[static_cast<std::size_t>(i)], "word32 get/set base mismatch");
+        }
     }
     require(word.packed == ref_word, "packed word layout mismatch");
+    require(word16.packed == static_cast<std::uint32_t>(ref_word), "packed word32 layout mismatch");
 
     const seq::dna2_planes32 ref_planes = unpack_ref(ref_word);
     const seq::dna2_planes32 planes = seq::unpack_word64_to_planes32(word);
     require(planes.lo == ref_planes.lo && planes.hi == ref_planes.hi, "unpack word64 to planes32 mismatch");
     require(seq::pack_planes32_to_word64(planes).packed == ref_word, "pack planes32 to word64 mismatch");
+
+    const seq::dna2_planes32 planes16 = seq::unpack_word32_to_planes32(word16);
+    require((planes16.lo & 0xffffu) == (ref_planes.lo & 0xffffu), "unpack word32 lo mismatch");
+    require((planes16.hi & 0xffffu) == (ref_planes.hi & 0xffffu), "unpack word32 hi mismatch");
+    require((planes16.lo >> 16u) == 0u && (planes16.hi >> 16u) == 0u, "unpack word32 leaked high planes");
+    require(seq::pack_planes32_to_word32(ref_planes).packed == word16.packed, "pack planes32 to word32 mismatch");
+
+    const seq::dna2_inlplane64 inline64 = seq::planes32_to_inlplane64(planes);
+    const seq::dna2_planes32 inline64_planes = seq::inlplane64_to_planes32(inline64);
+    require(inline64_planes.lo == planes.lo && inline64_planes.hi == planes.hi, "inlplane64 planes roundtrip mismatch");
+    require(seq::inlplane64_to_word64(inline64).packed == word.packed, "inlplane64 word roundtrip mismatch");
+
+    const seq::dna2_inlplane32 inline32 = seq::word32_to_inlplane32(word16);
+    const seq::dna2_planes32 inline32_planes = seq::inlplane32_to_planes32(inline32);
+    require((inline32_planes.lo & 0xffffu) == (ref_planes.lo & 0xffffu), "inlplane32 lo mismatch");
+    require((inline32_planes.hi & 0xffffu) == (ref_planes.hi & 0xffffu), "inlplane32 hi mismatch");
+    require((inline32_planes.lo >> 16u) == 0u && (inline32_planes.hi >> 16u) == 0u, "inlplane32 leaked high planes");
+    require(seq::inlplane32_to_word32(inline32).packed == word16.packed, "inlplane32 word roundtrip mismatch");
 }
 
 void test_pack_roundtrip() {
@@ -137,16 +196,33 @@ void test_planes_word_equivalence_and_masks() {
     const seq::dna2_word64 wb{b};
     const seq::dna2_planes32 pa = seq::unpack_word64_to_planes32(wa);
     const seq::dna2_planes32 pb = seq::unpack_word64_to_planes32(wb);
+    const seq::dna2_inlplane64 ia = seq::planes32_to_inlplane64(pa);
+    const seq::dna2_inlplane64 ib = seq::planes32_to_inlplane64(pb);
+    const seq::dna2_word32 wa16{static_cast<std::uint32_t>(a)};
+    const seq::dna2_word32 wb16{static_cast<std::uint32_t>(b)};
+    const seq::dna2_inlplane32 ia16 = seq::word32_to_inlplane32(wa16);
+    const seq::dna2_inlplane32 ib16 = seq::word32_to_inlplane32(wb16);
     const int lengths[] = {1, 2, 15, 16, 31, 32};
     for (int length : lengths) {
         const std::uint32_t active = active_mask_ref(length);
         const std::uint32_t expected_mask = mismatch_mask_ref(a, b, active);
         require(seq::planes32_mismatch_mask(pa, pb, active) == expected_mask, "planes mismatch mask mismatch");
         require(seq::word64_mismatch_mask(wa, wb, active) == expected_mask, "word mismatch mask mismatch");
+        require(seq::inlplane64_mismatch_mask(ia, ib, active) == expected_mask, "inlplane64 mismatch mask mismatch");
         require(seq::planes32_mismatches(pa, pb, active) == popcount_ref(expected_mask), "planes mismatch count mismatch");
         require(seq::word64_mismatches(wa, wb, active) == popcount_ref(expected_mask), "word mismatch count mismatch");
+        require(seq::inlplane64_mismatches(ia, ib, active) == popcount_ref(expected_mask), "inlplane64 mismatch count mismatch");
         require(seq::planes32_mismatches(pa, pb, active) == seq::word64_mismatches(wa, wb, active),
                 "planes/word mismatch counts diverged");
+        if (length <= 16) {
+            const std::uint32_t active16 = active_mask16_ref(length);
+            const std::uint32_t expected16 = expected_mask & active16;
+            require(seq::word32_mismatch_mask(wa16, wb16, active16) == expected16, "word32 mismatch mask mismatch");
+            require(seq::inlplane32_mismatch_mask(ia16, ib16, active16) == expected16, "inlplane32 mismatch mask mismatch");
+            require(seq::word32_mismatches(wa16, wb16, active16) == popcount_ref(expected16), "word32 mismatch count mismatch");
+            require(seq::inlplane32_mismatches(ia16, ib16, active16) == popcount_ref(expected16),
+                    "inlplane32 mismatch count mismatch");
+        }
     }
 }
 
@@ -172,6 +248,7 @@ void test_exact_and_approximate_match() {
 void test_reverse_complement() {
     const std::uint64_t packed = pack_ref(bases_from_pattern("ACGTTAACCGGT"));
     const seq::dna2_word64 word{packed};
+    const seq::dna2_word32 word16{static_cast<std::uint32_t>(packed)};
     for (int length = 1; length <= 32; ++length) {
         const std::uint64_t expected = reverse_complement_ref(packed, length);
         const seq::dna2_word64 rc = seq::reverse_complement_word64(word, length);
@@ -181,6 +258,18 @@ void test_reverse_complement() {
         }
         const seq::dna2_planes32 rc_planes = seq::reverse_complement_planes32(seq::unpack_word64_to_planes32(word), length);
         require(seq::pack_planes32_to_word64(rc_planes).packed == expected, "reverse-complement planes mismatch");
+        const seq::dna2_inlplane64 rc_inline = seq::reverse_complement_inlplane64(seq::word64_to_inlplane64(word), length);
+        require(seq::inlplane64_to_word64(rc_inline).packed == expected, "reverse-complement inlplane64 mismatch");
+        if (length <= 16) {
+            const std::uint32_t expected16 = static_cast<std::uint32_t>(expected);
+            const seq::dna2_word32 rc16 = seq::reverse_complement_word32(word16, length);
+            require(rc16.packed == expected16, "reverse-complement word32 mismatch");
+            for (int i = length; i < 16; ++i) {
+                require(seq::get_base(rc16, i) == 0u, "reverse-complement leaked inactive word32 bits");
+            }
+            const seq::dna2_inlplane32 rc_inline16 = seq::reverse_complement_inlplane32(seq::word32_to_inlplane32(word16), length);
+            require(seq::inlplane32_to_word32(rc_inline16).packed == expected16, "reverse-complement inlplane32 mismatch");
+        }
     }
 
     seq::dna2_word64 acgt{0ULL};
@@ -193,6 +282,44 @@ void test_reverse_complement() {
     require(seq::get_base(rc, 1) == static_cast<std::uint8_t>(seq::dna2_base::C), "G complement should be C");
     require(seq::get_base(rc, 2) == static_cast<std::uint8_t>(seq::dna2_base::G), "C complement should be G");
     require(seq::get_base(rc, 3) == static_cast<std::uint8_t>(seq::dna2_base::T), "A complement should be T");
+}
+
+void test_planes64_primitives() {
+    const std::vector<std::uint8_t> a_bases = bases_from_pattern_n("ACGTTAACCGGTGGCCAATT", 64u);
+    std::vector<std::uint8_t> b_bases = a_bases;
+    b_bases[3] ^= 0x1u;
+    b_bases[17] ^= 0x2u;
+    b_bases[41] ^= 0x3u;
+    b_bases[63] ^= 0x1u;
+
+    const seq::dna2_planes64 pa = planes64_from_bases(a_bases);
+    const seq::dna2_planes64 pb = planes64_from_bases(b_bases);
+    const int lengths[] = {1, 16, 32, 33, 63, 64};
+    for (int length : lengths) {
+        const std::uint64_t active = active_mask64_ref(length);
+        std::uint64_t expected_mask = 0ULL;
+        for (int i = 0; i < length; ++i) {
+            expected_mask |= static_cast<std::uint64_t>(a_bases[static_cast<std::size_t>(i)]
+                != b_bases[static_cast<std::size_t>(i)]) << static_cast<unsigned int>(i);
+        }
+        expected_mask &= active;
+        require(seq::planes64_mismatch_mask(pa, pb, active) == expected_mask, "planes64 mismatch mask mismatch");
+        require(seq::planes64_mismatches(pa, pb, active) == popcount64_ref(expected_mask), "planes64 mismatch count mismatch");
+        require(seq::planes64_exact_match(pa, pa, active), "planes64 exact match failed");
+    }
+
+    require((seq::planes64_gc_mask(pa) & active_mask64_ref(64)) == (pa.lo ^ pa.hi), "planes64 GC mask mismatch");
+    const seq::dna2_planes64 rc = seq::reverse_complement_planes64(pa, 64);
+    for (int i = 0; i < 64; ++i) {
+        const std::uint8_t expected = static_cast<std::uint8_t>(a_bases[static_cast<std::size_t>(63 - i)] ^ 0x3u);
+        const std::uint8_t got = static_cast<std::uint8_t>(
+            ((((rc.hi >> static_cast<unsigned int>(i)) & 0x1ULL) << 1u)
+                | ((rc.lo >> static_cast<unsigned int>(i)) & 0x1ULL)) & 0x3u);
+        require(got == expected, "planes64 reverse-complement base mismatch");
+    }
+
+    const seq::dna2_planes64 rc17 = seq::reverse_complement_planes64(pa, 17);
+    require(((rc17.lo | rc17.hi) >> 17u) == 0ULL, "planes64 reverse-complement leaked inactive bits");
 }
 
 void test_char_helpers() {
@@ -258,13 +385,13 @@ std::uint32_t hamming_ref(const std::string& a, const std::string& b, std::size_
 }
 
 void check_ascii_case(const std::string& bases, std::size_t n) {
-    const seq::dna2_word word = seq::dna2_pack_ascii_32(bases.data(), n);
+    const seq::dna2_word64 word = seq::dna2_pack_ascii_32(bases.data(), n);
     std::string unpacked(n, '\0');
     seq::dna2_unpack_ascii_32(word, unpacked.data(), n);
     require(unpacked == bases.substr(0u, n), "ascii pack/unpack roundtrip failed");
 
-    const seq::dna2_planes planes = seq::dna2_to_planes(word);
-    require(seq::planes_to_dna2(planes).bits == word.bits, "dna2 planes roundtrip failed");
+    const seq::dna2_planes32 planes = seq::dna2_to_planes(word);
+    require(seq::planes_to_dna2(planes).packed == word.packed, "dna2 planes roundtrip failed");
     require(seq::planes_gc_mask(planes) == gc_mask_ref(bases, n), "GC mask mismatch");
     require((seq::planes_cpg_start_mask(planes) & active_mask_ref(static_cast<int>(n))) == cpg_mask_ref(bases, n),
             "CpG start mask mismatch");
@@ -274,7 +401,7 @@ void check_ascii_case(const std::string& bases, std::size_t n) {
     for (std::size_t i = 0u; i < n; i += 5u) {
         shifted[i] = next_base[make_base_ref(shifted[i])];
     }
-    const seq::dna2_word shifted_word = seq::dna2_pack_ascii_32(shifted.data(), n);
+    const seq::dna2_word64 shifted_word = seq::dna2_pack_ascii_32(shifted.data(), n);
     require(seq::dna2_hamming_distance(word, shifted_word, n) == hamming_ref(bases, shifted, n),
             "hamming distance mismatch");
 
@@ -290,10 +417,10 @@ void check_batch_case(const std::string& seed_bases, std::size_t n, std::size_t 
     std::vector<char> input(count * stride, 'A');
     std::vector<char> unpacked_scalar(count * stride, '\0');
     std::vector<char> unpacked_backend(count * stride, '\0');
-    std::vector<seq::dna2_word> scalar_words(count);
-    std::vector<seq::dna2_word> backend_words(count);
-    std::vector<seq::dna2_planes> scalar_planes(count);
-    std::vector<seq::dna2_planes> backend_planes(count);
+    std::vector<seq::dna2_word64> scalar_words(count);
+    std::vector<seq::dna2_word64> backend_words(count);
+    std::vector<seq::dna2_planes32> scalar_planes(count);
+    std::vector<seq::dna2_planes32> backend_planes(count);
     std::vector<std::uint32_t> scalar_masks(count, 0u);
     std::vector<std::uint32_t> backend_masks(count, 0u);
 
@@ -310,7 +437,7 @@ void check_batch_case(const std::string& seed_bases, std::size_t n, std::size_t 
     seq::dna2_pack_ascii_batch_scalar(input.data(), stride, scalar_words.data(), count, n);
     seq::dna2_pack_ascii_batch(input.data(), stride, backend_words.data(), count, n);
     for (std::size_t i = 0u; i < count; ++i) {
-        require(scalar_words[i].bits == backend_words[i].bits, "batch pack backend mismatch");
+        require(scalar_words[i].packed == backend_words[i].packed, "batch pack backend mismatch");
     }
 
     seq::dna2_unpack_ascii_batch_scalar(scalar_words.data(), unpacked_scalar.data(), stride, count, n);
@@ -327,7 +454,7 @@ void check_batch_case(const std::string& seed_bases, std::size_t n, std::size_t 
     for (std::size_t i = 0u; i < count; ++i) {
         require(scalar_planes[i].lo == backend_planes[i].lo && scalar_planes[i].hi == backend_planes[i].hi,
                 "batch planes backend mismatch");
-        require(seq::planes_to_dna2(backend_planes[i]).bits == backend_words[i].bits, "batch planes roundtrip failed");
+        require(seq::planes_to_dna2(backend_planes[i]).packed == backend_words[i].packed, "batch planes roundtrip failed");
         require(seq::dna2_hamming_distance(scalar_words[i], backend_words[i], n) == 0u, "batch hamming mismatch");
     }
 
@@ -376,6 +503,7 @@ int main() {
         test_planes_word_equivalence_and_masks();
         test_exact_and_approximate_match();
         test_reverse_complement();
+        test_planes64_primitives();
         test_ascii_bit_primitives_and_batches();
     } catch (const std::exception& e) {
         std::cerr << "test_dna2 failed: " << e.what() << '\n';

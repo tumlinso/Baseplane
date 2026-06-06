@@ -39,20 +39,23 @@ __global__ void scan_motif_warp32_unpacked(
     std::uint8_t* hits) {
     const int global_thread = static_cast<int>(blockIdx.x * blockDim.x + threadIdx.x);
     const int lane = static_cast<int>(threadIdx.x & 31u);
-    const int start = global_thread >> 5;
+    const int first_start = global_thread >> 5;
+    const int warp_stride = static_cast<int>((gridDim.x * blockDim.x) >> 5u);
     const int windows = n_bases >= motif_len ? n_bases - motif_len + 1 : 0;
-    if (start >= windows) return;
+    if (warp_stride <= 0) return;
 
-    std::uint8_t base = 0u;
-    if (lane < motif_len) {
-        base = seq_bases[start + lane] & 0x3u;
-    }
+    for (int start = first_start; start < windows; start += warp_stride) {
+        std::uint8_t base = 0u;
+        if (lane < motif_len) {
+            base = seq_bases[start + lane] & 0x3u;
+        }
 
-    const dna2_planes32 window = warp_encode_base_lanes(base);
-    if (lane == 0) {
-        const std::uint32_t active_mask = detail::active_mask_from_length(motif_len);
-        const int mismatches = planes32_mismatches(window, motif, active_mask);
-        hits[start] = static_cast<std::uint8_t>(mismatches <= max_mismatches ? 1u : 0u);
+        const dna2_planes32 window = warp_encode_base_lanes(base);
+        if (lane == 0) {
+            const std::uint32_t active_mask = detail::active_mask_from_length(motif_len);
+            const int mismatches = planes32_mismatches(window, motif, active_mask);
+            hits[start] = static_cast<std::uint8_t>(mismatches <= max_mismatches ? 1u : 0u);
+        }
     }
 }
 
@@ -119,6 +122,81 @@ __global__ void scan_motif_word64_shifted_count(
         const dna2_word64 window{shifted_window_word64(packed_seq, start)};
         const int mismatches = detail::word64_mismatches_packed_count_fields(window, motif_word, active_fields);
         local_hits += mismatches <= max_mismatches ? 1u : 0u;
+    }
+
+    block_counts[tid] = local_hits;
+    __syncthreads();
+    for (int offset = static_cast<int>(blockDim.x) >> 1; offset > 0; offset >>= 1) {
+        if (tid < offset) block_counts[tid] += block_counts[tid + offset];
+        __syncthreads();
+    }
+    if (tid == 0) {
+        atomicAdd(hit_count, static_cast<unsigned long long>(block_counts[0]));
+    }
+}
+
+__global__ void scan_motif_word64_aligned_count(
+    const std::uint64_t* packed_words,
+    int word_count,
+    dna2_word64 motif_word,
+    int motif_len,
+    int max_mismatches,
+    unsigned long long* hit_count) {
+    extern __shared__ unsigned int block_counts[];
+    const int tid = static_cast<int>(threadIdx.x);
+    const int global_thread = static_cast<int>(blockIdx.x * blockDim.x + threadIdx.x);
+    const int stride = static_cast<int>(gridDim.x * blockDim.x);
+    const std::uint32_t active_mask = detail::active_mask_from_length(motif_len);
+    const std::uint64_t active_fields = detail::spread_active_mask_to_packed_fields(active_mask);
+    unsigned int local_hits = 0u;
+
+    for (int base_index = global_thread * 4; base_index < word_count; base_index += stride * 4) {
+        #pragma unroll
+        for (int lane = 0; lane < 4; ++lane) {
+            const int word_index = base_index + lane;
+            if (word_index < word_count) {
+                const dna2_word64 window{packed_words[word_index]};
+                const int mismatches = detail::word64_mismatches_packed_count_fields(window, motif_word, active_fields);
+                local_hits += mismatches <= max_mismatches ? 1u : 0u;
+            }
+        }
+    }
+
+    block_counts[tid] = local_hits;
+    __syncthreads();
+    for (int offset = static_cast<int>(blockDim.x) >> 1; offset > 0; offset >>= 1) {
+        if (tid < offset) block_counts[tid] += block_counts[tid + offset];
+        __syncthreads();
+    }
+    if (tid == 0) {
+        atomicAdd(hit_count, static_cast<unsigned long long>(block_counts[0]));
+    }
+}
+
+__global__ void scan_motif_inlplane64_aligned_count(
+    const std::uint64_t* inlplanes,
+    int word_count,
+    dna2_inlplane64 motif,
+    int motif_len,
+    int max_mismatches,
+    unsigned long long* hit_count) {
+    extern __shared__ unsigned int block_counts[];
+    const int tid = static_cast<int>(threadIdx.x);
+    const int global_thread = static_cast<int>(blockIdx.x * blockDim.x + threadIdx.x);
+    const int stride = static_cast<int>(gridDim.x * blockDim.x);
+    const std::uint32_t active_mask = detail::active_mask_from_length(motif_len);
+    unsigned int local_hits = 0u;
+
+    for (int base_index = global_thread * 4; base_index < word_count; base_index += stride * 4) {
+        #pragma unroll
+        for (int lane = 0; lane < 4; ++lane) {
+            const int word_index = base_index + lane;
+            if (word_index < word_count) {
+                const dna2_inlplane64 window{inlplanes[word_index]};
+                const int mismatches = inlplane64_mismatches(window, motif, active_mask);
+                local_hits += mismatches <= max_mismatches ? 1u : 0u;
+            }
+        }
     }
 
     block_counts[tid] = local_hits;

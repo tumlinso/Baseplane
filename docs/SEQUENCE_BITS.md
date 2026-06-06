@@ -15,13 +15,14 @@ T = 11
 
 This ordering is the format convention for the first `dna2` primitive.
 
-## Two representations
+## Representations
 
-## Packed word64
+## Packed words
 
 Storage / streaming layout.
 
-One `uint64_t` stores 32 bases. Base `i` is stored at:
+`dna2_word32` stores 16 bases in one `uint32_t`; `dna2_word64` stores 32 bases
+in one `uint64_t`. Base `i` is stored at:
 
 ```text
 (word >> (2 * i)) & 0x3
@@ -29,11 +30,12 @@ One `uint64_t` stores 32 bases. Base `i` is stored at:
 
 Base 0 is in the lowest two bits. The public active mask still has one bit per base; callers do not use the internal packed-field mask.
 
-## Planes32 hi/lo
+## Split planes
 
 Warp-compute layout.
 
-Two `uint32_t` words store a 32-base window:
+`dna2_planes32` stores a 32-base window in two `uint32_t` planes.
+`dna2_planes64` stores a 64-base window in two `uint64_t` planes.
 
 ```text
 lo bit i = low bit of base i
@@ -41,11 +43,33 @@ hi bit i = high bit of base i
 base_i = (((hi >> i) & 1) << 1) | ((lo >> i) & 1)
 ```
 
-The representation is designed so one warp can hold one 32-base regulatory word.
+The `planes32` representation is designed so one warp can hold one 32-base
+regulatory word.
+
+## Inline planes
+
+Memory layout for loading a split-plane compute window as one scalar word.
+
+`dna2_inlplane32` stores 16 bases:
+
+```text
+bits  0..15 = lo plane
+bits 16..31 = hi plane
+```
+
+`dna2_inlplane64` stores 32 bases:
+
+```text
+bits  0..31 = lo plane
+bits 32..63 = hi plane
+```
+
+These forms recast to `dna2_planes32` with shifts and masks, then use the same
+XOR / OR / POPCOUNT mismatch logic as split planes.
 
 ## Conversion
 
-`unpack_word64_to_planes32` expands each packed 2-bit field into the matching low and high bitplanes. `pack_planes32_to_word64` reconstructs each base from the hi/lo bitplanes and writes it back into the packed storage layout.
+`unpack_word64_to_planes32` expands each packed 2-bit field into the matching low and high bitplanes. `pack_planes32_to_word64` reconstructs each base from the hi/lo bitplanes and writes it back into the packed storage layout. `planes32_to_inlplane64` serializes the same planes as one inline-plane word; `inlplane64_to_planes32` restores the split-plane view.
 
 ## Motif comparison
 

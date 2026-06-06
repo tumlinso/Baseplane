@@ -50,19 +50,27 @@ void parallel_chunks(std::size_t count, unsigned int requested_threads, Fn&& fn)
     }
 }
 
-std::uint64_t checksum_words(const seq::dna2_word* words, std::size_t count) {
+std::uint64_t checksum_words(const seq::dna2_word64* words, std::size_t count) {
     std::uint64_t sum = 0ULL;
     for (std::size_t i = 0u; i < count; ++i) {
-        sum ^= words[i].bits + 0x9e3779b97f4a7c15ULL + (sum << 6u) + (sum >> 2u);
+        sum ^= words[i].packed + 0x9e3779b97f4a7c15ULL + (sum << 6u) + (sum >> 2u);
     }
     return sum;
 }
 
-std::uint64_t checksum_planes(const seq::dna2_planes* planes, std::size_t count) {
+std::uint64_t checksum_planes(const seq::dna2_planes32* planes, std::size_t count) {
     std::uint64_t sum = 0ULL;
     for (std::size_t i = 0u; i < count; ++i) {
         sum ^= planes[i].lo + 0x9e3779b97f4a7c15ULL + (sum << 6u) + (sum >> 2u);
         sum ^= planes[i].hi + 0xbf58476d1ce4e5b9ULL + (sum << 6u) + (sum >> 2u);
+    }
+    return sum;
+}
+
+std::uint64_t checksum_inlplanes(const seq::dna2_inlplane64* inlplanes, std::size_t count) {
+    std::uint64_t sum = 0ULL;
+    for (std::size_t i = 0u; i < count; ++i) {
+        sum ^= inlplanes[i].planes + 0xd6e8feb86659fd93ULL + (sum << 6u) + (sum >> 2u);
     }
     return sum;
 }
@@ -93,17 +101,17 @@ std::uint64_t pack_window_from_ascii(const char* bases, std::size_t offset, int 
     return word.packed;
 }
 
-std::uint64_t shifted_window_word64(const seq::dna2_word* words, std::size_t start) {
+std::uint64_t shifted_window_word64(const seq::dna2_word64* words, std::size_t start) {
     const std::size_t word_index = start >> 5u;
     const unsigned int shift = static_cast<unsigned int>(start & 31u) * 2u;
-    const std::uint64_t lo = words[word_index].bits;
+    const std::uint64_t lo = words[word_index].packed;
     if (shift == 0u) return lo;
-    const std::uint64_t hi = words[word_index + 1u].bits;
+    const std::uint64_t hi = words[word_index + 1u].packed;
     return (lo >> shift) | (hi << (64u - shift));
 }
 
 std::uint64_t scan_motif_packed_shifted_count(
-    const seq::dna2_word* words,
+    const seq::dna2_word64* words,
     std::size_t windows,
     seq::dna2_word64 motif_word,
     int motif_length,
@@ -129,6 +137,46 @@ std::uint64_t scan_motif_packed_shifted_count(
                 for (std::size_t start = begin; start < end; ++start) {
                     const seq::dna2_word64 window{shifted_window_word64(words, start)};
                     const int mismatches = seq::detail::word64_mismatches_packed_count_fields(window, motif_word, active_fields);
+                    iter_hits += mismatches <= max_mismatches ? 1ULL : 0ULL;
+                }
+                local_hits = iter_hits;
+            }
+            partial[worker] = local_hits;
+        });
+    }
+    for (std::thread& thread : threads) {
+        thread.join();
+    }
+    std::uint64_t hits = 0ULL;
+    for (std::uint64_t value : partial) hits += value;
+    return hits;
+}
+
+std::uint64_t scan_motif_inlplane_aligned_count(
+    const seq::dna2_inlplane64* inlplanes,
+    std::size_t count,
+    seq::dna2_inlplane64 motif,
+    int motif_length,
+    int max_mismatches,
+    unsigned int requested_threads,
+    int iterations) {
+    const unsigned int available = std::thread::hardware_concurrency();
+    const unsigned int fallback = available == 0u ? 1u : available;
+    const unsigned int thread_count = requested_threads == 0u ? fallback : requested_threads;
+    const unsigned int workers = static_cast<unsigned int>(std::min<std::size_t>(count == 0u ? 1u : count, thread_count));
+    std::vector<std::thread> threads;
+    std::vector<std::uint64_t> partial(static_cast<std::size_t>(workers), 0ULL);
+    threads.reserve(workers);
+    const std::uint32_t active_mask = seq::detail::active_mask_from_length(motif_length);
+    for (unsigned int worker = 0u; worker < workers; ++worker) {
+        const std::size_t begin = (count * worker) / workers;
+        const std::size_t end = (count * (worker + 1u)) / workers;
+        threads.emplace_back([&, worker, begin, end] {
+            std::uint64_t local_hits = 0ULL;
+            for (int iter = 0; iter < iterations; ++iter) {
+                std::uint64_t iter_hits = 0ULL;
+                for (std::size_t index = begin; index < end; ++index) {
+                    const int mismatches = seq::inlplane64_mismatches(inlplanes[index], motif, active_mask);
                     iter_hits += mismatches <= max_mismatches ? 1ULL : 0ULL;
                 }
                 local_hits = iter_hits;
@@ -175,10 +223,11 @@ int main(int argc, char** argv) {
 
         constexpr std::size_t stride = 32u;
         std::unique_ptr<char[]> input(new char[count * stride]);
-        std::unique_ptr<seq::dna2_word[]> words(new seq::dna2_word[count + 1u]);
-        std::unique_ptr<seq::dna2_planes[]> planes(new seq::dna2_planes[count]);
+        std::unique_ptr<seq::dna2_word64[]> words(new seq::dna2_word64[count + 1u]);
+        std::unique_ptr<seq::dna2_planes32[]> planes(new seq::dna2_planes32[count]);
+        std::unique_ptr<seq::dna2_inlplane64[]> inlplanes(new seq::dna2_inlplane64[count]);
         std::unique_ptr<std::uint32_t[]> masks(new std::uint32_t[count]);
-        words[count].bits = 0ULL;
+        words[count].packed = 0ULL;
 
         std::mt19937 rng(seed);
         std::uniform_int_distribution<int> base_dist(0, 3);
@@ -188,8 +237,11 @@ int main(int argc, char** argv) {
         }
 
         seq::dna2_pack_ascii_batch(input.get(), stride, words.get(), count, stride);
-        words[count].bits = 0ULL;
+        words[count].packed = 0ULL;
         seq::dna2_to_planes_batch(words.get(), planes.get(), count);
+        for (std::size_t i = 0u; i < count; ++i) {
+            inlplanes[i] = seq::word64_to_inlplane64(words[i]);
+        }
 
         const double pack_seconds = time_seconds([&] {
             parallel_chunks(count, active_threads, [&](std::size_t begin, std::size_t end) {
@@ -208,6 +260,17 @@ int main(int argc, char** argv) {
             });
         });
         report("to_planes", count, iterations, planes_seconds, checksum_planes(planes.get(), count));
+
+        const double inlplane_seconds = time_seconds([&] {
+            parallel_chunks(count, active_threads, [&](std::size_t begin, std::size_t end) {
+                for (int iter = 0; iter < iterations; ++iter) {
+                    for (std::size_t i = begin; i < end; ++i) {
+                        inlplanes[i] = seq::word64_to_inlplane64(words[i]);
+                    }
+                }
+            });
+        });
+        report("to_inlplane64", count, iterations, inlplane_seconds, checksum_inlplanes(inlplanes.get(), count));
 
         const double gc_seconds = time_seconds([&] {
             parallel_chunks(count, active_threads, [&](std::size_t begin, std::size_t end) {
@@ -245,6 +308,21 @@ int main(int argc, char** argv) {
         std::printf("motif_scan_packed_shifted_windows_per_sec=%.3f\n", windows_per_sec);
         std::printf("motif_scan_packed_shifted_bases_per_sec=%.3f\n", bases_per_sec);
         std::printf("motif_scan_packed_shifted_hits=%llu\n", static_cast<unsigned long long>(scan_hits));
+
+        const seq::dna2_inlplane64 motif_inlplane = seq::word64_to_inlplane64(motif_word);
+        std::uint64_t inlplane_hits = 0ULL;
+        const double inlplane_scan_seconds = time_seconds([&] {
+            inlplane_hits = scan_motif_inlplane_aligned_count(
+                inlplanes.get(), count, motif_inlplane, motif_length, max_mismatches, active_threads, iterations);
+        });
+        const double aligned_windows_per_sec = inlplane_scan_seconds > 0.0
+            ? (static_cast<double>(count) * iterations) / inlplane_scan_seconds : 0.0;
+        const double aligned_bases_per_sec = inlplane_scan_seconds > 0.0
+            ? (static_cast<double>(sequence_bases) * iterations) / inlplane_scan_seconds : 0.0;
+        std::printf("motif_scan_inlplane64_aligned_seconds=%.6f\n", inlplane_scan_seconds);
+        std::printf("motif_scan_inlplane64_aligned_windows_per_sec=%.3f\n", aligned_windows_per_sec);
+        std::printf("motif_scan_inlplane64_aligned_bases_per_sec=%.3f\n", aligned_bases_per_sec);
+        std::printf("motif_scan_inlplane64_aligned_hits=%llu\n", static_cast<unsigned long long>(inlplane_hits));
     } catch (const std::exception& e) {
         std::fprintf(stderr, "baseplaneDna2CpuBench failed: %s\n", e.what());
         return EXIT_FAILURE;

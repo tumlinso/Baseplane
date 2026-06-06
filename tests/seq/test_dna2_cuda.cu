@@ -177,6 +177,12 @@ struct helper_result {
     std::uint32_t planes_mask;
     int planes_mismatches;
     std::uint8_t planes_exact;
+    std::uint32_t inl_planes_lo;
+    std::uint32_t inl_planes_hi;
+    std::uint64_t inl_repacked;
+    std::uint32_t inl_mask;
+    int inl_mismatches;
+    std::uint8_t inl_exact;
     std::uint32_t word_mask;
     int word_mismatches;
     std::uint64_t rc_word;
@@ -193,6 +199,9 @@ __global__ void helper_kernel(const helper_case* cases, helper_result* results, 
     const seq::dna2_word64 b{c.b};
     const seq::dna2_planes32 ap = seq::unpack_word64_to_planes32(a);
     const seq::dna2_planes32 bp = seq::unpack_word64_to_planes32(b);
+    const seq::dna2_inlplane64 ai = seq::planes32_to_inlplane64(ap);
+    const seq::dna2_inlplane64 bi = seq::planes32_to_inlplane64(bp);
+    const seq::dna2_planes32 ai_planes = seq::inlplane64_to_planes32(ai);
     seq::dna2_word64 set_word = a;
     seq::set_base(set_word, c.slot, c.set_value);
     const seq::dna2_word64 rc_word = seq::reverse_complement_word64(a, c.length);
@@ -209,6 +218,12 @@ __global__ void helper_kernel(const helper_case* cases, helper_result* results, 
     r.planes_mask = seq::planes32_mismatch_mask(ap, bp, c.active);
     r.planes_mismatches = seq::planes32_mismatches(ap, bp, c.active);
     r.planes_exact = static_cast<std::uint8_t>(seq::planes32_exact_match(ap, bp, c.active) ? 1u : 0u);
+    r.inl_planes_lo = ai_planes.lo;
+    r.inl_planes_hi = ai_planes.hi;
+    r.inl_repacked = seq::inlplane64_to_word64(ai).packed;
+    r.inl_mask = seq::inlplane64_mismatch_mask(ai, bi, c.active);
+    r.inl_mismatches = seq::inlplane64_mismatches(ai, bi, c.active);
+    r.inl_exact = static_cast<std::uint8_t>(seq::inlplane64_exact_match(ai, bi, c.active) ? 1u : 0u);
     r.word_mask = seq::word64_mismatch_mask(a, b, c.active);
     r.word_mismatches = seq::word64_mismatches(a, b, c.active);
     r.rc_word = rc_word.packed;
@@ -274,6 +289,11 @@ void test_device_helpers() {
         require(r.planes_mask == expected_mask, "device planes mismatch mask mismatch");
         require(r.planes_mismatches == popcount_ref(expected_mask), "device planes mismatch count mismatch");
         require(r.planes_exact == static_cast<std::uint8_t>(expected_mask == 0u ? 1u : 0u), "device exact match mismatch");
+        require(r.inl_planes_lo == ap.lo && r.inl_planes_hi == ap.hi, "device inlplane64 conversion mismatch");
+        require(r.inl_repacked == c.a, "device inlplane64 repack mismatch");
+        require(r.inl_mask == expected_mask, "device inlplane64 mismatch mask mismatch");
+        require(r.inl_mismatches == popcount_ref(expected_mask), "device inlplane64 mismatch count mismatch");
+        require(r.inl_exact == static_cast<std::uint8_t>(expected_mask == 0u ? 1u : 0u), "device inlplane64 exact mismatch");
         require(r.word_mask == expected_mask, "device word mismatch mask mismatch");
         require(r.word_mismatches == popcount_ref(expected_mask), "device word mismatch count mismatch");
         require(r.rc_word == reverse_complement_ref(c.a, c.length), "device reverse-complement word mismatch");

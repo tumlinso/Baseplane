@@ -7,7 +7,8 @@ strings.
 
 ## Packed 2-Bit Words
 
-`dna2_word` stores up to 32 bases in one `uint64_t`, using:
+`dna2_word32` stores up to 16 bases in one `uint32_t`; `dna2_word64` stores up
+to 32 bases in one `uint64_t`, using:
 
 - `A = 00`
 - `C = 01`
@@ -20,12 +21,13 @@ as `A` in release builds. Ambiguous IUPAC bases are not represented in this
 primitive layer.
 
 Packed words make fixed-width sequence chunks cheap to move, compare, and stage
-for later CPU SIMD or accelerator code. Unused positions in chunks shorter than
-32 bases remain zeroed.
+for later CPU SIMD or accelerator code. Unused positions in shorter chunks
+remain zeroed.
 
 ## Bitplanes
 
-`dna2_planes` splits one packed word into two position masks:
+`dna2_planes32` splits one 32-base packed word into two position masks.
+`dna2_planes64` extends the same split-plane model to 64 bases:
 
 - `lo`: low bit for each base position
 - `hi`: high bit for each base position
@@ -41,6 +43,13 @@ operations:
 These masks are the CPU-side counterpart of future CUDA warp-level sequence
 primitives. Both backends should preserve these semantic operations rather than
 lowering sequence work to generic byte strings.
+
+## Inline Planes
+
+`dna2_inlplane32` stores 16 bases as low 16 bits of `lo` plus high 16 bits of
+`hi`. `dna2_inlplane64` stores 32 bases as low 32 bits of `lo` plus high 32
+bits of `hi`. These layouts serialize the split-plane compute view into one
+scalar load and convert back to `dna2_planes32` with shifts and masks.
 
 ## Backends
 

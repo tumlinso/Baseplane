@@ -26,13 +26,8 @@ enum class dna2_base : std::uint8_t {
     T = 3,
 };
 
-struct dna2_word {
-    std::uint64_t bits;
-};
-
-struct dna2_planes {
-    std::uint64_t lo;
-    std::uint64_t hi;
+struct dna2_word32 {
+    std::uint32_t packed;
 };
 
 struct dna2_word64 {
@@ -44,6 +39,19 @@ struct dna2_planes32 {
     std::uint32_t hi;
 };
 
+struct dna2_planes64 {
+    std::uint64_t lo;
+    std::uint64_t hi;
+};
+
+struct dna2_inlplane32 {
+    std::uint32_t planes;
+};
+
+struct dna2_inlplane64 {
+    std::uint64_t planes;
+};
+
 struct dna2_window32 {
     dna2_planes32 planes;
     std::uint32_t valid_mask;
@@ -53,12 +61,25 @@ struct dna2_window32 {
 namespace detail {
 
 constexpr std::uint32_t all_bases_mask = 0xffffffffu;
+constexpr std::uint32_t low16_bases_mask = 0x0000ffffu;
 constexpr std::uint64_t packed_field_lo_mask = 0x5555555555555555ULL;
+
+BASEPLANE_SEQ_HD std::uint32_t active_mask16_from_length(int length) {
+    if (length <= 0) return 0u;
+    if (length >= 16) return low16_bases_mask;
+    return (1u << static_cast<unsigned int>(length)) - 1u;
+}
 
 BASEPLANE_SEQ_HD std::uint32_t active_mask_from_length(int length) {
     if (length <= 0) return 0u;
     if (length >= 32) return all_bases_mask;
     return (1u << static_cast<unsigned int>(length)) - 1u;
+}
+
+BASEPLANE_SEQ_HD std::uint64_t active_mask64_from_length(int length) {
+    if (length <= 0) return 0ULL;
+    if (length >= 64) return 0xffffffffffffffffULL;
+    return (1ULL << static_cast<unsigned int>(length)) - 1ULL;
 }
 
 BASEPLANE_SEQ_HD int popcount32(std::uint32_t value) {
@@ -128,9 +149,21 @@ BASEPLANE_SEQ_HD char base_to_char(std::uint8_t b) {
         : 'A';
 }
 
+BASEPLANE_SEQ_HD std::uint8_t get_base(dna2_word32 w, int i) {
+    const unsigned int slot = static_cast<unsigned int>(i) & 15u;
+    return static_cast<std::uint8_t>((w.packed >> (slot * 2u)) & 0x3u);
+}
+
 BASEPLANE_SEQ_HD std::uint8_t get_base(dna2_word64 w, int i) {
     const unsigned int slot = static_cast<unsigned int>(i) & 31u;
     return static_cast<std::uint8_t>((w.packed >> (slot * 2u)) & 0x3ULL);
+}
+
+BASEPLANE_SEQ_HD void set_base(dna2_word32& w, int i, std::uint8_t b) {
+    const unsigned int slot = static_cast<unsigned int>(i) & 15u;
+    const unsigned int shift = slot * 2u;
+    const std::uint32_t mask = 0x3u << shift;
+    w.packed = (w.packed & ~mask) | ((static_cast<std::uint32_t>(b & 0x3u)) << shift);
 }
 
 BASEPLANE_SEQ_HD void set_base(dna2_word64& w, int i, std::uint8_t b) {
@@ -138,6 +171,16 @@ BASEPLANE_SEQ_HD void set_base(dna2_word64& w, int i, std::uint8_t b) {
     const unsigned int shift = slot * 2u;
     const std::uint64_t mask = 0x3ULL << shift;
     w.packed = (w.packed & ~mask) | ((static_cast<std::uint64_t>(b & 0x3u)) << shift);
+}
+
+BASEPLANE_SEQ_HD dna2_planes32 unpack_word32_to_planes32(dna2_word32 w) {
+    dna2_planes32 p{0u, 0u};
+    for (int i = 0; i < 16; ++i) {
+        const std::uint8_t base = get_base(w, i);
+        p.lo |= static_cast<std::uint32_t>(base & 0x1u) << i;
+        p.hi |= static_cast<std::uint32_t>((base >> 1u) & 0x1u) << i;
+    }
+    return p;
 }
 
 BASEPLANE_SEQ_HD dna2_planes32 unpack_word64_to_planes32(dna2_word64 w) {
@@ -150,6 +193,16 @@ BASEPLANE_SEQ_HD dna2_planes32 unpack_word64_to_planes32(dna2_word64 w) {
     return p;
 }
 
+BASEPLANE_SEQ_HD dna2_word32 pack_planes32_to_word32(dna2_planes32 p) {
+    dna2_word32 w{0u};
+    for (int i = 0; i < 16; ++i) {
+        const std::uint8_t base = static_cast<std::uint8_t>(
+            ((((p.hi >> i) & 0x1u) << 1u) | ((p.lo >> i) & 0x1u)) & 0x3u);
+        set_base(w, i, base);
+    }
+    return w;
+}
+
 BASEPLANE_SEQ_HD dna2_word64 pack_planes32_to_word64(dna2_planes32 p) {
     dna2_word64 w{0ULL};
     for (int i = 0; i < 32; ++i) {
@@ -158,6 +211,46 @@ BASEPLANE_SEQ_HD dna2_word64 pack_planes32_to_word64(dna2_planes32 p) {
         set_base(w, i, base);
     }
     return w;
+}
+
+BASEPLANE_SEQ_HD dna2_planes32 inlplane32_to_planes32(dna2_inlplane32 w) {
+    return dna2_planes32{
+        static_cast<std::uint32_t>(w.planes & detail::low16_bases_mask),
+        static_cast<std::uint32_t>((w.planes >> 16u) & detail::low16_bases_mask)
+    };
+}
+
+BASEPLANE_SEQ_HD dna2_inlplane32 planes32_to_inlplane32(dna2_planes32 p) {
+    return dna2_inlplane32{
+        static_cast<std::uint32_t>((p.lo & detail::low16_bases_mask) | ((p.hi & detail::low16_bases_mask) << 16u))
+    };
+}
+
+BASEPLANE_SEQ_HD dna2_planes32 inlplane64_to_planes32(dna2_inlplane64 w) {
+    return dna2_planes32{
+        static_cast<std::uint32_t>(w.planes),
+        static_cast<std::uint32_t>(w.planes >> 32u)
+    };
+}
+
+BASEPLANE_SEQ_HD dna2_inlplane64 planes32_to_inlplane64(dna2_planes32 p) {
+    return dna2_inlplane64{static_cast<std::uint64_t>(p.lo) | (static_cast<std::uint64_t>(p.hi) << 32u)};
+}
+
+BASEPLANE_SEQ_HD dna2_inlplane32 word32_to_inlplane32(dna2_word32 w) {
+    return planes32_to_inlplane32(unpack_word32_to_planes32(w));
+}
+
+BASEPLANE_SEQ_HD dna2_word32 inlplane32_to_word32(dna2_inlplane32 w) {
+    return pack_planes32_to_word32(inlplane32_to_planes32(w));
+}
+
+BASEPLANE_SEQ_HD dna2_inlplane64 word64_to_inlplane64(dna2_word64 w) {
+    return planes32_to_inlplane64(unpack_word64_to_planes32(w));
+}
+
+BASEPLANE_SEQ_HD dna2_word64 inlplane64_to_word64(dna2_inlplane64 w) {
+    return pack_planes32_to_word64(inlplane64_to_planes32(w));
 }
 
 BASEPLANE_SEQ_HD std::uint32_t planes32_mismatch_mask(dna2_planes32 a, dna2_planes32 b, std::uint32_t active_mask) {
@@ -170,6 +263,63 @@ BASEPLANE_SEQ_HD int planes32_mismatches(dna2_planes32 a, dna2_planes32 b, std::
 
 BASEPLANE_SEQ_HD bool planes32_exact_match(dna2_planes32 a, dna2_planes32 b, std::uint32_t active_mask) {
     return planes32_mismatch_mask(a, b, active_mask) == 0u;
+}
+
+BASEPLANE_SEQ_HD std::uint64_t planes64_mismatch_mask(dna2_planes64 a, dna2_planes64 b, std::uint64_t active_mask) {
+    return ((a.lo ^ b.lo) | (a.hi ^ b.hi)) & active_mask;
+}
+
+BASEPLANE_SEQ_HD int planes64_mismatches(dna2_planes64 a, dna2_planes64 b, std::uint64_t active_mask) {
+    return detail::popcount64(planes64_mismatch_mask(a, b, active_mask));
+}
+
+BASEPLANE_SEQ_HD bool planes64_exact_match(dna2_planes64 a, dna2_planes64 b, std::uint64_t active_mask) {
+    return planes64_mismatch_mask(a, b, active_mask) == 0ULL;
+}
+
+BASEPLANE_SEQ_HD std::uint64_t planes64_base_mask(dna2_planes64 planes, std::uint8_t code) {
+    const std::uint64_t lo = planes.lo;
+    const std::uint64_t hi = planes.hi;
+    return code == 0u ? (~lo & ~hi)
+        : code == 1u ? (lo & ~hi)
+        : code == 2u ? (~lo & hi)
+        : (lo & hi);
+}
+
+BASEPLANE_SEQ_HD std::uint64_t planes64_gc_mask(dna2_planes64 planes) {
+    return planes.lo ^ planes.hi;
+}
+
+BASEPLANE_SEQ_HD std::uint64_t planes64_cpg_start_mask(dna2_planes64 planes) {
+    const std::uint64_t c_mask = planes64_base_mask(planes, 1u);
+    const std::uint64_t g_mask = planes64_base_mask(planes, 2u);
+    return c_mask & (g_mask >> 1u) & 0x7fffffffffffffffULL;
+}
+
+BASEPLANE_SEQ_HD std::uint32_t inlplane32_mismatch_mask(dna2_inlplane32 a, dna2_inlplane32 b, std::uint32_t active_mask_16bases) {
+    const std::uint32_t x = a.planes ^ b.planes;
+    return ((x & detail::low16_bases_mask) | (x >> 16u)) & active_mask_16bases & detail::low16_bases_mask;
+}
+
+BASEPLANE_SEQ_HD int inlplane32_mismatches(dna2_inlplane32 a, dna2_inlplane32 b, std::uint32_t active_mask_16bases) {
+    return detail::popcount32(inlplane32_mismatch_mask(a, b, active_mask_16bases));
+}
+
+BASEPLANE_SEQ_HD bool inlplane32_exact_match(dna2_inlplane32 a, dna2_inlplane32 b, std::uint32_t active_mask_16bases) {
+    return inlplane32_mismatch_mask(a, b, active_mask_16bases) == 0u;
+}
+
+BASEPLANE_SEQ_HD std::uint32_t inlplane64_mismatch_mask(dna2_inlplane64 a, dna2_inlplane64 b, std::uint32_t active_mask_32bases) {
+    const std::uint64_t x = a.planes ^ b.planes;
+    return static_cast<std::uint32_t>((x | (x >> 32u)) & static_cast<std::uint64_t>(active_mask_32bases));
+}
+
+BASEPLANE_SEQ_HD int inlplane64_mismatches(dna2_inlplane64 a, dna2_inlplane64 b, std::uint32_t active_mask_32bases) {
+    return detail::popcount32(inlplane64_mismatch_mask(a, b, active_mask_32bases));
+}
+
+BASEPLANE_SEQ_HD bool inlplane64_exact_match(dna2_inlplane64 a, dna2_inlplane64 b, std::uint32_t active_mask_32bases) {
+    return inlplane64_mismatch_mask(a, b, active_mask_32bases) == 0u;
 }
 
 BASEPLANE_SEQ_HD std::uint32_t word64_mismatch_mask(dna2_word64 a, dna2_word64 b, std::uint32_t active_mask_32bases) {
@@ -192,104 +342,129 @@ BASEPLANE_SEQ_HD int word64_mismatches_packed_count(dna2_word64 a, dna2_word64 b
     return detail::word64_mismatches_packed_count_fields(a, b, active_fields);
 }
 
-dna2_word dna2_pack_ascii_32(const char* bases, std::size_t n);
-void dna2_unpack_ascii_32(dna2_word word, char* out, std::size_t n);
+BASEPLANE_SEQ_HD std::uint32_t word32_mismatch_mask(dna2_word32 a, dna2_word32 b, std::uint32_t active_mask_16bases) {
+    return word64_mismatch_mask(
+        dna2_word64{static_cast<std::uint64_t>(a.packed)},
+        dna2_word64{static_cast<std::uint64_t>(b.packed)},
+        active_mask_16bases & detail::low16_bases_mask);
+}
 
-dna2_planes dna2_to_planes(dna2_word word);
-dna2_word planes_to_dna2(dna2_planes planes);
+BASEPLANE_SEQ_HD int word32_mismatches(dna2_word32 a, dna2_word32 b, std::uint32_t active_mask_16bases) {
+    return detail::popcount32(word32_mismatch_mask(a, b, active_mask_16bases));
+}
 
-std::uint32_t planes_base_mask(dna2_planes planes, char base);
-std::uint32_t planes_gc_mask(dna2_planes planes);
-std::uint32_t planes_cpg_start_mask(dna2_planes planes);
+BASEPLANE_SEQ_HD bool word32_exact_match(dna2_word32 a, dna2_word32 b, std::uint32_t active_mask_16bases) {
+    return word32_mismatch_mask(a, b, active_mask_16bases) == 0u;
+}
 
-std::uint32_t dna2_hamming_distance(dna2_word a, dna2_word b, std::size_t n);
+dna2_word64 dna2_pack_ascii_32(const char* bases, std::size_t n);
+void dna2_unpack_ascii_32(dna2_word64 word, char* out, std::size_t n);
+
+dna2_planes32 dna2_to_planes(dna2_word64 word);
+dna2_word64 planes_to_dna2(dna2_planes32 planes);
+
+std::uint32_t planes_base_mask(dna2_planes32 planes, char base);
+std::uint32_t planes_gc_mask(dna2_planes32 planes);
+std::uint32_t planes_cpg_start_mask(dna2_planes32 planes);
+
+std::uint32_t dna2_hamming_distance(dna2_word64 a, dna2_word64 b, std::size_t n);
 
 void dna2_pack_ascii_batch_scalar(
     const char* input,
     std::size_t stride,
-    dna2_word* output,
+    dna2_word64* output,
     std::size_t count,
     std::size_t n_per_seq);
 
 void dna2_unpack_ascii_batch_scalar(
-    const dna2_word* input,
+    const dna2_word64* input,
     char* output,
     std::size_t stride,
     std::size_t count,
     std::size_t n_per_seq);
 
 void dna2_to_planes_batch_scalar(
-    const dna2_word* input,
-    dna2_planes* output,
+    const dna2_word64* input,
+    dna2_planes32* output,
     std::size_t count);
 
 void planes_gc_mask_batch_scalar(
-    const dna2_planes* input,
+    const dna2_planes32* input,
     std::uint32_t* output_masks,
     std::size_t count);
 
 void planes_cpg_start_mask_batch_scalar(
-    const dna2_planes* input,
+    const dna2_planes32* input,
     std::uint32_t* output_masks,
     std::size_t count);
 
 void dna2_pack_ascii_batch_highway(
     const char* input,
     std::size_t stride,
-    dna2_word* output,
+    dna2_word64* output,
     std::size_t count,
     std::size_t n_per_seq);
 
 void dna2_unpack_ascii_batch_highway(
-    const dna2_word* input,
+    const dna2_word64* input,
     char* output,
     std::size_t stride,
     std::size_t count,
     std::size_t n_per_seq);
 
 void dna2_to_planes_batch_highway(
-    const dna2_word* input,
-    dna2_planes* output,
+    const dna2_word64* input,
+    dna2_planes32* output,
     std::size_t count);
 
 void planes_gc_mask_batch_highway(
-    const dna2_planes* input,
+    const dna2_planes32* input,
     std::uint32_t* output_masks,
     std::size_t count);
 
 void planes_cpg_start_mask_batch_highway(
-    const dna2_planes* input,
+    const dna2_planes32* input,
     std::uint32_t* output_masks,
     std::size_t count);
 
 void dna2_pack_ascii_batch(
     const char* input,
     std::size_t stride,
-    dna2_word* output,
+    dna2_word64* output,
     std::size_t count,
     std::size_t n_per_seq);
 
 void dna2_unpack_ascii_batch(
-    const dna2_word* input,
+    const dna2_word64* input,
     char* output,
     std::size_t stride,
     std::size_t count,
     std::size_t n_per_seq);
 
 void dna2_to_planes_batch(
-    const dna2_word* input,
-    dna2_planes* output,
+    const dna2_word64* input,
+    dna2_planes32* output,
     std::size_t count);
 
 void planes_gc_mask_batch(
-    const dna2_planes* input,
+    const dna2_planes32* input,
     std::uint32_t* output_masks,
     std::size_t count);
 
 void planes_cpg_start_mask_batch(
-    const dna2_planes* input,
+    const dna2_planes32* input,
     std::uint32_t* output_masks,
     std::size_t count);
+
+BASEPLANE_SEQ_HD dna2_word32 reverse_complement_word32(dna2_word32 w, int length) {
+    const int n = length <= 0 ? 0 : (length > 16 ? 16 : length);
+    dna2_word32 out{0u};
+    for (int i = 0; i < n; ++i) {
+        const std::uint8_t base = get_base(w, n - 1 - i) ^ 0x3u;
+        set_base(out, i, base);
+    }
+    return out;
+}
 
 BASEPLANE_SEQ_HD dna2_word64 reverse_complement_word64(dna2_word64 w, int length) {
     const int n = length <= 0 ? 0 : (length > 32 ? 32 : length);
@@ -301,8 +476,30 @@ BASEPLANE_SEQ_HD dna2_word64 reverse_complement_word64(dna2_word64 w, int length
     return out;
 }
 
+BASEPLANE_SEQ_HD dna2_inlplane32 reverse_complement_inlplane32(dna2_inlplane32 w, int length) {
+    return word32_to_inlplane32(reverse_complement_word32(inlplane32_to_word32(w), length));
+}
+
 BASEPLANE_SEQ_HD dna2_planes32 reverse_complement_planes32(dna2_planes32 p, int length) {
     return unpack_word64_to_planes32(reverse_complement_word64(pack_planes32_to_word64(p), length));
+}
+
+BASEPLANE_SEQ_HD dna2_inlplane64 reverse_complement_inlplane64(dna2_inlplane64 w, int length) {
+    return planes32_to_inlplane64(reverse_complement_planes32(inlplane64_to_planes32(w), length));
+}
+
+BASEPLANE_SEQ_HD dna2_planes64 reverse_complement_planes64(dna2_planes64 p, int length) {
+    const int n = length <= 0 ? 0 : (length > 64 ? 64 : length);
+    dna2_planes64 out{0ULL, 0ULL};
+    for (int i = 0; i < n; ++i) {
+        const int source = n - 1 - i;
+        const std::uint8_t base = static_cast<std::uint8_t>(
+            ((((p.hi >> static_cast<unsigned int>(source)) & 0x1ULL) << 1u)
+                | ((p.lo >> static_cast<unsigned int>(source)) & 0x1ULL)) ^ 0x3u);
+        out.lo |= static_cast<std::uint64_t>(base & 0x1u) << static_cast<unsigned int>(i);
+        out.hi |= static_cast<std::uint64_t>((base >> 1u) & 0x1u) << static_cast<unsigned int>(i);
+    }
+    return out;
 }
 
 #if defined(__CUDACC__)
@@ -338,6 +535,22 @@ __global__ void scan_motif_word64_shifted_count(
     const std::uint64_t* packed_seq,
     int n_bases,
     dna2_word64 motif_word,
+    int motif_len,
+    int max_mismatches,
+    unsigned long long* hit_count);
+
+__global__ void scan_motif_word64_aligned_count(
+    const std::uint64_t* packed_words,
+    int word_count,
+    dna2_word64 motif_word,
+    int motif_len,
+    int max_mismatches,
+    unsigned long long* hit_count);
+
+__global__ void scan_motif_inlplane64_aligned_count(
+    const std::uint64_t* inlplanes,
+    int word_count,
+    dna2_inlplane64 motif,
     int motif_len,
     int max_mismatches,
     unsigned long long* hit_count);
