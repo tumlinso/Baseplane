@@ -9,6 +9,10 @@ Packed words are how sequence lives in memory. Bitplanes are how sequence become
 The CPU-safe representation and alias vocabulary lives in
 `#include <Baseplane/dna2.hh>`. CUDA warp-level operations live in
 `#include <Baseplane/seq/dna2.cuh>` and build on that vocabulary.
+The split public headers under `include/Baseplane/seq/` expose the same surface
+by role: `dna2_ops.hh` for representation operations, `dna2_views.hh` for
+pointer/size views, `dna2_motif.hh` for motif and compact-hit records, and
+`dna2_scan.hh` / `dna2_scan.cuh` for scan APIs.
 
 ## Encoding
 
@@ -93,6 +97,39 @@ int mismatches = popcount(diff);
 
 Packed words first collapse each 2-bit field into one mismatch bit, then count through the public one-bit-per-base active mask.
 
+## Exact scan API
+
+The stable exact motif scan surface is allocation-free:
+
+```cpp
+dna2_packed64_view sequence{
+    words,
+    n_bases,
+    n_words
+};
+motif32_exact motif = make_motif32_exact(motif_word, length, max_mismatches, motif_id);
+
+scan_exact_count_cpu(sequence, motif, &host_count);
+scan_exact_emit_cpu(sequence, motif, compact_motif_hit_buffer{hits, capacity, &written, &dropped});
+```
+
+CUDA builds add stream-explicit wrappers:
+
+```cpp
+scan_exact_count_cuda(stream, sequence, motif, device_count);
+scan_exact_emit_cuda(stream, sequence, motif, compact_motif_hit_buffer{
+    device_hits,
+    capacity,
+    device_records_written,
+    device_records_dropped
+});
+```
+
+Count-only output writes one counter. Compact emit writes `motif_hit` records
+until capacity is reached, increments `records_written` for every logical hit,
+and increments `records_dropped` for overflow. Dense byte-per-window output is
+kept as a reference/debug path, not the default public scan output.
+
 ## Reverse complement
 
 Reverse complement applies both operations at once: reverse the active base order and complement each 2-bit base with `base ^ 0x3`. Lengths shorter than 32 produce zeroed inactive positions so unused bases do not leak into downstream comparisons.
@@ -109,7 +146,7 @@ Reverse complement applies both operations at once: reverse the active base orde
 
 `warp_encode_base_lanes` assumes one lane owns one base. lane `i` contributes base `i`. The returned lo/hi planes encode the 32-base warp window.
 
-The first scanner kernels are correctness primitives. `scan_motif_warp32_unpacked` maps one warp to one start position and forms planes with ballot. `scan_motif_word64_reference` scans packed storage with simple base extraction. Neither kernel is the final high-throughput scanner.
+The first scanner kernels are correctness primitives. `scan_motif_warp32_unpacked` maps one warp to one start position and forms planes with ballot. `scan_motif_word64_reference` scans packed storage with simple base extraction. The stable exact count API wraps the shifted packed scanner because fixed-width exact/Hamming scans are currently best represented as shifted `dna2_word64` windows.
 
 CUDA profiling notes and the first shifted packed scanner benchmark are recorded
 in `docs/sequence_bits_cuda_profile.md`.

@@ -34,6 +34,9 @@ The core CPU-safe `dna2` vocabulary is available under:
 #include <Baseplane/dna2.hh>
 ```
 
+Narrow sequence headers are also available under `Baseplane/seq/` for direct
+use: operations, views, motifs, and scan APIs are split by role.
+
 CUDA warp-level primitives and kernels are layered on top under:
 
 ```cpp

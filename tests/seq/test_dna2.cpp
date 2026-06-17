@@ -512,6 +512,105 @@ void test_ascii_bit_primitives_and_batches() {
     }
 }
 
+std::vector<std::uint64_t> pack_sequence_ascii(const std::string& bases) {
+    std::vector<std::uint64_t> words((bases.size() + 31u) / 32u, 0ULL);
+    for (std::size_t i = 0u; i < bases.size(); ++i) {
+        seq::dna2_word64 word{words[i >> 5u]};
+        seq::set_base(word, static_cast<int>(i & 31u), make_base_ref(bases[i]));
+        words[i >> 5u] = word.packed;
+    }
+    return words;
+}
+
+std::vector<seq::motif_hit> scan_emit_ref(
+    const std::string& sequence,
+    const std::string& motif,
+    std::uint8_t max_mismatches,
+    std::uint16_t motif_id) {
+    std::vector<seq::motif_hit> hits;
+    if (sequence.size() < motif.size()) return hits;
+    for (std::size_t start = 0u; start + motif.size() <= sequence.size(); ++start) {
+        int mismatches = 0;
+        for (std::size_t i = 0u; i < motif.size(); ++i) {
+            mismatches += sequence[start + i] != motif[i] ? 1 : 0;
+        }
+        if (mismatches <= max_mismatches) {
+            hits.push_back(seq::motif_hit{
+                static_cast<std::uint32_t>(start),
+                motif_id,
+                static_cast<std::uint8_t>(mismatches),
+                0u
+            });
+        }
+    }
+    return hits;
+}
+
+void run_scan_api_case(
+    const std::string& sequence,
+    const std::string& motif_bases,
+    std::uint8_t max_mismatches,
+    std::uint32_t emit_capacity) {
+    const std::vector<std::uint64_t> packed = pack_sequence_ascii(sequence);
+    const seq::dna2_packed64_view view{
+        packed.empty() ? nullptr : packed.data(),
+        static_cast<std::uint64_t>(sequence.size()),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::motif32_exact motif = seq::make_motif32_exact(
+        seq::dna2_pack_ascii_32(motif_bases.data(), motif_bases.size()),
+        static_cast<std::uint8_t>(motif_bases.size()),
+        max_mismatches,
+        77u);
+    const std::vector<seq::motif_hit> expected = scan_emit_ref(sequence, motif_bases, max_mismatches, 77u);
+
+    std::uint64_t count = 999u;
+    require(baseplane::is_ok(seq::scan_exact_count_cpu(view, motif, &count)), "scan_exact_count_cpu failed");
+    require(count == expected.size(), "scan_exact_count_cpu count mismatch");
+
+    std::vector<seq::motif_hit> hits(emit_capacity);
+    std::uint32_t written = 123u;
+    std::uint32_t dropped = 456u;
+    const baseplane::status emit_status = seq::scan_exact_emit_cpu(
+        view,
+        motif,
+        seq::compact_motif_hit_buffer{
+            hits.empty() ? nullptr : hits.data(),
+            emit_capacity,
+            &written,
+            &dropped
+        });
+    require(written == expected.size(), "scan_exact_emit_cpu written count mismatch");
+    const std::uint32_t expected_dropped = expected.size() > emit_capacity
+        ? static_cast<std::uint32_t>(expected.size() - emit_capacity)
+        : 0u;
+    require(dropped == expected_dropped, "scan_exact_emit_cpu dropped count mismatch");
+    require(emit_status.code == (expected_dropped == 0u ? baseplane::status_code::ok : baseplane::status_code::capacity_exceeded),
+            "scan_exact_emit_cpu status mismatch");
+    const std::size_t stored = expected.size() < emit_capacity ? expected.size() : emit_capacity;
+    for (std::size_t i = 0u; i < stored; ++i) {
+        require(hits[i].position == expected[i].position, "scan_exact_emit_cpu hit position mismatch");
+        require(hits[i].motif_id == expected[i].motif_id, "scan_exact_emit_cpu motif id mismatch");
+        require(hits[i].mismatches == expected[i].mismatches, "scan_exact_emit_cpu mismatch count mismatch");
+        require(hits[i].strand == expected[i].strand, "scan_exact_emit_cpu strand mismatch");
+    }
+}
+
+void test_scan_api_cpu() {
+    run_scan_api_case("ACGTACGTACGT", "ACGT", 0u, 8u);
+    run_scan_api_case("AAAAACAAAAGAAAA", "AAAA", 1u, 2u);
+    run_scan_api_case(random_ascii(97u, 92017u), random_ascii(17u, 92018u), 2u, 16u);
+    run_scan_api_case(random_ascii(65u, 92019u), random_ascii(32u, 92020u), 8u, 0u);
+    run_scan_api_case("ACGT", "ACGTAC", 0u, 4u);
+
+    const std::vector<std::uint64_t> packed = pack_sequence_ascii("ACGT");
+    const seq::dna2_packed64_view view{packed.data(), 4u, static_cast<std::uint64_t>(packed.size())};
+    std::uint64_t count = 0u;
+    require(seq::scan_exact_count_cpu(view, seq::motif32_exact{0ULL, 0ULL, 0u, 0u, 0u}, &count).code
+            == baseplane::status_code::invalid_argument,
+            "zero-length motif should be invalid");
+}
+
 } // namespace
 
 int main() {
@@ -524,6 +623,7 @@ int main() {
         test_reverse_complement();
         test_planes64_primitives();
         test_ascii_bit_primitives_and_batches();
+        test_scan_api_cpu();
     } catch (const std::exception& e) {
         std::cerr << "test_dna2 failed: " << e.what() << '\n';
         return EXIT_FAILURE;

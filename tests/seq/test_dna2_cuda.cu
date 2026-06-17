@@ -422,26 +422,111 @@ void run_word_scan_case(const std::vector<std::uint8_t>& sequence, const std::ve
 void run_shifted_count_case(const std::vector<std::uint8_t>& sequence, const std::vector<std::uint8_t>& motif, int max_mismatches) {
     const std::uint64_t expected = count_hits_ref(sequence, motif, max_mismatches);
     const std::vector<std::uint64_t> packed = pack_sequence_ref(sequence);
-    const seq::dna2_word64 motif_word{pack_ref(motif)};
     std::uint64_t* d_seq = nullptr;
     unsigned long long* d_count = nullptr;
     unsigned long long count = 0ULL;
     cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_seq), packed.size() * sizeof(std::uint64_t)), "cudaMalloc shifted packed seq");
     cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_count), sizeof(unsigned long long)), "cudaMalloc shifted count");
     cuda_require(cudaMemcpy(d_seq, packed.data(), packed.size() * sizeof(std::uint64_t), cudaMemcpyHostToDevice), "copy shifted packed seq");
-    cuda_require(cudaMemset(d_count, 0, sizeof(unsigned long long)), "clear shifted count");
 
-    const int windows = static_cast<int>(sequence.size() - motif.size() + 1u);
-    const int threads = 256;
-    const int blocks = std::min(4096, (windows + threads - 1) / threads);
-    seq::scan_motif_word64_shifted_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
-        d_seq, static_cast<int>(sequence.size()), motif_word, static_cast<int>(motif.size()), max_mismatches, d_count);
-    cuda_require(cudaGetLastError(), "shifted count scan launch");
+    const seq::dna2_packed64_view view{
+        d_seq,
+        static_cast<std::uint64_t>(sequence.size()),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::motif32_exact motif_exact = seq::make_motif32_exact(
+        seq::dna2_word64{pack_ref(motif)},
+        static_cast<std::uint8_t>(motif.size()),
+        static_cast<std::uint8_t>(max_mismatches),
+        11u);
+    require(baseplane::is_ok(seq::scan_exact_count_cuda(0, view, motif_exact, d_count)),
+            "scan_exact_count_cuda failed");
     cuda_require(cudaDeviceSynchronize(), "shifted count scan sync");
     cuda_require(cudaMemcpy(&count, d_count, sizeof(unsigned long long), cudaMemcpyDeviceToHost), "copy shifted count");
     cudaFree(d_seq);
     cudaFree(d_count);
     require(count == expected, "shifted packed count scan did not match CPU reference");
+}
+
+void run_shifted_emit_case(
+    const std::vector<std::uint8_t>& sequence,
+    const std::vector<std::uint8_t>& motif,
+    int max_mismatches,
+    std::uint32_t capacity) {
+    const std::vector<std::uint8_t> dense_expected = scan_ref(sequence, motif, max_mismatches);
+    const std::vector<std::uint64_t> packed = pack_sequence_ref(sequence);
+    std::vector<seq::motif_hit> expected;
+    for (std::size_t i = 0u; i < dense_expected.size(); ++i) {
+        if (dense_expected[i] == 0u) continue;
+        int mismatches = 0;
+        for (std::size_t j = 0u; j < motif.size(); ++j) {
+            mismatches += sequence[i + j] != motif[j] ? 1 : 0;
+        }
+        expected.push_back(seq::motif_hit{
+            static_cast<std::uint32_t>(i),
+            23u,
+            static_cast<std::uint8_t>(mismatches),
+            0u
+        });
+    }
+
+    std::uint64_t* d_seq = nullptr;
+    seq::motif_hit* d_hits = nullptr;
+    std::uint32_t* d_written = nullptr;
+    std::uint32_t* d_dropped = nullptr;
+    std::vector<seq::motif_hit> hits(capacity);
+    std::uint32_t written = 0u;
+    std::uint32_t dropped = 0u;
+
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_seq), packed.size() * sizeof(std::uint64_t)), "cudaMalloc emit seq");
+    if (capacity > 0u) {
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_hits), capacity * sizeof(seq::motif_hit)), "cudaMalloc emit hits");
+    }
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_written), sizeof(std::uint32_t)), "cudaMalloc emit written");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_dropped), sizeof(std::uint32_t)), "cudaMalloc emit dropped");
+    cuda_require(cudaMemcpy(d_seq, packed.data(), packed.size() * sizeof(std::uint64_t), cudaMemcpyHostToDevice), "copy emit seq");
+
+    const seq::dna2_packed64_view view{
+        d_seq,
+        static_cast<std::uint64_t>(sequence.size()),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::motif32_exact motif_exact = seq::make_motif32_exact(
+        seq::dna2_word64{pack_ref(motif)},
+        static_cast<std::uint8_t>(motif.size()),
+        static_cast<std::uint8_t>(max_mismatches),
+        23u);
+    require(baseplane::is_ok(seq::scan_exact_emit_cuda(
+                0,
+                view,
+                motif_exact,
+                seq::compact_motif_hit_buffer{d_hits, capacity, d_written, d_dropped})),
+            "scan_exact_emit_cuda failed");
+    cuda_require(cudaDeviceSynchronize(), "emit scan sync");
+    cuda_require(cudaMemcpy(&written, d_written, sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy emit written");
+    cuda_require(cudaMemcpy(&dropped, d_dropped, sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy emit dropped");
+    if (capacity > 0u) {
+        cuda_require(cudaMemcpy(hits.data(), d_hits, capacity * sizeof(seq::motif_hit), cudaMemcpyDeviceToHost),
+                     "copy emit hits");
+    }
+
+    cudaFree(d_seq);
+    cudaFree(d_hits);
+    cudaFree(d_written);
+    cudaFree(d_dropped);
+
+    require(written == expected.size(), "scan_exact_emit_cuda written count mismatch");
+    const std::uint32_t expected_dropped = expected.size() > capacity
+        ? static_cast<std::uint32_t>(expected.size() - capacity)
+        : 0u;
+    require(dropped == expected_dropped, "scan_exact_emit_cuda dropped count mismatch");
+    const std::size_t stored = std::min<std::size_t>(capacity, expected.size());
+    for (std::size_t i = 0u; i < stored; ++i) {
+        require(hits[i].position == expected[i].position, "scan_exact_emit_cuda hit position mismatch");
+        require(hits[i].motif_id == expected[i].motif_id, "scan_exact_emit_cuda motif id mismatch");
+        require(hits[i].mismatches == expected[i].mismatches, "scan_exact_emit_cuda mismatch count mismatch");
+        require(hits[i].strand == expected[i].strand, "scan_exact_emit_cuda strand mismatch");
+    }
 }
 
 void test_motif_scan() {
@@ -459,6 +544,8 @@ void test_motif_scan() {
     run_shifted_count_case(sequence, seq_test::motif_from_sequence(sequence, 41u, 16u), 0);
     run_shifted_count_case(sequence, near_motif, 2);
     run_shifted_count_case(sequence, seq_test::motif_from_sequence(sequence, 7u, 32u), 1);
+    run_shifted_emit_case(sequence, encode_string("ACGTACGT"), 0, 16u);
+    run_shifted_emit_case(sequence, near_motif, 2, 2u);
 }
 
 } // namespace

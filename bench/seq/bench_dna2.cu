@@ -277,10 +277,12 @@ void run_packed_word_shifted_count_bench(
     const int sequence_length = static_cast<int>(sequence.size());
     const int motif_length = static_cast<int>(motif.size());
     const int windows = sequence_length - motif_length + 1;
-    const int threads = 256;
-    const int blocks = std::min(8192, (windows + threads - 1) / threads);
     const std::vector<std::uint64_t> packed = pack_sequence(sequence);
-    const seq::dna2_word64 motif_word{pack_window(motif)};
+    const seq::motif32_exact motif_exact = seq::make_motif32_exact(
+        seq::dna2_word64{pack_window(motif)},
+        static_cast<std::uint8_t>(motif_length),
+        static_cast<std::uint8_t>(max_mismatches),
+        0u);
     std::uint64_t* d_sequence = nullptr;
     unsigned long long* d_hit_count = nullptr;
     unsigned long long hits = 0ULL;
@@ -293,17 +295,21 @@ void run_packed_word_shifted_count_bench(
     cuda_require(cudaEventCreate(&start), "cudaEventCreate shifted start");
     cuda_require(cudaEventCreate(&stop), "cudaEventCreate shifted stop");
 
-    cuda_require(cudaMemset(d_hit_count, 0, sizeof(unsigned long long)), "clear shifted warmup count");
-    seq::scan_motif_word64_shifted_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
-        d_sequence, sequence_length, motif_word, motif_length, max_mismatches, d_hit_count);
-    cuda_require(cudaGetLastError(), "warmup shifted packed scan");
+    const seq::dna2_packed64_view view{
+        d_sequence,
+        static_cast<std::uint64_t>(sequence_length),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    if (!baseplane::is_ok(seq::scan_exact_count_cuda(0, view, motif_exact, d_hit_count))) {
+        throw std::runtime_error("warmup scan_exact_count_cuda failed");
+    }
     cuda_require(cudaDeviceSynchronize(), "warmup shifted packed scan sync");
 
     cuda_require(cudaEventRecord(start), "record shifted start");
     for (int i = 0; i < iterations; ++i) {
-        cuda_require(cudaMemset(d_hit_count, 0, sizeof(unsigned long long)), "clear shifted count");
-        seq::scan_motif_word64_shifted_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
-            d_sequence, sequence_length, motif_word, motif_length, max_mismatches, d_hit_count);
+        if (!baseplane::is_ok(seq::scan_exact_count_cuda(0, view, motif_exact, d_hit_count))) {
+            throw std::runtime_error("scan_exact_count_cuda failed");
+        }
     }
     cuda_require(cudaEventRecord(stop), "record shifted stop");
     cuda_require(cudaEventSynchronize(stop), "sync shifted stop");
@@ -639,12 +645,16 @@ void run_packed_word_shifted_count_all_gpus_bench(
     const int sequence_length = static_cast<int>(sequence.size());
     const int motif_length = static_cast<int>(motif.size());
     const int windows = sequence_length - motif_length + 1;
-    const int threads = 256;
-    const seq::dna2_word64 motif_word{pack_window(motif)};
+    const seq::motif32_exact motif_exact = seq::make_motif32_exact(
+        seq::dna2_word64{pack_window(motif)},
+        static_cast<std::uint8_t>(motif_length),
+        static_cast<std::uint8_t>(max_mismatches),
+        0u);
     struct part {
         int device;
         int windows;
         int bases;
+        std::uint64_t words;
         std::uint64_t* d_sequence;
         unsigned long long* d_hit_count;
     };
@@ -658,7 +668,7 @@ void run_packed_word_shifted_count_all_gpus_bench(
         if (part_windows <= 0) continue;
         const std::vector<std::uint8_t> segment = make_window_segment(sequence, begin, part_windows, motif_length);
         const std::vector<std::uint64_t> packed = pack_sequence(segment);
-        part p{device, part_windows, static_cast<int>(segment.size()), nullptr, nullptr};
+        part p{device, part_windows, static_cast<int>(segment.size()), static_cast<std::uint64_t>(packed.size()), nullptr, nullptr};
         cuda_require(cudaSetDevice(device), "set shifted packed device");
         cuda_require(cudaMalloc(reinterpret_cast<void**>(&p.d_sequence), packed.size() * sizeof(std::uint64_t)), "cudaMalloc all-gpu shifted packed");
         cuda_require(cudaMalloc(reinterpret_cast<void**>(&p.d_hit_count), sizeof(unsigned long long)), "cudaMalloc all-gpu shifted count");
@@ -668,11 +678,10 @@ void run_packed_word_shifted_count_all_gpus_bench(
 
     for (part& p : parts) {
         cuda_require(cudaSetDevice(p.device), "set shifted warmup device");
-        cuda_require(cudaMemset(p.d_hit_count, 0, sizeof(unsigned long long)), "clear all-gpu shifted warmup count");
-        const int blocks = std::min(8192, (p.windows + threads - 1) / threads);
-        seq::scan_motif_word64_shifted_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
-            p.d_sequence, p.bases, motif_word, motif_length, max_mismatches, p.d_hit_count);
-        cuda_require(cudaGetLastError(), "warmup all-gpu shifted scan");
+        const seq::dna2_packed64_view view{p.d_sequence, static_cast<std::uint64_t>(p.bases), p.words};
+        if (!baseplane::is_ok(seq::scan_exact_count_cuda(0, view, motif_exact, p.d_hit_count))) {
+            throw std::runtime_error("warmup all-gpu scan_exact_count_cuda failed");
+        }
     }
     for (part& p : parts) {
         cuda_require(cudaSetDevice(p.device), "set shifted warmup sync device");
@@ -683,11 +692,10 @@ void run_packed_word_shifted_count_all_gpus_bench(
     for (int iter = 0; iter < iterations; ++iter) {
         for (part& p : parts) {
             cuda_require(cudaSetDevice(p.device), "set all-gpu shifted device");
-            cuda_require(cudaMemset(p.d_hit_count, 0, sizeof(unsigned long long)), "clear all-gpu shifted count");
-            const int blocks = std::min(8192, (p.windows + threads - 1) / threads);
-            seq::scan_motif_word64_shifted_count<<<blocks, threads, threads * sizeof(unsigned int)>>>(
-                p.d_sequence, p.bases, motif_word, motif_length, max_mismatches, p.d_hit_count);
-            cuda_require(cudaGetLastError(), "launch all-gpu shifted scan");
+            const seq::dna2_packed64_view view{p.d_sequence, static_cast<std::uint64_t>(p.bases), p.words};
+            if (!baseplane::is_ok(seq::scan_exact_count_cuda(0, view, motif_exact, p.d_hit_count))) {
+                throw std::runtime_error("all-gpu scan_exact_count_cuda failed");
+            }
         }
         for (part& p : parts) {
             cuda_require(cudaSetDevice(p.device), "set all-gpu shifted sync device");

@@ -25,6 +25,26 @@ std::uint8_t pack_ascii_base(char base) {
     return base == 'C' ? 1u : base == 'G' ? 2u : base == 'T' ? 3u : 0u;
 }
 
+std::uint64_t required_word_count(std::uint64_t n_bases) {
+    return (n_bases + 31ULL) >> 5u;
+}
+
+bool valid_scan_input(dna2_packed64_view sequence, motif32_exact motif) {
+    if (motif.length == 0u || motif.length > 32u) return false;
+    if (sequence.n_bases > 0u && sequence.words == nullptr) return false;
+    if (sequence.n_words < required_word_count(sequence.n_bases)) return false;
+    return true;
+}
+
+std::uint64_t shifted_window_word64_host(const std::uint64_t* packed_seq, std::uint64_t n_words, std::uint64_t start) {
+    const std::uint64_t word_index = start >> 5u;
+    const unsigned int shift = static_cast<unsigned int>(start & 31ULL) * 2u;
+    const std::uint64_t lo = packed_seq[word_index];
+    if (shift == 0u) return lo;
+    const std::uint64_t hi = (word_index + 1ULL) < n_words ? packed_seq[word_index + 1ULL] : 0ULL;
+    return (lo >> shift) | (hi << (64u - shift));
+}
+
 std::uint64_t compact_even_bits(std::uint64_t bits) {
     bits &= packed_lo_mask;
     bits = (bits | (bits >> 1u)) & 0x3333333333333333ULL;
@@ -106,6 +126,73 @@ std::uint32_t planes_cpg_start_mask(dna2_planes32 planes) {
 std::uint32_t dna2_hamming_distance(dna2_word64 a, dna2_word64 b, std::size_t n) {
     const std::uint32_t mask = word64_mismatch_mask(dna2_word64{a.packed}, dna2_word64{b.packed}, active_mask(n));
     return static_cast<std::uint32_t>(detail::popcount32(mask));
+}
+
+baseplane::status scan_exact_count_cpu(
+    dna2_packed64_view sequence,
+    motif32_exact motif,
+    std::uint64_t* host_count) {
+    if (host_count == nullptr || !valid_scan_input(sequence, motif)) {
+        return baseplane::invalid_argument_status();
+    }
+
+    *host_count = 0ULL;
+    if (sequence.n_bases < motif.length) {
+        return baseplane::ok_status();
+    }
+
+    const std::uint64_t windows = sequence.n_bases - motif.length + 1ULL;
+    const dna2_word64 motif_word{motif.packed};
+    std::uint64_t hits = 0ULL;
+    for (std::uint64_t start = 0ULL; start < windows; ++start) {
+        const dna2_word64 window{shifted_window_word64_host(sequence.words, sequence.n_words, start)};
+        const int mismatches = detail::word64_mismatches_packed_count_fields(window, motif_word, motif.active_fields);
+        hits += mismatches <= motif.max_mismatches ? 1ULL : 0ULL;
+    }
+    *host_count = hits;
+    return baseplane::ok_status();
+}
+
+baseplane::status scan_exact_emit_cpu(
+    dna2_packed64_view sequence,
+    motif32_exact motif,
+    compact_motif_hit_buffer host_hits) {
+    if (host_hits.records_written == nullptr || host_hits.records_dropped == nullptr
+        || (host_hits.capacity > 0u && host_hits.hits == nullptr)
+        || !valid_scan_input(sequence, motif)) {
+        return baseplane::invalid_argument_status();
+    }
+
+    *host_hits.records_written = 0u;
+    *host_hits.records_dropped = 0u;
+    if (sequence.n_bases < motif.length) {
+        return baseplane::ok_status();
+    }
+
+    const std::uint64_t windows = sequence.n_bases - motif.length + 1ULL;
+    const dna2_word64 motif_word{motif.packed};
+    for (std::uint64_t start = 0ULL; start < windows; ++start) {
+        const dna2_word64 window{shifted_window_word64_host(sequence.words, sequence.n_words, start)};
+        const int mismatches = detail::word64_mismatches_packed_count_fields(window, motif_word, motif.active_fields);
+        if (mismatches > motif.max_mismatches) continue;
+
+        const std::uint32_t slot = *host_hits.records_written;
+        *host_hits.records_written = slot + 1u;
+        if (slot < host_hits.capacity) {
+            host_hits.hits[slot] = motif_hit{
+                static_cast<std::uint32_t>(start),
+                motif.motif_id,
+                static_cast<std::uint8_t>(mismatches),
+                0u
+            };
+        } else {
+            *host_hits.records_dropped += 1u;
+        }
+    }
+
+    return *host_hits.records_dropped == 0u
+        ? baseplane::ok_status()
+        : baseplane::capacity_exceeded_status(*host_hits.records_dropped);
 }
 
 void dna2_pack_ascii_batch_scalar(
