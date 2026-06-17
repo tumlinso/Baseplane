@@ -52,3 +52,7 @@ target_link_libraries(your_target PRIVATE Baseplane::seq)
 `dna2_default_window` is selected at compile time. CUDA-enabled builds default
 to the warp-native `dna2_planes32` representation; non-CUDA builds default to
 packed `dna2_word64`, with Highway/SIMD preferred over scalar when enabled.
+
+Resident plane-stream APIs convert packed `dna2_word64` sequence storage into
+split lo/hi `dna2_planes32` arrays and produce one `uint32_t` predicate mask per
+32-base word for base, GC, and CpG-start queries without hidden allocation.

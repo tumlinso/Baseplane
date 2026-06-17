@@ -522,6 +522,133 @@ std::vector<std::uint64_t> pack_sequence_ascii(const std::string& bases) {
     return words;
 }
 
+std::uint64_t required_words_for_bases(std::size_t n_bases) {
+    return (static_cast<std::uint64_t>(n_bases) + 31ULL) >> 5u;
+}
+
+std::uint32_t active_mask_for_word(std::size_t n_bases, std::size_t word) {
+    const std::size_t consumed = word * 32u;
+    if (consumed + 32u <= n_bases) return 0xffffffffu;
+    if (consumed >= n_bases) return 0u;
+    return active_mask_ref(static_cast<int>(n_bases - consumed));
+}
+
+std::uint32_t stream_base_mask_ref(const std::string& bases, std::size_t word, char base) {
+    std::uint32_t mask = 0u;
+    const std::size_t begin = word * 32u;
+    for (std::size_t lane = 0u; lane < 32u && begin + lane < bases.size(); ++lane) {
+        mask |= static_cast<std::uint32_t>(bases[begin + lane] == base) << static_cast<unsigned int>(lane);
+    }
+    return mask;
+}
+
+std::uint32_t stream_gc_mask_ref(const std::string& bases, std::size_t word) {
+    std::uint32_t mask = 0u;
+    const std::size_t begin = word * 32u;
+    for (std::size_t lane = 0u; lane < 32u && begin + lane < bases.size(); ++lane) {
+        const char base = bases[begin + lane];
+        mask |= static_cast<std::uint32_t>(base == 'C' || base == 'G') << static_cast<unsigned int>(lane);
+    }
+    return mask;
+}
+
+std::uint32_t stream_cpg_mask_ref(const std::string& bases, std::size_t word) {
+    std::uint32_t mask = 0u;
+    const std::size_t begin = word * 32u;
+    for (std::size_t lane = 0u; lane < 32u && begin + lane + 1u < bases.size(); ++lane) {
+        mask |= static_cast<std::uint32_t>(bases[begin + lane] == 'C' && bases[begin + lane + 1u] == 'G')
+            << static_cast<unsigned int>(lane);
+    }
+    return mask;
+}
+
+void check_plane_stream_case(const std::string& bases) {
+    const std::vector<std::uint64_t> packed = pack_sequence_ascii(bases);
+    const std::uint64_t n_words = required_words_for_bases(bases.size());
+    std::vector<std::uint32_t> lo(static_cast<std::size_t>(n_words), 0u);
+    std::vector<std::uint32_t> hi(static_cast<std::size_t>(n_words), 0u);
+    std::vector<std::uint32_t> masks(static_cast<std::size_t>(n_words), 0u);
+    const seq::dna2_packed64_view packed_view{
+        packed.empty() ? nullptr : packed.data(),
+        static_cast<std::uint64_t>(bases.size()),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::dna2_planes32_stream_mutable_view output{
+        lo.empty() ? nullptr : lo.data(),
+        hi.empty() ? nullptr : hi.data(),
+        n_words
+    };
+    require(baseplane::is_ok(seq::dna2_to_planes32_stream_cpu(packed_view, output)),
+            "dna2_to_planes32_stream_cpu failed");
+    const seq::dna2_planes32_stream_view stream{
+        lo.empty() ? nullptr : lo.data(),
+        hi.empty() ? nullptr : hi.data(),
+        n_words
+    };
+    const seq::dna2_mask32_stream_mutable_view mask_output{
+        masks.empty() ? nullptr : masks.data(),
+        n_words
+    };
+
+    for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+        const seq::dna2_planes32 expected = unpack_ref(packed[word]);
+        require(lo[word] == expected.lo && hi[word] == expected.hi, "plane stream lo/hi mismatch");
+    }
+
+    const char base_chars[4] = {'A', 'C', 'G', 'T'};
+    for (std::uint8_t code = 0u; code < 4u; ++code) {
+        require(baseplane::is_ok(seq::planes32_stream_base_mask_cpu(stream, code, mask_output)),
+                "planes32_stream_base_mask_cpu failed");
+        for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+            const std::uint32_t active = active_mask_for_word(bases.size(), word);
+            require((masks[word] & active) == stream_base_mask_ref(bases, word, base_chars[code]),
+                    "plane stream base mask mismatch");
+        }
+    }
+
+    require(baseplane::is_ok(seq::planes32_stream_gc_mask_cpu(stream, mask_output)),
+            "planes32_stream_gc_mask_cpu failed");
+    for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+        const std::uint32_t active = active_mask_for_word(bases.size(), word);
+        require((masks[word] & active) == stream_gc_mask_ref(bases, word), "plane stream GC mask mismatch");
+    }
+
+    require(baseplane::is_ok(seq::planes32_stream_cpg_start_mask_cpu(stream, mask_output)),
+            "planes32_stream_cpg_start_mask_cpu failed");
+    for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+        const std::uint32_t active = active_mask_for_word(bases.size(), word);
+        require((masks[word] & active) == stream_cpg_mask_ref(bases, word), "plane stream CpG mask mismatch");
+    }
+}
+
+void test_plane_stream_cpu() {
+    check_plane_stream_case("");
+    check_plane_stream_case("A");
+    check_plane_stream_case(repeat_pattern("A", 32u));
+    check_plane_stream_case(repeat_pattern("C", 32u));
+    check_plane_stream_case(repeat_pattern("G", 32u));
+    check_plane_stream_case(repeat_pattern("T", 32u));
+    check_plane_stream_case(repeat_pattern("ACGT", 32u));
+    check_plane_stream_case(repeat_pattern("ACGT", 31u));
+    check_plane_stream_case(repeat_pattern("ACGT", 33u));
+    std::string cross_word_cpg = repeat_pattern("A", 66u);
+    cross_word_cpg[31] = 'C';
+    cross_word_cpg[32] = 'G';
+    cross_word_cpg[63] = 'C';
+    cross_word_cpg[64] = 'G';
+    check_plane_stream_case(cross_word_cpg);
+    check_plane_stream_case(random_ascii(255u, 91234u));
+
+    const seq::dna2_packed64_view empty_packed{nullptr, 0u, 0u};
+    const seq::dna2_planes32_stream_mutable_view empty_planes{nullptr, nullptr, 0u};
+    const seq::dna2_planes32_stream_view empty_stream{nullptr, nullptr, 0u};
+    const seq::dna2_mask32_stream_mutable_view empty_masks{nullptr, 0u};
+    require(baseplane::is_ok(seq::dna2_to_planes32_stream_cpu(empty_packed, empty_planes)),
+            "empty plane stream conversion should succeed");
+    require(baseplane::is_ok(seq::planes32_stream_gc_mask_cpu(empty_stream, empty_masks)),
+            "empty plane stream mask should succeed");
+}
+
 std::vector<seq::motif_hit> scan_emit_ref(
     const std::string& sequence,
     const std::string& motif,
@@ -623,6 +750,7 @@ int main() {
         test_reverse_complement();
         test_planes64_primitives();
         test_ascii_bit_primitives_and_batches();
+        test_plane_stream_cpu();
         test_scan_api_cpu();
     } catch (const std::exception& e) {
         std::cerr << "test_dna2 failed: " << e.what() << '\n';

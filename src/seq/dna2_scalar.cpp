@@ -36,6 +36,23 @@ bool valid_scan_input(dna2_packed64_view sequence, motif32_exact motif) {
     return true;
 }
 
+bool valid_planes_stream_output(dna2_planes32_stream_mutable_view output, std::uint64_t n_words) {
+    if (output.n_words < n_words) return false;
+    if (n_words > 0u && (output.lo_words == nullptr || output.hi_words == nullptr)) return false;
+    return true;
+}
+
+bool valid_planes_stream_input(dna2_planes32_stream_view input) {
+    if (input.n_words > 0u && (input.lo_words == nullptr || input.hi_words == nullptr)) return false;
+    return true;
+}
+
+bool valid_mask_stream_output(dna2_mask32_stream_mutable_view output, std::uint64_t n_words) {
+    if (output.n_words < n_words) return false;
+    if (n_words > 0u && output.masks == nullptr) return false;
+    return true;
+}
+
 std::uint64_t shifted_window_word64_host(const std::uint64_t* packed_seq, std::uint64_t n_words, std::uint64_t start) {
     const std::uint64_t word_index = start >> 5u;
     const unsigned int shift = static_cast<unsigned int>(start & 31ULL) * 2u;
@@ -150,6 +167,72 @@ baseplane::status scan_exact_count_cpu(
         hits += mismatches <= motif.max_mismatches ? 1ULL : 0ULL;
     }
     *host_count = hits;
+    return baseplane::ok_status();
+}
+
+baseplane::status dna2_to_planes32_stream_cpu(
+    dna2_packed64_view sequence,
+    dna2_planes32_stream_mutable_view output) {
+    const std::uint64_t n_words = required_word_count(sequence.n_bases);
+    if ((sequence.n_bases > 0u && sequence.words == nullptr)
+        || sequence.n_words < n_words
+        || !valid_planes_stream_output(output, n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+
+    for (std::uint64_t i = 0u; i < n_words; ++i) {
+        const dna2_planes32 planes = dna2_to_planes(dna2_word64{sequence.words[i]});
+        output.lo_words[i] = planes.lo;
+        output.hi_words[i] = planes.hi;
+    }
+    return baseplane::ok_status();
+}
+
+baseplane::status planes32_stream_base_mask_cpu(
+    dna2_planes32_stream_view stream,
+    std::uint8_t base_code,
+    dna2_mask32_stream_mutable_view output) {
+    if (base_code > 3u || !valid_planes_stream_input(stream) || !valid_mask_stream_output(output, stream.n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+
+    for (std::uint64_t i = 0u; i < stream.n_words; ++i) {
+        output.masks[i] = base_mask_from_code(dna2_planes32{stream.lo_words[i], stream.hi_words[i]}, base_code);
+    }
+    return baseplane::ok_status();
+}
+
+baseplane::status planes32_stream_gc_mask_cpu(
+    dna2_planes32_stream_view stream,
+    dna2_mask32_stream_mutable_view output) {
+    if (!valid_planes_stream_input(stream) || !valid_mask_stream_output(output, stream.n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+
+    for (std::uint64_t i = 0u; i < stream.n_words; ++i) {
+        output.masks[i] = planes_gc_mask(dna2_planes32{stream.lo_words[i], stream.hi_words[i]});
+    }
+    return baseplane::ok_status();
+}
+
+baseplane::status planes32_stream_cpg_start_mask_cpu(
+    dna2_planes32_stream_view stream,
+    dna2_mask32_stream_mutable_view output) {
+    if (!valid_planes_stream_input(stream) || !valid_mask_stream_output(output, stream.n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+
+    for (std::uint64_t i = 0u; i < stream.n_words; ++i) {
+        const dna2_planes32 planes{stream.lo_words[i], stream.hi_words[i]};
+        std::uint32_t mask = planes_cpg_start_mask(planes);
+        if ((i + 1u) < stream.n_words) {
+            const dna2_planes32 next{stream.lo_words[i + 1u], stream.hi_words[i + 1u]};
+            const std::uint32_t c_bit31 = base_mask_from_code(planes, 1u) & 0x80000000u;
+            const std::uint32_t next_g_bit0 = base_mask_from_code(next, 2u) & 0x00000001u;
+            if (c_bit31 != 0u && next_g_bit0 != 0u) mask |= 0x80000000u;
+        }
+        output.masks[i] = mask;
+    }
     return baseplane::ok_status();
 }
 

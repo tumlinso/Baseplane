@@ -69,6 +69,31 @@ __global__ void scan_motif_inlplane64_aligned_count(
     int max_mismatches,
     unsigned long long* hit_count);
 
+__global__ void dna2_to_planes32_stream_kernel(
+    const std::uint64_t* packed_words,
+    std::uint32_t* lo_words,
+    std::uint32_t* hi_words,
+    std::uint64_t n_words);
+
+__global__ void planes32_stream_base_mask_kernel(
+    const std::uint32_t* lo_words,
+    const std::uint32_t* hi_words,
+    std::uint8_t base_code,
+    std::uint32_t* output_masks,
+    std::uint64_t n_words);
+
+__global__ void planes32_stream_gc_mask_kernel(
+    const std::uint32_t* lo_words,
+    const std::uint32_t* hi_words,
+    std::uint32_t* output_masks,
+    std::uint64_t n_words);
+
+__global__ void planes32_stream_cpg_start_mask_kernel(
+    const std::uint32_t* lo_words,
+    const std::uint32_t* hi_words,
+    std::uint32_t* output_masks,
+    std::uint64_t n_words);
+
 baseplane::status scan_exact_count_cuda(
     cudaStream_t stream,
     dna2_packed64_view sequence,
@@ -80,6 +105,27 @@ baseplane::status scan_exact_emit_cuda(
     dna2_packed64_view sequence,
     motif32_exact motif,
     compact_motif_hit_buffer device_hits);
+
+baseplane::status dna2_to_planes32_stream_cuda(
+    cudaStream_t stream,
+    dna2_packed64_view sequence,
+    dna2_planes32_stream_mutable_view output);
+
+baseplane::status planes32_stream_base_mask_cuda(
+    cudaStream_t stream,
+    dna2_planes32_stream_view input,
+    std::uint8_t base_code,
+    dna2_mask32_stream_mutable_view output);
+
+baseplane::status planes32_stream_gc_mask_cuda(
+    cudaStream_t stream,
+    dna2_planes32_stream_view input,
+    dna2_mask32_stream_mutable_view output);
+
+baseplane::status planes32_stream_cpg_start_mask_cuda(
+    cudaStream_t stream,
+    dna2_planes32_stream_view input,
+    dna2_mask32_stream_mutable_view output);
 
 } // namespace baseplane::seq
 

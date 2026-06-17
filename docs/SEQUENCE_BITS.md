@@ -86,6 +86,49 @@ do not treat them as the default for new CUDA warp-level primitives.
 
 `unpack_word64_to_planes32` expands each packed 2-bit field into the matching low and high bitplanes. `pack_planes32_to_word64` reconstructs each base from the hi/lo bitplanes and writes it back into the packed storage layout. `planes32_to_inlplane64` serializes the same planes as one inline-plane word; `inlplane64_to_planes32` restores the split-plane view.
 
+## Plane streams
+
+Resident plane streams keep the split layout as two caller-owned arrays:
+
+```cpp
+dna2_planes32_stream_view stream{
+    lo_words,
+    hi_words,
+    n_words
+};
+```
+
+Mutable stream outputs and mask outputs are explicit:
+
+```cpp
+dna2_planes32_stream_mutable_view out{lo_words, hi_words, n_words};
+dna2_mask32_stream_mutable_view masks{mask_words, n_words};
+```
+
+The stable allocation-free APIs are:
+
+```cpp
+dna2_to_planes32_stream_cpu(sequence, out);
+planes32_stream_base_mask_cpu(stream, base_code, masks);
+planes32_stream_gc_mask_cpu(stream, masks);
+planes32_stream_cpg_start_mask_cpu(stream, masks);
+```
+
+CUDA builds add stream-explicit equivalents:
+
+```cpp
+dna2_to_planes32_stream_cuda(cuda_stream, sequence, out);
+planes32_stream_base_mask_cuda(cuda_stream, stream, base_code, masks);
+planes32_stream_gc_mask_cuda(cuda_stream, stream, masks);
+planes32_stream_cpg_start_mask_cuda(cuda_stream, stream, masks);
+```
+
+Each predicate output is one `uint32_t` mask per 32-base word. Conversion uses
+`dna2_packed64_view::n_bases` to decide the required packed word count. Mask
+stream APIs operate over `n_words`; callers that care about the final partial
+word should apply their own active mask. CpG-start masks include starts at lane
+31 when the next stream word begins with G.
+
 ## Motif comparison
 
 Planes compare with XOR / OR / POPCOUNT:
@@ -150,6 +193,23 @@ The first scanner kernels are correctness primitives. `scan_motif_warp32_unpacke
 
 CUDA profiling notes and the first shifted packed scanner benchmark are recorded
 in `docs/sequence_bits_cuda_profile.md`.
+
+The first resident plane-stream benchmark was run on 2026-06-17 on one
+Tesla V100-SXM2-16GB with CUDA 12.9.86 and `CMAKE_CUDA_ARCHITECTURES=70`.
+Commands:
+
+```bash
+./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_convert 20260617 single_gpu
+./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_base_mask 20260617 single_gpu
+./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_gc_mask 20260617 single_gpu
+./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_cpg_start_mask 20260617 single_gpu
+```
+
+Results for 67,108,864 bases / 2,097,152 stream words: convert 0.045 ms,
+base mask 0.034 ms, GC mask 0.034 ms, and CpG-start mask 0.034 ms. The stream
+kernels used 16-18 registers per thread, 0 local bytes, and 0 static shared
+bytes. H2D was 16,777,224 bytes including the existing packed sentinel; D2H was
+16,777,216 bytes for conversion and 8,388,608 bytes for each mask output.
 
 ## CPU SIMD backend
 

@@ -129,6 +129,46 @@ std::vector<std::uint64_t> pack_sequence_ref(const std::vector<std::uint8_t>& ba
     return packed;
 }
 
+std::uint64_t required_words_for_bases(std::size_t n_bases) {
+    return (static_cast<std::uint64_t>(n_bases) + 31ULL) >> 5u;
+}
+
+std::uint32_t active_mask_for_word(std::size_t n_bases, std::size_t word) {
+    const std::size_t consumed = word * 32u;
+    if (consumed + 32u <= n_bases) return 0xffffffffu;
+    if (consumed >= n_bases) return 0u;
+    return active_mask_ref(static_cast<int>(n_bases - consumed));
+}
+
+std::uint32_t stream_base_mask_ref(const std::vector<std::uint8_t>& bases, std::size_t word, std::uint8_t code) {
+    std::uint32_t mask = 0u;
+    const std::size_t begin = word * 32u;
+    for (std::size_t lane = 0u; lane < 32u && begin + lane < bases.size(); ++lane) {
+        mask |= static_cast<std::uint32_t>((bases[begin + lane] & 0x3u) == (code & 0x3u)) << static_cast<unsigned int>(lane);
+    }
+    return mask;
+}
+
+std::uint32_t stream_gc_mask_ref(const std::vector<std::uint8_t>& bases, std::size_t word) {
+    std::uint32_t mask = 0u;
+    const std::size_t begin = word * 32u;
+    for (std::size_t lane = 0u; lane < 32u && begin + lane < bases.size(); ++lane) {
+        const std::uint8_t base = bases[begin + lane] & 0x3u;
+        mask |= static_cast<std::uint32_t>(base == 1u || base == 2u) << static_cast<unsigned int>(lane);
+    }
+    return mask;
+}
+
+std::uint32_t stream_cpg_mask_ref(const std::vector<std::uint8_t>& bases, std::size_t word) {
+    std::uint32_t mask = 0u;
+    const std::size_t begin = word * 32u;
+    for (std::size_t lane = 0u; lane < 32u && begin + lane + 1u < bases.size(); ++lane) {
+        mask |= static_cast<std::uint32_t>((bases[begin + lane] & 0x3u) == 1u && (bases[begin + lane + 1u] & 0x3u) == 2u)
+            << static_cast<unsigned int>(lane);
+    }
+    return mask;
+}
+
 std::vector<std::uint8_t> scan_ref(
     const std::vector<std::uint8_t>& seq_bases,
     const std::vector<std::uint8_t>& motif,
@@ -370,6 +410,110 @@ void test_warp_word64_to_planes_conversion() {
     }
 }
 
+void run_plane_stream_case(const std::vector<std::uint8_t>& sequence) {
+    const std::vector<std::uint64_t> packed = pack_sequence_ref(sequence);
+    const std::uint64_t n_words = required_words_for_bases(sequence.size());
+    std::uint64_t* d_packed = nullptr;
+    std::uint32_t* d_lo = nullptr;
+    std::uint32_t* d_hi = nullptr;
+    std::uint32_t* d_masks = nullptr;
+    std::vector<std::uint32_t> lo(static_cast<std::size_t>(n_words), 0u);
+    std::vector<std::uint32_t> hi(static_cast<std::size_t>(n_words), 0u);
+    std::vector<std::uint32_t> masks(static_cast<std::size_t>(n_words), 0u);
+
+    if (n_words > 0u) {
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_packed), packed.size() * sizeof(std::uint64_t)), "cudaMalloc stream packed");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_lo), static_cast<std::size_t>(n_words) * sizeof(std::uint32_t)), "cudaMalloc stream lo");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_hi), static_cast<std::size_t>(n_words) * sizeof(std::uint32_t)), "cudaMalloc stream hi");
+        cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_masks), static_cast<std::size_t>(n_words) * sizeof(std::uint32_t)), "cudaMalloc stream masks");
+        cuda_require(cudaMemcpy(d_packed, packed.data(), packed.size() * sizeof(std::uint64_t), cudaMemcpyHostToDevice), "copy stream packed");
+    }
+
+    const seq::dna2_packed64_view packed_view{
+        d_packed,
+        static_cast<std::uint64_t>(sequence.size()),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::dna2_planes32_stream_mutable_view mutable_stream{d_lo, d_hi, n_words};
+    require(baseplane::is_ok(seq::dna2_to_planes32_stream_cuda(0, packed_view, mutable_stream)),
+            "dna2_to_planes32_stream_cuda failed");
+    cuda_require(cudaDeviceSynchronize(), "stream conversion sync");
+
+    if (n_words > 0u) {
+        cuda_require(cudaMemcpy(lo.data(), d_lo, lo.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy stream lo");
+        cuda_require(cudaMemcpy(hi.data(), d_hi, hi.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy stream hi");
+    }
+    for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+        const seq::dna2_planes32 expected = unpack_ref(packed[word]);
+        require(lo[word] == expected.lo && hi[word] == expected.hi, "CUDA plane stream lo/hi mismatch");
+    }
+
+    const seq::dna2_planes32_stream_view stream{d_lo, d_hi, n_words};
+    const seq::dna2_mask32_stream_mutable_view mask_output{d_masks, n_words};
+    for (std::uint8_t code = 0u; code < 4u; ++code) {
+        require(baseplane::is_ok(seq::planes32_stream_base_mask_cuda(0, stream, code, mask_output)),
+                "planes32_stream_base_mask_cuda failed");
+        cuda_require(cudaDeviceSynchronize(), "base stream mask sync");
+        if (n_words > 0u) {
+            cuda_require(cudaMemcpy(masks.data(), d_masks, masks.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost),
+                         "copy base stream masks");
+        }
+        for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+            const std::uint32_t active = active_mask_for_word(sequence.size(), word);
+            require((masks[word] & active) == stream_base_mask_ref(sequence, word, code),
+                    "CUDA plane stream base mask mismatch");
+        }
+    }
+
+    require(baseplane::is_ok(seq::planes32_stream_gc_mask_cuda(0, stream, mask_output)),
+            "planes32_stream_gc_mask_cuda failed");
+    cuda_require(cudaDeviceSynchronize(), "GC stream mask sync");
+    if (n_words > 0u) {
+        cuda_require(cudaMemcpy(masks.data(), d_masks, masks.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost),
+                     "copy GC stream masks");
+    }
+    for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+        const std::uint32_t active = active_mask_for_word(sequence.size(), word);
+        require((masks[word] & active) == stream_gc_mask_ref(sequence, word), "CUDA plane stream GC mask mismatch");
+    }
+
+    require(baseplane::is_ok(seq::planes32_stream_cpg_start_mask_cuda(0, stream, mask_output)),
+            "planes32_stream_cpg_start_mask_cuda failed");
+    cuda_require(cudaDeviceSynchronize(), "CpG stream mask sync");
+    if (n_words > 0u) {
+        cuda_require(cudaMemcpy(masks.data(), d_masks, masks.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost),
+                     "copy CpG stream masks");
+    }
+    for (std::size_t word = 0u; word < static_cast<std::size_t>(n_words); ++word) {
+        const std::uint32_t active = active_mask_for_word(sequence.size(), word);
+        require((masks[word] & active) == stream_cpg_mask_ref(sequence, word), "CUDA plane stream CpG mask mismatch");
+    }
+
+    cudaFree(d_packed);
+    cudaFree(d_lo);
+    cudaFree(d_hi);
+    cudaFree(d_masks);
+}
+
+void test_plane_stream_cuda() {
+    run_plane_stream_case({});
+    run_plane_stream_case(encode_string("A"));
+    run_plane_stream_case(bases_from_pattern("A"));
+    run_plane_stream_case(bases_from_pattern("C"));
+    run_plane_stream_case(bases_from_pattern("G"));
+    run_plane_stream_case(bases_from_pattern("T"));
+    run_plane_stream_case(bases_from_pattern("ACGT"));
+    run_plane_stream_case(seq_test::random_bases(31u, 10031u));
+    run_plane_stream_case(seq_test::random_bases(33u, 10033u));
+    run_plane_stream_case(seq_test::random_bases(255u, 10255u));
+    std::vector<std::uint8_t> cross_word = seq_test::random_bases(66u, 1066u);
+    cross_word[31] = 1u;
+    cross_word[32] = 2u;
+    cross_word[63] = 1u;
+    cross_word[64] = 2u;
+    run_plane_stream_case(cross_word);
+}
+
 void run_warp_scan_case(const std::vector<std::uint8_t>& sequence, const std::vector<std::uint8_t>& motif, int max_mismatches) {
     const std::vector<std::uint8_t> expected = scan_ref(sequence, motif, max_mismatches);
     const seq::dna2_planes32 motif_planes = unpack_ref(pack_ref(motif));
@@ -559,6 +703,7 @@ int main() {
         test_compile_time_defaults();
         test_warp_encoder();
         test_warp_word64_to_planes_conversion();
+        test_plane_stream_cuda();
         test_motif_scan();
     } catch (const std::exception& e) {
         std::cerr << "test_dna2_cuda failed: " << e.what() << '\n';

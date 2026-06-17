@@ -101,6 +101,45 @@ void report_result(
     std::printf("windows_per_sec=%.3f\n\n", windows_per_sec);
 }
 
+void report_stream_result(
+    int sequence_length,
+    int iterations,
+    std::uint32_t seed,
+    const char* representation,
+    int cuda_devices,
+    std::uint64_t checksum,
+    float elapsed_kernel_ms,
+    double elapsed_end_to_end_ms,
+    std::uint64_t h2d_bytes,
+    std::uint64_t d2h_bytes,
+    std::uint64_t word_count) {
+    const double seconds = static_cast<double>(elapsed_kernel_ms) / 1000.0;
+    const double bases_per_sec = seconds > 0.0 ? static_cast<double>(sequence_length) / seconds : 0.0;
+    const double words_per_sec = seconds > 0.0 ? static_cast<double>(word_count) / seconds : 0.0;
+    std::printf("sequence_length=%d\n", sequence_length);
+    std::printf("word_count=%llu\n", static_cast<unsigned long long>(word_count));
+    std::printf("iterations=%d\n", iterations);
+    std::printf("seed=%u\n", seed);
+    std::printf("representation=%s\n", representation);
+    std::printf("cuda_devices=%d\n", cuda_devices);
+    std::printf("checksum=%llu\n", static_cast<unsigned long long>(checksum));
+    std::printf("elapsed_kernel_ms=%.3f\n", elapsed_kernel_ms);
+    std::printf("elapsed_end_to_end_ms=%.3f\n", elapsed_end_to_end_ms);
+    std::printf("h2d_bytes=%llu\n", static_cast<unsigned long long>(h2d_bytes));
+    std::printf("d2h_bytes=%llu\n", static_cast<unsigned long long>(d2h_bytes));
+    std::printf("bases_per_sec=%.3f\n", bases_per_sec);
+    std::printf("words_per_sec=%.3f\n\n", words_per_sec);
+}
+
+std::uint64_t checksum32(const std::vector<std::uint32_t>& values) {
+    std::uint64_t checksum = 1469598103934665603ULL;
+    for (std::uint32_t value : values) {
+        checksum ^= static_cast<std::uint64_t>(value);
+        checksum *= 1099511628211ULL;
+    }
+    return checksum;
+}
+
 void report_kernel_attributes_once() {
     static bool reported = false;
     if (reported) return;
@@ -110,11 +149,19 @@ void report_kernel_attributes_once() {
     cudaFuncAttributes packed_aligned_attr{};
     cudaFuncAttributes warp_attr{};
     cudaFuncAttributes inlplane_attr{};
+    cudaFuncAttributes stream_convert_attr{};
+    cudaFuncAttributes stream_base_attr{};
+    cudaFuncAttributes stream_gc_attr{};
+    cudaFuncAttributes stream_cpg_attr{};
     cuda_require(cudaFuncGetAttributes(&packed_attr, seq::scan_motif_word64_reference), "packed kernel attributes");
     cuda_require(cudaFuncGetAttributes(&shifted_attr, seq::scan_motif_word64_shifted_count), "shifted packed kernel attributes");
     cuda_require(cudaFuncGetAttributes(&packed_aligned_attr, seq::scan_motif_word64_aligned_count), "aligned packed kernel attributes");
     cuda_require(cudaFuncGetAttributes(&warp_attr, seq::scan_motif_warp32_unpacked), "warp kernel attributes");
     cuda_require(cudaFuncGetAttributes(&inlplane_attr, seq::scan_motif_inlplane64_aligned_count), "inlplane kernel attributes");
+    cuda_require(cudaFuncGetAttributes(&stream_convert_attr, seq::dna2_to_planes32_stream_kernel), "plane stream convert kernel attributes");
+    cuda_require(cudaFuncGetAttributes(&stream_base_attr, seq::planes32_stream_base_mask_kernel), "plane stream base kernel attributes");
+    cuda_require(cudaFuncGetAttributes(&stream_gc_attr, seq::planes32_stream_gc_mask_kernel), "plane stream GC kernel attributes");
+    cuda_require(cudaFuncGetAttributes(&stream_cpg_attr, seq::planes32_stream_cpg_start_mask_kernel), "plane stream CpG kernel attributes");
     std::printf("packed_regs_per_thread=%d\n", packed_attr.numRegs);
     std::printf("packed_local_bytes_per_thread=%zu\n", packed_attr.localSizeBytes);
     std::printf("packed_shared_bytes_static=%zu\n", packed_attr.sharedSizeBytes);
@@ -135,6 +182,22 @@ void report_kernel_attributes_once() {
     std::printf("inlplane64_aligned_count_local_bytes_per_thread=%zu\n", inlplane_attr.localSizeBytes);
     std::printf("inlplane64_aligned_count_shared_bytes_static=%zu\n", inlplane_attr.sharedSizeBytes);
     std::printf("inlplane64_aligned_count_max_threads_per_block=%d\n", inlplane_attr.maxThreadsPerBlock);
+    std::printf("planes32_stream_convert_regs_per_thread=%d\n", stream_convert_attr.numRegs);
+    std::printf("planes32_stream_convert_local_bytes_per_thread=%zu\n", stream_convert_attr.localSizeBytes);
+    std::printf("planes32_stream_convert_shared_bytes_static=%zu\n", stream_convert_attr.sharedSizeBytes);
+    std::printf("planes32_stream_convert_max_threads_per_block=%d\n", stream_convert_attr.maxThreadsPerBlock);
+    std::printf("planes32_stream_base_mask_regs_per_thread=%d\n", stream_base_attr.numRegs);
+    std::printf("planes32_stream_base_mask_local_bytes_per_thread=%zu\n", stream_base_attr.localSizeBytes);
+    std::printf("planes32_stream_base_mask_shared_bytes_static=%zu\n", stream_base_attr.sharedSizeBytes);
+    std::printf("planes32_stream_base_mask_max_threads_per_block=%d\n", stream_base_attr.maxThreadsPerBlock);
+    std::printf("planes32_stream_gc_mask_regs_per_thread=%d\n", stream_gc_attr.numRegs);
+    std::printf("planes32_stream_gc_mask_local_bytes_per_thread=%zu\n", stream_gc_attr.localSizeBytes);
+    std::printf("planes32_stream_gc_mask_shared_bytes_static=%zu\n", stream_gc_attr.sharedSizeBytes);
+    std::printf("planes32_stream_gc_mask_max_threads_per_block=%d\n", stream_gc_attr.maxThreadsPerBlock);
+    std::printf("planes32_stream_cpg_start_mask_regs_per_thread=%d\n", stream_cpg_attr.numRegs);
+    std::printf("planes32_stream_cpg_start_mask_local_bytes_per_thread=%zu\n", stream_cpg_attr.localSizeBytes);
+    std::printf("planes32_stream_cpg_start_mask_shared_bytes_static=%zu\n", stream_cpg_attr.sharedSizeBytes);
+    std::printf("planes32_stream_cpg_start_mask_max_threads_per_block=%d\n", stream_cpg_attr.maxThreadsPerBlock);
 }
 
 std::vector<std::uint8_t> make_window_segment(
@@ -454,6 +517,156 @@ void run_inlplane_aligned_count_bench(
     cudaEventDestroy(stop);
     cudaFree(d_sequence);
     cudaFree(d_hit_count);
+}
+
+void run_plane_stream_convert_bench(
+    const std::vector<std::uint8_t>& sequence,
+    int iterations,
+    std::uint32_t seed) {
+    const int sequence_length = static_cast<int>(sequence.size());
+    const std::vector<std::uint64_t> packed = pack_sequence(sequence);
+    const std::uint64_t word_count = (static_cast<std::uint64_t>(sequence.size()) + 31ULL) >> 5u;
+    std::uint64_t* d_sequence = nullptr;
+    std::uint32_t* d_lo = nullptr;
+    std::uint32_t* d_hi = nullptr;
+    cudaEvent_t start = nullptr;
+    cudaEvent_t stop = nullptr;
+    std::vector<std::uint32_t> lo(static_cast<std::size_t>(word_count), 0u);
+    std::vector<std::uint32_t> hi(static_cast<std::size_t>(word_count), 0u);
+
+    const auto e2e_start = std::chrono::steady_clock::now();
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_sequence), packed.size() * sizeof(std::uint64_t)), "cudaMalloc plane stream packed");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_lo), static_cast<std::size_t>(word_count) * sizeof(std::uint32_t)), "cudaMalloc plane stream lo");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_hi), static_cast<std::size_t>(word_count) * sizeof(std::uint32_t)), "cudaMalloc plane stream hi");
+    cuda_require(cudaMemcpy(d_sequence, packed.data(), packed.size() * sizeof(std::uint64_t), cudaMemcpyHostToDevice), "copy plane stream packed");
+    cuda_require(cudaEventCreate(&start), "cudaEventCreate plane stream start");
+    cuda_require(cudaEventCreate(&stop), "cudaEventCreate plane stream stop");
+
+    const seq::dna2_packed64_view packed_view{
+        d_sequence,
+        static_cast<std::uint64_t>(sequence_length),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::dna2_planes32_stream_mutable_view out{d_lo, d_hi, word_count};
+    if (!baseplane::is_ok(seq::dna2_to_planes32_stream_cuda(0, packed_view, out))) {
+        throw std::runtime_error("warmup dna2_to_planes32_stream_cuda failed");
+    }
+    cuda_require(cudaDeviceSynchronize(), "warmup plane stream convert sync");
+
+    cuda_require(cudaEventRecord(start), "record plane stream convert start");
+    for (int i = 0; i < iterations; ++i) {
+        if (!baseplane::is_ok(seq::dna2_to_planes32_stream_cuda(0, packed_view, out))) {
+            throw std::runtime_error("dna2_to_planes32_stream_cuda failed");
+        }
+    }
+    cuda_require(cudaEventRecord(stop), "record plane stream convert stop");
+    cuda_require(cudaEventSynchronize(stop), "sync plane stream convert stop");
+    cuda_require(cudaGetLastError(), "plane stream convert bench");
+    cuda_require(cudaMemcpy(lo.data(), d_lo, lo.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy plane stream lo");
+    cuda_require(cudaMemcpy(hi.data(), d_hi, hi.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy plane stream hi");
+    const auto e2e_stop = std::chrono::steady_clock::now();
+
+    const std::uint64_t checksum = checksum32(lo) ^ (checksum32(hi) << 1u);
+    report_stream_result(
+        sequence_length,
+        iterations,
+        seed,
+        "planes32_stream_convert",
+        1,
+        checksum,
+        elapsed_ms(start, stop) / static_cast<float>(iterations),
+        wall_ms_since(e2e_start, e2e_stop),
+        static_cast<std::uint64_t>(packed.size() * sizeof(std::uint64_t)),
+        word_count * 2ULL * sizeof(std::uint32_t),
+        word_count);
+
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
+    cudaFree(d_sequence);
+    cudaFree(d_lo);
+    cudaFree(d_hi);
+}
+
+void run_plane_stream_mask_bench(
+    const std::vector<std::uint8_t>& sequence,
+    int iterations,
+    std::uint32_t seed,
+    const char* representation) {
+    const int sequence_length = static_cast<int>(sequence.size());
+    const std::vector<std::uint64_t> packed = pack_sequence(sequence);
+    const std::uint64_t word_count = (static_cast<std::uint64_t>(sequence.size()) + 31ULL) >> 5u;
+    std::uint64_t* d_sequence = nullptr;
+    std::uint32_t* d_lo = nullptr;
+    std::uint32_t* d_hi = nullptr;
+    std::uint32_t* d_masks = nullptr;
+    cudaEvent_t start = nullptr;
+    cudaEvent_t stop = nullptr;
+    std::vector<std::uint32_t> masks(static_cast<std::size_t>(word_count), 0u);
+
+    const auto e2e_start = std::chrono::steady_clock::now();
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_sequence), packed.size() * sizeof(std::uint64_t)), "cudaMalloc mask packed");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_lo), static_cast<std::size_t>(word_count) * sizeof(std::uint32_t)), "cudaMalloc mask lo");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_hi), static_cast<std::size_t>(word_count) * sizeof(std::uint32_t)), "cudaMalloc mask hi");
+    cuda_require(cudaMalloc(reinterpret_cast<void**>(&d_masks), static_cast<std::size_t>(word_count) * sizeof(std::uint32_t)), "cudaMalloc masks");
+    cuda_require(cudaMemcpy(d_sequence, packed.data(), packed.size() * sizeof(std::uint64_t), cudaMemcpyHostToDevice), "copy mask packed");
+    cuda_require(cudaEventCreate(&start), "cudaEventCreate mask start");
+    cuda_require(cudaEventCreate(&stop), "cudaEventCreate mask stop");
+
+    const seq::dna2_packed64_view packed_view{
+        d_sequence,
+        static_cast<std::uint64_t>(sequence_length),
+        static_cast<std::uint64_t>(packed.size())
+    };
+    const seq::dna2_planes32_stream_mutable_view out{d_lo, d_hi, word_count};
+    if (!baseplane::is_ok(seq::dna2_to_planes32_stream_cuda(0, packed_view, out))) {
+        throw std::runtime_error("mask setup dna2_to_planes32_stream_cuda failed");
+    }
+    cuda_require(cudaDeviceSynchronize(), "mask setup stream convert sync");
+
+    const seq::dna2_planes32_stream_view stream{d_lo, d_hi, word_count};
+    const seq::dna2_mask32_stream_mutable_view mask_out{d_masks, word_count};
+    auto run_mask = [&]() -> baseplane::status {
+        if (std::strcmp(representation, "planes32_stream_base_mask") == 0) {
+            return seq::planes32_stream_base_mask_cuda(0, stream, static_cast<std::uint8_t>(seq::dna2_base::G), mask_out);
+        }
+        if (std::strcmp(representation, "planes32_stream_gc_mask") == 0) {
+            return seq::planes32_stream_gc_mask_cuda(0, stream, mask_out);
+        }
+        return seq::planes32_stream_cpg_start_mask_cuda(0, stream, mask_out);
+    };
+
+    if (!baseplane::is_ok(run_mask())) throw std::runtime_error("warmup plane stream mask failed");
+    cuda_require(cudaDeviceSynchronize(), "warmup plane stream mask sync");
+
+    cuda_require(cudaEventRecord(start), "record plane stream mask start");
+    for (int i = 0; i < iterations; ++i) {
+        if (!baseplane::is_ok(run_mask())) throw std::runtime_error("plane stream mask failed");
+    }
+    cuda_require(cudaEventRecord(stop), "record plane stream mask stop");
+    cuda_require(cudaEventSynchronize(stop), "sync plane stream mask stop");
+    cuda_require(cudaGetLastError(), "plane stream mask bench");
+    cuda_require(cudaMemcpy(masks.data(), d_masks, masks.size() * sizeof(std::uint32_t), cudaMemcpyDeviceToHost), "copy stream masks");
+    const auto e2e_stop = std::chrono::steady_clock::now();
+
+    report_stream_result(
+        sequence_length,
+        iterations,
+        seed,
+        representation,
+        1,
+        checksum32(masks),
+        elapsed_ms(start, stop) / static_cast<float>(iterations),
+        wall_ms_since(e2e_start, e2e_stop),
+        static_cast<std::uint64_t>(packed.size() * sizeof(std::uint64_t)),
+        word_count * sizeof(std::uint32_t),
+        word_count);
+
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
+    cudaFree(d_sequence);
+    cudaFree(d_lo);
+    cudaFree(d_hi);
+    cudaFree(d_masks);
 }
 
 void run_warp_planes_all_gpus_bench(
@@ -929,7 +1142,7 @@ int main(int argc, char** argv) {
         if (sequence_length < motif_length || motif_length < 1 || motif_length > 32 || iterations < 1) {
             throw std::runtime_error(
                 "usage: baseplaneDna2Bench [sequence_length] [motif_length 1..32] "
-                "[max_mismatches] [iterations] [both|packed_word64|packed_word64_shifted_count|packed_word64_aligned_count|warp_planes32|inlplane64_aligned_count] "
+                "[max_mismatches] [iterations] [both|packed_word64|packed_word64_shifted_count|packed_word64_aligned_count|warp_planes32|inlplane64_aligned_count|planes32_stream_convert|planes32_stream_base_mask|planes32_stream_gc_mask|planes32_stream_cpg_start_mask] "
                 "[seed] [single_gpu|all_gpus]");
         }
         const bool run_packed = std::strcmp(representation, "both") == 0 || std::strcmp(representation, "packed_word64") == 0;
@@ -939,8 +1152,17 @@ int main(int argc, char** argv) {
             || std::strcmp(representation, "packed_word64_aligned_count") == 0;
         const bool run_warp = std::strcmp(representation, "both") == 0 || std::strcmp(representation, "warp_planes32") == 0;
         const bool run_inlplane = std::strcmp(representation, "both") == 0 || std::strcmp(representation, "inlplane64_aligned_count") == 0;
-        if (!run_packed && !run_shifted && !run_packed_aligned && !run_warp && !run_inlplane) {
-            throw std::runtime_error("representation must be one of: both, packed_word64, packed_word64_shifted_count, packed_word64_aligned_count, warp_planes32, inlplane64_aligned_count");
+        const bool run_stream_convert = std::strcmp(representation, "both") == 0
+            || std::strcmp(representation, "planes32_stream_convert") == 0;
+        const bool run_stream_base_mask = std::strcmp(representation, "both") == 0
+            || std::strcmp(representation, "planes32_stream_base_mask") == 0;
+        const bool run_stream_gc_mask = std::strcmp(representation, "both") == 0
+            || std::strcmp(representation, "planes32_stream_gc_mask") == 0;
+        const bool run_stream_cpg_mask = std::strcmp(representation, "both") == 0
+            || std::strcmp(representation, "planes32_stream_cpg_start_mask") == 0;
+        if (!run_packed && !run_shifted && !run_packed_aligned && !run_warp && !run_inlplane
+            && !run_stream_convert && !run_stream_base_mask && !run_stream_gc_mask && !run_stream_cpg_mask) {
+            throw std::runtime_error("representation must be one of: both, packed_word64, packed_word64_shifted_count, packed_word64_aligned_count, warp_planes32, inlplane64_aligned_count, planes32_stream_convert, planes32_stream_base_mask, planes32_stream_gc_mask, planes32_stream_cpg_start_mask");
         }
         const bool all_gpus = std::strcmp(device_mode, "all_gpus") == 0;
         if (!all_gpus && std::strcmp(device_mode, "single_gpu") != 0) {
@@ -977,6 +1199,13 @@ int main(int argc, char** argv) {
         }
 
         if (all_gpus) {
+            const bool explicit_stream_mode = std::strcmp(representation, "planes32_stream_convert") == 0
+                || std::strcmp(representation, "planes32_stream_base_mask") == 0
+                || std::strcmp(representation, "planes32_stream_gc_mask") == 0
+                || std::strcmp(representation, "planes32_stream_cpg_start_mask") == 0;
+            if (explicit_stream_mode) {
+                throw std::runtime_error("plane-stream benchmark modes are single_gpu only in this slice");
+            }
             if (run_packed) run_packed_word_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
             if (run_shifted) run_packed_word_shifted_count_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
             if (run_packed_aligned) run_packed_word_aligned_count_all_gpus_bench(sequence, motif, max_mismatches, iterations, seed, device_count);
@@ -988,6 +1217,10 @@ int main(int argc, char** argv) {
             if (run_packed_aligned) run_packed_word_aligned_count_bench(sequence, motif, max_mismatches, iterations, seed);
             if (run_warp) run_warp_planes_bench(sequence, motif, max_mismatches, iterations, seed);
             if (run_inlplane) run_inlplane_aligned_count_bench(sequence, motif, max_mismatches, iterations, seed);
+            if (run_stream_convert) run_plane_stream_convert_bench(sequence, iterations, seed);
+            if (run_stream_base_mask) run_plane_stream_mask_bench(sequence, iterations, seed, "planes32_stream_base_mask");
+            if (run_stream_gc_mask) run_plane_stream_mask_bench(sequence, iterations, seed, "planes32_stream_gc_mask");
+            if (run_stream_cpg_mask) run_plane_stream_mask_bench(sequence, iterations, seed, "planes32_stream_cpg_start_mask");
         }
     } catch (const std::exception& e) {
         std::fprintf(stderr, "bench_dna2 failed: %s\n", e.what());

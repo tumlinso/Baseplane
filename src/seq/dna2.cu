@@ -11,6 +11,21 @@
  * 1.073B bases reached 3.644 ms / 294.7G windows/s on one V100 and
  * 0.952 ms / 1.128T windows/s across four V100s. Correctness was validated
  * against CPU references by baseplaneDna2CudaTest.
+ *
+ * Plane-stream CUDA benchmark note, 2026-06-17:
+ * Compared allocation-free resident stream primitives against CPU references
+ * in baseplaneDna2Test/baseplaneDna2CudaTest on 4x Tesla V100-SXM2-16GB,
+ * sm_70, CUDA 12.9.86, CMAKE_CUDA_ARCHITECTURES=70.
+ * Commands:
+ *   ./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_convert 20260617 single_gpu
+ *   ./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_base_mask 20260617 single_gpu
+ *   ./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_gc_mask 20260617 single_gpu
+ *   ./build/baseplaneDna2Bench 67108864 16 1 30 planes32_stream_cpg_start_mask 20260617 single_gpu
+ * Results: convert 0.045 ms for 67.1M bases / 2.1M words; base mask 0.034 ms;
+ * GC mask 0.034 ms; CpG-start mask 0.034 ms. Kernels used 16-18 registers per
+ * thread, 0 local bytes, 0 static shared bytes. Outputs were one uint32_t mask
+ * per 32-base word; CpG-start includes adjacent-word lane-31 starts. Numerical
+ * behavior matched CPU references with final-word masks applied by tests.
  */
 
 #include <Baseplane/seq/dna2.cuh>
@@ -23,6 +38,26 @@ namespace {
 
 __device__ __forceinline__ std::uint64_t required_word_count_device(int n_bases) {
     return n_bases <= 0 ? 0ULL : (static_cast<std::uint64_t>(n_bases) + 31ULL) >> 5u;
+}
+
+__device__ __forceinline__ std::uint32_t compact_even_bits_device(std::uint64_t bits) {
+    bits &= 0x5555555555555555ULL;
+    bits = (bits | (bits >> 1u)) & 0x3333333333333333ULL;
+    bits = (bits | (bits >> 2u)) & 0x0f0f0f0f0f0f0f0fULL;
+    bits = (bits | (bits >> 4u)) & 0x00ff00ff00ff00ffULL;
+    bits = (bits | (bits >> 8u)) & 0x0000ffff0000ffffULL;
+    bits = (bits | (bits >> 16u)) & 0x00000000ffffffffULL;
+    return static_cast<std::uint32_t>(bits);
+}
+
+__device__ __forceinline__ std::uint32_t base_mask_from_code_device(
+    std::uint32_t lo,
+    std::uint32_t hi,
+    std::uint8_t code) {
+    return code == 0u ? (~lo & ~hi)
+        : code == 1u ? (lo & ~hi)
+        : code == 2u ? (~lo & hi)
+        : (lo & hi);
 }
 
 __device__ __forceinline__ std::uint64_t shifted_window_word64(
@@ -45,12 +80,43 @@ int scan_blocks_for_windows(std::uint64_t windows, int threads) {
     return static_cast<int>(blocks > 8192ULL ? 8192ULL : blocks);
 }
 
+int blocks_for_words(std::uint64_t n_words, int threads) {
+    const std::uint64_t blocks = (n_words + static_cast<std::uint64_t>(threads) - 1ULL)
+        / static_cast<std::uint64_t>(threads);
+    return static_cast<int>(blocks > 8192ULL ? 8192ULL : blocks);
+}
+
 bool valid_cuda_scan_input(dna2_packed64_view sequence, motif32_exact motif) {
     if (motif.length == 0u || motif.length > 32u) return false;
     if (sequence.n_bases > static_cast<std::uint64_t>(INT_MAX)) return false;
     if (sequence.n_bases > 0u && sequence.words == nullptr) return false;
     const std::uint64_t required_words = (sequence.n_bases + 31ULL) >> 5u;
     if (sequence.n_words < required_words) return false;
+    return true;
+}
+
+bool valid_cuda_packed_stream_input(dna2_packed64_view sequence) {
+    if (sequence.n_bases > static_cast<std::uint64_t>(INT_MAX)) return false;
+    if (sequence.n_bases > 0u && sequence.words == nullptr) return false;
+    const std::uint64_t required_words = (sequence.n_bases + 31ULL) >> 5u;
+    if (sequence.n_words < required_words) return false;
+    return true;
+}
+
+bool valid_cuda_planes_stream_output(dna2_planes32_stream_mutable_view output, std::uint64_t n_words) {
+    if (output.n_words < n_words) return false;
+    if (n_words > 0u && (output.lo_words == nullptr || output.hi_words == nullptr)) return false;
+    return true;
+}
+
+bool valid_cuda_planes_stream_input(dna2_planes32_stream_view input) {
+    if (input.n_words > 0u && (input.lo_words == nullptr || input.hi_words == nullptr)) return false;
+    return true;
+}
+
+bool valid_cuda_mask_stream_output(dna2_mask32_stream_mutable_view output, std::uint64_t n_words) {
+    if (output.n_words < n_words) return false;
+    if (n_words > 0u && output.masks == nullptr) return false;
     return true;
 }
 
@@ -266,6 +332,75 @@ __global__ void scan_motif_inlplane64_aligned_count(
     }
 }
 
+__global__ void dna2_to_planes32_stream_kernel(
+    const std::uint64_t* packed_words,
+    std::uint32_t* lo_words,
+    std::uint32_t* hi_words,
+    std::uint64_t n_words) {
+    const std::uint64_t stride = static_cast<std::uint64_t>(gridDim.x) * static_cast<std::uint64_t>(blockDim.x);
+    for (std::uint64_t word = static_cast<std::uint64_t>(blockIdx.x) * static_cast<std::uint64_t>(blockDim.x)
+             + static_cast<std::uint64_t>(threadIdx.x);
+         word < n_words;
+         word += stride) {
+        const std::uint64_t packed = packed_words[word];
+        lo_words[word] = compact_even_bits_device(packed);
+        hi_words[word] = compact_even_bits_device(packed >> 1u);
+    }
+}
+
+__global__ void planes32_stream_base_mask_kernel(
+    const std::uint32_t* lo_words,
+    const std::uint32_t* hi_words,
+    std::uint8_t base_code,
+    std::uint32_t* output_masks,
+    std::uint64_t n_words) {
+    const std::uint64_t stride = static_cast<std::uint64_t>(gridDim.x) * static_cast<std::uint64_t>(blockDim.x);
+    for (std::uint64_t word = static_cast<std::uint64_t>(blockIdx.x) * static_cast<std::uint64_t>(blockDim.x)
+             + static_cast<std::uint64_t>(threadIdx.x);
+         word < n_words;
+         word += stride) {
+        output_masks[word] = base_mask_from_code_device(lo_words[word], hi_words[word], base_code);
+    }
+}
+
+__global__ void planes32_stream_gc_mask_kernel(
+    const std::uint32_t* lo_words,
+    const std::uint32_t* hi_words,
+    std::uint32_t* output_masks,
+    std::uint64_t n_words) {
+    const std::uint64_t stride = static_cast<std::uint64_t>(gridDim.x) * static_cast<std::uint64_t>(blockDim.x);
+    for (std::uint64_t word = static_cast<std::uint64_t>(blockIdx.x) * static_cast<std::uint64_t>(blockDim.x)
+             + static_cast<std::uint64_t>(threadIdx.x);
+         word < n_words;
+         word += stride) {
+        output_masks[word] = lo_words[word] ^ hi_words[word];
+    }
+}
+
+__global__ void planes32_stream_cpg_start_mask_kernel(
+    const std::uint32_t* lo_words,
+    const std::uint32_t* hi_words,
+    std::uint32_t* output_masks,
+    std::uint64_t n_words) {
+    const std::uint64_t stride = static_cast<std::uint64_t>(gridDim.x) * static_cast<std::uint64_t>(blockDim.x);
+    for (std::uint64_t word = static_cast<std::uint64_t>(blockIdx.x) * static_cast<std::uint64_t>(blockDim.x)
+             + static_cast<std::uint64_t>(threadIdx.x);
+         word < n_words;
+         word += stride) {
+        const std::uint32_t lo = lo_words[word];
+        const std::uint32_t hi = hi_words[word];
+        const std::uint32_t c_mask = base_mask_from_code_device(lo, hi, 1u);
+        const std::uint32_t g_mask = base_mask_from_code_device(lo, hi, 2u);
+        std::uint32_t mask = c_mask & (g_mask >> 1u) & 0x7fffffffu;
+        if ((word + 1u) < n_words) {
+            const std::uint32_t next_g_bit0 =
+                base_mask_from_code_device(lo_words[word + 1u], hi_words[word + 1u], 2u) & 0x00000001u;
+            if ((c_mask & 0x80000000u) != 0u && next_g_bit0 != 0u) mask |= 0x80000000u;
+        }
+        output_masks[word] = mask;
+    }
+}
+
 baseplane::status scan_exact_count_cuda(
     cudaStream_t stream,
     dna2_packed64_view sequence,
@@ -292,6 +427,101 @@ baseplane::status scan_exact_count_cuda(
         static_cast<int>(motif.max_mismatches),
         device_count);
     err = cudaGetLastError();
+    return err == cudaSuccess
+        ? baseplane::ok_status()
+        : baseplane::cuda_error_status(static_cast<std::uint32_t>(err));
+}
+
+baseplane::status dna2_to_planes32_stream_cuda(
+    cudaStream_t stream,
+    dna2_packed64_view sequence,
+    dna2_planes32_stream_mutable_view output) {
+    if (!valid_cuda_packed_stream_input(sequence)) {
+        return baseplane::invalid_argument_status();
+    }
+    const std::uint64_t n_words = (sequence.n_bases + 31ULL) >> 5u;
+    if (!valid_cuda_planes_stream_output(output, n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+    if (n_words == 0u) return baseplane::ok_status();
+
+    constexpr int threads = 256;
+    const int blocks = blocks_for_words(n_words, threads);
+    dna2_to_planes32_stream_kernel<<<blocks, threads, 0, stream>>>(
+        sequence.words,
+        output.lo_words,
+        output.hi_words,
+        n_words);
+    const cudaError_t err = cudaGetLastError();
+    return err == cudaSuccess
+        ? baseplane::ok_status()
+        : baseplane::cuda_error_status(static_cast<std::uint32_t>(err));
+}
+
+baseplane::status planes32_stream_base_mask_cuda(
+    cudaStream_t stream,
+    dna2_planes32_stream_view input,
+    std::uint8_t base_code,
+    dna2_mask32_stream_mutable_view output) {
+    if (base_code > 3u || !valid_cuda_planes_stream_input(input)
+        || !valid_cuda_mask_stream_output(output, input.n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+    if (input.n_words == 0u) return baseplane::ok_status();
+
+    constexpr int threads = 256;
+    const int blocks = blocks_for_words(input.n_words, threads);
+    planes32_stream_base_mask_kernel<<<blocks, threads, 0, stream>>>(
+        input.lo_words,
+        input.hi_words,
+        base_code,
+        output.masks,
+        input.n_words);
+    const cudaError_t err = cudaGetLastError();
+    return err == cudaSuccess
+        ? baseplane::ok_status()
+        : baseplane::cuda_error_status(static_cast<std::uint32_t>(err));
+}
+
+baseplane::status planes32_stream_gc_mask_cuda(
+    cudaStream_t stream,
+    dna2_planes32_stream_view input,
+    dna2_mask32_stream_mutable_view output) {
+    if (!valid_cuda_planes_stream_input(input) || !valid_cuda_mask_stream_output(output, input.n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+    if (input.n_words == 0u) return baseplane::ok_status();
+
+    constexpr int threads = 256;
+    const int blocks = blocks_for_words(input.n_words, threads);
+    planes32_stream_gc_mask_kernel<<<blocks, threads, 0, stream>>>(
+        input.lo_words,
+        input.hi_words,
+        output.masks,
+        input.n_words);
+    const cudaError_t err = cudaGetLastError();
+    return err == cudaSuccess
+        ? baseplane::ok_status()
+        : baseplane::cuda_error_status(static_cast<std::uint32_t>(err));
+}
+
+baseplane::status planes32_stream_cpg_start_mask_cuda(
+    cudaStream_t stream,
+    dna2_planes32_stream_view input,
+    dna2_mask32_stream_mutable_view output) {
+    if (!valid_cuda_planes_stream_input(input) || !valid_cuda_mask_stream_output(output, input.n_words)) {
+        return baseplane::invalid_argument_status();
+    }
+    if (input.n_words == 0u) return baseplane::ok_status();
+
+    constexpr int threads = 256;
+    const int blocks = blocks_for_words(input.n_words, threads);
+    planes32_stream_cpg_start_mask_kernel<<<blocks, threads, 0, stream>>>(
+        input.lo_words,
+        input.hi_words,
+        output.masks,
+        input.n_words);
+    const cudaError_t err = cudaGetLastError();
     return err == cudaSuccess
         ? baseplane::ok_status()
         : baseplane::cuda_error_status(static_cast<std::uint32_t>(err));
