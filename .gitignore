@@ -8,3 +8,11 @@ build-*/
 *.exe
 *.nsys-rep
 *.sqlite
+
+# Generated agent artifacts
+.ctxpp/
+.todo-orchestrator/runtime/
+.todo-orchestrator/runtime/**
+.todo-orchestrator/state.sqlite
+.todo-orchestrator/state.sqlite-shm
+.todo-orchestrator/state.sqlite-wal
