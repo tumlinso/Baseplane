@@ -1,0 +1,4897 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "Baseplane BitOp",
+    "authority": "/home/tumlinson/CellStack/Baseplane",
+    "authority_reason": "The user explicitly selected Baseplane and prohibited touching the existing CellStack/Cellerator ledger. Baseplane owns the mandatory primitive work; Cellerator, CelleraTorch, and CellShard are external repository scopes coordinated by locks and decision gates.",
+    "repositories": {
+      "cellstack": {
+        "root": "/home/tumlinson/CellStack",
+        "relationship": "Git umbrella; Baseplane, Cellerator, and CellShard are submodules",
+        "head": "11c4e2042263e0b545b88cbd85872d12419b6aa3",
+        "branch": "main",
+        "upstream": "origin/main"
+      },
+      "baseplane": {
+        "root": "/home/tumlinson/CellStack/Baseplane",
+        "relationship": "authoritative v2 project and CellStack submodule",
+        "head": "a0e729bfc9cdf5f1c30920c4a43ea2da835f286a",
+        "branch": "main",
+        "upstream": "origin/main"
+      },
+      "cellerator": {
+        "root": "/home/tumlinson/CellStack/Cellerator",
+        "relationship": "external repository scope and CellStack submodule",
+        "head": "42ca8d5c02d190bb00fa44cd38bdf5ba0c1457f8",
+        "branch": "main",
+        "upstream": "origin/main",
+        "external_blocker": "CP-MATH-08A was live at initial reconciliation; its referee work landed at 42ca8d5 during this pass and Cellerator implementation paths are Git-clean. Per user scope, its todo ledger was not re-opened, so every later external task must perform a read-only claim/lease check before editing."
+      },
+      "cellshard": {
+        "root": "/home/tumlinson/CellStack/CellShard",
+        "relationship": "external parked scope and CellStack submodule",
+        "head": "197d26856a8750e6161402fc7db8eb15251ec1be",
+        "branch": "main",
+        "upstream": "origin/main"
+      },
+      "celleratorch": {
+        "root": "/home/tumlinson/CellStack/Cellerator/components/CelleraTorch",
+        "relationship": "external optional component scope inside Cellerator"
+      }
+    },
+    "published_comparison": {
+      "baseplane": "exactly matches published a0e729bfc9cdf5f1c30920c4a43ea2da835f286a",
+      "cellerator": "local 42ca8d5 is three commits ahead of published 11a6b6c; f16ceef adds math contracts, e1a36b3 adds prepared math backend runtime, and 42ca8d5 adds the math referee foundation"
+    },
+    "historical_evidence": [
+      "docs/SEQUENCE_BITS.md",
+      "docs/sequence_bits_cuda_profile.md",
+      "docs/PERFORMANCE_CONTRACT.md",
+      "docs/ROADMAP.md",
+      "Baseplane commits 12c83b6, a014e84, a0e729b",
+      "Cellerator Git history retains deleted include/Cellerator/seq and src/seq files only; no current Cellerator-local canonical sequence primitive exists"
+    ],
+    "generic_worker_prompt": "Use $todo-orchestrator and continue. Work only in the task you transactionally claim. Use $cpp-context-compiler for semantic source retrieval and authoring. Obey all recorded leases, resources, checkpoints, interfaces, acceptance commands, and stop conditions. Do not perform git state changes unless the claimed task explicitly owns integration and git publication.",
+    "generic_integrator_prompt": "Use $todo-orchestrator and continue. Claim only an integration task. Reconcile all prerequisite handoffs and interface hashes, acquire every recorded public-API/CMake/external-repository/integration lock, run guard and changes before shared seams, and use the exact recorded gates. Do not commit, push, rebase, reset, stash, switch branches, or update CellStack pointers unless a later explicitly authorized publication task owns those actions."
+  },
+  "invariants": [
+    {
+      "id": "sqlite-authority",
+      "rule": "Baseplane SQLite state is the only BitOp operational authority. state.snapshot.json and Markdown are generated projections; never hand-edit them or use the CellStack/Cellerator CP-MATH ledger as BitOp state.",
+      "severity": "error"
+    },
+    {
+      "id": "preserve-work",
+      "rule": "Never reset, clean, stash, rebase, switch branches, overwrite, or attribute unrelated dirty work. Recheck Git HEAD, worktrees, active claims, changes, guard, and audit at pickup and handoff.",
+      "severity": "error"
+    },
+    {
+      "id": "ownership",
+      "rule": "Baseplane owns typed low-level sequence predicates, portable/prepared plans, CPU/SIMD/CUDA execution, explicit residency, compact events, and generic segments. Cellerator owns learned interpretation and multi-device policy. CelleraTorch owns optional Torch wrappers. CellShard remains parked until persistence is proven.",
+      "severity": "error"
+    },
+    {
+      "id": "external-repositories",
+      "rule": "Cellerator, CelleraTorch, CellShard, and CellStack are external to this Baseplane project root. Their tasks must acquire their named external lock, inspect their own AGENTS.md and Git state, and stop if any external ledger claim or dirty path overlaps. Never mutate the CellStack/Cellerator todo ledger from this project.",
+      "severity": "error"
+    },
+    {
+      "id": "cellerator-blocker",
+      "rule": "CELLERATOR-EXTERNAL-STATE is ready-with-mandatory-recheck because the observed CP-MATH-08A referee work landed and Cellerator implementation paths are Git-clean, but the user prohibited re-opening its todo ledger in this turn. Every external task must perform a read-only Git/session/claim/lease audit before editing, must never mutate Cellerator todo state, and must stop on any overlap.",
+      "severity": "error"
+    },
+    {
+      "id": "canonical-source",
+      "rule": "Canonical C++/CUDA source is authoritative. Use cpp-context-compiler where configured; generated .ctxpp views are read-only. Fall back to focused canonical reads when semantic indexing is unavailable or owned by another session.",
+      "severity": "error"
+    },
+    {
+      "id": "exact-api",
+      "rule": "Preserve Baseplane::seq, dna2 naming, motif32_exact, scan_exact_count_cpu/cuda, scan_exact_emit_cpu/cuda, and the shifted packed exact scanner unless an explicitly approved interface revision proves a breaking need.",
+      "severity": "error"
+    },
+    {
+      "id": "validity-coordinates",
+      "rule": "Keep two-bit canonical bases and add an optional one-bit validity sidecar. Chunk/contig origin is batch metadata; events use local uint32 positions where possible. Inactive tail bits and invalid bases must never create matches. BP-BITOP-10 must decide explicit chunk limits rather than casually widening every event.",
+      "severity": "error"
+    },
+    {
+      "id": "event-contract",
+      "rule": "Prefer an eight-byte core event compatible with motif_hit: uint32 local position, uint16 predicate ID, uint8 payload, uint8 flags. Scores/embeddings/segment offsets are sidecars. Distinguish logical produced, physical written, dropped, capacity required, and stable versus unordered order; never silently truncate.",
+      "severity": "error"
+    },
+    {
+      "id": "plan-contract",
+      "rule": "Portable plans are bounded, pointer-free, relocatable, versioned, verifiable, deterministic, and backend-neutral. Prepared plans contain backend/device tuning, representation and scratch requirements, but no hidden allocations/transfers/synchronization. CPU executes every accepted v1 operation; CUDA initially lowers to specialized families, not a device VM.",
+      "severity": "error"
+    },
+    {
+      "id": "communication",
+      "rule": "Use ownership intervals plus bounded halos for local dependencies, compact continuation/finite-state summaries only for small regular state, and sparse Cellerator event/object routing for long range. Raw information communicates locally; compressed meaning communicates globally.",
+      "severity": "error"
+    },
+    {
+      "id": "runtime-transparency",
+      "rule": "No hidden hot-path allocation, transfer, device choice, stream, synchronization, resident plane cache, or output materialization. Repeated prepared runs use caller-owned buffers and scratch.",
+      "severity": "error"
+    },
+    {
+      "id": "cuda-v100",
+      "rule": "CUDA work targets Volta sm_70 on Tesla V100 and CUDA 12.9. Use custom bitwise kernels only when semantics or measured traffic justify them. Benchmark, profiler, sanitizer, and all-GPU gates require their exclusive resources; source must never hardcode the assigned device.",
+      "severity": "error"
+    },
+    {
+      "id": "shared-seams",
+      "rule": "Only the designated integrator may edit root CMakeLists.txt, public umbrella headers, package exports, central docs indices, common benchmark drivers, Cellerator shared registries, or CellStack pointers. Acquire the named lock and run guard/changes before the critical section.",
+      "severity": "error"
+    },
+    {
+      "id": "unique-builds",
+      "rule": "Every worker uses a task-specific build directory build-bitop-<TASK-ID> and never shares mutable build output. CPU build capacity is four; GPU correctness can use assigned GPUs concurrently, but benchmark/profiler/sanitizer gates are serialized.",
+      "severity": "error"
+    },
+    {
+      "id": "stop-conditions",
+      "rule": "Stop and hand off/block with exact evidence on unidentified dirty owned files, overlapping live lease, missing/frozen-interface mismatch, checkpoint/base-HEAD drift, absent resource, ownership contradiction, stable exact API break, missing CPU oracle, occupied CMake seam, material plan/code divergence, contaminated benchmark, unexplained sanitizer finding, or optional branch without activation evidence.",
+      "severity": "error"
+    },
+    {
+      "id": "non-goals",
+      "rule": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types.",
+      "severity": "error"
+    },
+    {
+      "id": "mechanisms",
+      "rule": "Preserve packed exact XOR/OR/POPCOUNT; allowed matching derives A=~(lo|hi), C=lo&~hi, G=~lo&hi, T=lo&hi and counts active (~ok|~valid); boundary shifts load adjacent words without shift-by-32; reverse complement may use bit reversal plus complement after proof; stable emit is count-scan-emit; fast emit uses ballot/rank/block reservations; portable identity excludes live pointers and streams.",
+      "severity": "warning"
+    },
+    {
+      "id": "conditional-policy",
+      "rule": "Measure packed direct versus resident planes, direct allowed masks versus capped exact expansion, four multi-motif mappings, current versus shuffle count reduction, event mask versus records by density, stable versus unordered output, halo versus continuation, and lowered CUDA versus interpreter. Graphs/persistent kernels/NVRTC/discrete-program learning remain post-evidence.",
+      "severity": "warning"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "CELLERATOR-EXTERNAL-STATE",
+      "title": "External Cellerator path availability",
+      "value": "ready-with-mandatory-recheck",
+      "allowed": [
+        "blocked-cp-math-08a",
+        "ready-with-mandatory-recheck"
+      ]
+    },
+    {
+      "id": "BITOP-CHUNK-COORDINATES",
+      "title": "Chunk and local coordinate policy",
+      "value": "decide-in-bp-bitop-10",
+      "allowed": [
+        "decide-in-bp-bitop-10",
+        "bounded-chunks-local-u32",
+        "breaking-revision-proposed"
+      ]
+    },
+    {
+      "id": "BITOP-PACKED-PLANE",
+      "title": "Packed direct versus resident planes",
+      "value": "measure",
+      "allowed": [
+        "measure",
+        "measured-policy-v1"
+      ]
+    },
+    {
+      "id": "BITOP-ALLOWED-LOWERING",
+      "title": "Allowed motif lowering",
+      "value": "direct-baseline-measure-capped-expansion",
+      "allowed": [
+        "direct-baseline-measure-capped-expansion",
+        "measured-policy-v1"
+      ]
+    },
+    {
+      "id": "BITOP-MULTI-MOTIF-MAPPING",
+      "title": "CUDA multi-motif mapping",
+      "value": "measure-four-mappings",
+      "allowed": [
+        "measure-four-mappings",
+        "measured-policy-v1"
+      ]
+    },
+    {
+      "id": "BITOP-COUNT-REDUCTION",
+      "title": "Count reduction",
+      "value": "preserve-and-measure",
+      "allowed": [
+        "preserve-and-measure",
+        "keep-block-shared",
+        "promote-warp-shuffle"
+      ]
+    },
+    {
+      "id": "BITOP-EVENT-DENSITY",
+      "title": "Dense output representation",
+      "value": "explicit-hint-or-count-pass",
+      "allowed": [
+        "explicit-hint-or-count-pass",
+        "measured-policy-v1"
+      ]
+    },
+    {
+      "id": "BITOP-EVENT-ORDER",
+      "title": "Event ordering",
+      "value": "caller-selects",
+      "allowed": [
+        "caller-selects"
+      ]
+    },
+    {
+      "id": "BITOP-HALO-CONTINUATION",
+      "title": "Boundary communication",
+      "value": "halo-first",
+      "allowed": [
+        "halo-first",
+        "sparse-continuation",
+        "finite-state-promoted"
+      ]
+    },
+    {
+      "id": "BITOP-CUDA-EXECUTION",
+      "title": "CUDA plan execution",
+      "value": "lowered-families",
+      "allowed": [
+        "lowered-families",
+        "generic-interpreter-fallback",
+        "jit-proposal"
+      ]
+    },
+    {
+      "id": "BITOP-LAUNCH-AMORTIZATION",
+      "title": "Graphs or persistent kernels",
+      "value": "none-until-measured",
+      "allowed": [
+        "none-until-measured",
+        "cuda-graphs",
+        "persistent-kernel-proposal"
+      ]
+    },
+    {
+      "id": "BITOP-FSM-ACTIVATION",
+      "title": "Finite-state tile composition",
+      "value": "parked",
+      "allowed": [
+        "parked",
+        "activate"
+      ]
+    },
+    {
+      "id": "BITOP-DISCRETE-LEARNING",
+      "title": "Continuous-to-discrete induction",
+      "value": "parked",
+      "allowed": [
+        "parked",
+        "activate"
+      ]
+    },
+    {
+      "id": "BITOP-CELLERATORCH",
+      "title": "CelleraTorch bindings",
+      "value": "blocked-native-interfaces",
+      "allowed": [
+        "blocked-native-interfaces",
+        "activate"
+      ]
+    },
+    {
+      "id": "BITOP-LONG-RANGE",
+      "title": "Long-range object reasoning",
+      "value": "parked",
+      "allowed": [
+        "parked",
+        "activate"
+      ]
+    },
+    {
+      "id": "BITOP-PERSISTENCE",
+      "title": "CellShard persistence",
+      "value": "parked",
+      "allowed": [
+        "parked",
+        "activate"
+      ]
+    }
+  ],
+  "locks": [
+    {
+      "name": "baseplane-public-api",
+      "capacity": 1
+    },
+    {
+      "name": "baseplane-cmake",
+      "capacity": 1
+    },
+    {
+      "name": "baseplane-docs-index",
+      "capacity": 1
+    },
+    {
+      "name": "baseplane-benchmark-driver",
+      "capacity": 1
+    },
+    {
+      "name": "context-index",
+      "capacity": 1
+    },
+    {
+      "name": "cellerator-external",
+      "capacity": 1
+    },
+    {
+      "name": "cellerator-public-api",
+      "capacity": 1
+    },
+    {
+      "name": "cellerator-cmake",
+      "capacity": 1
+    },
+    {
+      "name": "cellerator-model-registry",
+      "capacity": 1
+    },
+    {
+      "name": "celleratorch-external",
+      "capacity": 1
+    },
+    {
+      "name": "cellshard-external",
+      "capacity": 1
+    },
+    {
+      "name": "cellstack-pointer",
+      "capacity": 1
+    },
+    {
+      "name": "integration-git",
+      "capacity": 1
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "bitop-ownership-architecture-v1",
+      "owner_task_id": "STACK-BITOP-02",
+      "state": "draft",
+      "version": "1",
+      "contract_paths": [
+        "docs/BITOP_ARCHITECTURE.md"
+      ],
+      "content_hash": null
+    },
+    {
+      "id": "baseplane-sequence-event-v1",
+      "owner_task_id": "BP-BITOP-12",
+      "state": "draft",
+      "version": "1",
+      "contract_paths": [
+        "include/Baseplane/seq/sequence_event.hh"
+      ],
+      "content_hash": null
+    },
+    {
+      "id": "baseplane-sequence-predicate-v1",
+      "owner_task_id": "BP-BITOP-13",
+      "state": "draft",
+      "version": "1",
+      "contract_paths": [
+        "include/Baseplane/seq/dna2_validity.hh",
+        "include/Baseplane/seq/dna2_allowed.hh",
+        "include/Baseplane/seq/predicate_plan.hh",
+        "include/Baseplane/seq/sequence_event.hh"
+      ],
+      "content_hash": null
+    },
+    {
+      "id": "baseplane-segment-v1",
+      "owner_task_id": "BP-BITOP-25",
+      "state": "draft",
+      "version": "1",
+      "contract_paths": [
+        "include/Baseplane/segment/segment_view.hh"
+      ],
+      "content_hash": null
+    },
+    {
+      "id": "cellerator-bitop-adapter-v1",
+      "owner_task_id": "CE-BITOP-40",
+      "state": "draft",
+      "version": "1",
+      "contract_paths": [],
+      "content_hash": null
+    },
+    {
+      "id": "cellerator-sparse-event-learning-v1",
+      "owner_task_id": "CE-BITOP-41",
+      "state": "draft",
+      "version": "1",
+      "contract_paths": [],
+      "content_hash": null
+    }
+  ],
+  "resource_classes": [
+    {
+      "id": "gpu",
+      "mode": "exclusive",
+      "metadata": {
+        "provider": "nvidia",
+        "architecture": "sm_70"
+      },
+      "instances": [
+        {
+          "id": "gpu:0",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "model": "Tesla V100-SXM2-16GB",
+            "memory_mib": 16384,
+            "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+          }
+        },
+        {
+          "id": "gpu:1",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "model": "Tesla V100-SXM2-16GB",
+            "memory_mib": 16384,
+            "uuid": "GPU-cf22c41f-5b58-77b1-3535-8fadd1ca6505"
+          }
+        },
+        {
+          "id": "gpu:2",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "model": "Tesla V100-SXM2-16GB",
+            "memory_mib": 16384,
+            "uuid": "GPU-d745da9c-7649-8334-41f1-483afa6f3206"
+          }
+        },
+        {
+          "id": "gpu:3",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "model": "Tesla V100-SXM2-16GB",
+            "memory_mib": 16384,
+            "uuid": "GPU-6c1cac7f-a360-0aef-ba98-2828bfd1db1a"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cpu-build",
+      "mode": "shared",
+      "metadata": {
+        "purpose": "independent compile capacity"
+      },
+      "instances": [
+        {
+          "id": "cpu-build:host",
+          "capacity": 4,
+          "hostname": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "id": "memory-gib",
+      "mode": "shared",
+      "metadata": {
+        "purpose": "large resident tests"
+      },
+      "instances": [
+        {
+          "id": "memory-gib:host",
+          "capacity": 64,
+          "hostname": null,
+          "metadata": {
+            "unit": "GiB"
+          }
+        }
+      ]
+    },
+    {
+      "id": "v100-benchmark",
+      "mode": "exclusive",
+      "metadata": {
+        "purpose": "serialize all performance-producing jobs"
+      },
+      "instances": [
+        {
+          "id": "v100-benchmark:exclusive",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "id": "cuda-sanitizer",
+      "mode": "exclusive",
+      "metadata": {
+        "purpose": "serialize compute-sanitizer"
+      },
+      "instances": [
+        {
+          "id": "cuda-sanitizer:exclusive",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "tool": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cuda-profiler",
+      "mode": "exclusive",
+      "metadata": {
+        "purpose": "serialize Nsight profiling"
+      },
+      "instances": [
+        {
+          "id": "cuda-profiler:exclusive",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "nsys": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/profilers/12.9/Nsight_Systems_2025.3/bin/nsys",
+            "ncu": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/profilers/12.9/Nsight_Compute/ncu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpu-all4",
+      "mode": "exclusive",
+      "metadata": {
+        "purpose": "exclusive four-V100 run"
+      },
+      "instances": [
+        {
+          "id": "gpu-all4:node",
+          "capacity": 1,
+          "hostname": null,
+          "metadata": {
+            "devices": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "topology_pairs": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "barriers": [
+    {
+      "id": "BITOP-B0",
+      "title": "Architecture and current baseline ready",
+      "mode": "all",
+      "requirements": [
+        {
+          "type": "checkpoint",
+          "id": "BITOP_ARCHITECTURE_FROZEN",
+          "state": "reached"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-03",
+          "state": "done",
+          "dispositions": [
+            "validated"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BITOP-B1",
+      "title": "Baseplane predicate semantics frozen",
+      "mode": "all",
+      "requirements": [
+        {
+          "type": "task",
+          "id": "BP-BITOP-10",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-11",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-12",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-13",
+          "state": "done"
+        },
+        {
+          "type": "interface",
+          "id": "baseplane-sequence-predicate-v1",
+          "state": "frozen"
+        }
+      ]
+    },
+    {
+      "id": "BITOP-B2",
+      "title": "CPU oracle, event, and segment ABI ready",
+      "mode": "all",
+      "requirements": [
+        {
+          "type": "checkpoint",
+          "id": "BITOP_CPU_REFERENCE_READY",
+          "state": "reached"
+        },
+        {
+          "type": "checkpoint",
+          "id": "BITOP_EVENT_AND_SEGMENT_ABI_READY",
+          "state": "reached"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-20",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-21",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-22",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-23",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-24",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-25",
+          "state": "done"
+        }
+      ]
+    },
+    {
+      "id": "BITOP-B3",
+      "title": "Baseplane BitOp v1 executable on CUDA",
+      "mode": "all",
+      "requirements": [
+        {
+          "type": "checkpoint",
+          "id": "BITOP_CUDA_CORE_READY",
+          "state": "reached"
+        },
+        {
+          "type": "checkpoint",
+          "id": "BASEPLANE_BITOP_V1_EXECUTABLE",
+          "state": "reached"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-30",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-31",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-32",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-33",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-34",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-35",
+          "state": "done"
+        }
+      ]
+    },
+    {
+      "id": "BITOP-FINAL-FANIN",
+      "title": "Mandatory Baseplane and Cellerator lanes ready for final audit",
+      "mode": "all",
+      "requirements": [
+        {
+          "type": "checkpoint",
+          "id": "BASEPLANE_BITOP_V1_EXECUTABLE",
+          "state": "reached"
+        },
+        {
+          "type": "task",
+          "id": "BP-BITOP-50",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "CE-BITOP-42",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "STACK-BITOP-51",
+          "state": "done"
+        },
+        {
+          "type": "task",
+          "id": "STACK-BITOP-52",
+          "state": "done"
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "BITOP-00",
+      "kind": "epic",
+      "title": "Baseplane BitOp roadmap",
+      "objective": "Coordinate Baseplane compiled sequence predicates and sparse events through Cellerator learned interpretation and final cross-repository validation without owning implementation files.",
+      "status": "blocked",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "invariants": [
+        "sqlite-authority",
+        "ownership",
+        "preserve-work",
+        "non-goals"
+      ],
+      "next_action": "Remain lifecycle-blocked until STACK-BITOP-53 validates every mandatory lane; then a coordinator plan revision may close the parent as validated.",
+      "notes": "Mandatory completion excludes BP-BITOP-36, CE-BITOP-43/44/45, and CS-BITOP-60 unless activated. Those branches may remain parked. This parent never edits implementation, CMake, docs, Git state, or external repositories.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "STACK-BITOP-01",
+      "parent_id": "BITOP-00",
+      "kind": "validation_task",
+      "title": "Repository and ledger state reconciliation",
+      "objective": "Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.",
+      "status": "done",
+      "result": "validated",
+      "priority": 220,
+      "parallel_policy": "serial",
+      "scope": {
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos.md",
+          "todo-status.md"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "external-repositories",
+        "canonical-source",
+        "stop-conditions"
+      ],
+      "next_action": "Verify the recorded evidence against current Git/source without changing implementation; run context, changes, guard, and audit; then complete validated.",
+      "notes": "Authority is Baseplane project UUID 1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3. Baseplane is clean at published a0e729b before tooling/ledger artifacts and has no active BitOp claim. CellStack is a Git umbrella; it advanced from d8edff0 to 11c4e20 during this pass as the active Cellerator math work landed. Cellerator advanced from e1a36b3 to 42ca8d5, three commits ahead of published 11a6b6c; the CP-MATH-08A referee paths are now committed and implementation paths are Git-clean. Per user scope its todo ledger was not re-opened after landing, so all later external tasks carry a mandatory read-only claim/lease recheck and stop on overlap. CellShard 197d268 is clean. No current Cellerator-local seq tree exists; deleted include/Cellerator/seq and src/seq appear only in Git history. Baseplane already has motif32_exact, eight-byte motif_hit, count/atomic compact emit, plane streams and base/GC/CpG masks; it lacks validity sidecar, motif32_allowed, public reverse/multi-motif modes, plans, grammar, stable emit, segments, and learned interpretation. Actual targets: baseplaneDna2Test, baseplaneDna2CudaTest, baseplaneDna2CpuBench, baseplaneDna2Bench; Cellerator smoke is coreSparseLayoutRuntimeTest. Baseplane docs/ROADMAP.md is stale about plane streams and must be reconciled later.",
+      "gates": [
+        {
+          "id": "STACK-BITOP-01-HEAD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            "a0e729bfc9cdf5f1c30920c4a43ea2da835f286a",
+            "HEAD"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench",
+            "docs"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-01-SOURCE-CLEAN",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--quiet",
+            "--",
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench",
+            "docs",
+            "README.md"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench",
+            "docs",
+            "README.md"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "STACK-BITOP-02",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Ownership and architecture contract",
+      "objective": "Create the durable Baseplane-owned BitOp ADR and freeze representation levels, communication, compatibility, validity/coordinates, output policies, compiled-plan meaning, lane-mapping independence, and non-goals.",
+      "priority": 210,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "STACK-BITOP-01"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "docs/BITOP_ARCHITECTURE.md"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "docs/SEQUENCE_BITS.md",
+          "docs/PERFORMANCE_CONTRACT.md",
+          "docs/ROADMAP.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench"
+        ],
+        "shared_locks": [
+          "baseplane-docs-index"
+        ]
+      },
+      "claim_locks": [
+        "baseplane-docs-index"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "ownership",
+        "exact-api",
+        "validity-coordinates",
+        "event-contract",
+        "plan-contract",
+        "communication",
+        "non-goals"
+      ],
+      "next_action": "Author docs/BITOP_ARCHITECTURE.md only, run the pattern/diff gates, reach BITOP_ARCHITECTURE_FROZEN, and hand off the frozen interface hash.",
+      "notes": "Freeze four levels: packed+validity, local predicates/grammar, compact events, generic segments; Cellerator adds learned weighting/pooling/semantic partitions/long range. Define compiled predicate plan as validated portable plan plus explicit prepared lowering. Hardware lane mapping is backend-specific. Preserve all exact APIs. Narrow unresolved decisions become named ledger decisions. Do not implement code or edit docs indexes in this task.",
+      "checkpoints": [
+        {
+          "id": "BITOP_ARCHITECTURE_FROZEN",
+          "title": "BitOp ownership and architecture frozen",
+          "publishes_interfaces": [
+            {
+              "id": "bitop-ownership-architecture-v1",
+              "version": "1"
+            }
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "STACK-BITOP-02-DOC",
+          "type": "file_exists",
+          "required": true,
+          "path": "docs/BITOP_ARCHITECTURE.md"
+        },
+        {
+          "id": "STACK-BITOP-02-CONTRACT",
+          "type": "pattern",
+          "required": true,
+          "path": "docs/BITOP_ARCHITECTURE.md",
+          "pattern": "baseplane-sequence-predicate-v1",
+          "checkpoint_id": "BITOP_ARCHITECTURE_FROZEN"
+        },
+        {
+          "id": "STACK-BITOP-02-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "docs/BITOP_ARCHITECTURE.md"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "docs/BITOP_ARCHITECTURE.md"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-03",
+      "parent_id": "BITOP-00",
+      "kind": "validation_task",
+      "title": "Preserve and measure current exact baseline",
+      "objective": "Verify current CPU/CUDA semantics and record same-build one-V100 exact count baseline, resource behavior, transfer/output behavior, and regression rule without optimizing.",
+      "priority": 205,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "STACK-BITOP-01"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "docs/bitop_baseline_evidence.md"
+        ],
+        "read_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/seq",
+          "src/seq",
+          "tests/seq",
+          "bench/seq",
+          "docs/sequence_bits_cuda_profile.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "CMakeLists.txt"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "cuda-v100",
+        "runtime-transparency"
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-03",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Use build-bitop-BP-BITOP-03-cpu and -cuda, run actual current targets, acquire one GPU and exclusive benchmark resource only for the benchmark gate, and record exact toolchain/commands/checksums in docs/bitop_baseline_evidence.md.",
+      "notes": "Do not optimize. Preserve shifted packed count. CPU/CUDA correctness must pass. Benchmark 67,108,864 bases, motif length 16, max mismatch 1, count output. Historical four-V100 numbers are context only. Regression rule: no more than 5% same-build median M=1 exact-count regression without documented correctness/composability benefit. Record registers, shared memory, H2D/D2H, output counter/emit behavior and note raw proof kernels that remain test-only.",
+      "gates": [
+        {
+          "id": "BP-BITOP-03-CPU-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-BP-BITOP-03-cpu",
+            "-DBASEPLANE_ENABLE_CUDA=OFF"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-CPU-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-BP-BITOP-03-cpu",
+            "--target",
+            "baseplaneDna2Test",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-CPU-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-03-cpu/baseplaneDna2Test"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests/seq/test_dna2.cpp"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-CUDA-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-BP-BITOP-03-cuda",
+            "-DBASEPLANE_ENABLE_CUDA=ON",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-CUDA-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-BP-BITOP-03-cuda",
+            "--target",
+            "baseplaneDna2CudaTest",
+            "baseplaneDna2Bench",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-CUDA-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-03-cuda/baseplaneDna2CudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests/seq/test_dna2_cuda.cu"
+          ],
+          "resources": [
+            "gpu:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-BENCH",
+          "type": "benchmark",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-03-cuda/baseplaneDna2Bench",
+            "67108864",
+            "16",
+            "1",
+            "30",
+            "packed_word64_shifted_count",
+            "20260819",
+            "single_gpu"
+          ],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "bench/seq/bench_dna2.cu",
+            "src/seq/dna2.cu"
+          ],
+          "resources": [
+            "gpu:any",
+            "v100-benchmark:any"
+          ],
+          "locks": [
+            "baseplane-benchmark-driver"
+          ],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-03-EVIDENCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "docs/bitop_baseline_evidence.md"
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "STACK-BITOP-04",
+      "parent_id": "BITOP-00",
+      "kind": "integration_task",
+      "title": "Publish baseline and architecture readiness",
+      "objective": "After BITOP-B0 opens, audit the authoritative Baseplane ledger and publish the combined baseline-and-architecture checkpoint without editing implementation or external repository state.",
+      "priority": 195,
+      "parallel_policy": "integration_exclusive",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B0"
+        }
+      ],
+      "scope": {
+        "read_paths": [
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/bitop_baseline_evidence.md",
+          "bitop-plan.json"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "external-repositories"
+      ],
+      "next_action": "Run the required Baseplane audit gate, verify STACK-BITOP-02 and BP-BITOP-03 evidence, reach BITOP_BASELINE_AND_ARCHITECTURE_READY, and complete validated without claiming implementation work.",
+      "notes": "This is the transactional B0 publication step. Stop if either prerequisite task, BITOP_ARCHITECTURE_FROZEN, audit integrity, repository HEAD, or recorded evidence is inconsistent. It owns no implementation, CMake, docs, benchmark, Git, or external-ledger mutation.",
+      "checkpoints": [
+        {
+          "id": "BITOP_BASELINE_AND_ARCHITECTURE_READY",
+          "title": "Baseline evidence and architecture contract jointly ready",
+          "state": "pending"
+        }
+      ],
+      "gates": [
+        {
+          "id": "STACK-BITOP-04-AUDIT",
+          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python",
+            "/home/tumlinson/.agents/skills/todo-orchestrator/scripts/todo.py",
+            "audit",
+            "--pretty"
+          ],
+          "cwd": ".",
+          "timeout": 120,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "BP-BITOP-10",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Validity, chunk coordinates, and boundary-safe views",
+      "objective": "Add optional canonicality sidecar and bounded chunk view semantics without changing canonical-only APIs.",
+      "priority": 190,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "checkpoint",
+          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/dna2_validity.hh",
+          "src/seq/dna2_validity.cpp",
+          "tests/seq/test_dna2_validity.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/dna2_views.hh",
+          "include/Baseplane/seq/dna2_ops.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "include/Baseplane/seq/dna2_scan.hh",
+          "include/Baseplane/seq/dna2_scan.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "validity-coordinates"
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-10",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement only the three owned files; resolve BITOP-CHUNK-COORDINATES; compile/run the standalone test in build-bitop-BP-BITOP-10; hand off provisional declarations to BP-BITOP-13.",
+      "notes": "Preferred composition is dna2_packed64_valid_view{dna2_packed64_view bases; dna2_mask32_stream_view valid;} plus chunk metadata sequence/contig ID, global origin, local base count. Define length 0, null pointers, final active mask, positions 31/32/63/64 and 0..65. Invalid bases fail canonical matches. Preserve uint64 n_bases public view but choose bounded chunk limits because CUDA currently rejects n_bases>INT_MAX. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-10 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-10 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_dna2_validity.cpp src/seq/dna2_validity.cpp -Lbuild-bitop-BP-BITOP-10 -lbaseplane_seq -o build-bitop-BP-BITOP-10/test_dna2_validity; ./build-bitop-BP-BITOP-10/test_dna2_validity.",
+      "gates": [
+        {
+          "id": "BP-BITOP-10-HEADER",
+          "type": "file_exists",
+          "required": true,
+          "path": "include/Baseplane/seq/dna2_validity.hh"
+        },
+        {
+          "id": "BP-BITOP-10-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_dna2_validity.cpp"
+        },
+        {
+          "id": "BP-BITOP-10-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/dna2_validity.hh",
+            "src/seq/dna2_validity.cpp",
+            "tests/seq/test_dna2_validity.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/dna2_validity.hh",
+            "src/seq/dna2_validity.cpp",
+            "tests/seq/test_dna2_validity.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-11",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Allowed-base motifs and strand semantics",
+      "objective": "Define direct allowed-mask motif semantics, explicit forward/reverse/both scan modes, invalid-base policy, and palindrome duplicate policy.",
+      "priority": 189,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "checkpoint",
+          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/dna2_allowed.hh",
+          "src/seq/dna2_allowed.cpp",
+          "tests/seq/test_dna2_allowed.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/dna2_motif.hh",
+          "include/Baseplane/seq/dna2_ops.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "include/Baseplane/seq/dna2_scan.hh",
+          "include/Baseplane/seq/dna2_scan.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "validity-coordinates",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-11",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement direct membership and reverse-complement oracle in owned files, with no IUPAC parser; compile/run standalone tests; hand off provisional ABI to BP-BITOP-13.",
+      "notes": "motif32_allowed contains allow_a/c/g/t, active_mask, length, max_mismatches, motif_id; every active allowed set nonempty. mismatch=active&(~ok|~valid). Test all 15 one-position subsets, random windows, thresholds 0..length, lengths 1/8/16/31/32, invalid bases, forward/reverse equivalence, palindromes. Prove bit-reverse+complement for lengths 0..32 before replacing helper. Direct matching is semantic baseline; exact expansion only later under hard cardinality cap and measured planner choice. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-11 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-11 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_dna2_allowed.cpp src/seq/dna2_allowed.cpp -Lbuild-bitop-BP-BITOP-11 -lbaseplane_seq -o build-bitop-BP-BITOP-11/test_dna2_allowed; ./build-bitop-BP-BITOP-11/test_dna2_allowed.",
+      "gates": [
+        {
+          "id": "BP-BITOP-11-HEADER",
+          "type": "file_exists",
+          "required": true,
+          "path": "include/Baseplane/seq/dna2_allowed.hh"
+        },
+        {
+          "id": "BP-BITOP-11-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_dna2_allowed.cpp"
+        },
+        {
+          "id": "BP-BITOP-11-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/dna2_allowed.hh",
+            "src/seq/dna2_allowed.cpp",
+            "tests/seq/test_dna2_allowed.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/dna2_allowed.hh",
+            "src/seq/dna2_allowed.cpp",
+            "tests/seq/test_dna2_allowed.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-12",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Compact event ABI and output-policy contract",
+      "objective": "Generalize or compose the existing eight-byte motif_hit into a versioned sequence event and explicit count/mask/stable/unordered output descriptors.",
+      "priority": 188,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "checkpoint",
+          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/sequence_event.hh",
+          "tests/seq/test_sequence_event.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/dna2_motif.hh",
+          "include/Baseplane/core/status.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "include/Baseplane/seq/dna2_scan.hh",
+          "include/Baseplane/seq/dna2_scan.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "event-contract"
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-12",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Choose composition/alias versus new record without widening, add descriptors and static assertions/tests, reach BASEPLANE_SEQUENCE_EVENT_V1_FROZEN, and hand off the hash.",
+      "notes": "Chunk origin is outside records. Optional float scores and uint32 segment offsets are sidecars. Define strand/level/uncertainty/continuation flags, async stream semantics, zero capacity, exact overflow, logical produced versus physical written/dropped/required capacity. Host and device construction must be trivial. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-12 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_sequence_event.cpp -o build-bitop-BP-BITOP-12/test_sequence_event; ./build-bitop-BP-BITOP-12/test_sequence_event.",
+      "checkpoints": [
+        {
+          "id": "BASEPLANE_SEQUENCE_EVENT_V1_FROZEN",
+          "title": "Compact sequence event ABI frozen",
+          "publishes_interfaces": [
+            {
+              "id": "baseplane-sequence-event-v1",
+              "version": "1"
+            }
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-BITOP-12-HEADER",
+          "type": "file_exists",
+          "required": true,
+          "path": "include/Baseplane/seq/sequence_event.hh"
+        },
+        {
+          "id": "BP-BITOP-12-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_sequence_event.cpp"
+        },
+        {
+          "id": "BP-BITOP-12-SIZE",
+          "type": "pattern",
+          "required": true,
+          "path": "tests/seq/test_sequence_event.cpp",
+          "pattern": "static_assert",
+          "checkpoint_id": "BASEPLANE_SEQUENCE_EVENT_V1_FROZEN"
+        },
+        {
+          "id": "BP-BITOP-12-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/sequence_event.hh",
+            "tests/seq/test_sequence_event.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/sequence_event.hh",
+            "tests/seq/test_sequence_event.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-13",
+      "parent_id": "BITOP-00",
+      "kind": "integration_task",
+      "title": "Bounded predicate-plan and verifier contract",
+      "objective": "Integrate validity, allowed motifs, and events into the smallest bounded pointer-free portable plan, scalar verifier contract, and interface target wiring.",
+      "priority": 180,
+      "parallel_policy": "integration_exclusive",
+      "depends_on": [
+        {
+          "type": "checkpoint",
+          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-10"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-11"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-12"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/predicate_plan.hh",
+          "src/seq/predicate_plan.cpp",
+          "tests/seq/test_predicate_plan.cpp",
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/dna2_validity.hh",
+          "include/Baseplane/seq/dna2_allowed.hh",
+          "include/Baseplane/seq/sequence_event.hh"
+        ],
+        "shared_locks": [
+          "baseplane-public-api",
+          "baseplane-cmake"
+        ]
+      },
+      "claim_locks": [
+        "baseplane-public-api",
+        "baseplane-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "validity-coordinates",
+        "event-contract",
+        "plan-contract",
+        "mechanisms"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-13",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Guard shared seams, reconcile three provisional interfaces, define/verify portable ops and limits, wire baseplaneBitOpContractTest, freeze baseplane-sequence-predicate-v1, and hand off exact hash/limits.",
+      "notes": "V1 operations: base equality/allowed membership, GC/base-class/CpG masks, shift, AND/OR/XOR/AND-NOT/NOT, bounded ANY/ALL, popcount threshold, exact/WITHIN spacing, run/boundary, event emission, segment reduction request. Use typed DAG/SSA/op array or compact bytecode; no CUDA interpreter. Host prepare validates, folds constants, removes dead ops, computes lookbehind/lookahead/output/scratch, classifies exact/fused plane/mask grammar/segment/reference. Reject invalid opcode, illegal reference/cycle, range, empty allowed set, temporary/destination overflow, halo limit and inconsistent output. Hash excludes pointers/streams. Acceptance: cmake -S . -B build-bitop-BP-BITOP-13 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-13 --target baseplaneBitOpContractTest -j 4; ./build-bitop-BP-BITOP-13/baseplaneBitOpContractTest.",
+      "checkpoints": [
+        {
+          "id": "BASEPLANE_SEQUENCE_PREDICATE_V1_FROZEN",
+          "title": "Baseplane sequence predicate v1 frozen",
+          "publishes_interfaces": [
+            {
+              "id": "baseplane-sequence-predicate-v1",
+              "version": "1"
+            }
+          ]
+        },
+        {
+          "id": "BITOP_SEMANTICS_READY",
+          "title": "Predicate semantics ready"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-BITOP-13-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-BP-BITOP-13",
+            "-DBASEPLANE_ENABLE_CUDA=OFF"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-13-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-BP-BITOP-13",
+            "--target",
+            "baseplaneBitOpContractTest",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-13-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-13/baseplaneBitOpContractTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests/seq/test_predicate_plan.cpp"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-13-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "CMakeLists.txt",
+            "include/Baseplane/dna2.hh",
+            "include/Baseplane/seq/dna2.cuh",
+            "include/Baseplane/seq/predicate_plan.hh",
+            "src/seq/predicate_plan.cpp",
+            "tests/seq/test_predicate_plan.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "include/Baseplane/dna2.hh",
+            "include/Baseplane/seq/dna2.cuh",
+            "include/Baseplane/seq/predicate_plan.hh",
+            "src/seq/predicate_plan.cpp",
+            "tests/seq/test_predicate_plan.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-20",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Scalar CPU reference execution",
+      "objective": "Implement deterministic scalar oracle for validity-aware exact/allowed/strand/plan/count/mask/event/local grammar semantics.",
+      "priority": 170,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/predicate_execute.hh",
+          "src/seq/predicate_execute_scalar.cpp",
+          "tests/seq/test_predicate_execute_scalar.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/predicate_plan.hh",
+          "include/Baseplane/seq/dna2_validity.hh",
+          "include/Baseplane/seq/dna2_allowed.hh",
+          "include/Baseplane/seq/sequence_event.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "validity-coordinates",
+        "event-contract",
+        "plan-contract",
+        "communication",
+        "mechanisms"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-20",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement oracle only in owned files; property-test against unpacked logic; hand off deterministic fixture interface to BP-BITOP-24.",
+      "notes": "CPU-only build must remain supported. Cover all edge cases, no backend-specific public types. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-20 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-20 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_predicate_execute_scalar.cpp src/seq/predicate_execute_scalar.cpp src/seq/predicate_plan.cpp src/seq/dna2_validity.cpp src/seq/dna2_allowed.cpp src/seq/dna2_scalar.cpp -o build-bitop-BP-BITOP-20/test_predicate_execute_scalar; ./build-bitop-BP-BITOP-20/test_predicate_execute_scalar.",
+      "gates": [
+        {
+          "id": "BP-BITOP-20-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/seq/predicate_execute_scalar.cpp"
+        },
+        {
+          "id": "BP-BITOP-20-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_predicate_execute_scalar.cpp"
+        },
+        {
+          "id": "BP-BITOP-20-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/predicate_execute.hh",
+            "src/seq/predicate_execute_scalar.cpp",
+            "tests/seq/test_predicate_execute_scalar.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/predicate_execute.hh",
+            "src/seq/predicate_execute_scalar.cpp",
+            "tests/seq/test_predicate_execute_scalar.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-21",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Plan normalization, lowering, and backend classification",
+      "objective": "Implement deterministic host preparation, normalization, family classification, halo/output-density propagation, and scratch query.",
+      "priority": 169,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/predicate_prepare.hh",
+          "src/seq/predicate_prepare.cpp",
+          "tests/seq/test_predicate_prepare.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/predicate_plan.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "plan-contract",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-21",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement constant folding, mask/shift normalization, deterministic CSE/dead output elimination, exact/allowed specialization, family candidates, halo/density/scratch; do not bake unmeasured thresholds.",
+      "notes": "Classifier candidates: M=1 exact count current packed scanner; exact batch; one-shot allowed/Boolean fused packed-to-plane; reused allowed/grammar resident planes; mask grammar; scalar fallback. Identical portable plans lower identically; prepared descriptors have no hidden allocation. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-21 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_predicate_prepare.cpp src/seq/predicate_prepare.cpp src/seq/predicate_plan.cpp -o build-bitop-BP-BITOP-21/test_predicate_prepare; ./build-bitop-BP-BITOP-21/test_predicate_prepare.",
+      "gates": [
+        {
+          "id": "BP-BITOP-21-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/seq/predicate_prepare.cpp"
+        },
+        {
+          "id": "BP-BITOP-21-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_predicate_prepare.cpp"
+        },
+        {
+          "id": "BP-BITOP-21-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/predicate_prepare.hh",
+            "src/seq/predicate_prepare.cpp",
+            "tests/seq/test_predicate_prepare.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/predicate_prepare.hh",
+            "src/seq/predicate_prepare.cpp",
+            "tests/seq/test_predicate_prepare.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-22",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Local mask grammar and bounded halo semantics",
+      "objective": "Implement CPU/reference boundary-safe mask shifts, bounded relations/windows/count thresholds, run boundaries, and ownership masks with plan-derived halo.",
+      "priority": 168,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/mask_grammar.hh",
+          "src/seq/mask_grammar_scalar.cpp",
+          "tests/seq/test_mask_grammar.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/predicate_plan.hh",
+          "include/Baseplane/seq/dna2_views.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "communication",
+        "mechanisms"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-22",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement correct repeated-shift baseline and ownership mask, test exhaustive boundaries/radii, hand off halo convention to CUDA lane.",
+      "notes": "Relations: exact offset, bounded spacing, adjacency, small ANY/ALL, count threshold, start/end masks. shifted_mask loads adjacent words with checked bounds and r==0 special case; align B back to A anchors. Tile reads halo but only central owned anchors emit. Test distances 0,1,7,31,32,33,63,64 and configured larger radius; no undefined shift, OOB, or duplicate. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-22 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_mask_grammar.cpp src/seq/mask_grammar_scalar.cpp -o build-bitop-BP-BITOP-22/test_mask_grammar; ./build-bitop-BP-BITOP-22/test_mask_grammar.",
+      "gates": [
+        {
+          "id": "BP-BITOP-22-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/seq/mask_grammar_scalar.cpp"
+        },
+        {
+          "id": "BP-BITOP-22-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_mask_grammar.cpp"
+        },
+        {
+          "id": "BP-BITOP-22-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/mask_grammar.hh",
+            "src/seq/mask_grammar_scalar.cpp",
+            "tests/seq/test_mask_grammar.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/mask_grammar.hh",
+            "src/seq/mask_grammar_scalar.cpp",
+            "tests/seq/test_mask_grammar.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-23",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Deterministic and fast compact emission contracts",
+      "objective": "Implement CPU/reference stable count-scan-emit and explicit unordered emission semantics with exact overflow/multiset accounting.",
+      "priority": 167,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/emit/sequence_emit.hh",
+          "src/emit/sequence_emit_scalar.cpp",
+          "tests/emit/test_sequence_emit.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/sequence_event.hh",
+          "include/Baseplane/seq/predicate_plan.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "event-contract",
+        "mechanisms"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-23",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Define stable canonical position/predicate order and unordered multiset mode, exact zero-capacity/overflow, and caller scratch contract in owned files.",
+      "notes": "Stable path is count per tile/segment, exclusive scan, emit. Unordered path permits aggregation but not hidden ordering. Both yield same multiset. CUB is only behind explicit caller scratch in CUDA. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-23 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/emit/test_sequence_emit.cpp src/emit/sequence_emit_scalar.cpp -o build-bitop-BP-BITOP-23/test_sequence_emit; ./build-bitop-BP-BITOP-23/test_sequence_emit.",
+      "gates": [
+        {
+          "id": "BP-BITOP-23-HEADER",
+          "type": "file_exists",
+          "required": true,
+          "path": "include/Baseplane/emit/sequence_emit.hh"
+        },
+        {
+          "id": "BP-BITOP-23-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/emit/test_sequence_emit.cpp"
+        },
+        {
+          "id": "BP-BITOP-23-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/emit/sequence_emit.hh",
+            "src/emit/sequence_emit_scalar.cpp",
+            "tests/emit/test_sequence_emit.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/emit/sequence_emit.hh",
+            "src/emit/sequence_emit_scalar.cpp",
+            "tests/emit/test_sequence_emit.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-25",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Generic segment and regional-summary primitives",
+      "objective": "Define pointer-free offset/index segment views and deterministic CPU event-count/popcount/sum/max/emit-if/minimal interval operations.",
+      "priority": 166,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/segment/segment_view.hh",
+          "include/Baseplane/segment/segment_reduce.hh",
+          "src/segment/segment_reduce_scalar.cpp",
+          "tests/segment/test_segment_reduce.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/sequence_event.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "event-contract"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-25",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement only generic segment vocabulary and CPU reference; reach BITOP_EVENT_AND_SEGMENT_ABI_READY and freeze baseplane-segment-v1.",
+      "notes": "View contains offsets, optional indices, segment_count, item_count. Validate monotonic offsets/ranges, accumulator widths/overflow. Test empty/singleton/uneven/large segments and determinism. No enhancer/promoter/regulon/gene/cell-state labels. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-25 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/segment/test_segment_reduce.cpp src/segment/segment_reduce_scalar.cpp -o build-bitop-BP-BITOP-25/test_segment_reduce; ./build-bitop-BP-BITOP-25/test_segment_reduce.",
+      "checkpoints": [
+        {
+          "id": "BITOP_EVENT_AND_SEGMENT_ABI_READY",
+          "title": "Event and segment ABI ready",
+          "publishes_interfaces": [
+            {
+              "id": "baseplane-segment-v1",
+              "version": "1"
+            }
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-BITOP-25-VIEW",
+          "type": "file_exists",
+          "required": true,
+          "path": "include/Baseplane/segment/segment_view.hh"
+        },
+        {
+          "id": "BP-BITOP-25-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/segment/test_segment_reduce.cpp"
+        },
+        {
+          "id": "BP-BITOP-25-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/segment/segment_view.hh",
+            "include/Baseplane/segment/segment_reduce.hh",
+            "src/segment/segment_reduce_scalar.cpp",
+            "tests/segment/test_segment_reduce.cpp"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/segment/segment_view.hh",
+            "include/Baseplane/segment/segment_reduce.hh",
+            "src/segment/segment_reduce_scalar.cpp",
+            "tests/segment/test_segment_reduce.cpp"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-24",
+      "parent_id": "BITOP-00",
+      "kind": "validation_task",
+      "title": "Property, adversarial, and differential test corpus",
+      "objective": "Fan in all CPU lanes into deterministic reusable fixtures and authoritative baseplaneBitOpCpuTest wiring.",
+      "priority": 155,
+      "parallel_policy": "integration_exclusive",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-20"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-21"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-22"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-23"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-25"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "tests/bitop",
+          "tests/bitop_fixture.hh",
+          "CMakeLists.txt"
+        ],
+        "read_paths": [
+          "include",
+          "src",
+          "tests/seq",
+          "tests/emit",
+          "tests/segment"
+        ],
+        "shared_locks": [
+          "baseplane-cmake"
+        ]
+      },
+      "claim_locks": [
+        "baseplane-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "validity-coordinates",
+        "event-contract",
+        "plan-contract",
+        "communication"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-segment-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-24",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Guard CMake, build deterministic generators/fixture schema, wire baseplaneBitOpCpuTest, run CPU-only acceptance, reach BITOP_CPU_REFERENCE_READY.",
+      "notes": "Cover canonical/invalid bases, all allowed subsets, random motifs/sequences, reverse complements/palindromes, mixed lengths/mismatches, cross-word/tail/zero/no-hit/all-hit/overflow/dense masks/stable-vs-unordered multisets/halo ownership/verifier rejects. Fixed seeds; failures print compact reproducer. Fixture schema must be reusable by CPU/CUDA/SIMD/Cellerator. Acceptance: cmake -S . -B build-bitop-BP-BITOP-24 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-24 --target baseplaneBitOpCpuTest -j 4; ./build-bitop-BP-BITOP-24/baseplaneBitOpCpuTest.",
+      "checkpoints": [
+        {
+          "id": "BITOP_CPU_REFERENCE_READY",
+          "title": "Scalar oracle and differential corpus ready"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-BITOP-24-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-BP-BITOP-24",
+            "-DBASEPLANE_ENABLE_CUDA=OFF"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-24-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-BP-BITOP-24",
+            "--target",
+            "baseplaneBitOpCpuTest",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-24-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-24/baseplaneBitOpCpuTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests/bitop",
+            "tests/bitop_fixture.hh"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-24-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "CMakeLists.txt",
+            "tests/bitop",
+            "tests/bitop_fixture.hh"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "tests/bitop",
+            "tests/bitop_fixture.hh"
+          ],
+          "track_git_head": true
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "BP-BITOP-30",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "CUDA packed multi-exact motif backend",
+      "objective": "Preserve M=1 shifted packed scan and implement/measure batched exact mappings that amortize sequence windows.",
+      "priority": 145,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B2"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-event-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/exact_batch.cuh",
+          "src/seq/exact_batch.cu",
+          "tests/seq/test_exact_batch_cuda.cu",
+          "bench/bitop/exact_batch_bench.cu"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/dna2_scan.cuh",
+          "src/seq/dna2.cu",
+          "tests/bitop_fixture.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "bench/bitop/bitop_bench.cu"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-30",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement candidates A-D in owned files, correctness first, run assigned-GPU tests and leased benchmark gates; preserve M=1 regression rule.",
+      "notes": "Compare repeated one-thread/window scans, warp motif tile lane=motif with lane0 window broadcast, thread=window/register motif loop, shared motif tile. Mixed lengths/mismatches; group only when semantics permit. Benchmark M=1,8,32,128,larger; bytes per motif, base-predicates/s, registers/occupancy/shared/count atomics. If atomics bottleneck use per-block partials. Count reduction preserves current block shared until BITOP-COUNT-REDUCTION evidence promotes shuffle. Acceptance commands after BP-BITOP-35 wiring: cmake -S . -B build-bitop-BP-BITOP-30 -DBASEPLANE_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-BP-BITOP-30 --target baseplaneBitOpCudaTest -j 4; ./build-bitop-BP-BITOP-30/baseplaneBitOpCudaTest --case exact-batch.",
+      "gates": [
+        {
+          "id": "BP-BITOP-30-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/seq/exact_batch.cu"
+        },
+        {
+          "id": "BP-BITOP-30-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_exact_batch_cuda.cu"
+        },
+        {
+          "id": "BP-BITOP-30-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/exact_batch.cuh",
+            "src/seq/exact_batch.cu",
+            "tests/seq/test_exact_batch_cuda.cu",
+            "bench/bitop/exact_batch_bench.cu"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/exact_batch.cuh",
+            "src/seq/exact_batch.cu",
+            "tests/seq/test_exact_batch_cuda.cu",
+            "bench/bitop/exact_batch_bench.cu"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-31",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "CUDA allowed-motif and plane-predicate backends",
+      "objective": "Implement fused one-shot, explicit resident-plane, capped exact-expansion, warp allowed-motif, and mask-output candidates with validity/strand parity.",
+      "priority": 144,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B2"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-event-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/allowed_scan.cuh",
+          "src/seq/allowed_scan.cu",
+          "tests/seq/test_allowed_scan_cuda.cu",
+          "bench/bitop/allowed_scan_bench.cu"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/dna2_allowed.hh",
+          "include/Baseplane/seq/dna2_validity.hh",
+          "include/Baseplane/seq/dna2_scan.cuh",
+          "tests/bitop_fixture.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "bench/bitop/bitop_bench.cu"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-31",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement candidates with explicit buffers/scratch; test CPU parity/invalid/strand; collect one-shot versus reuse crossover inputs without silently caching planes.",
+      "notes": "Split planes still cost 2 bits/base but materialization adds a full pass. Measure predicate count, reuse, output, hit density, memory, downstream grammar. Exact expansion cardinality product is capped. No dense byte output. Resident cache caller-owned and optional. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case allowed-plane.",
+      "gates": [
+        {
+          "id": "BP-BITOP-31-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/seq/allowed_scan.cu"
+        },
+        {
+          "id": "BP-BITOP-31-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_allowed_scan_cuda.cu"
+        },
+        {
+          "id": "BP-BITOP-31-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/allowed_scan.cuh",
+            "src/seq/allowed_scan.cu",
+            "tests/seq/test_allowed_scan_cuda.cu",
+            "bench/bitop/allowed_scan_bench.cu"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/allowed_scan.cuh",
+            "src/seq/allowed_scan.cu",
+            "tests/seq/test_allowed_scan_cuda.cu",
+            "bench/bitop/allowed_scan_bench.cu"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-32",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "CUDA local grammar, halo, and ownership backend",
+      "objective": "Implement boundary-safe CUDA mask grammar using adjacent loads or shared supertiles only where reuse pays, with plan-derived halo and unique anchor ownership.",
+      "priority": 143,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B2"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-event-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-22"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/mask_grammar.cuh",
+          "src/seq/mask_grammar.cu",
+          "tests/seq/test_mask_grammar_cuda.cu",
+          "bench/bitop/mask_grammar_bench.cu"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/mask_grammar.hh",
+          "src/seq/mask_grammar_scalar.cpp",
+          "tests/bitop_fixture.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "bench/bitop/bitop_bench.cu"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-32",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement global streaming baseline and conditional shared supertile, test cross-word/block/OOB/duplicate ownership, profile only under leased profiler.",
+      "notes": "Do not exchange every base across warps. Warp shuffles only when actual mapping benefits. Compare global loads against shared halo on V100; profiler evidence selects backend. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case grammar-halo; profiler gate is recorded in BP50 unless needed to decide this task.",
+      "gates": [
+        {
+          "id": "BP-BITOP-32-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/seq/mask_grammar.cu"
+        },
+        {
+          "id": "BP-BITOP-32-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/seq/test_mask_grammar_cuda.cu"
+        },
+        {
+          "id": "BP-BITOP-32-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/seq/mask_grammar.cuh",
+            "src/seq/mask_grammar.cu",
+            "tests/seq/test_mask_grammar_cuda.cu",
+            "bench/bitop/mask_grammar_bench.cu"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq/mask_grammar.cuh",
+            "src/seq/mask_grammar.cu",
+            "tests/seq/test_mask_grammar_cuda.cu",
+            "bench/bitop/mask_grammar_bench.cu"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-33",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "CUDA compact emission",
+      "objective": "Implement stable count-scan-emit and unordered ballot/rank/block-reservation emission with caller-owned output/scratch and exact capacity accounting.",
+      "priority": 142,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B2"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-event-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-23"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/emit/sequence_emit.cuh",
+          "src/emit/sequence_emit.cu",
+          "tests/emit/test_sequence_emit_cuda.cu",
+          "bench/bitop/sequence_emit_bench.cu"
+        ],
+        "read_paths": [
+          "include/Baseplane/emit/sequence_emit.hh",
+          "include/Baseplane/seq/sequence_event.hh",
+          "tests/bitop_fixture.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "bench/bitop/bitop_bench.cu"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-33",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Implement both explicit policies, CPU multiset parity, stable byte determinism, sparse-to-dense density cases, then run memcheck/racecheck with exclusive sanitizer resource.",
+      "notes": "Unordered: ballot, popcount, lane rank, block-local aggregation, few global reservations, coalesced writes. Stable: tile counts, device exclusive scan behind caller scratch, tile/position/predicate emit. Logical count remains correct under capacity. No hidden allocation/sync. Acceptance after BP35 wiring plus /opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer --tool memcheck ./build-bitop-BP-BITOP-33/baseplaneBitOpCudaTest --case emit and --tool racecheck same.",
+      "gates": [
+        {
+          "id": "BP-BITOP-33-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/emit/sequence_emit.cu"
+        },
+        {
+          "id": "BP-BITOP-33-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/emit/test_sequence_emit_cuda.cu"
+        },
+        {
+          "id": "BP-BITOP-33-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/emit/sequence_emit.cuh",
+            "src/emit/sequence_emit.cu",
+            "tests/emit/test_sequence_emit_cuda.cu",
+            "bench/bitop/sequence_emit_bench.cu"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/emit/sequence_emit.cuh",
+            "src/emit/sequence_emit.cu",
+            "tests/emit/test_sequence_emit_cuda.cu",
+            "bench/bitop/sequence_emit_bench.cu"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-34",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "CUDA segment reductions",
+      "objective": "Implement only minimum generic segment operations required by the first Cellerator adapter, selecting CUB/custom by measured shape.",
+      "priority": 141,
+      "parallel_policy": "parallel_safe",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B2"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-event-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-25"
+        },
+        {
+          "type": "interface",
+          "interface_id": "baseplane-segment-v1",
+          "state": "frozen",
+          "version": "1"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/segment/segment_reduce.cuh",
+          "src/segment/segment_reduce.cu",
+          "tests/segment/test_segment_reduce_cuda.cu",
+          "bench/bitop/segment_reduce_bench.cu"
+        ],
+        "read_paths": [
+          "include/Baseplane/segment/segment_view.hh",
+          "include/Baseplane/segment/segment_reduce.hh",
+          "tests/bitop_fixture.hh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "bench/bitop/bitop_bench.cu"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-segment-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-34",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Agree minimum adapter operations from frozen segment ABI, implement CPU parity/uneven/zero segments/explicit scratch and sm_70-safe kernels.",
+      "notes": "Do not implement every ragged reduction. Determinism where mathematically expected; explicit accumulator/overflow. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case segments.",
+      "gates": [
+        {
+          "id": "BP-BITOP-34-SOURCE",
+          "type": "file_exists",
+          "required": true,
+          "path": "src/segment/segment_reduce.cu"
+        },
+        {
+          "id": "BP-BITOP-34-TEST",
+          "type": "file_exists",
+          "required": true,
+          "path": "tests/segment/test_segment_reduce_cuda.cu"
+        },
+        {
+          "id": "BP-BITOP-34-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "include/Baseplane/segment/segment_reduce.cuh",
+            "src/segment/segment_reduce.cu",
+            "tests/segment/test_segment_reduce_cuda.cu",
+            "bench/bitop/segment_reduce_bench.cu"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/segment/segment_reduce.cuh",
+            "src/segment/segment_reduce.cu",
+            "tests/segment/test_segment_reduce_cuda.cu",
+            "bench/bitop/segment_reduce_bench.cu"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-35",
+      "parent_id": "BITOP-00",
+      "kind": "integration_task",
+      "title": "Prepared runtime, residency, backend planner, and CUDA fan-in",
+      "objective": "Provide allocation-explicit prepare/query/bind/run surface, integrate all CUDA families, and publish executable Baseplane BitOp v1.",
+      "priority": 130,
+      "parallel_policy": "integration_exclusive",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-30"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-31"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-32"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-33"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-34"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/runtime/resident_sequence.cuh",
+          "include/Baseplane/runtime/prepared_predicate.cuh",
+          "src/runtime/prepared_predicate.cu",
+          "tests/runtime/test_prepared_predicate_cuda.cu",
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq",
+          "include/Baseplane/emit",
+          "include/Baseplane/segment",
+          "src/seq",
+          "src/emit",
+          "src/segment",
+          "tests/bitop_fixture.hh"
+        ],
+        "shared_locks": [
+          "baseplane-public-api",
+          "baseplane-cmake"
+        ]
+      },
+      "claim_locks": [
+        "baseplane-public-api",
+        "baseplane-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-segment-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-35",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Guard shared seams, integrate CUDA lanes, wire baseplaneBitOpCudaTest, expose required_scratch/prepare/bind/run and inspectable backend choice, run CPU/CUDA/sanitizer fan-in, reach both executable checkpoints.",
+      "notes": "prepare portable plan -> validate/lower -> report representation/scratch -> bind caller-owned resident sequence/program -> async run on caller stream -> count/mask/events/summary. Repeated run allocates/transfers/synchronizes nothing. Track scratch high-water and decision. CUDA Graphs only if BITOP-LAUNCH-AMORTIZATION promotes after measurement. Acceptance: cmake -S . -B build-bitop-BP-BITOP-35 -DBASEPLANE_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-BP-BITOP-35 --target baseplaneBitOpCpuTest baseplaneBitOpCudaTest -j 4; ./build-bitop-BP-BITOP-35/baseplaneBitOpCpuTest; ./build-bitop-BP-BITOP-35/baseplaneBitOpCudaTest; sanitizer paths below.",
+      "checkpoints": [
+        {
+          "id": "BITOP_CUDA_CORE_READY",
+          "title": "Mandatory CUDA core ready"
+        },
+        {
+          "id": "BASEPLANE_BITOP_V1_EXECUTABLE",
+          "title": "Baseplane BitOp v1 executable"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-BITOP-35-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-BP-BITOP-35",
+            "-DBASEPLANE_ENABLE_CUDA=ON",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-35-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-BP-BITOP-35",
+            "--target",
+            "baseplaneBitOpCpuTest",
+            "baseplaneBitOpCudaTest",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-35-CPU",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-35/baseplaneBitOpCpuTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-35-CUDA",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-35/baseplaneBitOpCudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests"
+          ],
+          "resources": [
+            "gpu:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-35-MEMCHECK",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer",
+            "--tool",
+            "memcheck",
+            "./build-bitop-BP-BITOP-35/baseplaneBitOpCudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "src",
+            "tests"
+          ],
+          "resources": [
+            "gpu:any",
+            "cuda-sanitizer:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-35-RACECHECK",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer",
+            "--tool",
+            "racecheck",
+            "./build-bitop-BP-BITOP-35/baseplaneBitOpCudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "src",
+            "tests"
+          ],
+          "resources": [
+            "gpu:any",
+            "cuda-sanitizer:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-35-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "CMakeLists.txt",
+            "include/Baseplane/dna2.hh",
+            "include/Baseplane/seq/dna2.cuh",
+            "include/Baseplane/runtime",
+            "src/runtime",
+            "tests/runtime"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "include/Baseplane/dna2.hh",
+            "include/Baseplane/seq/dna2.cuh",
+            "include/Baseplane/runtime",
+            "src/runtime",
+            "tests/runtime"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "BP-BITOP-36",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Conditional finite-state cross-tile composition",
+      "objective": "If and only if evidence activates it, implement compact associative tile transition composition for a concrete bounded-state pattern.",
+      "priority": 30,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-32"
+        },
+        {
+          "type": "decision",
+          "decision_id": "BITOP-FSM-ACTIVATION",
+          "operator": "equals",
+          "value": "activate"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq/predicate_transition.hh",
+          "src/seq/predicate_transition.cpp",
+          "src/seq/predicate_transition.cu",
+          "tests/seq/test_predicate_transition.cpp"
+        ],
+        "read_paths": [
+          "include/Baseplane/seq/mask_grammar.hh",
+          "include/Baseplane/seq/mask_grammar.cuh"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include/Baseplane/dna2.hh"
+        ]
+      },
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy",
+        "communication"
+      ],
+      "next_action": "Remain parked until a named pattern proves halos/sparse continuation inefficient, state count bounded, and benchmark supplied.",
+      "notes": "Transition T_tile maps input state to output state and composes associatively/prefix-scan. Acceptance if activated: formal composition tests, CPU oracle, bounded table bytes, measured memory/scan overhead, no generic regex engine. Allowed disposition evaluated_not_promoted if evidence rejects promotion.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "evaluated_not_promoted",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "CE-BITOP-40",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Native Cellerator Baseplane adapter",
+      "objective": "In external Cellerator, create dedicated native sequence-compute adapter binding Baseplane prepared plans to DeviceMathContext with non-owning event/segment views.",
+      "priority": 120,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B3"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "cellerator-public-api",
+          "cellerator-cmake"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "cellerator-public-api",
+        "cellerator-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-segment-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "next_action": "Only after external decision ready: work under /home/tumlinson/CellStack/Cellerator; re-read its guides; guard external claims; use include/Cellerator/compute/sequence, src/compute/sequence, tests/sequence and minimal CMake seam.",
+      "notes": "Baseplane must not include Cellerator. DeviceMathContext introduced by e1a36b3 and present at current 42ca8d5 owns stream/workspace/caches and is single-owner. Adapter exposes backend choice/counters and no hidden allocation/host roundtrip. Preserve async/device affinity. Replace or retain coreSparseLayoutRuntimeTest smoke intentionally; create dedicated sequence integration target, planned name sequenceComputeRuntimeTest. Exact acceptance: cmake -S . -B build-bitop-CE-BITOP-40 -DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane -DCELLERATOR_ENABLE_TORCH_MODELS=OFF -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-CE-BITOP-40 --target sequenceComputeRuntimeTest coreSparseLayoutRuntimeTest -j 4; ./build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest; ./build-bitop-CE-BITOP-40/coreSparseLayoutRuntimeTest. Before any edit, perform a read-only external Git/session/claim/lease audit; never mutate Cellerator todo state and stop if any active math/runtime/CMake owner overlaps.",
+      "checkpoints": [
+        {
+          "id": "CELLERATOR_BITOP_ADAPTER_V1_FROZEN",
+          "title": "Native adapter interface stable",
+          "publishes_interfaces": [
+            {
+              "id": "cellerator-bitop-adapter-v1",
+              "version": "1"
+            }
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "CE-BITOP-40-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "CE-BITOP-40-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40", "--target", "sequenceComputeRuntimeTest", "coreSparseLayoutRuntimeTest", "-j", "4"],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "CE-BITOP-40-TEST",
+          "type": "command",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "resources": ["gpu:any"],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "CE-BITOP-41",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Learned sparse event weighting and regional aggregation",
+      "objective": "In external Cellerator, implement first Torch-free learned layer over sparse Baseplane events and segments using existing parameter_descriptor.",
+      "priority": 110,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-40"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "cellerator-public-api",
+          "cellerator-cmake",
+          "cellerator-model-registry"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "cellerator-public-api",
+        "cellerator-model-registry"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-event-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-segment-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "cellerator-bitop-adapter-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "next_action": "Implement under external Cellerator include/src/models/sequence and tests/sequence only after adapter/hash and external guard; acquire model registry lock.",
+      "notes": "Model: predicate/event ID scalar or embedding, optional payload/mismatch/strand/continuous score, segment pooling/weighted reduction or sparse attention. Only surviving events get features; no per-base embedding. Native remains Torch-free. parameter_descriptor currently exposes name, scalar type, memory/device, pointer, rank, shape, stride, writable, role; storage must be pointer-stable. Test deterministic forward, synthetic/empty batches, descriptors. Planned target sequenceEventModelRuntimeTest with same CMake options as CE40. Gradient/update only if existing native style supports it.",
+      "checkpoints": [
+        {
+          "id": "CELLERATOR_SPARSE_EVENT_LEARNING_V1_FROZEN",
+          "title": "Sparse event learning interface stable",
+          "publishes_interfaces": [
+            {
+              "id": "cellerator-sparse-event-learning-v1",
+              "version": "1"
+            }
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "CE-BITOP-41-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-41", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "CE-BITOP-41-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-41", "--target", "sequenceEventModelRuntimeTest", "-j", "4"],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "CE-BITOP-41-TEST",
+          "type": "command",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-41/sequenceEventModelRuntimeTest"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "resources": ["gpu:any"],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "CE-BITOP-42",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Learned semantic partitions",
+      "objective": "In external Cellerator, keep fixed compute tiles while learning sparse boundary probabilities/region proposals and deterministic compact segments.",
+      "priority": 100,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-41"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "cellerator-model-registry"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "cellerator-model-registry"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "cellerator-sparse-event-learning-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "baseplane-segment-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "next_action": "Implement/validate event-density change points or boundary logits over sparse candidates, compact start/end masks, segment construction and pooling; compare fixed windows.",
+      "notes": "No dynamic warp size, raw sequence duplication, or accidental overlap/duplicates unless explicitly allowed. Deterministic boundary reconstruction and sparse memory required. Planned target sequenceSemanticPartitionRuntimeTest under external Cellerator. Gates record exact build/run and comparison.",
+      "gates": [
+        {
+          "id": "CE-BITOP-42-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "CE-BITOP-42-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42", "--target", "sequenceSemanticPartitionRuntimeTest", "-j", "4"],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "CE-BITOP-42-TEST",
+          "type": "command",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "resources": ["gpu:any"],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "CE-BITOP-43",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Conditional continuous-to-discrete predicate induction",
+      "objective": "If activated by a concrete dataset/target/baseline, train continuous motif/grammar proposals and periodically compile discrete Baseplane plans for held-out comparison.",
+      "priority": 20,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-41"
+        },
+        {
+          "type": "decision",
+          "decision_id": "BITOP-DISCRETE-LEARNING",
+          "operator": "equals",
+          "value": "activate"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "cellerator-model-registry"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "cellerator-model-registry"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "next_action": "Remain parked until prediction target, dataset, baseline, seed plan, and resource budget are recorded.",
+      "notes": "Candidate continuous 4-base logits/thresholded allowed masks, straight-through, Gumbel, convolutional discovery, or bounded search. Measure predictive difference, event overlap, seed stability, reverse-complement consistency, sparsity, runtime. Training stays in Cellerator, never Baseplane.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "evaluated_not_promoted",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "CE-BITOP-44",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Conditional CelleraTorch bindings",
+      "objective": "After native interfaces stabilize and activation is explicit, expose event batches/learned parameters as optional Torch-facing views without moving ownership.",
+      "priority": 15,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-40"
+        },
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-41"
+        },
+        {
+          "type": "decision",
+          "decision_id": "BITOP-CELLERATORCH",
+          "operator": "equals",
+          "value": "activate"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "celleratorch-external",
+          "cellerator-cmake"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "celleratorch-external",
+        "cellerator-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "cellerator-bitop-adapter-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "cellerator-sparse-event-learning-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "next_action": "Remain blocked until native hashes stable and activation set; then work only under Cellerator/components/CelleraTorch.",
+      "notes": "Prefer zero-copy, native allocation ownership, explicit shape/stride/stream/lifetime/device. Autograd only continuous Cellerator ops; discrete Baseplane v1 is non-differentiable. Torch build remains optional; Baseplane/native Cellerator gain no Torch dependency.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "evaluated_not_promoted",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "CE-BITOP-45",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Conditional sparse long-range object reasoning",
+      "objective": "If activated by a biological objective, perform sparse retrieval/edge proposal/message passing over event or region objects in Cellerator.",
+      "priority": 10,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-42"
+        },
+        {
+          "type": "decision",
+          "decision_id": "BITOP-LONG-RANGE",
+          "operator": "equals",
+          "value": "activate"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "cellerator-model-registry"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "cellerator-model-registry"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "next_action": "Remain parked until concrete biological objective, edge source, baseline and sparse complexity budget exist.",
+      "notes": "Edges may come from genomic windows, caller-supplied contacts/indices, shared predicates, learned retrieval/top-k. Do not map biology to warp adjacency or make Baseplane own enhancer/promoter semantics.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "evaluated_not_promoted",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "BP-BITOP-50",
+      "parent_id": "BITOP-00",
+      "kind": "validation_task",
+      "title": "Benchmark matrix and measured backend selector",
+      "objective": "Measure crossover matrix and publish replaceable device-fact-versioned backend policy with same-build correctness checks.",
+      "priority": 90,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B3"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "bench/bitop/bitop_bench.cu",
+          "bench/bitop/bitop_bench.hh",
+          "bench/results/bitop-v1",
+          "docs/BITOP_PERFORMANCE.md",
+          "src/runtime/backend_selector.cpp",
+          "include/Baseplane/runtime/backend_selector.hh",
+          "CMakeLists.txt"
+        ],
+        "read_paths": [
+          "include",
+          "src",
+          "tests",
+          "bench/seq",
+          "docs/bitop_baseline_evidence.md"
+        ],
+        "shared_locks": [
+          "baseplane-benchmark-driver",
+          "baseplane-cmake",
+          "baseplane-docs-index"
+        ]
+      },
+      "claim_locks": [
+        "baseplane-benchmark-driver",
+        "baseplane-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "cuda-v100",
+        "mechanisms",
+        "conditional-policy"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-BP-BITOP-50",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Guard shared benchmark/CMake seams, wire baseplaneBitOpBench, run serialized matrix/checksum/sanitizer/nsys evidence, set measured policy decisions, publish selector inputs and exact commands.",
+      "notes": "Matrix: sequence small/~1M/~67M/large resident; motifs 1/8/32/128/larger; lengths 8/16/31/32/mixed; exact/low/high degeneracy; count/mask/stable/unordered; none/sparse/moderate/dense; one-shot/several/many reuse; grammar within-word/cross-word/block/larger; backends current single/repeated/warp tile/thread loop/shared/fused/resident/exact expansion/scalar/Highway. Record kernel/prepare/transfer/end-to-end, bytes, base-predicates/s, events/s, density, registers/local/shared/occupancy/atomics/scratch/device/toolchain/command/checksum. Nsight Systems required; Nsight Compute not mandatory if unsupported. Thresholds versioned with V100 facts.",
+      "checkpoints": [
+        {
+          "id": "BITOP_SELECTOR_MEASURED",
+          "title": "Measured backend selector ready"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-BITOP-50-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-BP-BITOP-50",
+            "-DBASEPLANE_ENABLE_CUDA=ON",
+            "-DCMAKE_CUDA_ARCHITECTURES=70",
+            "-DBASEPLANE_ENABLE_CUDA_LINEINFO=ON"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-50-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-BP-BITOP-50",
+            "--target",
+            "baseplaneBitOpBench",
+            "baseplaneBitOpCudaTest",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests",
+            "bench"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-50-MATRIX",
+          "type": "benchmark",
+          "required": true,
+          "argv": [
+            "./build-bitop-BP-BITOP-50/baseplaneBitOpBench",
+            "--matrix",
+            "bench/bitop/bitop_v1_matrix.json",
+            "--output",
+            "bench/results/bitop-v1/results.json"
+          ],
+          "cwd": ".",
+          "timeout": 7200,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "bench/bitop",
+            "src",
+            "include"
+          ],
+          "resources": [
+            "gpu:any",
+            "v100-benchmark:any"
+          ],
+          "locks": [
+            "baseplane-benchmark-driver"
+          ],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-50-NSYS",
+          "type": "benchmark",
+          "required": true,
+          "argv": [
+            "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/profilers/12.9/Nsight_Systems_2025.3/bin/nsys",
+            "profile",
+            "--stats=true",
+            "--force-overwrite=true",
+            "-t",
+            "cuda",
+            "-o",
+            "bench/results/bitop-v1/bitop-v1",
+            "./build-bitop-BP-BITOP-50/baseplaneBitOpBench",
+            "--profile-set",
+            "representative"
+          ],
+          "cwd": ".",
+          "timeout": 3600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "bench/bitop",
+            "src"
+          ],
+          "resources": [
+            "gpu:any",
+            "v100-benchmark:any",
+            "cuda-profiler:any"
+          ],
+          "locks": [
+            "baseplane-benchmark-driver"
+          ],
+          "track_git_head": true
+        },
+        {
+          "id": "BP-BITOP-50-RESULTS",
+          "type": "file_exists",
+          "required": true,
+          "path": "bench/results/bitop-v1/results.json"
+        },
+        {
+          "id": "BP-BITOP-50-DOC",
+          "type": "file_exists",
+          "required": true,
+          "path": "docs/BITOP_PERFORMANCE.md"
+        },
+        {
+          "id": "BP-BITOP-50-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "CMakeLists.txt",
+            "bench/bitop",
+            "bench/results/bitop-v1",
+            "docs/BITOP_PERFORMANCE.md",
+            "src/runtime/backend_selector.cpp",
+            "include/Baseplane/runtime/backend_selector.hh"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "bench/bitop",
+            "bench/results/bitop-v1",
+            "docs/BITOP_PERFORMANCE.md",
+            "src/runtime/backend_selector.cpp",
+            "include/Baseplane/runtime/backend_selector.hh"
+          ],
+          "track_git_head": true
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "STACK-BITOP-51",
+      "parent_id": "BITOP-00",
+      "kind": "validation_task",
+      "title": "Multi-GPU chunking and halo ownership",
+      "objective": "In external Cellerator orchestration, validate contig/bounded chunk partitioning, plan-derived halos, local-position rebasing, residency, and identical one/four-device event multisets.",
+      "priority": 80,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-35"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-50"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "operator": "equals",
+          "value": "ready-with-mandatory-recheck"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellerator-external",
+          "cellerator-cmake"
+        ]
+      },
+      "claim_locks": [
+        "cellerator-external",
+        "cellerator-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "cellerator-bitop-adapter-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "next_action": "After external ready, implement/validate Cellerator chunk orchestration and acquire gpu-all4 plus benchmark resources only for all-device evidence.",
+      "notes": "Chunk fields: sequence/contig ID, global origin, owned interval, left/right halo, local bases/validity, assigned device. Baseplane stays single-device/stream-explicit. Only owned anchors emit; origin+uint32 local reconstructs global. Keep resident across repeated plans where measured. Source never hardcodes device. Acceptance planned target sequenceMultiGpuRuntimeTest: CMake configure with BASEPLANE_SOURCE_DIR, Torch off, sm_70; build target; run one GPU and under gpu-all4:any+v100-benchmark:any run --devices 4; compare rebased multisets/no duplicates/misses and record scaling/host launch.",
+      "gates": [
+        {
+          "id": "STACK-BITOP-51-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-51-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51", "--target", "sequenceMultiGpuRuntimeTest", "-j", "4"],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-51-ONE-GPU",
+          "type": "command",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "1"],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "resources": ["gpu:any"],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-51-FOUR-GPU",
+          "type": "benchmark",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "4"],
+          "cwd": ".",
+          "timeout": 3600,
+          "expected_exit_code": 0,
+          "resources": ["gpu-all4:any", "v100-benchmark:any"],
+          "track_git_head": true
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "STACK-BITOP-52",
+      "parent_id": "BITOP-00",
+      "kind": "integration_task",
+      "title": "Packaging, documentation, and consumer contract",
+      "objective": "Integrate Baseplane public headers/CMake/docs and external Cellerator consumer docs/target while preserving Baseplane::seq, CPU-only, optional CUDA/Highway, and ownership boundaries.",
+      "priority": 70,
+      "parallel_policy": "integration_exclusive",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-B3"
+        },
+        {
+          "type": "task",
+          "task_id": "CE-BITOP-40"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-BITOP-50"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "CMakeLists.txt",
+          "README.md",
+          "docs/SEQUENCE_BITS.md",
+          "docs/PERFORMANCE_CONTRACT.md",
+          "docs/ROADMAP.md",
+          "docs/BITOP.md",
+          "include/Baseplane/dna2.hh",
+          "include/Baseplane/seq/dna2.cuh",
+          "cmake"
+        ],
+        "read_paths": [
+          "include",
+          "src",
+          "tests",
+          "bench"
+        ],
+        "shared_locks": [
+          "baseplane-public-api",
+          "baseplane-cmake",
+          "baseplane-docs-index",
+          "cellerator-external",
+          "cellerator-cmake"
+        ]
+      },
+      "claim_locks": [
+        "baseplane-public-api",
+        "baseplane-cmake",
+        "baseplane-docs-index",
+        "cellerator-external",
+        "cellerator-cmake"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "canonical-source",
+        "stop-conditions",
+        "unique-builds",
+        "exact-api",
+        "runtime-transparency",
+        "shared-seams",
+        "non-goals",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "cuda-v100"
+      ],
+      "consumes_interfaces": [
+        {
+          "id": "baseplane-sequence-predicate-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        },
+        {
+          "id": "cellerator-bitop-adapter-v1",
+          "required_state": "frozen",
+          "required_version": "1"
+        }
+      ],
+      "resource_requests": [
+        {
+          "id": "cpu-STACK-BITOP-52",
+          "phase": "claim",
+          "selector": "cpu-build:any",
+          "amount": 1,
+          "mode": "shared",
+          "required": true
+        }
+      ],
+      "next_action": "Guard all shared Baseplane and external Cellerator seams, reconcile generated docs/targets, validate install/CPU/CUDA/consumer targets; do not create Baseplane::bitop for branding.",
+      "notes": "Baseplane docs cover packed/planes, validity, allowed motifs, plans, outputs/events/segments, residency/performance/non-goals. Cellerator docs cover learned ownership, DeviceMathContext adapter, event/segment boundary, no Baseplane training. Preserve Baseplane::seq; new target only for independent dependency/install boundary. Cellerator dedicated consumer target remains focused. Exact Baseplane gates: CPU configure/build baseplaneDna2Test baseplaneBitOpCpuTest; CUDA configure sm_70/build baseplaneDna2CudaTest baseplaneBitOpCudaTest; install/package consumer. External Cellerator target sequenceComputeRuntimeTest with Baseplane source dir and Torch off.",
+      "gates": [
+        {
+          "id": "STACK-BITOP-52-CPU-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-STACK-BITOP-52-cpu",
+            "-DBASEPLANE_ENABLE_CUDA=OFF"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-CPU-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-STACK-BITOP-52-cpu",
+            "--target",
+            "baseplaneDna2Test",
+            "baseplaneBitOpCpuTest",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-CPU-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-STACK-BITOP-52-cpu/baseplaneBitOpCpuTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-CUDA-CONFIG",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "build-bitop-STACK-BITOP-52-cuda",
+            "-DBASEPLANE_ENABLE_CUDA=ON",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-CUDA-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "build-bitop-STACK-BITOP-52-cuda",
+            "--target",
+            "baseplaneDna2CudaTest",
+            "baseplaneBitOpCudaTest",
+            "-j",
+            "4"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "CMakeLists.txt",
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-CUDA-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-STACK-BITOP-52-cuda/baseplaneBitOpCudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "tests"
+          ],
+          "resources": [
+            "gpu:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-CELLERATOR",
+          "type": "command",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
+          "cwd": ".",
+          "timeout": 1200,
+          "expected_exit_code": 0,
+          "resources": ["gpu:any"],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-52-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "CMakeLists.txt",
+            "README.md",
+            "docs",
+            "include/Baseplane/dna2.hh",
+            "include/Baseplane/seq/dna2.cuh",
+            "cmake"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "README.md",
+            "docs",
+            "include/Baseplane/dna2.hh",
+            "include/Baseplane/seq/dna2.cuh",
+            "cmake"
+          ],
+          "track_git_head": true
+        }
+      ]
+    },
+    {
+      "id": "STACK-BITOP-53",
+      "parent_id": "BITOP-00",
+      "kind": "integration_task",
+      "title": "Final cross-repository integration audit",
+      "objective": "Audit actual code, interfaces, resources, projections, leases, optional dispositions, benchmarks, sanitizers, Cellerator independence, and integration readiness without publishing.",
+      "priority": 60,
+      "parallel_policy": "project_exclusive",
+      "depends_on": [
+        {
+          "type": "barrier",
+          "barrier_id": "BITOP-FINAL-FANIN"
+        }
+      ],
+      "scope": {
+        "exclusive_paths": [
+          "docs/BITOP_FINAL_AUDIT.md"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs",
+          ".todo-orchestrator/project.json",
+          ".todo-orchestrator/state.snapshot.json"
+        ],
+        "forbidden_paths": [
+          "todos.md",
+          "todo-status.md",
+          "todos"
+        ],
+        "shared_locks": [
+          "integration-git",
+          "baseplane-public-api",
+          "baseplane-cmake",
+          "cellerator-external",
+          "cellshard-external",
+          "cellstack-pointer"
+        ]
+      },
+      "claim_locks": [
+        "integration-git",
+        "baseplane-public-api",
+        "baseplane-cmake",
+        "cellerator-external",
+        "cellshard-external",
+        "cellstack-pointer"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "cellerator-blocker",
+        "canonical-source",
+        "exact-api",
+        "cuda-v100",
+        "shared-seams",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "next_action": "Acquire all integration locks, audit Baseplane and external repos, rerun focused CPU/CUDA/sanitizer/integration evidence, write docs/BITOP_FINAL_AUDIT.md, leave commit/push/pointer publication for separately authorized future work.",
+      "notes": "Verify no projections manually edited, no source lease active, interface hashes/invalidations valid, Baseplane has no Cellerator/Torch dependency, CellShard unchanged unless CS60 activated, no Cellerator-local primitive resurrected, all benchmark claims have commands/checksums, mandatory acceptance evidence complete, optional tasks parked/completed, exact APIs preserved. Do not commit/push/rebase/reset/stash/switch branches. Final commands include Baseplane CPU/CUDA targets, compute-sanitizer memcheck/racecheck, external sequenceComputeRuntimeTest/sequenceEventModelRuntimeTest/sequenceSemanticPartitionRuntimeTest, todo audit/doctor/status, git diff --check and dependency scans.",
+      "gates": [
+        {
+          "id": "STACK-BITOP-53-CPU",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-STACK-BITOP-52-cpu/baseplaneBitOpCpuTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-53-CUDA",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "./build-bitop-STACK-BITOP-52-cuda/baseplaneBitOpCudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 600,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "include",
+            "src",
+            "tests"
+          ],
+          "resources": [
+            "gpu:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-53-MEMCHECK",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer",
+            "--tool",
+            "memcheck",
+            "./build-bitop-STACK-BITOP-52-cuda/baseplaneBitOpCudaTest"
+          ],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "input_paths": [
+            "src",
+            "tests"
+          ],
+          "resources": [
+            "gpu:any",
+            "cuda-sanitizer:any"
+          ],
+          "locks": [],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-53-EXTERNAL",
+          "type": "command",
+          "required": true,
+          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
+          "cwd": ".",
+          "timeout": 1800,
+          "expected_exit_code": 0,
+          "resources": ["gpu:any"],
+          "track_git_head": true
+        },
+        {
+          "id": "STACK-BITOP-53-REPORT",
+          "type": "file_exists",
+          "required": true,
+          "path": "docs/BITOP_FINAL_AUDIT.md"
+        },
+        {
+          "id": "STACK-BITOP-53-DIFF",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "git",
+            "diff",
+            "--check",
+            "--",
+            "CMakeLists.txt",
+            "README.md",
+            "include",
+            "src",
+            "tests",
+            "bench",
+            "docs"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "README.md",
+            "include",
+            "src",
+            "tests",
+            "bench",
+            "docs"
+          ],
+          "track_git_head": true
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "CS-BITOP-60",
+      "parent_id": "BITOP-00",
+      "kind": "workstream",
+      "title": "Conditional persistence or pack delivery",
+      "objective": "Only after ABI stability and demonstrated cross-process reuse need, let external CellShard wrap an opaque versioned Baseplane/Cellerator-owned image.",
+      "priority": 5,
+      "parallel_policy": "serial",
+      "depends_on": [
+        {
+          "type": "interface",
+          "interface_id": "baseplane-sequence-predicate-v1",
+          "state": "frozen",
+          "version": "1"
+        },
+        {
+          "type": "decision",
+          "decision_id": "BITOP-PERSISTENCE",
+          "operator": "equals",
+          "value": "activate"
+        }
+      ],
+      "scope": {
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          "include",
+          "src",
+          "tests",
+          "bench",
+          "docs"
+        ],
+        "shared_locks": [
+          "cellshard-external"
+        ]
+      },
+      "claim_locks": [
+        "cellshard-external"
+      ],
+      "invariants": [
+        "sqlite-authority",
+        "preserve-work",
+        "ownership",
+        "external-repositories",
+        "stop-conditions",
+        "non-goals"
+      ],
+      "next_action": "Remain parked until stable ABI, demonstrated reuse/deployment need, regeneration-cost evidence, and ownership agreement exist.",
+      "notes": "If activated, CellShard owns checksum, compatibility envelope, publication/fetch/contiguous staging of opaque image; Baseplane owns validation/plan semantics; Cellerator model semantics. Loading avoids reparsing/relearning. Do not activate merely because CP-BP used CSPACK.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "evaluated_not_promoted",
+          "failed"
+        ]
+      }
+    }
+  ]
+}
