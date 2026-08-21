@@ -56,3 +56,11 @@ packed `dna2_word64`, with Highway/SIMD preferred over scalar when enabled.
 Resident plane-stream APIs convert packed `dna2_word64` sequence storage into
 split lo/hi `dna2_planes32` arrays and produce one `uint32_t` predicate mask per
 32-base word for base, GC, and CpG-start queries without hidden allocation.
+
+`Baseplane/seq/predicate_plan.hh` owns the narrow public sequence/predicate ABI:
+`baseplane::seq::sequence_predicate_abi_version`. Consumers must require its
+exact version. Sequence ingestion that crosses the Cellerator boundary uses
+`dna2_encode_base_with_validity`: A/C/G/T/U (including supported lowercase)
+are valid, while every other symbol is invalid. The two-bit payload of an
+invalid symbol has no biological meaning; raw two-bit code alone cannot
+represent ambiguity.

@@ -21,8 +21,10 @@
 namespace baseplane::seq {
 
 // Canonical 2-bit sequence encoding for packed DNA/RNA primitives:
-// A = 00, C = 01, G = 10, T/U = 11. The ASCII packer below accepts uppercase
-// A/C/G/T only; non-canonical bytes assert in debug builds and pack as A.
+// A = 00, C = 01, G = 10, T/U = 11. Raw two-bit payload cannot represent
+// ambiguity. `make_base` preserves legacy payload-only behavior; biological
+// ingestion must use dna2_encode_base_with_validity so noncanonical symbols
+// cannot silently become valid A evidence.
 enum class dna2_base : std::uint8_t {
     A = 0,
     C = 1,

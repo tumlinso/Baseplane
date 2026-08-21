@@ -52,7 +52,10 @@ if(BASEPLANE_ENABLE_CUDA)
 endif()
 
 set(BASEPLANE_SEQ_SOURCES
+    src/seq/dna2_allowed.cpp
     src/seq/dna2_scalar.cpp
+    src/seq/dna2_validity.cpp
+    src/seq/predicate_plan.cpp
 )
 if(BASEPLANE_HAS_CUDA)
     list(APPEND BASEPLANE_SEQ_SOURCES src/seq/dna2.cu)
@@ -90,6 +93,7 @@ target_compile_features(baseplane_seq PUBLIC cxx_std_17)
 target_compile_definitions(baseplane_seq PUBLIC
     BASEPLANE_ENABLE_CUDA=${BASEPLANE_HAS_CUDA}
     BASEPLANE_ENABLE_HIGHWAY=${BASEPLANE_HAS_HIGHWAY}
+    BASEPLANE_SEQUENCE_PREDICATE_ABI_VERSION=1
 )
 if(BASEPLANE_HAS_CUDA)
     target_link_libraries(baseplane_seq PUBLIC CUDA::cudart)
@@ -101,8 +105,10 @@ if(BASEPLANE_HAS_HIGHWAY)
     )
 endif()
 set_target_properties(baseplane_seq PROPERTIES
+    BASEPLANE_SEQUENCE_PREDICATE_ABI_VERSION 1
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES
+    EXPORT_PROPERTIES BASEPLANE_SEQUENCE_PREDICATE_ABI_VERSION
     EXPORT_NAME seq
     POSITION_INDEPENDENT_CODE ON
 )
@@ -137,6 +143,26 @@ target_include_directories(baseplaneDna2Test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
 target_link_libraries(baseplaneDna2Test PRIVATE Baseplane::seq)
 set_target_properties(baseplaneDna2Test PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES)
 baseplane_enable_perf(baseplaneDna2Test)
+
+add_executable(baseplaneBitOpContractTest
+    tests/seq/test_predicate_plan.cpp
+)
+target_link_libraries(baseplaneBitOpContractTest PRIVATE Baseplane::seq)
+set_target_properties(baseplaneBitOpContractTest PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED YES
+)
+baseplane_enable_perf(baseplaneBitOpContractTest)
+
+add_executable(baseplaneDna2ValidityTest
+    tests/seq/test_dna2_validity.cpp
+)
+target_link_libraries(baseplaneDna2ValidityTest PRIVATE Baseplane::seq)
+set_target_properties(baseplaneDna2ValidityTest PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED YES
+)
+baseplane_enable_perf(baseplaneDna2ValidityTest)
 
 add_executable(baseplaneDna2CpuBench bench/seq/bench_dna2_cpu.cpp)
 target_include_directories(baseplaneDna2CpuBench PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
