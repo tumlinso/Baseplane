@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-33: CUDA compact emission
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement stable count-scan-emit and unordered ballot/rank/block-reservation emission with caller-owned output/scratch and exact capacity accounting.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `parallel_safe`
 - Result: `-`
 

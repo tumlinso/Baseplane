@@ -3,19 +3,19 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-41: Learned sparse event weighting and regional aggregation
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-In external Cellerator, implement first Torch-free learned layer over sparse Baseplane events and segments using existing parameter_descriptor.
+Park learned sparse event weighting until the Cellerator common ABI, execution order, unified runtime, operation core, and measured planner foundations exist.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `serial`
 - Result: `-`
 
 ## Next Action
-Implement under external Cellerator include/src/models/sequence and tests/sequence only after adapter/hash and external guard; acquire model registry lock.
+Remain parked. A later Cellerator-owned plan revision may supersede or reactivate the concept only after all external foundations and benchmark evidence validate.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`
@@ -26,6 +26,9 @@ Implement under external Cellerator include/src/models/sequence and tests/sequen
 - `forbidden`: `tests`
 
 ## Dependencies
-- `task`: `CE-BITOP-40`
-- `decision`: `CELLERATOR-EXTERNAL-STATE`
+- `decision`: `CELLERATOR-BIOLOGICAL-ABI-EXTERNAL`
+- `decision`: `CELLERATOR-EXECUTION-ORDER-EXTERNAL`
+- `decision`: `CELLERATOR-EXECUTION-SESSION-EXTERNAL`
+- `decision`: `CELLERATOR-OPERATION-CORE-EXTERNAL`
+- `decision`: `CELLERATOR-PLANNER-EVIDENCE-EXTERNAL`
 <!-- todo-orchestrator:v2-managed:end -->

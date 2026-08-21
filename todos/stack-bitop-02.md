@@ -3,19 +3,19 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-02: Ownership and architecture contract
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-Create the durable Baseplane-owned BitOp ADR and freeze representation levels, communication, compatibility, validity/coordinates, output policies, compiled-plan meaning, lane-mapping independence, and non-goals.
+Create the durable Baseplane-local BitOp ADR for representation, validity, predicates, outputs, prepared-program meaning, and backend independence without freezing cross-library identity, relation, numerical, runtime, or planner contracts owned by Cellerator.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
-Author docs/BITOP_ARCHITECTURE.md only, run the pattern/diff gates, reach BITOP_ARCHITECTURE_FROZEN, and hand off the frozen interface hash.
+Remain blocked until CE-ARCH-10 freezes the shared biological ABI; then author only the Baseplane-local ADR and explicitly import rather than redefine the external identity/operand contract.
 
 ## Ownership
 - `exclusive`: `docs/BITOP_ARCHITECTURE.md`
@@ -31,4 +31,5 @@ Author docs/BITOP_ARCHITECTURE.md only, run the pattern/diff gates, reach BITOP_
 
 ## Dependencies
 - `task`: `STACK-BITOP-01`
+- `decision`: `CELLERATOR-BIOLOGICAL-ABI-EXTERNAL`
 <!-- todo-orchestrator:v2-managed:end -->

@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-43: Conditional continuous-to-discrete predicate induction
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 If activated by a concrete dataset/target/baseline, train continuous motif/grammar proposals and periodically compile discrete Baseplane plans for held-out comparison.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `serial`
 - Result: `-`
 

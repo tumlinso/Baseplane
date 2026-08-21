@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-11: Allowed-base motifs and strand semantics
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Define direct allowed-mask motif semantics, explicit forward/reverse/both scan modes, invalid-base policy, and palindrome duplicate policy.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Implement direct membership and reverse-complement oracle in owned files, with no IUPAC parser; compile/run standalone tests; hand off provisional ABI to BP-BITOP-13.
@@ -30,5 +30,5 @@ Implement direct membership and reverse-complement oracle in owned files, with n
 - `read`: `include/Baseplane/seq/dna2_ops.hh`
 
 ## Dependencies
-- `checkpoint`: `BITOP_BASELINE_AND_ARCHITECTURE_READY`
+- `task`: `STACK-BITOP-01`
 <!-- todo-orchestrator:v2-managed:end -->

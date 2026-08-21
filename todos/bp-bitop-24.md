@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-24: Property, adversarial, and differential test corpus
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Fan in all CPU lanes into deterministic reusable fixtures and authoritative baseplaneBitOpCpuTest wiring.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `integration_exclusive`
 - Result: `-`
 

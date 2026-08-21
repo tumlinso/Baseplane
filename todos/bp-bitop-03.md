@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-03: Preserve and measure current exact baseline
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Verify current CPU/CUDA semantics and record same-build one-V100 exact count baseline, resource behavior, transfer/output behavior, and regression rule without optimizing.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `validated`
 
 ## Next Action
 Use build-bitop-BP-BITOP-03-cpu and -cuda, run actual current targets, acquire one GPU and exclusive benchmark resource only for the benchmark gate, and record exact toolchain/commands/checksums in docs/bitop_baseline_evidence.md.

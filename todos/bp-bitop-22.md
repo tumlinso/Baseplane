@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-22: Local mask grammar and bounded halo semantics
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement CPU/reference boundary-safe mask shifts, bounded relations/windows/count thresholds, run boundaries, and ownership masks with plan-derived halo.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `parallel_safe`
 - Result: `-`
 

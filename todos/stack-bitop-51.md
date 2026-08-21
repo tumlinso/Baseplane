@@ -3,19 +3,19 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-51: Multi-GPU chunking and halo ownership
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-In external Cellerator orchestration, validate contig/bounded chunk partitioning, plan-derived halos, local-position rebasing, residency, and identical one/four-device event multisets.
+Park multi-GPU sequence integration behind Cellerator's future partition contract; Baseplane remains bounded-chunk, single-device, and stream-explicit.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `serial`
 - Result: `-`
 
 ## Next Action
-After external ready, implement/validate Cellerator chunk orchestration and acquire gpu-all4 plus benchmark resources only for all-device evidence.
+Remain parked. Do not acquire gpu-all4 or benchmark resources until Cellerator publishes an explicit partition contract and a later plan revision activates validation.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`
@@ -28,5 +28,5 @@ After external ready, implement/validate Cellerator chunk orchestration and acqu
 ## Dependencies
 - `task`: `BP-BITOP-35`
 - `task`: `BP-BITOP-50`
-- `decision`: `CELLERATOR-EXTERNAL-STATE`
+- `decision`: `CELLERATOR-PARTITION-CONTRACT-EXTERNAL`
 <!-- todo-orchestrator:v2-managed:end -->

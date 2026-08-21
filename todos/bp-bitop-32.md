@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-32: CUDA local grammar, halo, and ownership backend
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement boundary-safe CUDA mask grammar using adjacent loads or shared supertiles only where reuse pays, with plan-derived halo and unique anchor ownership.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `parallel_safe`
 - Result: `-`
 

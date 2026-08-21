@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-44: Conditional CelleraTorch bindings
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 After native interfaces stabilize and activation is explicit, expose event batches/learned parameters as optional Torch-facing views without moving ownership.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `serial`
 - Result: `-`
 

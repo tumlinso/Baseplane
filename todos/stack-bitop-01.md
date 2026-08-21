@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-01: Repository and ledger state reconciliation
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
 Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.

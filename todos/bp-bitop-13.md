@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-13: Bounded predicate-plan and verifier contract
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-Integrate validity, allowed motifs, and events into the smallest bounded pointer-free portable plan, scalar verifier contract, and interface target wiring.
+Integrate validity, normalized motifs, and output policies into a bounded pointer-free portable sequence program and prepared lowering aligned with the Cellerator-owned common ABI.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `integration_exclusive`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Guard shared seams, reconcile three provisional interfaces, define/verify portable ops and limits, wire baseplaneBitOpContractTest, freeze baseplane-sequence-predicate-v1, and hand off exact hash/limits.
@@ -33,4 +33,5 @@ Guard shared seams, reconcile three provisional interfaces, define/verify portab
 - `task`: `BP-BITOP-10`
 - `task`: `BP-BITOP-11`
 - `task`: `BP-BITOP-12`
+- `decision`: `CELLERATOR-BIOLOGICAL-ABI-EXTERNAL`
 <!-- todo-orchestrator:v2-managed:end -->

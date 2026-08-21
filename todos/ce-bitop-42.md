@@ -3,19 +3,19 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-42: Learned semantic partitions
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-In external Cellerator, keep fixed compute tiles while learning sparse boundary probabilities/region proposals and deterministic compact segments.
+Park learned semantic partitions until the common ABI, runtime, execution-order, operation-core, and real-data planner evidence exist.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `blocked`
+- Execution: `blocked_dependency`
 - Parallel policy: `serial`
 - Result: `-`
 
 ## Next Action
-Implement/validate event-density change points or boundary logits over sparse candidates, compact start/end masks, segment construction and pooling; compare fixed windows.
+Remain parked pending external foundations and a new Cellerator-owned activation decision.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`
@@ -26,6 +26,8 @@ Implement/validate event-density change points or boundary logits over sparse ca
 - `forbidden`: `tests`
 
 ## Dependencies
-- `task`: `CE-BITOP-41`
-- `decision`: `CELLERATOR-EXTERNAL-STATE`
+- `decision`: `CELLERATOR-BIOLOGICAL-ABI-EXTERNAL`
+- `decision`: `CELLERATOR-EXECUTION-ORDER-EXTERNAL`
+- `decision`: `CELLERATOR-OPERATION-CORE-EXTERNAL`
+- `decision`: `CELLERATOR-PLANNER-EVIDENCE-EXTERNAL`
 <!-- todo-orchestrator:v2-managed:end -->

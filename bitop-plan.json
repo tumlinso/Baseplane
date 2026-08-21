@@ -3,34 +3,34 @@
   "project": {
     "name": "Baseplane BitOp",
     "authority": "/home/tumlinson/CellStack/Baseplane",
-    "authority_reason": "The user explicitly selected Baseplane and prohibited touching the existing CellStack/Cellerator ledger. Baseplane owns the mandatory primitive work; Cellerator, CelleraTorch, and CellShard are external repository scopes coordinated by locks and decision gates.",
+    "authority_reason": "Baseplane owns sequence-level representation, validity-aware predicates, emission, segments, portable preparation, and scalar/CUDA references. It is subordinate to the Cellerator biological execution model; Cellerator owns shared identities, operand and relation semantics, runtime integration, numerical interpretation, fusion, and planning. CellShard remains external and read-only.",
     "repositories": {
       "cellstack": {
         "root": "/home/tumlinson/CellStack",
         "relationship": "Git umbrella; Baseplane, Cellerator, and CellShard are submodules",
-        "head": "11c4e2042263e0b545b88cbd85872d12419b6aa3",
+        "head": "b8aabdcf7c185965b537788118675319e81b4b92",
         "branch": "main",
         "upstream": "origin/main"
       },
       "baseplane": {
         "root": "/home/tumlinson/CellStack/Baseplane",
         "relationship": "authoritative v2 project and CellStack submodule",
-        "head": "a0e729bfc9cdf5f1c30920c4a43ea2da835f286a",
+        "head": "768065b4bdd6693429a22a49c0fdeb2f1946180f",
         "branch": "main",
         "upstream": "origin/main"
       },
       "cellerator": {
         "root": "/home/tumlinson/CellStack/Cellerator",
         "relationship": "external repository scope and CellStack submodule",
-        "head": "42ca8d5c02d190bb00fa44cd38bdf5ba0c1457f8",
+        "head": "72f3012adf63bbd8308fea620c9d8d8841136b51",
         "branch": "main",
         "upstream": "origin/main",
-        "external_blocker": "CP-MATH-08A was live at initial reconciliation; its referee work landed at 42ca8d5 during this pass and Cellerator implementation paths are Git-clean. Per user scope, its todo ledger was not re-opened, so every later external task must perform a read-only claim/lease check before editing."
+        "external_blocker": "The CellStack root v2 project now owns CE-ARCH-00 recovery. Baseplane cross-library tasks must wait for explicit external CE-ARCH checkpoints and must never use DeviceMathContext as an integration ABI."
       },
       "cellshard": {
         "root": "/home/tumlinson/CellStack/CellShard",
         "relationship": "external parked scope and CellStack submodule",
-        "head": "197d26856a8750e6161402fc7db8eb15251ec1be",
+        "head": "bbe5917bab88ffca2d16bc86166a8de368a4abbe",
         "branch": "main",
         "upstream": "origin/main"
       },
@@ -40,8 +40,8 @@
       }
     },
     "published_comparison": {
-      "baseplane": "exactly matches published a0e729bfc9cdf5f1c30920c4a43ea2da835f286a",
-      "cellerator": "local 42ca8d5 is three commits ahead of published 11a6b6c; f16ceef adds math contracts, e1a36b3 adds prepared math backend runtime, and 42ca8d5 adds the math referee foundation"
+      "baseplane": "inspected clean main/origin-main at 768065b4bdd6693429a22a49c0fdeb2f1946180f before planning projections",
+      "cellerator": "inspected clean main/origin-main at 72f3012adf63bbd8308fea620c9d8d8841136b51; CP-Math source burst is experimental evidence under CE-ARCH recovery"
     },
     "historical_evidence": [
       "docs/SEQUENCE_BITS.md",
@@ -67,12 +67,12 @@
     },
     {
       "id": "ownership",
-      "rule": "Baseplane owns typed low-level sequence predicates, portable/prepared plans, CPU/SIMD/CUDA execution, explicit residency, compact events, and generic segments. Cellerator owns learned interpretation and multi-device policy. CelleraTorch owns optional Torch wrappers. CellShard remains parked until persistence is proven.",
+      "rule": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked.",
       "severity": "error"
     },
     {
       "id": "external-repositories",
-      "rule": "Cellerator, CelleraTorch, CellShard, and CellStack are external to this Baseplane project root. Their tasks must acquire their named external lock, inspect their own AGENTS.md and Git state, and stop if any external ledger claim or dirty path overlaps. Never mutate the CellStack/Cellerator todo ledger from this project.",
+      "rule": "Cellerator, CelleraTorch, CellShard, and CellStack are external to this Baseplane project root. Cellerator implementation ownership is represented only by external CE-ARCH checkpoint decisions; Baseplane tasks never duplicate or claim it. CellShard receives no work. Any future external task must inspect the owning ledger, AGENTS.md, Git state, claims, and leases and stop on overlap.",
       "severity": "error"
     },
     {
@@ -160,6 +160,42 @@
         "blocked-cp-math-08a",
         "ready-with-mandatory-recheck"
       ]
+    },
+    {
+      "id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+      "title": "CE-ARCH-10 biological identity and operand ABI checkpoint",
+      "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN",
+      "allowed": ["pending", "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"]
+    },
+    {
+      "id": "CELLERATOR-EXECUTION-ORDER-EXTERNAL",
+      "title": "CE-ARCH-11 internal execution-order checkpoint",
+      "value": "pending",
+      "allowed": ["pending", "CELLERATOR_EXECUTION_ORDER_V1_READY"]
+    },
+    {
+      "id": "CELLERATOR-EXECUTION-SESSION-EXTERNAL",
+      "title": "CE-ARCH-12 unified runtime checkpoint",
+      "value": "pending",
+      "allowed": ["pending", "CELLERATOR_EXECUTION_SESSION_V1_READY"]
+    },
+    {
+      "id": "CELLERATOR-OPERATION-CORE-EXTERNAL",
+      "title": "CE-ARCH-22 operation core checkpoint",
+      "value": "pending",
+      "allowed": ["pending", "CELLERATOR_OPERATION_CORE_V1_READY"]
+    },
+    {
+      "id": "CELLERATOR-PLANNER-EVIDENCE-EXTERNAL",
+      "title": "CE-ARCH-30 and CE-ARCH-31 evidence/planner checkpoint",
+      "value": "pending",
+      "allowed": ["pending", "CELLERATOR_PLANNER_V1_VALIDATED"]
+    },
+    {
+      "id": "CELLERATOR-PARTITION-CONTRACT-EXTERNAL",
+      "title": "Future Cellerator partition contract checkpoint",
+      "value": "pending",
+      "allowed": ["pending", "ready"]
     },
     {
       "id": "BITOP-CHUNK-COORDINATES",
@@ -359,27 +395,27 @@
     {
       "id": "bitop-ownership-architecture-v1",
       "owner_task_id": "STACK-BITOP-02",
-      "state": "draft",
+      "state": "frozen",
       "version": "1",
       "contract_paths": [
         "docs/BITOP_ARCHITECTURE.md"
       ],
-      "content_hash": null
+      "content_hash": "d32800cbd782ce1af3c46a8d1c151c7aa371f836044fd8cdd6b046d0bd9876a4"
     },
     {
       "id": "baseplane-sequence-event-v1",
       "owner_task_id": "BP-BITOP-12",
-      "state": "draft",
+      "state": "frozen",
       "version": "1",
       "contract_paths": [
         "include/Baseplane/seq/sequence_event.hh"
       ],
-      "content_hash": null
+      "content_hash": "c9ec0c0210e4b41eee2748ad8d79479779db6164870393919089aecbcb8ad2bd"
     },
     {
       "id": "baseplane-sequence-predicate-v1",
       "owner_task_id": "BP-BITOP-13",
-      "state": "draft",
+      "state": "frozen",
       "version": "1",
       "contract_paths": [
         "include/Baseplane/seq/dna2_validity.hh",
@@ -387,7 +423,7 @@
         "include/Baseplane/seq/predicate_plan.hh",
         "include/Baseplane/seq/sequence_event.hh"
       ],
-      "content_hash": null
+      "content_hash": "4c422b44c2f73aa0e9c0c4ef93c90b9a30977a9968500cf191b85d58b602a685"
     },
     {
       "id": "baseplane-segment-v1",
@@ -402,7 +438,7 @@
     {
       "id": "cellerator-bitop-adapter-v1",
       "owner_task_id": "CE-BITOP-40",
-      "state": "draft",
+      "state": "deprecated",
       "version": "1",
       "contract_paths": [],
       "content_hash": null
@@ -731,7 +767,7 @@
     },
     {
       "id": "BITOP-FINAL-FANIN",
-      "title": "Mandatory Baseplane and Cellerator lanes ready for final audit",
+      "title": "Mandatory Baseplane-local lanes ready for final audit",
       "mode": "all",
       "requirements": [
         {
@@ -742,16 +778,6 @@
         {
           "type": "task",
           "id": "BP-BITOP-50",
-          "state": "done"
-        },
-        {
-          "type": "task",
-          "id": "CE-BITOP-42",
-          "state": "done"
-        },
-        {
-          "type": "task",
-          "id": "STACK-BITOP-51",
           "state": "done"
         },
         {
@@ -767,7 +793,7 @@
       "id": "BITOP-00",
       "kind": "epic",
       "title": "Baseplane BitOp roadmap",
-      "objective": "Coordinate Baseplane compiled sequence predicates and sparse events through Cellerator learned interpretation and final cross-repository validation without owning implementation files.",
+      "objective": "Coordinate Baseplane sequence primitives as a subordinate library of the Cellerator biological execution model, preserving standalone CPU/CUDA capability while deferring shared identities, relations, runtime integration, numerical interpretation, fusion, and planning to CE-ARCH-00.",
       "status": "blocked",
       "priority": 1,
       "parallel_policy": "serial",
@@ -778,7 +804,7 @@
         "non-goals"
       ],
       "next_action": "Remain lifecycle-blocked until STACK-BITOP-53 validates every mandatory lane; then a coordinator plan revision may close the parent as validated.",
-      "notes": "Mandatory completion excludes BP-BITOP-36, CE-BITOP-43/44/45, and CS-BITOP-60 unless activated. Those branches may remain parked. This parent never edits implementation, CMake, docs, Git state, or external repositories.",
+      "notes": "Mandatory Baseplane-local completion excludes BP-BITOP-36, CE-BITOP-41/42/43/44/45, STACK-BITOP-51, and CS-BITOP-60 unless their external/activation checkpoints are satisfied. Baseplane must not freeze an independent numerical ecosystem, DeviceMathContext integration, parameter_descriptor learned boundary, or mandatory event/segment materialization. This parent owns no implementation and never edits external repositories.",
       "result_policy": {
         "allowed_dispositions": [
           "validated",
@@ -895,13 +921,19 @@
       "parent_id": "BITOP-00",
       "kind": "workstream",
       "title": "Ownership and architecture contract",
-      "objective": "Create the durable Baseplane-owned BitOp ADR and freeze representation levels, communication, compatibility, validity/coordinates, output policies, compiled-plan meaning, lane-mapping independence, and non-goals.",
+      "objective": "Create the durable Baseplane-local BitOp ADR for representation, validity, predicates, outputs, prepared-program meaning, and backend independence without freezing cross-library identity, relation, numerical, runtime, or planner contracts owned by Cellerator.",
       "priority": 210,
       "parallel_policy": "parallel_safe",
       "depends_on": [
         {
           "type": "task",
           "task_id": "STACK-BITOP-01"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
         }
       ],
       "scope": {
@@ -942,8 +974,8 @@
         "communication",
         "non-goals"
       ],
-      "next_action": "Author docs/BITOP_ARCHITECTURE.md only, run the pattern/diff gates, reach BITOP_ARCHITECTURE_FROZEN, and hand off the frozen interface hash.",
-      "notes": "Freeze four levels: packed+validity, local predicates/grammar, compact events, generic segments; Cellerator adds learned weighting/pooling/semantic partitions/long range. Define compiled predicate plan as validated portable plan plus explicit prepared lowering. Hardware lane mapping is backend-specific. Preserve all exact APIs. Narrow unresolved decisions become named ledger decisions. Do not implement code or edit docs indexes in this task.",
+      "next_action": "Remain blocked until CE-ARCH-10 freezes the shared biological ABI; then author only the Baseplane-local ADR and explicitly import rather than redefine the external identity/operand contract.",
+      "notes": "Freeze Baseplane-local packed+validity, predicates/grammar, compact masks/events, generic segments, portable plan and prepared lowering. Do not define cross-library AxisIdentity, SequenceDomain, BiologicalOperandView, relation/value/runtime/planner ownership independently; consume CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN. Hardware lane mapping remains backend-specific. Materialization is one optional output policy, not the integration default. Preserve exact API compatibility and standalone Baseplane builds. No DeviceMathContext or parameter_descriptor integration assumption.",
       "checkpoints": [
         {
           "id": "BITOP_ARCHITECTURE_FROZEN",
@@ -1192,7 +1224,7 @@
         },
         {
           "id": "BP-BITOP-03-BENCH",
-          "type": "benchmark",
+          "type": "command",
           "required": true,
           "argv": [
             "./build-bitop-BP-BITOP-03-cuda/baseplaneDna2Bench",
@@ -1308,13 +1340,13 @@
       "parent_id": "BITOP-00",
       "kind": "workstream",
       "title": "Validity, chunk coordinates, and boundary-safe views",
-      "objective": "Add optional canonicality sidecar and bounded chunk view semantics without changing canonical-only APIs.",
+      "objective": "Make invalid-base meaning, tail validity, base count, bounded local coordinates, global identity, owned range, and halos explicit without freezing the cross-library ABI.",
       "priority": 190,
       "parallel_policy": "parallel_safe",
       "depends_on": [
         {
-          "type": "checkpoint",
-          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+          "type": "task",
+          "task_id": "STACK-BITOP-01"
         }
       ],
       "scope": {
@@ -1358,7 +1390,7 @@
         }
       ],
       "next_action": "Implement only the three owned files; resolve BITOP-CHUNK-COORDINATES; compile/run the standalone test in build-bitop-BP-BITOP-10; hand off provisional declarations to BP-BITOP-13.",
-      "notes": "Preferred composition is dna2_packed64_valid_view{dna2_packed64_view bases; dna2_mask32_stream_view valid;} plus chunk metadata sequence/contig ID, global origin, local base count. Define length 0, null pointers, final active mask, positions 31/32/63/64 and 0..65. Invalid bases fail canonical matches. Preserve uint64 n_bases public view but choose bounded chunk limits because CUDA currently rejects n_bases>INT_MAX. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-10 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-10 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_dna2_validity.cpp src/seq/dna2_validity.cpp -Lbuild-bitop-BP-BITOP-10 -lbaseplane_seq -o build-bitop-BP-BITOP-10/test_dna2_validity; ./build-bitop-BP-BITOP-10/test_dna2_validity.",
+      "notes": "Urgent correctness only. Preferred local composition is dna2_packed64_valid_view plus explicit local base count and chunk metadata equivalent to genome/contig/chunk, global_base_begin, owned_begin/end, halo_left/right. Every plane/mask view must expose meaningful base_count and final-word validity; noncanonical bases remain invalid and never silently encode as A. Define length 0, null pointers, tail bits, chunk boundary hits, positions 31/32/63/64 and 0..65. Preserve uint64 aggregate length while choosing bounded local execution limits because CUDA rejects n_bases>INT_MAX. Do not freeze Cellerator ID widths or public common records; hand off semantics to CE-ARCH-10. Acceptance commands remain the focused CPU-only configure/build/standalone test recorded by this task.",
       "gates": [
         {
           "id": "BP-BITOP-10-HEADER",
@@ -1405,8 +1437,8 @@
       "parallel_policy": "parallel_safe",
       "depends_on": [
         {
-          "type": "checkpoint",
-          "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+          "type": "task",
+          "task_id": "STACK-BITOP-01"
         }
       ],
       "scope": {
@@ -1452,7 +1484,7 @@
         }
       ],
       "next_action": "Implement direct membership and reverse-complement oracle in owned files, with no IUPAC parser; compile/run standalone tests; hand off provisional ABI to BP-BITOP-13.",
-      "notes": "motif32_allowed contains allow_a/c/g/t, active_mask, length, max_mismatches, motif_id; every active allowed set nonempty. mismatch=active&(~ok|~valid). Test all 15 one-position subsets, random windows, thresholds 0..length, lengths 1/8/16/31/32, invalid bases, forward/reverse equivalence, palindromes. Prove bit-reverse+complement for lengths 0..32 before replacing helper. Direct matching is semantic baseline; exact expansion only later under hard cardinality cap and measured planner choice. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-11 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-11 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_dna2_allowed.cpp src/seq/dna2_allowed.cpp -Lbuild-bitop-BP-BITOP-11 -lbaseplane_seq -o build-bitop-BP-BITOP-11/test_dna2_allowed; ./build-bitop-BP-BITOP-11/test_dna2_allowed.",
+      "notes": "Urgent correctness only. motif32_allowed has normalized nonempty active sets and explicit strand/palindrome policy; mismatch=active&(~ok|~valid). Invalid input bytes never collapse to A. Replace forgeable motif32_exact construction with validated normalization or an opaque/factory-enforced invariant while preserving exact motif meaning and compatibility. Test all 15 subsets, random windows, thresholds, lengths 1/8/16/31/32, tails, ambiguity, forward/reverse, palindromes, and inconsistent derived-field rejection. Direct matching is scalar semantic baseline; exact expansion is later evidence-gated. Do not freeze a Cellerator relation/event ABI here.",
       "gates": [
         {
           "id": "BP-BITOP-11-HEADER",
@@ -1494,13 +1526,19 @@
       "parent_id": "BITOP-00",
       "kind": "workstream",
       "title": "Compact event ABI and output-policy contract",
-      "objective": "Generalize or compose the existing eight-byte motif_hit into a versioned sequence event and explicit count/mask/stable/unordered output descriptors.",
+      "objective": "Define Baseplane-local count, mask, stable-emit, and unordered-emit semantics while aligning any public event record with the future Cellerator-owned biological ABI before freeze.",
       "priority": 188,
       "parallel_policy": "parallel_safe",
       "depends_on": [
         {
           "type": "checkpoint",
           "checkpoint_id": "BITOP_BASELINE_AND_ARCHITECTURE_READY"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
         }
       ],
       "scope": {
@@ -1543,7 +1581,7 @@
         }
       ],
       "next_action": "Choose composition/alias versus new record without widening, add descriptors and static assertions/tests, reach BASEPLANE_SEQUENCE_EVENT_V1_FROZEN, and hand off the hash.",
-      "notes": "Chunk origin is outside records. Optional float scores and uint32 segment offsets are sidecars. Define strand/level/uncertainty/continuation flags, async stream semantics, zero capacity, exact overflow, logical produced versus physical written/dropped/required capacity. Host and device construction must be trivial. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-12 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_sequence_event.cpp -o build-bitop-BP-BITOP-12/test_sequence_event; ./build-bitop-BP-BITOP-12/test_sequence_event.",
+      "notes": "Consume CE-ARCH-10 AxisIdentity/SequenceDomain semantics rather than inventing a parallel cross-library record. Chunk origin/ownership/halo stay outside compact local records. Optional quantitative scores and segment offsets are sidecars. Define residency, ordering, count/mask/stable/unordered modes, zero capacity, total_matches, stored_records, dropped_records, required capacity, and async stream behavior. Host/device construction is trivial, POD, allocation-free. Freeze only after external ABI compatibility review; materialization remains optional.",
       "checkpoints": [
         {
           "id": "BASEPLANE_SEQUENCE_EVENT_V1_FROZEN",
@@ -1603,7 +1641,7 @@
       "parent_id": "BITOP-00",
       "kind": "integration_task",
       "title": "Bounded predicate-plan and verifier contract",
-      "objective": "Integrate validity, allowed motifs, and events into the smallest bounded pointer-free portable plan, scalar verifier contract, and interface target wiring.",
+      "objective": "Integrate validity, normalized motifs, and output policies into a bounded pointer-free portable sequence program and prepared lowering aligned with the Cellerator-owned common ABI.",
       "priority": 180,
       "parallel_policy": "integration_exclusive",
       "depends_on": [
@@ -1622,6 +1660,12 @@
         {
           "type": "task",
           "task_id": "BP-BITOP-12"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
         }
       ],
       "scope": {
@@ -1680,7 +1724,7 @@
         }
       ],
       "next_action": "Guard shared seams, reconcile three provisional interfaces, define/verify portable ops and limits, wire baseplaneBitOpContractTest, freeze baseplane-sequence-predicate-v1, and hand off exact hash/limits.",
-      "notes": "V1 operations: base equality/allowed membership, GC/base-class/CpG masks, shift, AND/OR/XOR/AND-NOT/NOT, bounded ANY/ALL, popcount threshold, exact/WITHIN spacing, run/boundary, event emission, segment reduction request. Use typed DAG/SSA/op array or compact bytecode; no CUDA interpreter. Host prepare validates, folds constants, removes dead ops, computes lookbehind/lookahead/output/scratch, classifies exact/fused plane/mask grammar/segment/reference. Reject invalid opcode, illegal reference/cycle, range, empty allowed set, temporary/destination overflow, halo limit and inconsistent output. Hash excludes pointers/streams. Acceptance: cmake -S . -B build-bitop-BP-BITOP-13 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-13 --target baseplaneBitOpContractTest -j 4; ./build-bitop-BP-BITOP-13/baseplaneBitOpContractTest.",
+      "notes": "V1 operations: base equality/allowed membership, GC/base-class/CpG masks, shift, AND/OR/XOR/AND-NOT/NOT, bounded ANY/ALL, popcount threshold, exact/WITHIN spacing, run/boundary, event emission, segment reduction request. Use typed DAG/SSA/op array or compact bytecode; no CUDA interpreter. Host prepare validates and normalizes all derived motif/plan fields so public aggregate forgery cannot create inconsistent execution, folds constants, removes dead ops, computes lookbehind/lookahead/output/scratch, and classifies exact/fused plane/mask grammar/segment/reference. Hash excludes pointers/streams. Prepared lowering is explicit, device/stream transparent, and reusable across chunks. It consumes the Cellerator-owned identity/SequenceDomain ABI but never DeviceMathContext or the full runtime. Freeze waits for CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN and preserves standalone CPU-only Baseplane. Existing focused acceptance commands remain authoritative.",
       "checkpoints": [
         {
           "id": "BASEPLANE_SEQUENCE_PREDICATE_V1_FROZEN",
@@ -1801,6 +1845,7 @@
       "kind": "workstream",
       "title": "Scalar CPU reference execution",
       "objective": "Implement deterministic scalar oracle for validity-aware exact/allowed/strand/plan/count/mask/event/local grammar semantics.",
+      "status": "blocked",
       "priority": 170,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -1910,6 +1955,7 @@
       "kind": "workstream",
       "title": "Plan normalization, lowering, and backend classification",
       "objective": "Implement deterministic host preparation, normalization, family classification, halo/output-density propagation, and scratch query.",
+      "status": "blocked",
       "priority": 169,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2013,6 +2059,7 @@
       "kind": "workstream",
       "title": "Local mask grammar and bounded halo semantics",
       "objective": "Implement CPU/reference boundary-safe mask shifts, bounded relations/windows/count thresholds, run boundaries, and ownership masks with plan-derived halo.",
+      "status": "blocked",
       "priority": 168,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2117,6 +2164,7 @@
       "kind": "workstream",
       "title": "Deterministic and fast compact emission contracts",
       "objective": "Implement CPU/reference stable count-scan-emit and explicit unordered emission semantics with exact overflow/multiset accounting.",
+      "status": "blocked",
       "priority": 167,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2226,6 +2274,7 @@
       "kind": "workstream",
       "title": "Generic segment and regional-summary primitives",
       "objective": "Define pointer-free offset/index segment views and deterministic CPU event-count/popcount/sum/max/emit-if/minimal interval operations.",
+      "status": "blocked",
       "priority": 166,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2343,6 +2392,7 @@
       "kind": "validation_task",
       "title": "Property, adversarial, and differential test corpus",
       "objective": "Fan in all CPU lanes into deterministic reusable fixtures and authoritative baseplaneBitOpCpuTest wiring.",
+      "status": "blocked",
       "priority": 155,
       "parallel_policy": "integration_exclusive",
       "depends_on": [
@@ -2542,6 +2592,7 @@
       "kind": "workstream",
       "title": "CUDA packed multi-exact motif backend",
       "objective": "Preserve M=1 shifted packed scan and implement/measure batched exact mappings that amortize sequence windows.",
+      "status": "blocked",
       "priority": 145,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2658,6 +2709,7 @@
       "kind": "workstream",
       "title": "CUDA allowed-motif and plane-predicate backends",
       "objective": "Implement fused one-shot, explicit resident-plane, capped exact-expansion, warp allowed-motif, and mask-output candidates with validity/strand parity.",
+      "status": "blocked",
       "priority": 144,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2775,6 +2827,7 @@
       "kind": "workstream",
       "title": "CUDA local grammar, halo, and ownership backend",
       "objective": "Implement boundary-safe CUDA mask grammar using adjacent loads or shared supertiles only where reuse pays, with plan-derived halo and unique anchor ownership.",
+      "status": "blocked",
       "priority": 143,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -2895,6 +2948,7 @@
       "kind": "workstream",
       "title": "CUDA compact emission",
       "objective": "Implement stable count-scan-emit and unordered ballot/rank/block-reservation emission with caller-owned output/scratch and exact capacity accounting.",
+      "status": "blocked",
       "priority": 142,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -3015,6 +3069,7 @@
       "kind": "workstream",
       "title": "CUDA segment reductions",
       "objective": "Implement only minimum generic segment operations required by the first Cellerator adapter, selecting CUB/custom by measured shape.",
+      "status": "blocked",
       "priority": 141,
       "parallel_policy": "parallel_safe",
       "depends_on": [
@@ -3141,6 +3196,7 @@
       "kind": "integration_task",
       "title": "Prepared runtime, residency, backend planner, and CUDA fan-in",
       "objective": "Provide allocation-explicit prepare/query/bind/run surface, integrate all CUDA families, and publish executable Baseplane BitOp v1.",
+      "status": "blocked",
       "priority": 130,
       "parallel_policy": "integration_exclusive",
       "depends_on": [
@@ -3419,6 +3475,7 @@
       "kind": "workstream",
       "title": "Conditional finite-state cross-tile composition",
       "objective": "If and only if evidence activates it, implement compact associative tile transition composition for a concrete bounded-state pattern.",
+      "status": "blocked",
       "priority": 30,
       "parallel_policy": "serial",
       "depends_on": [
@@ -3479,7 +3536,9 @@
       "parent_id": "BITOP-00",
       "kind": "workstream",
       "title": "Native Cellerator Baseplane adapter",
-      "objective": "In external Cellerator, create dedicated native sequence-compute adapter binding Baseplane prepared plans to DeviceMathContext with non-owning event/segment views.",
+      "objective": "Preserve the historical external-adapter proposal as superseded; authoritative Cellerator integration is CE-ARCH-40 and must not bind Baseplane to DeviceMathContext.",
+      "status": "superseded",
+      "result": "superseded",
       "priority": 120,
       "parallel_policy": "serial",
       "depends_on": [
@@ -3541,8 +3600,8 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Only after external decision ready: work under /home/tumlinson/CellStack/Cellerator; re-read its guides; guard external claims; use include/Cellerator/compute/sequence, src/compute/sequence, tests/sequence and minimal CMake seam.",
-      "notes": "Baseplane must not include Cellerator. DeviceMathContext introduced by e1a36b3 and present at current 42ca8d5 owns stream/workspace/caches and is single-owner. Adapter exposes backend choice/counters and no hidden allocation/host roundtrip. Preserve async/device affinity. Replace or retain coreSparseLayoutRuntimeTest smoke intentionally; create dedicated sequence integration target, planned name sequenceComputeRuntimeTest. Exact acceptance: cmake -S . -B build-bitop-CE-BITOP-40 -DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane -DCELLERATOR_ENABLE_TORCH_MODELS=OFF -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-CE-BITOP-40 --target sequenceComputeRuntimeTest coreSparseLayoutRuntimeTest -j 4; ./build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest; ./build-bitop-CE-BITOP-40/coreSparseLayoutRuntimeTest. Before any edit, perform a read-only external Git/session/claim/lease audit; never mutate Cellerator todo state and stop if any active math/runtime/CMake owner overlaps.",
+      "next_action": "No implementation. This task is terminally superseded by CellStack CE-ARCH-40 and CELLERATOR_BASEPLANE_COMMON_ABI_V1_READY.",
+      "notes": "The proposed DeviceMathContext boundary would freeze an experimental single-owner stream/workspace/cache island and is actively harmful. Preserve this task only as historical evidence. Cellerator now owns shared identities, common operand views, execution session, relations, numerical interpretation, fusion, and integration. Baseplane retains local plans/references. The old planned targets and gates must not be run from this project.",
       "checkpoints": [
         {
           "id": "CELLERATOR_BITOP_ADAPTER_V1_FROZEN",
@@ -3594,19 +3653,40 @@
       "parent_id": "BITOP-00",
       "kind": "workstream",
       "title": "Learned sparse event weighting and regional aggregation",
-      "objective": "In external Cellerator, implement first Torch-free learned layer over sparse Baseplane events and segments using existing parameter_descriptor.",
+      "objective": "Park learned sparse event weighting until the Cellerator common ABI, execution order, unified runtime, operation core, and measured planner foundations exist.",
+      "status": "blocked",
       "priority": 110,
       "parallel_policy": "serial",
       "depends_on": [
         {
-          "type": "task",
-          "task_id": "CE-BITOP-40"
+          "type": "decision",
+          "decision_id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
         },
         {
           "type": "decision",
-          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "decision_id": "CELLERATOR-EXECUTION-ORDER-EXTERNAL",
           "operator": "equals",
-          "value": "ready-with-mandatory-recheck"
+          "value": "CELLERATOR_EXECUTION_ORDER_V1_READY"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-EXECUTION-SESSION-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_EXECUTION_SESSION_V1_READY"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-OPERATION-CORE-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_OPERATION_CORE_V1_READY"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-PLANNER-EVIDENCE-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_PLANNER_V1_VALIDATED"
         }
       ],
       "scope": {
@@ -3657,8 +3737,8 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Implement under external Cellerator include/src/models/sequence and tests/sequence only after adapter/hash and external guard; acquire model registry lock.",
-      "notes": "Model: predicate/event ID scalar or embedding, optional payload/mismatch/strand/continuous score, segment pooling/weighted reduction or sparse attention. Only surviving events get features; no per-base embedding. Native remains Torch-free. parameter_descriptor currently exposes name, scalar type, memory/device, pointer, rank, shape, stride, writable, role; storage must be pointer-stable. Test deterministic forward, synthetic/empty batches, descriptors. Planned target sequenceEventModelRuntimeTest with same CMake options as CE40. Gradient/update only if existing native style supports it.",
+      "next_action": "Remain parked. A later Cellerator-owned plan revision may supersede or reactivate the concept only after all external foundations and benchmark evidence validate.",
+      "notes": "parameter_descriptor is not accepted as the immediate cross-library learned boundary. Numerical transition belongs at a genuinely quantitative interaction selected by Cellerator. No Cellerator implementation is owned here; old targets and gates are historical and must not run while blocked.",
       "checkpoints": [
         {
           "id": "CELLERATOR_SPARSE_EVENT_LEARNING_V1_FROZEN",
@@ -3710,19 +3790,34 @@
       "parent_id": "BITOP-00",
       "kind": "workstream",
       "title": "Learned semantic partitions",
-      "objective": "In external Cellerator, keep fixed compute tiles while learning sparse boundary probabilities/region proposals and deterministic compact segments.",
+      "objective": "Park learned semantic partitions until the common ABI, runtime, execution-order, operation-core, and real-data planner evidence exist.",
+      "status": "blocked",
       "priority": 100,
       "parallel_policy": "serial",
       "depends_on": [
         {
-          "type": "task",
-          "task_id": "CE-BITOP-41"
+          "type": "decision",
+          "decision_id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
         },
         {
           "type": "decision",
-          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "decision_id": "CELLERATOR-EXECUTION-ORDER-EXTERNAL",
           "operator": "equals",
-          "value": "ready-with-mandatory-recheck"
+          "value": "CELLERATOR_EXECUTION_ORDER_V1_READY"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-OPERATION-CORE-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_OPERATION_CORE_V1_READY"
+        },
+        {
+          "type": "decision",
+          "decision_id": "CELLERATOR-PLANNER-EVIDENCE-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_PLANNER_V1_VALIDATED"
         }
       ],
       "scope": {
@@ -3765,8 +3860,8 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Implement/validate event-density change points or boundary logits over sparse candidates, compact start/end masks, segment construction and pooling; compare fixed windows.",
-      "notes": "No dynamic warp size, raw sequence duplication, or accidental overlap/duplicates unless explicitly allowed. Deterministic boundary reconstruction and sparse memory required. Planned target sequenceSemanticPartitionRuntimeTest under external Cellerator. Gates record exact build/run and comparison.",
+      "next_action": "Remain parked pending external foundations and a new Cellerator-owned activation decision.",
+      "notes": "Biological hierarchy and partitions must pay rent in measured runtime and normally be indices or views over shared structures and values. This Baseplane task owns no learned partition implementation; old targets and gates are historical.",
       "gates": [
         {
           "id": "CE-BITOP-42-CONFIG",
@@ -3807,6 +3902,7 @@
       "kind": "workstream",
       "title": "Conditional continuous-to-discrete predicate induction",
       "objective": "If activated by a concrete dataset/target/baseline, train continuous motif/grammar proposals and periodically compile discrete Baseplane plans for held-out comparison.",
+      "status": "blocked",
       "priority": 20,
       "parallel_policy": "serial",
       "depends_on": [
@@ -3871,6 +3967,7 @@
       "kind": "workstream",
       "title": "Conditional CelleraTorch bindings",
       "objective": "After native interfaces stabilize and activation is explicit, expose event batches/learned parameters as optional Torch-facing views without moving ownership.",
+      "status": "blocked",
       "priority": 15,
       "parallel_policy": "serial",
       "depends_on": [
@@ -3953,6 +4050,7 @@
       "kind": "workstream",
       "title": "Conditional sparse long-range object reasoning",
       "objective": "If activated by a biological objective, perform sparse retrieval/edge proposal/message passing over event or region objects in Cellerator.",
+      "status": "blocked",
       "priority": 10,
       "parallel_policy": "serial",
       "depends_on": [
@@ -4017,6 +4115,7 @@
       "kind": "validation_task",
       "title": "Benchmark matrix and measured backend selector",
       "objective": "Measure crossover matrix and publish replaceable device-fact-versioned backend policy with same-build correctness checks.",
+      "status": "blocked",
       "priority": 90,
       "parallel_policy": "serial",
       "depends_on": [
@@ -4262,7 +4361,8 @@
       "parent_id": "BITOP-00",
       "kind": "validation_task",
       "title": "Multi-GPU chunking and halo ownership",
-      "objective": "In external Cellerator orchestration, validate contig/bounded chunk partitioning, plan-derived halos, local-position rebasing, residency, and identical one/four-device event multisets.",
+      "objective": "Park multi-GPU sequence integration behind Cellerator's future partition contract; Baseplane remains bounded-chunk, single-device, and stream-explicit.",
+      "status": "blocked",
       "priority": 80,
       "parallel_policy": "serial",
       "depends_on": [
@@ -4276,9 +4376,9 @@
         },
         {
           "type": "decision",
-          "decision_id": "CELLERATOR-EXTERNAL-STATE",
+          "decision_id": "CELLERATOR-PARTITION-CONTRACT-EXTERNAL",
           "operator": "equals",
-          "value": "ready-with-mandatory-recheck"
+          "value": "ready"
         }
       ],
       "scope": {
@@ -4321,7 +4421,7 @@
           "required_version": "1"
         }
       ],
-      "next_action": "After external ready, implement/validate Cellerator chunk orchestration and acquire gpu-all4 plus benchmark resources only for all-device evidence.",
+      "next_action": "Remain parked. Do not acquire gpu-all4 or benchmark resources until Cellerator publishes an explicit partition contract and a later plan revision activates validation.",
       "notes": "Chunk fields: sequence/contig ID, global origin, owned interval, left/right halo, local bases/validity, assigned device. Baseplane stays single-device/stream-explicit. Only owned anchors emit; origin+uint32 local reconstructs global. Keep resident across repeated plans where measured. Source never hardcodes device. Acceptance planned target sequenceMultiGpuRuntimeTest: CMake configure with BASEPLANE_SOURCE_DIR, Torch off, sm_70; build target; run one GPU and under gpu-all4:any+v100-benchmark:any run --devices 4; compare rebased multisets/no duplicates/misses and record scaling/host launch.",
       "gates": [
         {
@@ -4379,7 +4479,8 @@
       "parent_id": "BITOP-00",
       "kind": "integration_task",
       "title": "Packaging, documentation, and consumer contract",
-      "objective": "Integrate Baseplane public headers/CMake/docs and external Cellerator consumer docs/target while preserving Baseplane::seq, CPU-only, optional CUDA/Highway, and ownership boundaries.",
+      "objective": "Integrate Baseplane-owned public headers, CMake, and documentation against the external Cellerator common-ABI checkpoint while preserving Baseplane::seq, CPU-only, optional CUDA/Highway, and ownership boundaries.",
+      "status": "blocked",
       "priority": 70,
       "parallel_policy": "integration_exclusive",
       "depends_on": [
@@ -4388,8 +4489,10 @@
           "barrier_id": "BITOP-B3"
         },
         {
-          "type": "task",
-          "task_id": "CE-BITOP-40"
+          "type": "decision",
+          "decision_id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
+          "operator": "equals",
+          "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
         },
         {
           "type": "task",
@@ -4451,7 +4554,7 @@
           "required_version": "1"
         },
         {
-          "id": "cellerator-bitop-adapter-v1",
+          "id": "baseplane-sequence-event-v1",
           "required_state": "frozen",
           "required_version": "1"
         }
@@ -4467,7 +4570,7 @@
         }
       ],
       "next_action": "Guard all shared Baseplane and external Cellerator seams, reconcile generated docs/targets, validate install/CPU/CUDA/consumer targets; do not create Baseplane::bitop for branding.",
-      "notes": "Baseplane docs cover packed/planes, validity, allowed motifs, plans, outputs/events/segments, residency/performance/non-goals. Cellerator docs cover learned ownership, DeviceMathContext adapter, event/segment boundary, no Baseplane training. Preserve Baseplane::seq; new target only for independent dependency/install boundary. Cellerator dedicated consumer target remains focused. Exact Baseplane gates: CPU configure/build baseplaneDna2Test baseplaneBitOpCpuTest; CUDA configure sm_70/build baseplaneDna2CudaTest baseplaneBitOpCudaTest; install/package consumer. External Cellerator target sequenceComputeRuntimeTest with Baseplane source dir and Torch off.",
+      "notes": "Baseplane docs cover packed/planes, validity, allowed motifs, plans, output modes/events/segments, residency/performance/non-goals, and explicit subordination to the Cellerator computational model. Consume the Cellerator-owned common ABI checkpoint; do not document DeviceMathContext or parameter_descriptor as integration boundaries. Preserve Baseplane::seq and CPU-only/CUDA builds. Cross-repository consumer validation belongs to CE-ARCH-40; this task updates Baseplane-owned packaging only.",
       "gates": [
         {
           "id": "STACK-BITOP-52-CPU-CONFIG",
@@ -4657,6 +4760,7 @@
       "kind": "integration_task",
       "title": "Final cross-repository integration audit",
       "objective": "Audit actual code, interfaces, resources, projections, leases, optional dispositions, benchmarks, sanitizers, Cellerator independence, and integration readiness without publishing.",
+      "status": "blocked",
       "priority": 60,
       "parallel_policy": "project_exclusive",
       "depends_on": [
@@ -4843,6 +4947,7 @@
       "kind": "workstream",
       "title": "Conditional persistence or pack delivery",
       "objective": "Only after ABI stability and demonstrated cross-process reuse need, let external CellShard wrap an opaque versioned Baseplane/Cellerator-owned image.",
+      "status": "blocked",
       "priority": 5,
       "parallel_policy": "serial",
       "depends_on": [
@@ -4884,7 +4989,7 @@
         "non-goals"
       ],
       "next_action": "Remain parked until stable ABI, demonstrated reuse/deployment need, regeneration-cost evidence, and ownership agreement exist.",
-      "notes": "If activated, CellShard owns checksum, compatibility envelope, publication/fetch/contiguous staging of opaque image; Baseplane owns validation/plan semantics; Cellerator model semantics. Loading avoids reparsing/relearning. Do not activate merely because CP-BP used CSPACK.",
+      "notes": "Parked external read-only dependency. CellShard currently owns CSPACK01/CPEXEC01 checksum, generation/partition identity, publication/fetch, contiguous host ownership, and one-copy async device staging of opaque Cellerator images. Do not create or assign CellShard work from this ledger. Any future envelope decision is coordinated externally; do not activate merely because CP-BP used CSPACK.",
       "result_policy": {
         "allowed_dispositions": [
           "implemented",

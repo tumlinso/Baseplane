@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-10: Validity, chunk coordinates, and boundary-safe views
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-Add optional canonicality sidecar and bounded chunk view semantics without changing canonical-only APIs.
+Make invalid-base meaning, tail validity, base count, bounded local coordinates, global identity, owned range, and halos explicit without freezing the cross-library ABI.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Implement only the three owned files; resolve BITOP-CHUNK-COORDINATES; compile/run the standalone test in build-bitop-BP-BITOP-10; hand off provisional declarations to BP-BITOP-13.
@@ -30,5 +30,5 @@ Implement only the three owned files; resolve BITOP-CHUNK-COORDINATES; compile/r
 - `read`: `include/Baseplane/seq/dna2_views.hh`
 
 ## Dependencies
-- `checkpoint`: `BITOP_BASELINE_AND_ARCHITECTURE_READY`
+- `task`: `STACK-BITOP-01`
 <!-- todo-orchestrator:v2-managed:end -->

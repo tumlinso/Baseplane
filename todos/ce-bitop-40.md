@@ -3,19 +3,19 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-40: Native Cellerator Baseplane adapter
 
-Task revision: `16`; current project revision is in `todo-status.md`.
+Task revision: `128`; current project revision is in `todo-status.md`.
 
 ## Objective
-In external Cellerator, create dedicated native sequence-compute adapter binding Baseplane prepared plans to DeviceMathContext with non-owning event/segment views.
+Preserve the historical external-adapter proposal as superseded; authoritative Cellerator integration is CE-ARCH-40 and must not bind Baseplane to DeviceMathContext.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `superseded`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `superseded`
 
 ## Next Action
-Only after external decision ready: work under /home/tumlinson/CellStack/Cellerator; re-read its guides; guard external claims; use include/Cellerator/compute/sequence, src/compute/sequence, tests/sequence and minimal CMake seam.
+No implementation. This task is terminally superseded by CellStack CE-ARCH-40 and CELLERATOR_BASEPLANE_COMMON_ABI_V1_READY.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`
