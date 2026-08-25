@@ -4191,6 +4191,7 @@
         "severity": "error"
       }
     ],
+    "live_recovery_audit": [],
     "migration_warnings": [],
     "named_locks": [
       {
