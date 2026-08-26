@@ -1,5 +1,9 @@
 # SequenceBits CUDA Profiling
 
+This document preserves historical profiler evidence for the current
+exact-sequence substrate. It does not establish Baseplane's broader scientific
+scaling hypothesis; see [FOUNDATIONS.md](FOUNDATIONS.md).
+
 Date: 2026-05-04
 
 Hardware: 4x Tesla V100-SXM2-16GB, `sm_70`
@@ -137,12 +141,12 @@ The benchmark also counts hits on device. That matters because random motif
 scans usually produce sparse hits, so copying one byte per window is a poor
 measurement of motif decision throughput.
 
-Multi-GPU scaling is now real, but not perfect. At 1,073,741,824 bases, four
-V100s deliver about 3.8x the single-GPU throughput. The remaining gap is from
-host-side multi-device launch, synchronization, and per-device segmentation
-overhead in the benchmark harness. This is acceptable for a primitive benchmark,
-but a production scanner should keep sequence resident, batch many motifs, and
-avoid one host launch train per small scan.
+Within this recorded benchmark, multi-GPU throughput scaling was measurable but
+not perfect. At 1,073,741,824 bases, four V100s delivered about 3.8x the
+single-GPU throughput. The remaining gap was attributed to host-side
+multi-device launch, synchronization, and per-device segmentation overhead in
+the benchmark harness. The result measures a primitive scanner over a large
+buffer; it does not demonstrate organism-scale functional context.
 
 Nsight Compute was not used for the final interpretation because Nsight Systems
 already isolated the dominant issue: the previous path was dominated by

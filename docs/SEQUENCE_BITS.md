@@ -1,8 +1,16 @@
-# SequenceBits
+# Current sequence representation and operations
 
 ## Purpose
 
-SequenceBits provides Baseplane's first GPU-native regulatory sequence primitive.
+This document describes the compact exact-sequence machinery implemented today.
+It is an implementation reference beneath the
+[Baseplane Scientific Foundations](FOUNDATIONS.md), not the definition of the
+whole project. Current 2-bit words, planes, motif windows, chunks, and backend
+mappings are durable foundations without being commitments for every future
+sequence-derived structure.
+
+SequenceBits provides Baseplane's first GPU-native regulatory sequence
+primitive.
 
 Packed words are how sequence lives in memory. Bitplanes are how sequence becomes a warp-level biological decision.
 
@@ -54,8 +62,9 @@ base_i = (((hi >> i) & 1) << 1) | ((lo >> i) & 1)
 The `planes32` representation is designed so one warp can hold one 32-base
 regulatory word.
 
-Future CUDA-facing work should prefer `dna2_warp_word` or
-`dna2_default_window`, which resolves to `dna2_planes32` when CUDA is enabled.
+The current CUDA-facing aliases are `dna2_warp_word` and
+`dna2_default_window`; the latter resolves to `dna2_planes32` when CUDA is
+enabled.
 
 ## Inline planes
 
@@ -222,10 +231,18 @@ Backend preference is static at compile time: CUDA warp-native first, then
 Highway/SIMD, then scalar. Benchmarks guide future priority changes manually;
 they are not run during configure.
 
-## Non-goals
+## Limits of this implementation document
+
+The current exact substrate does not define Baseplane's eventual genomic
+organization, functional geometry, learned sequence interpretation,
+state-conditioned relevance, allele/haplotype model, or organism-scale context
+mechanism. It establishes exact facts and bounded sequence predicates on which
+such work may later rely.
+
+Current non-goals include:
 
 No FASTA parser.
 No full motif database support.
 No PWM scoring yet.
-No IUPAC ambiguity yet.
+No IUPAC text parsing yet; normalized allowed-base sets are supported.
 No CSPACK integration yet.

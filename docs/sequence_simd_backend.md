@@ -1,5 +1,9 @@
 # Sequence SIMD Backend
 
+This document describes one backend of Baseplane's current exact-sequence
+substrate. It is not a project-scope definition; see
+[FOUNDATIONS.md](FOUNDATIONS.md).
+
 This layer defines CPU-side bit primitives for canonical packed DNA/RNA sequence
 work. It is intentionally small: ASCII bases enter as short canonical chunks,
 then kernels operate on packed 2-bit words and bitplanes rather than generic
@@ -19,10 +23,13 @@ to 32 bases in one `uint64_t`, using:
 - `G = 10`
 - `T = 11`
 
-Base `i` occupies bits `2*i` and `2*i + 1`. The ASCII packer currently accepts
-uppercase `A/C/G/T`; non-canonical bytes assert in debug builds and are treated
-as `A` in release builds. Ambiguous IUPAC bases are not represented in this
-primitive layer.
+Base `i` occupies bits `2*i` and `2*i + 1`. The legacy canonical ASCII packer
+accepts uppercase `A/C/G/T` and is appropriate only when callers already know
+the input is canonical. Sequence ingestion that may encounter other symbols
+uses `dna2_encode_base_with_validity`: supported upper- and lowercase
+`A/C/G/T/U` are valid, and every other symbol is invalid. An invalid symbol's
+bounded two-bit placeholder carries no biological meaning. IUPAC parsing is not
+implemented in this primitive layer.
 
 Packed words make fixed-width sequence chunks cheap to move, compare, and stage
 for later CPU SIMD or accelerator code. Unused positions in shorter chunks
@@ -46,9 +53,8 @@ operations:
 - `G` mask: `~lo & hi`
 - `CpG` start mask: `C(i) & G(i + 1)`
 
-These masks are the CPU-side counterpart of future CUDA warp-level sequence
-primitives. Both backends should preserve these semantic operations rather than
-lowering sequence work to generic byte strings.
+These masks are the CPU-side counterpart of the current CUDA warp-level
+sequence primitives. Both backends preserve the same exact semantics.
 
 `dna2_warp_word` aliases `dna2_planes32`. `dna2_default_window` resolves to
 `dna2_planes32` in CUDA-enabled builds and to `dna2_word64` otherwise.

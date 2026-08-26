@@ -1,5 +1,10 @@
 # BP-BITOP-03 Exact-Count Baseline Evidence
 
+This is historical implementation evidence, not a statement of Baseplane's
+scientific scope and not proof of organism-scale functional context. See
+[FOUNDATIONS.md](FOUNDATIONS.md) for the project charter and
+[PERFORMANCE_CONTRACT.md](PERFORMANCE_CONTRACT.md) for claim boundaries.
+
 Date: 2026-08-21 UTC
 
 Repository commit: `768065b4bdd6693429a22a49c0fdeb2f1946180f`

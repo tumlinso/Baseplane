@@ -1,7 +1,16 @@
 # Baseplane Performance Contract
 
-Baseplane benchmarks measure low-level biological bit primitives, not hidden
-workflow convenience.
+Baseplane benchmarks measure implemented low-level sequence primitives, not the
+whole scientific thesis and not hidden workflow convenience. A fast scan over a
+billion-base buffer is not evidence that a billion bases are functionally
+legible. Claims about organism-scale context must also account for selection,
+routing, indexing, learned-structure construction, derived relations, memory
+movement, provenance, and the ability for relevant sequence anywhere in the
+declared domain to matter.
+
+This contract governs the current exact-sequence substrate described in
+[BITOP_ARCHITECTURE.md](BITOP_ARCHITECTURE.md). The broader proof obligations
+are recorded in [FOUNDATIONS.md](FOUNDATIONS.md).
 
 ## Exact Scan
 
@@ -64,7 +73,7 @@ When reporting performance, include:
 
 Benchmark and profiler jobs must use the benchmark mutex on shared systems.
 
-## Current Baseline
+## Recorded implementation baseline
 
 The current native tuning baseline is Tesla V100, `sm_70`. Exact count uses the
 shifted packed-word scanner. Compact emit uses the same shifted packed-window
@@ -76,4 +85,6 @@ materialization, not dense blocked matrix math. On 2026-06-17, one V100 with
 CUDA 12.9.86 and `CMAKE_CUDA_ARCHITECTURES=70` measured 67,108,864 bases at
 0.045 ms for packed-to-plane conversion and 0.034 ms for base, GC, and
 CpG-start masks. The first limiter to re-check is HBM traffic plus launch
-overhead.
+overhead. These dated observations are historical evidence for the recorded
+implementation and toolchain; they are not a current universal threshold or
+proof of Baseplane's scaling hypothesis.

@@ -1,71 +1,97 @@
 # Baseplane
 
-Baseplane is a low-level sequence-computing library for compact DNA/RNA bit
-representations. It provides a small backend-aware foundation for fast sequence
-work: 2-bit nucleotide packing, bit-plane transforms, reverse complements,
-mismatch counting, motif-window operations, and CPU/SIMD/CUDA kernels.
+**Baseplane grounds biology in sequence.**
 
-Baseplane is not a genomics framework or file-format library. It does not own
-FASTA parsing, genome annotation, motif databases, PWM scoring, IUPAC ambiguity,
-or storage/runtime formats. Higher-level tools should build those concerns on
-top of Baseplane primitives.
+Baseplane is the sequence-grounding layer of a larger biological-compute
+program. Its atomic scientific unit is the base: the irreducible unit of exact
+sequence identity, variation, provenance, ordering, strand, and sequence truth.
+That does not require every computation to operate one nucleotide at a time.
+Baseplane may reason through motifs, intervals, genes, transcripts, regulatory
+structures, haplotypes, learned features, multiresolution regions, long-range
+relations, or structures not yet named. The invariant is that higher
+sequence-derived structure should retain a principled path to its supporting
+sequence and, where scientifically possible, to exact bases.
 
-Baseplane is independently buildable. In the related ecosystem,
-[Cellerator](https://github.com/tumlinso/Cellerator) consumes its sequence
-primitives and [CellShard](https://github.com/tumlinso/CellShard) owns storage
-and delivery; neither repository is required for Baseplane's standalone build.
+The project investigates a major hypothesis:
 
-## Build
+> Genomic span need not equal computational context cost, if exploitable
+> biological organization can make relevant sequence computationally close
+> while irrelevant sequence remains cheap.
 
-CUDA is preferred for hot-path sequence scanning, but optional:
+This is not a proven result. Nor may efficiency come from deciding in advance
+what biology is allowed to matter. Known biology should be usable; unknown
+biology must remain discoverable.
+
+The ecosystem distinction is:
+
+- **Baseplane is sequence.**
+- **Cellerator is omics.**
+- **GlassHelix is dynamics.**
+- **CellShard is physical scale, persistence, distribution, and delivery.**
+
+Or, compactly: Baseplane grounds biology in sequence. Cellerator makes
+biological state calculable. GlassHelix models how that state evolves.
+CellShard makes the computation scale.
+
+See [Scientific Foundations](docs/FOUNDATIONS.md) for the project constitution,
+scientific hypotheses, ownership boundaries, unresolved architectural
+questions, and proof obligations.
+
+## Implemented today
+
+The current library is a durable exact-sequence foundation, not the complete
+scientific model of Baseplane. It provides compact canonical DNA/RNA
+representations; explicit validity and tail semantics; local/global chunk
+coordinates, ownership, and halos; strand-aware exact and allowed-base
+predicates; compact count, mask, and event contracts; bounded backend-neutral
+predicate descriptions; scalar reference behavior; optional Highway SIMD; and
+optional CUDA kernels with explicit storage and stream ownership.
+
+These capabilities are described in:
+
+- [Current exact-sequence substrate](docs/BITOP_ARCHITECTURE.md)
+- [Sequence representation and operations](docs/SEQUENCE_BITS.md)
+- [Performance contract](docs/PERFORMANCE_CONTRACT.md)
+- [Exact-count baseline evidence](docs/bitop_baseline_evidence.md)
+
+The present motif grammar, 32-base windows, chunking scheme, and backend
+lowerings are implementation mechanisms. They do not define the eventual
+architecture or limit Baseplane to motif scanning.
+
+## Build and use the current library
+
+CUDA is preferred for current hot paths but remains optional:
 
 ```bash
 cmake -S . -B build -DBASEPLANE_ENABLE_CUDA=ON
 cmake --build build --target baseplaneDna2Test baseplaneDna2CudaTest baseplaneDna2Bench baseplaneDna2CpuBench -j 4
 ```
 
-CPU-only fallback:
+CPU-only build:
 
 ```bash
 cmake -S . -B build-cpu -DBASEPLANE_ENABLE_CUDA=OFF
-cmake --build build-cpu --target baseplaneDna2Test -j 4
+cmake --build build-cpu --target baseplaneDna2Test baseplaneBitOpContractTest baseplaneDna2ValidityTest -j 4
 ```
 
-## Public Surface
-
-The core CPU-safe `dna2` vocabulary is available under:
+The CPU-safe public include is:
 
 ```cpp
 #include <Baseplane/dna2.hh>
 ```
 
-Narrow sequence headers are also available under `Baseplane/seq/` for direct
-use: operations, views, motifs, and scan APIs are split by role.
-
-CUDA warp-level primitives and kernels are layered on top under:
+CUDA sequence operations are exposed through:
 
 ```cpp
 #include <Baseplane/seq/dna2.cuh>
 ```
 
-The CMake target is:
+The installable CMake target is:
 
 ```cmake
 target_link_libraries(your_target PRIVATE Baseplane::seq)
 ```
 
-`dna2_default_window` is selected at compile time. CUDA-enabled builds default
-to the warp-native `dna2_planes32` representation; non-CUDA builds default to
-packed `dna2_word64`, with Highway/SIMD preferred over scalar when enabled.
-
-Resident plane-stream APIs convert packed `dna2_word64` sequence storage into
-split lo/hi `dna2_planes32` arrays and produce one `uint32_t` predicate mask per
-32-base word for base, GC, and CpG-start queries without hidden allocation.
-
-`Baseplane/seq/predicate_plan.hh` owns the narrow public sequence/predicate ABI:
-`baseplane::seq::sequence_predicate_abi_version`. Consumers must require its
-exact version. Sequence ingestion that crosses the Cellerator boundary uses
-`dna2_encode_base_with_validity`: A/C/G/T/U (including supported lowercase)
-are valid, while every other symbol is invalid. The two-bit payload of an
-invalid symbol has no biological meaning; raw two-bit code alone cannot
-represent ambiguity.
+Baseplane is independently buildable. Cellerator may consume sequence-derived
+objects without taking ownership of their sequence provenance; CellShard may
+store and deliver them without acquiring their scientific semantics.

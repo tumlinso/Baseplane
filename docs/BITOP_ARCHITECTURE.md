@@ -1,16 +1,31 @@
-# Baseplane BitOp v1 architecture contract
+# Current exact-sequence substrate: BitOp v1
+
+## Place in the project
+
+This document describes an **implemented exact-sequence contract**. It is
+subordinate to the [Baseplane Scientific Foundations](FOUNDATIONS.md): the
+types, bounded grammar, chunk conventions, outputs, and backend lowerings here
+are durable current machinery, not the final definition of Baseplane or a
+mandated architecture for higher sequence-derived structure.
+
+BitOp v1 establishes exact sequence facts and sequence-conditioned
+possibilities. It does not establish activity, realized regulation, biological
+mechanism, cellular state, or dynamics.
 
 ## Status and imported contract
 
-This document freezes the Baseplane-local BitOp v1 ownership boundary. It
+The completed BitOp v1 foundation freezes the Baseplane-local ownership
+boundary described here. It
 imports, and does not redefine, the Cellerator-owned
 `cellerator-biological-abi-v1` interface published by
 `CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN`. The reviewed imported interface hash is
 `708c359577f347cc2f6540aab378c152d2f67386a563ad47e0a3ed901f2eb272`.
-Cellerator remains authoritative for persistent biological identity, hot axis
-handles, `SequenceDomain`, heterogeneous operand views, residency vocabulary,
-relations, numerical meaning, execution ordering, runtime integration, and
-planning policy.
+Cellerator remains authoritative for its persistent biological identity, hot
+axis handles, `SequenceDomain`, heterogeneous operand views, general biological
+relations, numerical meaning, execution ordering, execution geometry, runtime
+integration, and planning policy. This imported v1 seam is a current
+integration contract, not a claim that Baseplane can never own richer
+sequence-native identity or provenance.
 
 Baseplane records may carry Baseplane-local numeric tokens or bounded local
 coordinates. A Cellerator adapter maps them to the shared ABI; Baseplane does
@@ -33,12 +48,14 @@ Baseplane owns:
 - allocation-free scalar references plus CPU/SIMD/CUDA execution primitives
   with explicit caller-owned storage and streams.
 
-Cellerator owns biological identity and operand compatibility, semantic
-relations, float-valued interpretation, fusion decisions, device/runtime
-sessions, scratch scheduling, plan selection, learned state, and partition
-policy. CellShard owns persistence and storage layout. Baseplane does not depend
-on `DeviceMathContext`, `parameter_descriptor`, CellShard, or a dense/SpMM
-adapter.
+Cellerator owns calculable omic state and operand compatibility, general
+biological relations, float-valued interpretation, fusion decisions,
+device/runtime sessions, scratch scheduling, plan selection, learned state, and
+partition policy. GlassHelix owns realized mechanisms, transitions,
+trajectories, perturbation response, and dynamics. CellShard owns persistence,
+placement, transport, sharding, and physical storage layout. Baseplane does not
+depend on `DeviceMathContext`, `parameter_descriptor`, CellShard, or a
+dense/SpMM adapter.
 
 ## Representation and validity
 
@@ -64,11 +81,13 @@ both-strand evaluation are explicit, as is palindrome deduplication versus
 dual reporting. Core v1 parsing accepts normalized masks; IUPAC parsing and
 motif-database policy remain outside Baseplane.
 
-Portable predicate programs may compose base equality or membership, GC/base
+Portable predicate programs can describe base equality or membership, GC/base
 class/CpG masks, bounded shifts, Boolean mask operations, bounded ANY/ALL,
 popcount thresholds, exact or WITHIN spacing, runs/boundaries, event emission,
-and generic segment-reduction requests. CPU scalar execution is the semantic
-oracle for every accepted v1 operation.
+and generic segment-reduction requests. The v1 verifier, semantic hash, and
+preparation metadata are implemented. A generalized scalar executor for every
+accepted operation is not implemented today; the contract requires scalar
+execution to become the semantic oracle if that work is later authorized.
 
 ## Output and event contract
 
@@ -78,13 +97,14 @@ integration default. Compact event records use the eight-byte Baseplane core:
 32-bit local position, 16-bit predicate/rule identifier, 8-bit payload, and
 8-bit flags. Quantitative scores, embeddings, and segment offsets are sidecars.
 
-Every emit result distinguishes logical `total_matches`, physical
+The general output contract distinguishes logical `total_matches`, physical
 `stored_records`, `dropped_records`, and required capacity. Zero capacity is a
-valid count-with-overflow request. Stable ordering is coordinate-stable under
-the declared predicate ordering; unordered emission promises no physical
-order. Callers own buffers and residency, and asynchronous APIs enqueue only on
-the supplied stream without hidden allocation, transfer, synchronization, or
-truncation.
+valid count-with-overflow descriptor. Stable ordering is coordinate-stable
+under the declared predicate ordering; unordered emission promises no physical
+order. The descriptors require caller-owned buffers and declared buffer
+residency. Existing exact-scan asynchronous APIs enqueue on the supplied stream
+without hidden allocation, transfer, synchronization, or truncation. General
+predicate-plan emission remains a contract rather than an implemented executor.
 
 The compact record and descriptors published by BP-BITOP-12 form
 `baseplane-sequence-event-v1`. Their compatibility with Cellerator's event
@@ -100,13 +120,14 @@ normalized motifs, out-of-range shifts or spans, overflow, and unsupported
 resource limits. Its hash covers semantic fields and excludes pointers,
 streams, device ordinals, and transient addresses.
 
-Preparation validates first, normalizes derived fields, folds constants,
-removes dead operations, computes lookbehind/lookahead and output/scratch
-requirements, and classifies a specialized lowering family. A prepared plan is
-immutable metadata reusable across compatible chunks. It records requirements
-but owns no allocation and performs no transfer or synchronization. CUDA lowers
-accepted families to specialized kernels; v1 does not install a general device
-bytecode interpreter.
+Current preparation validates the program, marks nodes reachable from outputs,
+records a semantic hash and original-to-live mapping, computes bounded
+lookbehind/lookahead and scratch-mask requirements, and classifies an initial
+lowering family. Prepared metadata owns no allocation and performs no transfer
+or synchronization. No general predicate-plan CPU or CUDA execution engine is
+implemented today. The contract anticipates specialized CUDA lowering rather
+than a general device bytecode interpreter, but does not claim those lowerings
+exist.
 
 The combined validity, motif, event, portable-plan, and prepared-lowering
 surface published by BP-BITOP-13 forms `baseplane-sequence-predicate-v1`.
@@ -125,3 +146,8 @@ BitOp v1 does not own FASTA/IUPAC/database parsing, genome ontology, PWM or
 floating-point scoring policy, dense per-base embeddings, unrestricted GPU
 virtual machines, NVRTC-first execution, dynamic parallelism, Tensor Core
 Boolean claims, relation/planner policy, training/autograd, or persistence.
+
+Nor does BitOp v1 choose a genomic hierarchy, graph, learned geometry,
+pangenome representation, state-conditioned relevance mechanism, long-context
+model strategy, or organism-scale architecture. Those remain open questions in
+the scientific charter.
