@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-34: CUDA segment reductions
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement only minimum generic segment operations required by the first Cellerator adapter, selecting CUB/custom by measured shape.

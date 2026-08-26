@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-25: Generic segment and regional-summary primitives
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Define pointer-free offset/index segment views and deterministic CPU event-count/popcount/sum/max/emit-if/minimal interval operations.

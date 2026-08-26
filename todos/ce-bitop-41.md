@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-41: Learned sparse event weighting and regional aggregation
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Park learned sparse event weighting until the Cellerator common ABI, execution order, unified runtime, operation core, and measured planner foundations exist.

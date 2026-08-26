@@ -10,6 +10,11 @@ FASTA parsing, genome annotation, motif databases, PWM scoring, IUPAC ambiguity,
 or storage/runtime formats. Higher-level tools should build those concerns on
 top of Baseplane primitives.
 
+Baseplane is independently buildable. In the related ecosystem,
+[Cellerator](https://github.com/tumlinso/Cellerator) consumes its sequence
+primitives and [CellShard](https://github.com/tumlinso/CellShard) owns storage
+and delivery; neither repository is required for Baseplane's standalone build.
+
 ## Build
 
 CUDA is preferred for hot-path sequence scanning, but optional:

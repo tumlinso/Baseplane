@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-23: Deterministic and fast compact emission contracts
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement CPU/reference stable count-scan-emit and explicit unordered emission semantics with exact overflow/multiset accounting.

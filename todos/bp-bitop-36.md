@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-36: Conditional finite-state cross-tile composition
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 If and only if evidence activates it, implement compact associative tile transition composition for a concrete bounded-state pattern.

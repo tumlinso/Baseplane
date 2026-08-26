@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-50: Benchmark matrix and measured backend selector
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Measure crossover matrix and publish replaceable device-fact-versioned backend policy with same-build correctness checks.

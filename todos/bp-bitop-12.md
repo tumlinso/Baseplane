@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-12: Compact event ABI and output-policy contract
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Define Baseplane-local count, mask, stable-emit, and unordered-emit semantics while aligning any public event record with the future Cellerator-owned biological ABI before freeze.

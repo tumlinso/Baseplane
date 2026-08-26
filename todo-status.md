@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Status v2 Projection
 
-Project revision: `128`
+Project revision: `130`
 
 ## Workstreams
 - `STACK-BITOP-01` | status: done | execution: closed | next: Verify the recorded evidence against current Git/source without changing implementation; run context, changes, guard, and audit; then complete validated.

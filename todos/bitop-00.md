@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BITOP-00: Baseplane BitOp roadmap
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Coordinate Baseplane sequence primitives as a subordinate library of the Cellerator biological execution model, preserving standalone CPU/CUDA capability while deferring shared identities, relations, runtime integration, numerical interpretation, fusion, and planning to CE-ARCH-00.

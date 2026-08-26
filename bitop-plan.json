@@ -2,40 +2,40 @@
   "schema_version": 2,
   "project": {
     "name": "Baseplane BitOp",
-    "authority": "/home/tumlinson/CellStack/Baseplane",
+    "authority": "/home/tumlinson/Baseplane",
     "authority_reason": "Baseplane owns sequence-level representation, validity-aware predicates, emission, segments, portable preparation, and scalar/CUDA references. It is subordinate to the Cellerator biological execution model; Cellerator owns shared identities, operand and relation semantics, runtime integration, numerical interpretation, fusion, and planning. CellShard remains external and read-only.",
     "repositories": {
       "cellstack": {
         "root": "/home/tumlinson/CellStack",
-        "relationship": "Git umbrella; Baseplane, Cellerator, and CellShard are submodules",
+        "relationship": "retired coordination wrapper retained only as historical evidence",
         "head": "b8aabdcf7c185965b537788118675319e81b4b92",
         "branch": "main",
         "upstream": "origin/main"
       },
       "baseplane": {
-        "root": "/home/tumlinson/CellStack/Baseplane",
-        "relationship": "authoritative v2 project and CellStack submodule",
+        "root": "/home/tumlinson/Baseplane",
+        "relationship": "independent authoritative v2 project",
         "head": "768065b4bdd6693429a22a49c0fdeb2f1946180f",
         "branch": "main",
         "upstream": "origin/main"
       },
       "cellerator": {
-        "root": "/home/tumlinson/CellStack/Cellerator",
-        "relationship": "external repository scope and CellStack submodule",
+        "root": "/home/tumlinson/Cellerator",
+        "relationship": "independent sibling repository scope",
         "head": "72f3012adf63bbd8308fea620c9d8d8841136b51",
         "branch": "main",
         "upstream": "origin/main",
         "external_blocker": "The CellStack root v2 project now owns CE-ARCH-00 recovery. Baseplane cross-library tasks must wait for explicit external CE-ARCH checkpoints and must never use DeviceMathContext as an integration ABI."
       },
       "cellshard": {
-        "root": "/home/tumlinson/CellStack/CellShard",
-        "relationship": "external parked scope and CellStack submodule",
+        "root": "/home/tumlinson/CellShard",
+        "relationship": "independent sibling repository, parked for this plan",
         "head": "bbe5917bab88ffca2d16bc86166a8de368a4abbe",
         "branch": "main",
         "upstream": "origin/main"
       },
       "celleratorch": {
-        "root": "/home/tumlinson/CellStack/Cellerator/components/CelleraTorch",
+        "root": "/home/tumlinson/Cellerator/components/CelleraTorch",
         "relationship": "external optional component scope inside Cellerator"
       }
     },
@@ -52,7 +52,7 @@
       "Cellerator Git history retains deleted include/Cellerator/seq and src/seq files only; no current Cellerator-local canonical sequence primitive exists"
     ],
     "generic_worker_prompt": "Use $todo-orchestrator and continue. Work only in the task you transactionally claim. Use $cpp-context-compiler for semantic source retrieval and authoring. Obey all recorded leases, resources, checkpoints, interfaces, acceptance commands, and stop conditions. Do not perform git state changes unless the claimed task explicitly owns integration and git publication.",
-    "generic_integrator_prompt": "Use $todo-orchestrator and continue. Claim only an integration task. Reconcile all prerequisite handoffs and interface hashes, acquire every recorded public-API/CMake/external-repository/integration lock, run guard and changes before shared seams, and use the exact recorded gates. Do not commit, push, rebase, reset, stash, switch branches, or update CellStack pointers unless a later explicitly authorized publication task owns those actions."
+    "generic_integrator_prompt": "Use $todo-orchestrator and continue. Claim only an integration task. Reconcile all prerequisite handoffs and interface hashes, acquire every recorded public-API/CMake/external-repository/integration lock, run guard and changes before shared seams, and use the exact recorded gates. Do not commit, push, rebase, reset, stash, switch branches, or update another repository unless a later explicitly authorized publication task owns those actions."
   },
   "invariants": [
     {
@@ -72,7 +72,7 @@
     },
     {
       "id": "external-repositories",
-      "rule": "Cellerator, CelleraTorch, CellShard, and CellStack are external to this Baseplane project root. Cellerator implementation ownership is represented only by external CE-ARCH checkpoint decisions; Baseplane tasks never duplicate or claim it. CellShard receives no work. Any future external task must inspect the owning ledger, AGENTS.md, Git state, claims, and leases and stop on overlap.",
+      "rule": "Cellerator, CelleraTorch, and CellShard are external to this Baseplane project root. Cellerator implementation ownership is represented only by external CE-ARCH checkpoint decisions; Baseplane tasks never duplicate or claim it. CellShard receives no work. Any future external task must inspect the owning ledger, AGENTS.md, Git state, claims, and leases and stop on overlap.",
       "severity": "error"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "id": "shared-seams",
-      "rule": "Only the designated integrator may edit root CMakeLists.txt, public umbrella headers, package exports, central docs indices, common benchmark drivers, Cellerator shared registries, or CellStack pointers. Acquire the named lock and run guard/changes before the critical section.",
+      "rule": "Only the designated integrator may edit root CMakeLists.txt, public umbrella headers, package exports, central docs indices, common benchmark drivers, Cellerator shared registries, or cross-repository integration metadata. Acquire the named lock and run guard/changes before the critical section.",
       "severity": "error"
     },
     {
@@ -3619,7 +3619,7 @@
           "id": "CE-BITOP-40-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3629,7 +3629,7 @@
           "id": "CE-BITOP-40-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40", "--target", "sequenceComputeRuntimeTest", "coreSparseLayoutRuntimeTest", "-j", "4"],
+          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40", "--target", "sequenceComputeRuntimeTest", "coreSparseLayoutRuntimeTest", "-j", "4"],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -3639,7 +3639,7 @@
           "id": "CE-BITOP-40-TEST",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3756,7 +3756,7 @@
           "id": "CE-BITOP-41-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-41", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3766,7 +3766,7 @@
           "id": "CE-BITOP-41-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-41", "--target", "sequenceEventModelRuntimeTest", "-j", "4"],
+          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41", "--target", "sequenceEventModelRuntimeTest", "-j", "4"],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -3776,7 +3776,7 @@
           "id": "CE-BITOP-41-TEST",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-41/sequenceEventModelRuntimeTest"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41/sequenceEventModelRuntimeTest"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3867,7 +3867,7 @@
           "id": "CE-BITOP-42-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3877,7 +3877,7 @@
           "id": "CE-BITOP-42-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42", "--target", "sequenceSemanticPartitionRuntimeTest", "-j", "4"],
+          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42", "--target", "sequenceSemanticPartitionRuntimeTest", "-j", "4"],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -3887,7 +3887,7 @@
           "id": "CE-BITOP-42-TEST",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -4428,7 +4428,7 @@
           "id": "STACK-BITOP-51-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/CellStack/Cellerator", "-B", "/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/CellStack/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
           "cwd": ".",
           "timeout": 600,
           "expected_exit_code": 0,
@@ -4438,7 +4438,7 @@
           "id": "STACK-BITOP-51-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51", "--target", "sequenceMultiGpuRuntimeTest", "-j", "4"],
+          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51", "--target", "sequenceMultiGpuRuntimeTest", "-j", "4"],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -4448,7 +4448,7 @@
           "id": "STACK-BITOP-51-ONE-GPU",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "1"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "1"],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -4459,7 +4459,7 @@
           "id": "STACK-BITOP-51-FOUR-GPU",
           "type": "benchmark",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "4"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "4"],
           "cwd": ".",
           "timeout": 3600,
           "expected_exit_code": 0,
@@ -4718,7 +4718,7 @@
           "id": "STACK-BITOP-52-CELLERATOR",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -4891,7 +4891,7 @@
           "id": "STACK-BITOP-53-EXTERNAL",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/CellStack/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
+          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,

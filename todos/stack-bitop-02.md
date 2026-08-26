@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-02: Ownership and architecture contract
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Create the durable Baseplane-local BitOp ADR for representation, validity, predicates, outputs, prepared-program meaning, and backend independence without freezing cross-library identity, relation, numerical, runtime, or planner contracts owned by Cellerator.

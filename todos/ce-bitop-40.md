@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-40: Native Cellerator Baseplane adapter
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Preserve the historical external-adapter proposal as superseded; authoritative Cellerator integration is CE-ARCH-40 and must not bind Baseplane to DeviceMathContext.

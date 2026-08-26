@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-51: Multi-GPU chunking and halo ownership
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Park multi-GPU sequence integration behind Cellerator's future partition contract; Baseplane remains bounded-chunk, single-device, and stream-explicit.

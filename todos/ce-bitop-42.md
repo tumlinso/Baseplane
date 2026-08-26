@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-42: Learned semantic partitions
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Park learned semantic partitions until the common ABI, runtime, execution-order, operation-core, and real-data planner evidence exist.

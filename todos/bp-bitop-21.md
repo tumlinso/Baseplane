@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-21: Plan normalization, lowering, and backend classification
 
-Task revision: `128`; current project revision is in `todo-status.md`.
+Task revision: `130`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement deterministic host preparation, normalization, family classification, halo/output-density propagation, and scratch query.
