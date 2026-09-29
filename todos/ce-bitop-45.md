@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-45: Conditional sparse long-range object reasoning
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 If activated by a biological objective, perform sparse retrieval/edge proposal/message passing over event or region objects in Cellerator.
@@ -15,7 +15,7 @@ If activated by a biological objective, perform sparse retrieval/edge proposal/m
 - Result: `-`
 
 ## Next Action
-Remain parked until concrete biological objective, edge source, baseline and sparse complexity budget exist.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`

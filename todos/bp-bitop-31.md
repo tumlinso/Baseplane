@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-31: CUDA allowed-motif and plane-predicate backends
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement fused one-shot, explicit resident-plane, capped exact-expansion, warp allowed-motif, and mask-output candidates with validity/strand parity.
@@ -15,7 +15,7 @@ Implement fused one-shot, explicit resident-plane, capped exact-expansion, warp 
 - Result: `-`
 
 ## Next Action
-Implement candidates with explicit buffers/scratch; test CPU parity/invalid/strand; collect one-shot versus reuse crossover inputs without silently caching planes.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `bench/bitop/allowed_scan_bench.cu`

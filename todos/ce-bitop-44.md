@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-44: Conditional CelleraTorch bindings
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 After native interfaces stabilize and activation is explicit, expose event batches/learned parameters as optional Torch-facing views without moving ownership.
@@ -15,7 +15,7 @@ After native interfaces stabilize and activation is explicit, expose event batch
 - Result: `-`
 
 ## Next Action
-Remain blocked until native hashes stable and activation set; then work only under Cellerator/components/CelleraTorch.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`

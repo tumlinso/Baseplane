@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-43: Conditional continuous-to-discrete predicate induction
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 If activated by a concrete dataset/target/baseline, train continuous motif/grammar proposals and periodically compile discrete Baseplane plans for held-out comparison.
@@ -15,7 +15,7 @@ If activated by a concrete dataset/target/baseline, train continuous motif/gramm
 - Result: `-`
 
 ## Next Action
-Remain parked until prediction target, dataset, baseline, seed plan, and resource budget are recorded.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`

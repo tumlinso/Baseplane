@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-51: Multi-GPU chunking and halo ownership
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Park multi-GPU sequence integration behind Cellerator's future partition contract; Baseplane remains bounded-chunk, single-device, and stream-explicit.
@@ -15,7 +15,7 @@ Park multi-GPU sequence integration behind Cellerator's future partition contrac
 - Result: `-`
 
 ## Next Action
-Remain parked. Do not acquire gpu-all4 or benchmark resources until Cellerator publishes an explicit partition contract and a later plan revision activates validation.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`

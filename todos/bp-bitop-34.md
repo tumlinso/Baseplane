@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-34: CUDA segment reductions
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement only minimum generic segment operations required by the first Cellerator adapter, selecting CUB/custom by measured shape.
@@ -15,7 +15,7 @@ Implement only minimum generic segment operations required by the first Cellerat
 - Result: `-`
 
 ## Next Action
-Agree minimum adapter operations from frozen segment ABI, implement CPU parity/uneven/zero segments/explicit scratch and sm_70-safe kernels.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `bench/bitop/segment_reduce_bench.cu`

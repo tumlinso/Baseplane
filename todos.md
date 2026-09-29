@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Orchestrator v2 Projection
 
-Project revision: `130`
+Project revision: `132`
 
 ## Workstreams
 - `STACK-BITOP-01` | kind: validation_task | status: done | parent: BITOP-00 | objective: Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-36: Conditional finite-state cross-tile composition
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 If and only if evidence activates it, implement compact associative tile transition composition for a concrete bounded-state pattern.
@@ -15,7 +15,7 @@ If and only if evidence activates it, implement compact associative tile transit
 - Result: `-`
 
 ## Next Action
-Remain parked until a named pattern proves halos/sparse continuation inefficient, state count bounded, and benchmark supplied.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `include/Baseplane/seq/predicate_transition.hh`

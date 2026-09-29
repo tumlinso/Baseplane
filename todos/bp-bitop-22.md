@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-22: Local mask grammar and bounded halo semantics
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement CPU/reference boundary-safe mask shifts, bounded relations/windows/count thresholds, run boundaries, and ownership masks with plan-derived halo.
@@ -15,7 +15,7 @@ Implement CPU/reference boundary-safe mask shifts, bounded relations/windows/cou
 - Result: `-`
 
 ## Next Action
-Implement correct repeated-shift baseline and ownership mask, test exhaustive boundaries/radii, hand off halo convention to CUDA lane.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `include/Baseplane/seq/mask_grammar.hh`

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-13: Bounded predicate-plan and verifier contract
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Integrate validity, normalized motifs, and output policies into a bounded pointer-free portable sequence program and prepared lowering aligned with the Cellerator-owned common ABI.

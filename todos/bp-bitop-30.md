@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-30: CUDA packed multi-exact motif backend
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Preserve M=1 shifted packed scan and implement/measure batched exact mappings that amortize sequence windows.
@@ -15,7 +15,7 @@ Preserve M=1 shifted packed scan and implement/measure batched exact mappings th
 - Result: `-`
 
 ## Next Action
-Implement candidates A-D in owned files, correctness first, run assigned-GPU tests and leased benchmark gates; preserve M=1 regression rule.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `bench/bitop/exact_batch_bench.cu`

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-21: Plan normalization, lowering, and backend classification
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement deterministic host preparation, normalization, family classification, halo/output-density propagation, and scratch query.
@@ -15,7 +15,7 @@ Implement deterministic host preparation, normalization, family classification, 
 - Result: `-`
 
 ## Next Action
-Implement constant folding, mask/shift normalization, deterministic CSE/dead output elimination, exact/allowed specialization, family candidates, halo/density/scratch; do not bake unmeasured thresholds.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `include/Baseplane/seq/predicate_prepare.hh`

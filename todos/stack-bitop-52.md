@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # STACK-BITOP-52: Packaging, documentation, and consumer contract
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Integrate Baseplane-owned public headers, CMake, and documentation against the external Cellerator common-ABI checkpoint while preserving Baseplane::seq, CPU-only, optional CUDA/Highway, and ownership boundaries.
@@ -15,7 +15,7 @@ Integrate Baseplane-owned public headers, CMake, and documentation against the e
 - Result: `-`
 
 ## Next Action
-Guard all shared Baseplane and external Cellerator seams, reconcile generated docs/targets, validate install/CPU/CUDA/consumer targets; do not create Baseplane::bitop for branding.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `CMakeLists.txt`

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CE-BITOP-42: Learned semantic partitions
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Park learned semantic partitions until the common ABI, runtime, execution-order, operation-core, and real-data planner evidence exist.
@@ -15,7 +15,7 @@ Park learned semantic partitions until the common ABI, runtime, execution-order,
 - Result: `-`
 
 ## Next Action
-Remain parked pending external foundations and a new Cellerator-owned activation decision.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `forbidden`: `CMakeLists.txt`

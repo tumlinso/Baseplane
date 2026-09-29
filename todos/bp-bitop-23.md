@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-23: Deterministic and fast compact emission contracts
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement CPU/reference stable count-scan-emit and explicit unordered emission semantics with exact overflow/multiset accounting.
@@ -15,7 +15,7 @@ Implement CPU/reference stable count-scan-emit and explicit unordered emission s
 - Result: `-`
 
 ## Next Action
-Define stable canonical position/predicate order and unordered multiset mode, exact zero-capacity/overflow, and caller scratch contract in owned files.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `include/Baseplane/emit/sequence_emit.hh`

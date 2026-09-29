@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-50: Benchmark matrix and measured backend selector
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Measure crossover matrix and publish replaceable device-fact-versioned backend policy with same-build correctness checks.
@@ -15,7 +15,7 @@ Measure crossover matrix and publish replaceable device-fact-versioned backend p
 - Result: `-`
 
 ## Next Action
-Guard shared benchmark/CMake seams, wire baseplaneBitOpBench, run serialized matrix/checksum/sanitizer/nsys evidence, set measured policy decisions, publish selector inputs and exact commands.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `CMakeLists.txt`

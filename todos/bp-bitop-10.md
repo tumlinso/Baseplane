@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-10: Validity, chunk coordinates, and boundary-safe views
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Make invalid-base meaning, tail validity, base count, bounded local coordinates, global identity, owned range, and halos explicit without freezing the cross-library ABI.

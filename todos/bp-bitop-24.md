@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-24: Property, adversarial, and differential test corpus
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Fan in all CPU lanes into deterministic reusable fixtures and authoritative baseplaneBitOpCpuTest wiring.
@@ -15,7 +15,7 @@ Fan in all CPU lanes into deterministic reusable fixtures and authoritative base
 - Result: `-`
 
 ## Next Action
-Guard CMake, build deterministic generators/fixture schema, wire baseplaneBitOpCpuTest, run CPU-only acceptance, reach BITOP_CPU_REFERENCE_READY.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `CMakeLists.txt`

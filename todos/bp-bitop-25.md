@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-25: Generic segment and regional-summary primitives
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Define pointer-free offset/index segment views and deterministic CPU event-count/popcount/sum/max/emit-if/minimal interval operations.
@@ -15,7 +15,7 @@ Define pointer-free offset/index segment views and deterministic CPU event-count
 - Result: `-`
 
 ## Next Action
-Implement only generic segment vocabulary and CPU reference; reach BITOP_EVENT_AND_SEGMENT_ABI_READY and freeze baseplane-segment-v1.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `include/Baseplane/segment/segment_reduce.hh`

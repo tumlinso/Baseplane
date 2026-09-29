@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-32: CUDA local grammar, halo, and ownership backend
 
-Task revision: `130`; current project revision is in `todo-status.md`.
+Task revision: `132`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement boundary-safe CUDA mask grammar using adjacent loads or shared supertiles only where reuse pays, with plan-derived halo and unique anchor ownership.
@@ -15,7 +15,7 @@ Implement boundary-safe CUDA mask grammar using adjacent loads or shared superti
 - Result: `-`
 
 ## Next Action
-Implement global streaming baseline and conditional shared supertile, test cross-word/block/OOB/duplicate ownership, profile only under leased profiler.
+Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 
 ## Ownership
 - `exclusive`: `bench/bitop/mask_grammar_bench.cu`

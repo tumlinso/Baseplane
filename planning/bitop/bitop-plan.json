@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": {
     "name": "Baseplane BitOp",
     "authority": "/home/tumlinson/Baseplane",
@@ -165,37 +165,55 @@
       "id": "CELLERATOR-BIOLOGICAL-ABI-EXTERNAL",
       "title": "CE-ARCH-10 biological identity and operand ABI checkpoint",
       "value": "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN",
-      "allowed": ["pending", "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"]
+      "allowed": [
+        "pending",
+        "CELLERATOR_BIOLOGICAL_ABI_V1_FROZEN"
+      ]
     },
     {
       "id": "CELLERATOR-EXECUTION-ORDER-EXTERNAL",
       "title": "CE-ARCH-11 internal execution-order checkpoint",
       "value": "pending",
-      "allowed": ["pending", "CELLERATOR_EXECUTION_ORDER_V1_READY"]
+      "allowed": [
+        "pending",
+        "CELLERATOR_EXECUTION_ORDER_V1_READY"
+      ]
     },
     {
       "id": "CELLERATOR-EXECUTION-SESSION-EXTERNAL",
       "title": "CE-ARCH-12 unified runtime checkpoint",
       "value": "pending",
-      "allowed": ["pending", "CELLERATOR_EXECUTION_SESSION_V1_READY"]
+      "allowed": [
+        "pending",
+        "CELLERATOR_EXECUTION_SESSION_V1_READY"
+      ]
     },
     {
       "id": "CELLERATOR-OPERATION-CORE-EXTERNAL",
       "title": "CE-ARCH-22 operation core checkpoint",
       "value": "pending",
-      "allowed": ["pending", "CELLERATOR_OPERATION_CORE_V1_READY"]
+      "allowed": [
+        "pending",
+        "CELLERATOR_OPERATION_CORE_V1_READY"
+      ]
     },
     {
       "id": "CELLERATOR-PLANNER-EVIDENCE-EXTERNAL",
       "title": "CE-ARCH-30 and CE-ARCH-31 evidence/planner checkpoint",
       "value": "pending",
-      "allowed": ["pending", "CELLERATOR_PLANNER_V1_VALIDATED"]
+      "allowed": [
+        "pending",
+        "CELLERATOR_PLANNER_V1_VALIDATED"
+      ]
     },
     {
       "id": "CELLERATOR-PARTITION-CONTRACT-EXTERNAL",
       "title": "Future Cellerator partition contract checkpoint",
       "value": "pending",
-      "allowed": ["pending", "ready"]
+      "allowed": [
+        "pending",
+        "ready"
+      ]
     },
     {
       "id": "BITOP-CHUNK-COORDINATES",
@@ -803,14 +821,18 @@
         "preserve-work",
         "non-goals"
       ],
-      "next_action": "Remain lifecycle-blocked until STACK-BITOP-53 validates every mandatory lane; then a coordinator plan revision may close the parent as validated.",
-      "notes": "Mandatory Baseplane-local completion excludes BP-BITOP-36, CE-BITOP-41/42/43/44/45, STACK-BITOP-51, and CS-BITOP-60 unless their external/activation checkpoints are satisfied. Baseplane must not freeze an independent numerical ecosystem, DeviceMathContext integration, parameter_descriptor learned boundary, or mandatory event/segment materialization. This parent owns no implementation and never edits external repositories.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Mandatory Baseplane-local completion excludes BP-BITOP-36, CE-BITOP-41/42/43/44/45, STACK-BITOP-51, and CS-BITOP-60 unless their external/activation checkpoints are satisfied. Baseplane must not freeze an independent numerical ecosystem, DeviceMathContext integration, parameter_descriptor learned boundary, or mandatory event/segment materialization. This parent owns no implementation and never edits external repositories. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain lifecycle-blocked until STACK-BITOP-53 validates every mandatory lane; then a coordinator plan revision may close the parent as validated.",
       "result_policy": {
         "allowed_dispositions": [
           "validated",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "STACK-BITOP-01",
@@ -1911,8 +1933,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement oracle only in owned files; property-test against unpacked logic; hand off deterministic fixture interface to BP-BITOP-24.",
-      "notes": "CPU-only build must remain supported. Cover all edge cases, no backend-specific public types. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-20 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-20 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_predicate_execute_scalar.cpp src/seq/predicate_execute_scalar.cpp src/seq/predicate_plan.cpp src/seq/dna2_validity.cpp src/seq/dna2_allowed.cpp src/seq/dna2_scalar.cpp -o build-bitop-BP-BITOP-20/test_predicate_execute_scalar; ./build-bitop-BP-BITOP-20/test_predicate_execute_scalar.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "CPU-only build must remain supported. Cover all edge cases, no backend-specific public types. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-20 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-20 --target baseplane_seq -j 4; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_predicate_execute_scalar.cpp src/seq/predicate_execute_scalar.cpp src/seq/predicate_plan.cpp src/seq/dna2_validity.cpp src/seq/dna2_allowed.cpp src/seq/dna2_scalar.cpp -o build-bitop-BP-BITOP-20/test_predicate_execute_scalar; ./build-bitop-BP-BITOP-20/test_predicate_execute_scalar. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement oracle only in owned files; property-test against unpacked logic; hand off deterministic fixture interface to BP-BITOP-24.",
       "gates": [
         {
           "id": "BP-BITOP-20-SOURCE",
@@ -1947,6 +1969,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2015,8 +2041,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement constant folding, mask/shift normalization, deterministic CSE/dead output elimination, exact/allowed specialization, family candidates, halo/density/scratch; do not bake unmeasured thresholds.",
-      "notes": "Classifier candidates: M=1 exact count current packed scanner; exact batch; one-shot allowed/Boolean fused packed-to-plane; reused allowed/grammar resident planes; mask grammar; scalar fallback. Identical portable plans lower identically; prepared descriptors have no hidden allocation. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-21 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_predicate_prepare.cpp src/seq/predicate_prepare.cpp src/seq/predicate_plan.cpp -o build-bitop-BP-BITOP-21/test_predicate_prepare; ./build-bitop-BP-BITOP-21/test_predicate_prepare.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Classifier candidates: M=1 exact count current packed scanner; exact batch; one-shot allowed/Boolean fused packed-to-plane; reused allowed/grammar resident planes; mask grammar; scalar fallback. Identical portable plans lower identically; prepared descriptors have no hidden allocation. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-21 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_predicate_prepare.cpp src/seq/predicate_prepare.cpp src/seq/predicate_plan.cpp -o build-bitop-BP-BITOP-21/test_predicate_prepare; ./build-bitop-BP-BITOP-21/test_predicate_prepare. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement constant folding, mask/shift normalization, deterministic CSE/dead output elimination, exact/allowed specialization, family candidates, halo/density/scratch; do not bake unmeasured thresholds.",
       "gates": [
         {
           "id": "BP-BITOP-21-SOURCE",
@@ -2051,6 +2077,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2120,8 +2150,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement correct repeated-shift baseline and ownership mask, test exhaustive boundaries/radii, hand off halo convention to CUDA lane.",
-      "notes": "Relations: exact offset, bounded spacing, adjacency, small ANY/ALL, count threshold, start/end masks. shifted_mask loads adjacent words with checked bounds and r==0 special case; align B back to A anchors. Tile reads halo but only central owned anchors emit. Test distances 0,1,7,31,32,33,63,64 and configured larger radius; no undefined shift, OOB, or duplicate. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-22 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_mask_grammar.cpp src/seq/mask_grammar_scalar.cpp -o build-bitop-BP-BITOP-22/test_mask_grammar; ./build-bitop-BP-BITOP-22/test_mask_grammar.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Relations: exact offset, bounded spacing, adjacency, small ANY/ALL, count threshold, start/end masks. shifted_mask loads adjacent words with checked bounds and r==0 special case; align B back to A anchors. Tile reads halo but only central owned anchors emit. Test distances 0,1,7,31,32,33,63,64 and configured larger radius; no undefined shift, OOB, or duplicate. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-22 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/seq/test_mask_grammar.cpp src/seq/mask_grammar_scalar.cpp -o build-bitop-BP-BITOP-22/test_mask_grammar; ./build-bitop-BP-BITOP-22/test_mask_grammar. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement correct repeated-shift baseline and ownership mask, test exhaustive boundaries/radii, hand off halo convention to CUDA lane.",
       "gates": [
         {
           "id": "BP-BITOP-22-SOURCE",
@@ -2156,6 +2186,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2230,8 +2264,8 @@
           "required": true
         }
       ],
-      "next_action": "Define stable canonical position/predicate order and unordered multiset mode, exact zero-capacity/overflow, and caller scratch contract in owned files.",
-      "notes": "Stable path is count per tile/segment, exclusive scan, emit. Unordered path permits aggregation but not hidden ordering. Both yield same multiset. CUB is only behind explicit caller scratch in CUDA. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-23 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/emit/test_sequence_emit.cpp src/emit/sequence_emit_scalar.cpp -o build-bitop-BP-BITOP-23/test_sequence_emit; ./build-bitop-BP-BITOP-23/test_sequence_emit.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Stable path is count per tile/segment, exclusive scan, emit. Unordered path permits aggregation but not hidden ordering. Both yield same multiset. CUB is only behind explicit caller scratch in CUDA. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-23 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/emit/test_sequence_emit.cpp src/emit/sequence_emit_scalar.cpp -o build-bitop-BP-BITOP-23/test_sequence_emit; ./build-bitop-BP-BITOP-23/test_sequence_emit. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Define stable canonical position/predicate order and unordered multiset mode, exact zero-capacity/overflow, and caller scratch contract in owned files.",
       "gates": [
         {
           "id": "BP-BITOP-23-HEADER",
@@ -2266,6 +2300,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2334,8 +2372,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement only generic segment vocabulary and CPU reference; reach BITOP_EVENT_AND_SEGMENT_ABI_READY and freeze baseplane-segment-v1.",
-      "notes": "View contains offsets, optional indices, segment_count, item_count. Validate monotonic offsets/ranges, accumulator widths/overflow. Test empty/singleton/uneven/large segments and determinism. No enhancer/promoter/regulon/gene/cell-state labels. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-25 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/segment/test_segment_reduce.cpp src/segment/segment_reduce_scalar.cpp -o build-bitop-BP-BITOP-25/test_segment_reduce; ./build-bitop-BP-BITOP-25/test_segment_reduce.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "View contains offsets, optional indices, segment_count, item_count. Validate monotonic offsets/ranges, accumulator widths/overflow. Test empty/singleton/uneven/large segments and determinism. No enhancer/promoter/regulon/gene/cell-state labels. Acceptance commands: cmake -S . -B build-bitop-BP-BITOP-25 -DBASEPLANE_ENABLE_CUDA=OFF; /usr/bin/g++-12 -std=c++17 -O2 -Iinclude tests/segment/test_segment_reduce.cpp src/segment/segment_reduce_scalar.cpp -o build-bitop-BP-BITOP-25/test_segment_reduce; ./build-bitop-BP-BITOP-25/test_segment_reduce. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement only generic segment vocabulary and CPU reference; reach BITOP_EVENT_AND_SEGMENT_ABI_READY and freeze baseplane-segment-v1.",
       "checkpoints": [
         {
           "id": "BITOP_EVENT_AND_SEGMENT_ABI_READY",
@@ -2384,6 +2422,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2479,8 +2521,8 @@
           "required": true
         }
       ],
-      "next_action": "Guard CMake, build deterministic generators/fixture schema, wire baseplaneBitOpCpuTest, run CPU-only acceptance, reach BITOP_CPU_REFERENCE_READY.",
-      "notes": "Cover canonical/invalid bases, all allowed subsets, random motifs/sequences, reverse complements/palindromes, mixed lengths/mismatches, cross-word/tail/zero/no-hit/all-hit/overflow/dense masks/stable-vs-unordered multisets/halo ownership/verifier rejects. Fixed seeds; failures print compact reproducer. Fixture schema must be reusable by CPU/CUDA/SIMD/Cellerator. Acceptance: cmake -S . -B build-bitop-BP-BITOP-24 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-24 --target baseplaneBitOpCpuTest -j 4; ./build-bitop-BP-BITOP-24/baseplaneBitOpCpuTest.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Cover canonical/invalid bases, all allowed subsets, random motifs/sequences, reverse complements/palindromes, mixed lengths/mismatches, cross-word/tail/zero/no-hit/all-hit/overflow/dense masks/stable-vs-unordered multisets/halo ownership/verifier rejects. Fixed seeds; failures print compact reproducer. Fixture schema must be reusable by CPU/CUDA/SIMD/Cellerator. Acceptance: cmake -S . -B build-bitop-BP-BITOP-24 -DBASEPLANE_ENABLE_CUDA=OFF; cmake --build build-bitop-BP-BITOP-24 --target baseplaneBitOpCpuTest -j 4; ./build-bitop-BP-BITOP-24/baseplaneBitOpCpuTest. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Guard CMake, build deterministic generators/fixture schema, wire baseplaneBitOpCpuTest, run CPU-only acceptance, reach BITOP_CPU_REFERENCE_READY.",
       "checkpoints": [
         {
           "id": "BITOP_CPU_REFERENCE_READY",
@@ -2584,7 +2626,11 @@
           "validated",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "BP-BITOP-30",
@@ -2663,8 +2709,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement candidates A-D in owned files, correctness first, run assigned-GPU tests and leased benchmark gates; preserve M=1 regression rule.",
-      "notes": "Compare repeated one-thread/window scans, warp motif tile lane=motif with lane0 window broadcast, thread=window/register motif loop, shared motif tile. Mixed lengths/mismatches; group only when semantics permit. Benchmark M=1,8,32,128,larger; bytes per motif, base-predicates/s, registers/occupancy/shared/count atomics. If atomics bottleneck use per-block partials. Count reduction preserves current block shared until BITOP-COUNT-REDUCTION evidence promotes shuffle. Acceptance commands after BP-BITOP-35 wiring: cmake -S . -B build-bitop-BP-BITOP-30 -DBASEPLANE_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-BP-BITOP-30 --target baseplaneBitOpCudaTest -j 4; ./build-bitop-BP-BITOP-30/baseplaneBitOpCudaTest --case exact-batch.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Compare repeated one-thread/window scans, warp motif tile lane=motif with lane0 window broadcast, thread=window/register motif loop, shared motif tile. Mixed lengths/mismatches; group only when semantics permit. Benchmark M=1,8,32,128,larger; bytes per motif, base-predicates/s, registers/occupancy/shared/count atomics. If atomics bottleneck use per-block partials. Count reduction preserves current block shared until BITOP-COUNT-REDUCTION evidence promotes shuffle. Acceptance commands after BP-BITOP-35 wiring: cmake -S . -B build-bitop-BP-BITOP-30 -DBASEPLANE_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-BP-BITOP-30 --target baseplaneBitOpCudaTest -j 4; ./build-bitop-BP-BITOP-30/baseplaneBitOpCudaTest --case exact-batch. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement candidates A-D in owned files, correctness first, run assigned-GPU tests and leased benchmark gates; preserve M=1 regression rule.",
       "gates": [
         {
           "id": "BP-BITOP-30-SOURCE",
@@ -2701,6 +2747,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2781,8 +2831,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement candidates with explicit buffers/scratch; test CPU parity/invalid/strand; collect one-shot versus reuse crossover inputs without silently caching planes.",
-      "notes": "Split planes still cost 2 bits/base but materialization adds a full pass. Measure predicate count, reuse, output, hit density, memory, downstream grammar. Exact expansion cardinality product is capped. No dense byte output. Resident cache caller-owned and optional. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case allowed-plane.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Split planes still cost 2 bits/base but materialization adds a full pass. Measure predicate count, reuse, output, hit density, memory, downstream grammar. Exact expansion cardinality product is capped. No dense byte output. Resident cache caller-owned and optional. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case allowed-plane. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement candidates with explicit buffers/scratch; test CPU parity/invalid/strand; collect one-shot versus reuse crossover inputs without silently caching planes.",
       "gates": [
         {
           "id": "BP-BITOP-31-SOURCE",
@@ -2819,6 +2869,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -2902,8 +2956,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement global streaming baseline and conditional shared supertile, test cross-word/block/OOB/duplicate ownership, profile only under leased profiler.",
-      "notes": "Do not exchange every base across warps. Warp shuffles only when actual mapping benefits. Compare global loads against shared halo on V100; profiler evidence selects backend. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case grammar-halo; profiler gate is recorded in BP50 unless needed to decide this task.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Do not exchange every base across warps. Warp shuffles only when actual mapping benefits. Compare global loads against shared halo on V100; profiler evidence selects backend. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case grammar-halo; profiler gate is recorded in BP50 unless needed to decide this task. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement global streaming baseline and conditional shared supertile, test cross-word/block/OOB/duplicate ownership, profile only under leased profiler.",
       "gates": [
         {
           "id": "BP-BITOP-32-SOURCE",
@@ -2940,6 +2994,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -3023,8 +3081,8 @@
           "required": true
         }
       ],
-      "next_action": "Implement both explicit policies, CPU multiset parity, stable byte determinism, sparse-to-dense density cases, then run memcheck/racecheck with exclusive sanitizer resource.",
-      "notes": "Unordered: ballot, popcount, lane rank, block-local aggregation, few global reservations, coalesced writes. Stable: tile counts, device exclusive scan behind caller scratch, tile/position/predicate emit. Logical count remains correct under capacity. No hidden allocation/sync. Acceptance after BP35 wiring plus /opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer --tool memcheck ./build-bitop-BP-BITOP-33/baseplaneBitOpCudaTest --case emit and --tool racecheck same.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Unordered: ballot, popcount, lane rank, block-local aggregation, few global reservations, coalesced writes. Stable: tile counts, device exclusive scan behind caller scratch, tile/position/predicate emit. Logical count remains correct under capacity. No hidden allocation/sync. Acceptance after BP35 wiring plus /opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer --tool memcheck ./build-bitop-BP-BITOP-33/baseplaneBitOpCudaTest --case emit and --tool racecheck same. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Implement both explicit policies, CPU multiset parity, stable byte determinism, sparse-to-dense density cases, then run memcheck/racecheck with exclusive sanitizer resource.",
       "gates": [
         {
           "id": "BP-BITOP-33-SOURCE",
@@ -3061,6 +3119,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -3150,8 +3212,8 @@
           "required": true
         }
       ],
-      "next_action": "Agree minimum adapter operations from frozen segment ABI, implement CPU parity/uneven/zero segments/explicit scratch and sm_70-safe kernels.",
-      "notes": "Do not implement every ragged reduction. Determinism where mathematically expected; explicit accumulator/overflow. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case segments.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Do not implement every ragged reduction. Determinism where mathematically expected; explicit accumulator/overflow. Acceptance after BP35 wiring: configure sm_70, build baseplaneBitOpCudaTest, run --case segments. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Agree minimum adapter operations from frozen segment ABI, implement CPU parity/uneven/zero segments/explicit scratch and sm_70-safe kernels.",
       "gates": [
         {
           "id": "BP-BITOP-34-SOURCE",
@@ -3188,6 +3250,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -3290,8 +3356,8 @@
           "required": true
         }
       ],
-      "next_action": "Guard shared seams, integrate CUDA lanes, wire baseplaneBitOpCudaTest, expose required_scratch/prepare/bind/run and inspectable backend choice, run CPU/CUDA/sanitizer fan-in, reach both executable checkpoints.",
-      "notes": "prepare portable plan -> validate/lower -> report representation/scratch -> bind caller-owned resident sequence/program -> async run on caller stream -> count/mask/events/summary. Repeated run allocates/transfers/synchronizes nothing. Track scratch high-water and decision. CUDA Graphs only if BITOP-LAUNCH-AMORTIZATION promotes after measurement. Acceptance: cmake -S . -B build-bitop-BP-BITOP-35 -DBASEPLANE_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-BP-BITOP-35 --target baseplaneBitOpCpuTest baseplaneBitOpCudaTest -j 4; ./build-bitop-BP-BITOP-35/baseplaneBitOpCpuTest; ./build-bitop-BP-BITOP-35/baseplaneBitOpCudaTest; sanitizer paths below.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "prepare portable plan -> validate/lower -> report representation/scratch -> bind caller-owned resident sequence/program -> async run on caller stream -> count/mask/events/summary. Repeated run allocates/transfers/synchronizes nothing. Track scratch high-water and decision. CUDA Graphs only if BITOP-LAUNCH-AMORTIZATION promotes after measurement. Acceptance: cmake -S . -B build-bitop-BP-BITOP-35 -DBASEPLANE_ENABLE_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=70; cmake --build build-bitop-BP-BITOP-35 --target baseplaneBitOpCpuTest baseplaneBitOpCudaTest -j 4; ./build-bitop-BP-BITOP-35/baseplaneBitOpCpuTest; ./build-bitop-BP-BITOP-35/baseplaneBitOpCudaTest; sanitizer paths below. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Guard shared seams, integrate CUDA lanes, wire baseplaneBitOpCudaTest, expose required_scratch/prepare/bind/run and inspectable backend choice, run CPU/CUDA/sanitizer fan-in, reach both executable checkpoints.",
       "checkpoints": [
         {
           "id": "BITOP_CUDA_CORE_READY",
@@ -3467,6 +3533,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -3521,15 +3591,19 @@
         "conditional-policy",
         "communication"
       ],
-      "next_action": "Remain parked until a named pattern proves halos/sparse continuation inefficient, state count bounded, and benchmark supplied.",
-      "notes": "Transition T_tile maps input state to output state and composes associatively/prefix-scan. Acceptance if activated: formal composition tests, CPU oracle, bounded table bytes, measured memory/scan overhead, no generic regex engine. Allowed disposition evaluated_not_promoted if evidence rejects promotion.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Transition T_tile maps input state to output state and composes associatively/prefix-scan. Acceptance if activated: formal composition tests, CPU oracle, bounded table bytes, measured memory/scan overhead, no generic regex engine. Allowed disposition evaluated_not_promoted if evidence rejects promotion. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked until a named pattern proves halos/sparse continuation inefficient, state count bounded, and benchmark supplied.",
       "result_policy": {
         "allowed_dispositions": [
           "implemented",
           "evaluated_not_promoted",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "CE-BITOP-40",
@@ -3619,7 +3693,16 @@
           "id": "CE-BITOP-40-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": [
+            "cmake",
+            "-S",
+            "/home/tumlinson/Cellerator",
+            "-B",
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40",
+            "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane",
+            "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3629,7 +3712,16 @@
           "id": "CE-BITOP-40-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40", "--target", "sequenceComputeRuntimeTest", "coreSparseLayoutRuntimeTest", "-j", "4"],
+          "argv": [
+            "cmake",
+            "--build",
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40",
+            "--target",
+            "sequenceComputeRuntimeTest",
+            "coreSparseLayoutRuntimeTest",
+            "-j",
+            "4"
+          ],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -3639,11 +3731,15 @@
           "id": "CE-BITOP-40-TEST",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
-          "resources": ["gpu:any"],
+          "resources": [
+            "gpu:any"
+          ],
           "track_git_head": true
         }
       ]
@@ -3737,8 +3833,8 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Remain parked. A later Cellerator-owned plan revision may supersede or reactivate the concept only after all external foundations and benchmark evidence validate.",
-      "notes": "parameter_descriptor is not accepted as the immediate cross-library learned boundary. Numerical transition belongs at a genuinely quantitative interaction selected by Cellerator. No Cellerator implementation is owned here; old targets and gates are historical and must not run while blocked.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "parameter_descriptor is not accepted as the immediate cross-library learned boundary. Numerical transition belongs at a genuinely quantitative interaction selected by Cellerator. No Cellerator implementation is owned here; old targets and gates are historical and must not run while blocked. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked. A later Cellerator-owned plan revision may supersede or reactivate the concept only after all external foundations and benchmark evidence validate.",
       "checkpoints": [
         {
           "id": "CELLERATOR_SPARSE_EVENT_LEARNING_V1_FROZEN",
@@ -3756,7 +3852,16 @@
           "id": "CE-BITOP-41-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": [
+            "cmake",
+            "-S",
+            "/home/tumlinson/Cellerator",
+            "-B",
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41",
+            "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane",
+            "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3766,7 +3871,15 @@
           "id": "CE-BITOP-41-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41", "--target", "sequenceEventModelRuntimeTest", "-j", "4"],
+          "argv": [
+            "cmake",
+            "--build",
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41",
+            "--target",
+            "sequenceEventModelRuntimeTest",
+            "-j",
+            "4"
+          ],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -3776,13 +3889,21 @@
           "id": "CE-BITOP-41-TEST",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41/sequenceEventModelRuntimeTest"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-41/sequenceEventModelRuntimeTest"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
-          "resources": ["gpu:any"],
+          "resources": [
+            "gpu:any"
+          ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -3860,14 +3981,23 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Remain parked pending external foundations and a new Cellerator-owned activation decision.",
-      "notes": "Biological hierarchy and partitions must pay rent in measured runtime and normally be indices or views over shared structures and values. This Baseplane task owns no learned partition implementation; old targets and gates are historical.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Biological hierarchy and partitions must pay rent in measured runtime and normally be indices or views over shared structures and values. This Baseplane task owns no learned partition implementation; old targets and gates are historical. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked pending external foundations and a new Cellerator-owned activation decision.",
       "gates": [
         {
           "id": "CE-BITOP-42-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": [
+            "cmake",
+            "-S",
+            "/home/tumlinson/Cellerator",
+            "-B",
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42",
+            "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane",
+            "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
@@ -3877,7 +4007,15 @@
           "id": "CE-BITOP-42-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42", "--target", "sequenceSemanticPartitionRuntimeTest", "-j", "4"],
+          "argv": [
+            "cmake",
+            "--build",
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42",
+            "--target",
+            "sequenceSemanticPartitionRuntimeTest",
+            "-j",
+            "4"
+          ],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -3887,13 +4025,21 @@
           "id": "CE-BITOP-42-TEST",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
-          "resources": ["gpu:any"],
+          "resources": [
+            "gpu:any"
+          ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -3951,15 +4097,19 @@
         "stop-conditions",
         "non-goals"
       ],
-      "next_action": "Remain parked until prediction target, dataset, baseline, seed plan, and resource budget are recorded.",
-      "notes": "Candidate continuous 4-base logits/thresholded allowed masks, straight-through, Gumbel, convolutional discovery, or bounded search. Measure predictive difference, event overlap, seed stability, reverse-complement consistency, sparsity, runtime. Training stays in Cellerator, never Baseplane.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Candidate continuous 4-base logits/thresholded allowed masks, straight-through, Gumbel, convolutional discovery, or bounded search. Measure predictive difference, event overlap, seed stability, reverse-complement consistency, sparsity, runtime. Training stays in Cellerator, never Baseplane. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked until prediction target, dataset, baseline, seed plan, and resource budget are recorded.",
       "result_policy": {
         "allowed_dispositions": [
           "implemented",
           "evaluated_not_promoted",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "CE-BITOP-44",
@@ -4034,15 +4184,19 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Remain blocked until native hashes stable and activation set; then work only under Cellerator/components/CelleraTorch.",
-      "notes": "Prefer zero-copy, native allocation ownership, explicit shape/stride/stream/lifetime/device. Autograd only continuous Cellerator ops; discrete Baseplane v1 is non-differentiable. Torch build remains optional; Baseplane/native Cellerator gain no Torch dependency.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Prefer zero-copy, native allocation ownership, explicit shape/stride/stream/lifetime/device. Autograd only continuous Cellerator ops; discrete Baseplane v1 is non-differentiable. Torch build remains optional; Baseplane/native Cellerator gain no Torch dependency. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain blocked until native hashes stable and activation set; then work only under Cellerator/components/CelleraTorch.",
       "result_policy": {
         "allowed_dispositions": [
           "implemented",
           "evaluated_not_promoted",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "CE-BITOP-45",
@@ -4099,15 +4253,19 @@
         "stop-conditions",
         "non-goals"
       ],
-      "next_action": "Remain parked until concrete biological objective, edge source, baseline and sparse complexity budget exist.",
-      "notes": "Edges may come from genomic windows, caller-supplied contacts/indices, shared predicates, learned retrieval/top-k. Do not map biology to warp adjacency or make Baseplane own enhancer/promoter semantics.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Edges may come from genomic windows, caller-supplied contacts/indices, shared predicates, learned retrieval/top-k. Do not map biology to warp adjacency or make Baseplane own enhancer/promoter semantics. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked until concrete biological objective, edge source, baseline and sparse complexity budget exist.",
       "result_policy": {
         "allowed_dispositions": [
           "implemented",
           "evaluated_not_promoted",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "BP-BITOP-50",
@@ -4182,8 +4340,8 @@
           "required": true
         }
       ],
-      "next_action": "Guard shared benchmark/CMake seams, wire baseplaneBitOpBench, run serialized matrix/checksum/sanitizer/nsys evidence, set measured policy decisions, publish selector inputs and exact commands.",
-      "notes": "Matrix: sequence small/~1M/~67M/large resident; motifs 1/8/32/128/larger; lengths 8/16/31/32/mixed; exact/low/high degeneracy; count/mask/stable/unordered; none/sparse/moderate/dense; one-shot/several/many reuse; grammar within-word/cross-word/block/larger; backends current single/repeated/warp tile/thread loop/shared/fused/resident/exact expansion/scalar/Highway. Record kernel/prepare/transfer/end-to-end, bytes, base-predicates/s, events/s, density, registers/local/shared/occupancy/atomics/scratch/device/toolchain/command/checksum. Nsight Systems required; Nsight Compute not mandatory if unsupported. Thresholds versioned with V100 facts.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Matrix: sequence small/~1M/~67M/large resident; motifs 1/8/32/128/larger; lengths 8/16/31/32/mixed; exact/low/high degeneracy; count/mask/stable/unordered; none/sparse/moderate/dense; one-shot/several/many reuse; grammar within-word/cross-word/block/larger; backends current single/repeated/warp tile/thread loop/shared/fused/resident/exact expansion/scalar/Highway. Record kernel/prepare/transfer/end-to-end, bytes, base-predicates/s, events/s, density, registers/local/shared/occupancy/atomics/scratch/device/toolchain/command/checksum. Nsight Systems required; Nsight Compute not mandatory if unsupported. Thresholds versioned with V100 facts. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Guard shared benchmark/CMake seams, wire baseplaneBitOpBench, run serialized matrix/checksum/sanitizer/nsys evidence, set measured policy decisions, publish selector inputs and exact commands.",
       "checkpoints": [
         {
           "id": "BITOP_SELECTOR_MEASURED",
@@ -4249,7 +4407,7 @@
         },
         {
           "id": "BP-BITOP-50-MATRIX",
-          "type": "benchmark",
+          "type": "command",
           "required": true,
           "argv": [
             "./build-bitop-BP-BITOP-50/baseplaneBitOpBench",
@@ -4277,7 +4435,7 @@
         },
         {
           "id": "BP-BITOP-50-NSYS",
-          "type": "benchmark",
+          "type": "command",
           "required": true,
           "argv": [
             "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/profilers/12.9/Nsight_Systems_2025.3/bin/nsys",
@@ -4354,7 +4512,11 @@
           "validated",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "STACK-BITOP-51",
@@ -4421,14 +4583,23 @@
           "required_version": "1"
         }
       ],
-      "next_action": "Remain parked. Do not acquire gpu-all4 or benchmark resources until Cellerator publishes an explicit partition contract and a later plan revision activates validation.",
-      "notes": "Chunk fields: sequence/contig ID, global origin, owned interval, left/right halo, local bases/validity, assigned device. Baseplane stays single-device/stream-explicit. Only owned anchors emit; origin+uint32 local reconstructs global. Keep resident across repeated plans where measured. Source never hardcodes device. Acceptance planned target sequenceMultiGpuRuntimeTest: CMake configure with BASEPLANE_SOURCE_DIR, Torch off, sm_70; build target; run one GPU and under gpu-all4:any+v100-benchmark:any run --devices 4; compare rebased multisets/no duplicates/misses and record scaling/host launch.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Chunk fields: sequence/contig ID, global origin, owned interval, left/right halo, local bases/validity, assigned device. Baseplane stays single-device/stream-explicit. Only owned anchors emit; origin+uint32 local reconstructs global. Keep resident across repeated plans where measured. Source never hardcodes device. Acceptance planned target sequenceMultiGpuRuntimeTest: CMake configure with BASEPLANE_SOURCE_DIR, Torch off, sm_70; build target; run one GPU and under gpu-all4:any+v100-benchmark:any run --devices 4; compare rebased multisets/no duplicates/misses and record scaling/host launch. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked. Do not acquire gpu-all4 or benchmark resources until Cellerator publishes an explicit partition contract and a later plan revision activates validation.",
       "gates": [
         {
           "id": "STACK-BITOP-51-CONFIG",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "-S", "/home/tumlinson/Cellerator", "-B", "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51", "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane", "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF", "-DCMAKE_CUDA_ARCHITECTURES=70"],
+          "argv": [
+            "cmake",
+            "-S",
+            "/home/tumlinson/Cellerator",
+            "-B",
+            "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51",
+            "-DBASEPLANE_SOURCE_DIR=/home/tumlinson/Baseplane",
+            "-DCELLERATOR_ENABLE_TORCH_MODELS=OFF",
+            "-DCMAKE_CUDA_ARCHITECTURES=70"
+          ],
           "cwd": ".",
           "timeout": 600,
           "expected_exit_code": 0,
@@ -4438,7 +4609,15 @@
           "id": "STACK-BITOP-51-BUILD",
           "type": "command",
           "required": true,
-          "argv": ["cmake", "--build", "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51", "--target", "sequenceMultiGpuRuntimeTest", "-j", "4"],
+          "argv": [
+            "cmake",
+            "--build",
+            "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51",
+            "--target",
+            "sequenceMultiGpuRuntimeTest",
+            "-j",
+            "4"
+          ],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
@@ -4448,22 +4627,35 @@
           "id": "STACK-BITOP-51-ONE-GPU",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "1"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest",
+            "--devices",
+            "1"
+          ],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
-          "resources": ["gpu:any"],
+          "resources": [
+            "gpu:any"
+          ],
           "track_git_head": true
         },
         {
           "id": "STACK-BITOP-51-FOUR-GPU",
-          "type": "benchmark",
+          "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest", "--devices", "4"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-STACK-BITOP-51/sequenceMultiGpuRuntimeTest",
+            "--devices",
+            "4"
+          ],
           "cwd": ".",
           "timeout": 3600,
           "expected_exit_code": 0,
-          "resources": ["gpu-all4:any", "v100-benchmark:any"],
+          "resources": [
+            "gpu-all4:any",
+            "v100-benchmark:any"
+          ],
           "track_git_head": true
         }
       ],
@@ -4472,7 +4664,11 @@
           "validated",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "STACK-BITOP-52",
@@ -4569,8 +4765,8 @@
           "required": true
         }
       ],
-      "next_action": "Guard all shared Baseplane and external Cellerator seams, reconcile generated docs/targets, validate install/CPU/CUDA/consumer targets; do not create Baseplane::bitop for branding.",
-      "notes": "Baseplane docs cover packed/planes, validity, allowed motifs, plans, output modes/events/segments, residency/performance/non-goals, and explicit subordination to the Cellerator computational model. Consume the Cellerator-owned common ABI checkpoint; do not document DeviceMathContext or parameter_descriptor as integration boundaries. Preserve Baseplane::seq and CPU-only/CUDA builds. Cross-repository consumer validation belongs to CE-ARCH-40; this task updates Baseplane-owned packaging only.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Baseplane docs cover packed/planes, validity, allowed motifs, plans, output modes/events/segments, residency/performance/non-goals, and explicit subordination to the Cellerator computational model. Consume the Cellerator-owned common ABI checkpoint; do not document DeviceMathContext or parameter_descriptor as integration boundaries. Preserve Baseplane::seq and CPU-only/CUDA builds. Cross-repository consumer validation belongs to CE-ARCH-40; this task updates Baseplane-owned packaging only. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Guard all shared Baseplane and external Cellerator seams, reconcile generated docs/targets, validate install/CPU/CUDA/consumer targets; do not create Baseplane::bitop for branding.",
       "gates": [
         {
           "id": "STACK-BITOP-52-CPU-CONFIG",
@@ -4718,11 +4914,15 @@
           "id": "STACK-BITOP-52-CELLERATOR",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40/sequenceComputeRuntimeTest"
+          ],
           "cwd": ".",
           "timeout": 1200,
           "expected_exit_code": 0,
-          "resources": ["gpu:any"],
+          "resources": [
+            "gpu:any"
+          ],
           "track_git_head": true
         },
         {
@@ -4752,6 +4952,10 @@
           ],
           "track_git_head": true
         }
+      ],
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
       ]
     },
     {
@@ -4820,8 +5024,8 @@
         "stop-conditions",
         "non-goals"
       ],
-      "next_action": "Acquire all integration locks, audit Baseplane and external repos, rerun focused CPU/CUDA/sanitizer/integration evidence, write docs/BITOP_FINAL_AUDIT.md, leave commit/push/pointer publication for separately authorized future work.",
-      "notes": "Verify no projections manually edited, no source lease active, interface hashes/invalidations valid, Baseplane has no Cellerator/Torch dependency, CellShard unchanged unless CS60 activated, no Cellerator-local primitive resurrected, all benchmark claims have commands/checksums, mandatory acceptance evidence complete, optional tasks parked/completed, exact APIs preserved. Do not commit/push/rebase/reset/stash/switch branches. Final commands include Baseplane CPU/CUDA targets, compute-sanitizer memcheck/racecheck, external sequenceComputeRuntimeTest/sequenceEventModelRuntimeTest/sequenceSemanticPartitionRuntimeTest, todo audit/doctor/status, git diff --check and dependency scans.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Verify no projections manually edited, no source lease active, interface hashes/invalidations valid, Baseplane has no Cellerator/Torch dependency, CellShard unchanged unless CS60 activated, no Cellerator-local primitive resurrected, all benchmark claims have commands/checksums, mandatory acceptance evidence complete, optional tasks parked/completed, exact APIs preserved. Do not commit/push/rebase/reset/stash/switch branches. Final commands include Baseplane CPU/CUDA targets, compute-sanitizer memcheck/racecheck, external sequenceComputeRuntimeTest/sequenceEventModelRuntimeTest/sequenceSemanticPartitionRuntimeTest, todo audit/doctor/status, git diff --check and dependency scans. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Acquire all integration locks, audit Baseplane and external repos, rerun focused CPU/CUDA/sanitizer/integration evidence, write docs/BITOP_FINAL_AUDIT.md, leave commit/push/pointer publication for separately authorized future work.",
       "gates": [
         {
           "id": "STACK-BITOP-53-CPU",
@@ -4891,11 +5095,15 @@
           "id": "STACK-BITOP-53-EXTERNAL",
           "type": "command",
           "required": true,
-          "argv": ["/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"],
+          "argv": [
+            "/home/tumlinson/Cellerator/build-bitop-CE-BITOP-42/sequenceSemanticPartitionRuntimeTest"
+          ],
           "cwd": ".",
           "timeout": 1800,
           "expected_exit_code": 0,
-          "resources": ["gpu:any"],
+          "resources": [
+            "gpu:any"
+          ],
           "track_git_head": true
         },
         {
@@ -4939,7 +5147,11 @@
           "validated",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     },
     {
       "id": "CS-BITOP-60",
@@ -4988,15 +5200,20 @@
         "stop-conditions",
         "non-goals"
       ],
-      "next_action": "Remain parked until stable ABI, demonstrated reuse/deployment need, regeneration-cost evidence, and ownership agreement exist.",
-      "notes": "Parked external read-only dependency. CellShard currently owns CSPACK01/CPEXEC01 checksum, generation/partition identity, publication/fetch, contiguous host ownership, and one-copy async device staging of opaque Cellerator images. Do not create or assign CellShard work from this ledger. Any future envelope decision is coordinated externally; do not activate merely because CP-BP used CSPACK.",
+      "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+      "notes": "Parked external read-only dependency. CellShard currently owns CSPACK01/CPEXEC01 checksum, generation/partition identity, publication/fetch, contiguous host ownership, and one-copy async device staging of opaque Cellerator images. Do not create or assign CellShard work from this ledger. Any future envelope decision is coordinated externally; do not activate merely because CP-BP used CSPACK. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain parked until stable ABI, demonstrated reuse/deployment need, regeneration-cost evidence, and ownership agreement exist.",
       "result_policy": {
         "allowed_dispositions": [
           "implemented",
           "evaluated_not_promoted",
           "failed"
         ]
-      }
+      },
+      "tags": [
+        "bitop-rewrite-pending",
+        "deferred"
+      ]
     }
-  ]
+  ],
+  "runs": []
 }
