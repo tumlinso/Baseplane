@@ -52,6 +52,16 @@ Vec lift_bitset(const Planes& p,const Weights& w) {
     if(count)for(float& x:y.x)x/=float(count);
     return y;
 }
+PackedWindow pack_window(const Planes& p) {
+    PackedWindow out{};out.valid=p.valid;
+    for(unsigned i=0;i<32;++i){unsigned code=(((p.a>>i)&1u)<<1)|((p.b>>i)&1u);out.bases|=std::uint64_t(code)<<(2*i);}
+    return out;
+}
+Planes planes_from_packed(const PackedWindow& p) {
+    Planes out{};out.valid=p.valid;
+    for(unsigned i=0;i<32;++i){unsigned code=unsigned((p.bases>>(2*i))&3u);if(code&2u)out.a|=1u<<i;if(code&1u)out.b|=1u<<i;if(code==3u)out.c|=1u<<i;}
+    return out;
+}
 std::vector<Affine> make_transforms(const std::vector<Vec>& x,float threshold) {
     std::vector<Affine> t(x.size());
     for(std::size_t i=0;i<x.size();++i) {
@@ -146,5 +156,14 @@ std::vector<Match> match_mask_reference(const std::vector<Vec>& x,const std::vec
             for(auto j:group.second)y[s+j]=m;
         }
     }return y;
+}
+std::vector<SuperMatch> match_supertile_reference(const std::vector<Vec>& x,const std::vector<std::uint32_t>& keys) {
+    if(x.size()!=keys.size())throw std::invalid_argument("key/value size mismatch");
+    std::vector<SuperMatch> y(x.size());
+    for(std::size_t i=0;i<x.size();++i){y[i].leader=0xffffffffu;for(std::size_t j=0;j<x.size();++j)if(keys[i]==keys[j]){
+        if(y[i].leader==0xffffffffu)y[i].leader=unsigned(j);++y[i].count;
+        for(int d=0;d<channels;++d)y[i].mean.x[d]+=x[j].x[d];
+    }for(float& v:y[i].mean.x)v/=float(y[i].count);}
+    return y;
 }
 } // namespace

@@ -1,0 +1,73 @@
+{
+  "experiment": "rethread",
+  "status": "completed",
+  "verdict": "evaluated_not_promoted",
+  "correctness": {
+    "passed": true,
+    "evidence": [
+      "results/rethread/cuda-gate-final.log",
+      "results/rethread/quality.json"
+    ]
+  },
+  "cuda": {
+    "compiled": true,
+    "executed": true,
+    "evidence": [
+      "results/rethread/build-cuda.log",
+      "results/rethread/cuda-gate-final.log"
+    ]
+  },
+  "sanitizers": {
+    "passed": true,
+    "evidence": [
+      "results/rethread/memcheck.json",
+      "results/rethread/initcheck.json",
+      "results/rethread/racecheck.json",
+      "results/rethread/synccheck.json"
+    ]
+  },
+  "baselines": [
+    {
+      "name": "direct warp and per-thread equivalents",
+      "evidence": [
+        "results/rethread/bench-1025.json",
+        "results/rethread/bench-65536.json"
+      ]
+    },
+    {
+      "name": "CUB stable selection and indexed warp consumer",
+      "evidence": [
+        "results/rethread/bench-1025.json",
+        "results/rethread/bench-65536.json"
+      ]
+    }
+  ],
+  "costs": {
+    "scope": "complete device-resident pipeline; allocation, H2D/D2H and host preparation excluded and disclosed",
+    "evidence": [
+      "results/rethread/bench-1025.json",
+      "results/rethread/bench-65536.json",
+      "results/rethread/report.md"
+    ]
+  },
+  "quality": {
+    "probe": "held-out rich-output omission and two-level source-identity restoration on synthetic records",
+    "evidence": [
+      "results/rethread/quality.json",
+      "results/rethread/quality_probe.cc",
+      "results/rethread/cuda-gate-final.log"
+    ]
+  },
+  "limitations": [
+    "deterministic untrained synthetic records, not biological validation",
+    "fixed variant order and no complete allocation/H2D/D2H timing",
+    "two-level test proves routing identity, not learned information preservation",
+    "other input shapes and hardware untested"
+  ],
+  "conclusion": "The compacted warp mechanism is correct but did not win the measured device-resident pipeline; evaluated_not_promoted.",
+  "controller_evidence_ids": [
+    "0fb8c73a-140e-4fb3-afd0-18ea06786964",
+    "3dbaaf5a-f5ce-403b-8e2e-3a1c6632a03e",
+    "cac1c05c-0351-4d19-b163-a8f6af9eddaf"
+  ]
+}

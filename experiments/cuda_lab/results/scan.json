@@ -1,0 +1,66 @@
+{
+  "experiment": "scan",
+  "status": "completed",
+  "verdict": "promote_candidate",
+  "correctness": {
+    "passed": true,
+    "evidence": [
+      "results/scan/cuda-gate.log",
+      "results/scan/quality.json"
+    ]
+  },
+  "cuda": {
+    "compiled": true,
+    "executed": true,
+    "evidence": [
+      "results/scan/build-cuda.log",
+      "results/scan/cuda-gate.log"
+    ]
+  },
+  "sanitizers": {
+    "passed": true,
+    "evidence": [
+      "results/scan/memcheck.json",
+      "results/scan/initcheck.json",
+      "results/scan/racecheck.json",
+      "results/scan/synccheck.json"
+    ]
+  },
+  "baselines": [
+    {
+      "name": "CUB inclusive scan with identical producer and affine operator",
+      "evidence": [
+        "results/scan/bench-1025.json",
+        "results/scan/bench-65536.json"
+      ]
+    }
+  ],
+  "costs": {
+    "scope": "complete device-resident producer+scan/carry pipeline; allocation and transfers excluded and disclosed",
+    "evidence": [
+      "results/scan/bench-1025.json",
+      "results/scan/bench-65536.json",
+      "results/scan/report.md"
+    ]
+  },
+  "quality": {
+    "probe": "held-out depth-dependent direct-vs-tree error and same-mean different-order witness; GPU two-level source interval trace",
+    "evidence": [
+      "results/scan/quality.json",
+      "results/scan/quality_probe.cc",
+      "results/scan/cuda-gate.log"
+    ]
+  },
+  "limitations": [
+    "restricted affine family cannot implement arbitrary nonlinear recurrence",
+    "CUB beats custom scan in measured device-resident cases",
+    "no complete allocation/H2D/D2H timing",
+    "synthetic untrained fixture does not establish biological value"
+  ],
+  "conclusion": "Retain composable conditional affine summary as one bounded candidate, using CUB as the preferred measured executor; no production API or learned biological claim.",
+  "controller_evidence_ids": [
+    "2b30298f-f722-47c7-9c54-d824e4d86023",
+    "220ee43d-486e-45a7-81f0-3170fc6d6ae9",
+    "3d75bdd9-929f-4b40-b3bb-f8ddacdad112"
+  ]
+}

@@ -1,0 +1,1 @@
+{"fixture":"held_out_seed_20260929","depths":[{"n":33,"max_absolute_error":2.98023e-08},{"n":1025,"max_absolute_error":2.98023e-08},{"n":65536,"max_absolute_error":5.96046e-08}],"same_mean_order_witness":{"mean_a":0.5,"mean_b":0,"forward_final_b":-0.5,"reverse_final_b":0.5}}

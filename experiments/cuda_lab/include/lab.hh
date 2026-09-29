@@ -17,8 +17,10 @@ constexpr int channels = 4;
 constexpr int hidden = 32;
 struct Vec { float x[channels]{}; };
 struct Planes { std::uint32_t a{}, b{}, c{}, valid{}; };
+struct PackedWindow { std::uint64_t bases{}; std::uint32_t valid{}; };
 struct Affine { Vec a{}, b{}; };
 struct Match { Vec mean{}; std::uint32_t peers{}, leader{}; };
+struct SuperMatch { Vec mean{}; std::uint32_t count{}, leader{}; };
 struct Weights { float lift[channels * 8]{}; float w1[hidden * channels]{};
                  float b1[hidden]{}; float w2[hidden * hidden]{}; };
 LAB_HD inline float activate(float x) { return x / (1.f + fabsf(x)); }
@@ -44,12 +46,15 @@ std::vector<Planes> make_planes(std::size_t n, std::uint32_t seed=17);
 std::vector<Affine> make_transforms(const std::vector<Vec>& input, float boundary_threshold);
 Vec lift_scalar(const Planes&,const Weights&);
 Vec lift_bitset(const Planes&,const Weights&);
+PackedWindow pack_window(const Planes&);
+Planes planes_from_packed(const PackedWindow&);
 std::vector<Affine> scan_scalar(const std::vector<Affine>&);
 std::vector<Affine> scan_tree_reference(const std::vector<Affine>&);
 std::vector<float> refine_scalar(const std::vector<Vec>&,const Weights&,float threshold);
 std::vector<float> refine_compacted_reference(const std::vector<Vec>&,const Weights&,float threshold);
 std::vector<Match> match_scalar(const std::vector<Vec>&,const std::vector<std::uint32_t>&);
 std::vector<Match> match_mask_reference(const std::vector<Vec>&,const std::vector<std::uint32_t>&);
+std::vector<SuperMatch> match_supertile_reference(const std::vector<Vec>&,const std::vector<std::uint32_t>&);
 std::uint32_t route_key(const Vec&);
 std::uint32_t low_mask(unsigned n);
 } // namespace bp_cuda_lab

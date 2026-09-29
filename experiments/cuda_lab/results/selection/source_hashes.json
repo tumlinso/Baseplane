@@ -1,0 +1,11 @@
+{
+  "final_integrated_source_sha256": {
+    "cuda/driver.cu": "035af723b47588592d7f25528f920705cd74c394cc2bc54fdb0619c5296e1f66",
+    "cuda/kernels.cuh": "53b687404a99f8e81176c039bcf976d29b563355e60eb5dc086959e9448cadd1",
+    "host/reference.cc": "9a2945fddbb5756ef0538ef283867026042ff5df77627fac19b4ccf71a679431",
+    "include/lab.hh": "7bc1f501eceae8a6ab158a27103cf17fb1db6a83bf78c3beb1c07152269ca374",
+    "tests/host_tests.cc": "433e004a9019d3cea466a67f5b25fdb961cd9b04087f08ee9df3202316d9579f",
+    "tools/run.py": "8f8cac4e76a24abab1b57d846ca044533de70ec17ebe3770f72e2ed758d07a5b"
+  },
+  "controller_replay_evidence_id": "c517f7c0-9ad4-4740-8c53-55ca3ac9164d"
+}

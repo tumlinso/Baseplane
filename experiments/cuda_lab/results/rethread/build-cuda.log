@@ -1,0 +1,138 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/tumlinson/Baseplane/build-bitop-BP-CUDA-LAB-30-cuda
+[ 50%] Built target lab_reference
+[ 75%] Building CUDA object CMakeFiles/lab_cuda.dir/cuda/driver.cu.o
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(78): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto compact=[&]{ck(cudaMemsetAsync(count.p,0,sizeof(unsigned)));ck(cudaMemsetAsync(dropped.p,0,sizeof(unsigned)));if(n){cheap_all<<<blocks(n),128>>>(in.p,out.p,n);select_queue<<<blocks(n),128>>>(in.p,n,threshold,queue.p,n,count.p,dropped.p);refine_queue<<<resident,128>>>(in.p,queue.p,count.p,n,dw.p,out.p);}};
+                                                                                                                                                                                                                     ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(79): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto warp=[&]{if(n){cheap_all<<<blocks(n),128>>>(in.p,out.p,n);refine_warp_direct<<<resident,128>>>(in.p,n,threshold,dw.p,out.p);}};
+                                                                                                                     ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(80): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto thread=[&]{if(n)refine_thread_direct<<<blocks(n),128>>>(in.p,n,threshold,dw.p,out.p);};
+                                                                              ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(81): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto cub=[&]{if(n){cheap_all<<<blocks(n),128>>>(in.p,out.p,n);std::size_t bytes=cub_bytes;ck(select_cub(cub_storage.p,bytes,in.p,n,queue.p,count.p,threshold));refine_queue<<<resident,128>>>(in.p,queue.p,count.p,n,dw.p,out.p);}};
+                                                                                                                                                             ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/kernels.cuh(124): warning #177-D: variable "lane" was declared but never referenced
+      unsigned i=blockIdx.x*blockDim.x+threadIdx.x,lane=i&31;bool valid=i<n;
+                                                   ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/kernels.cuh(136): warning #177-D: variable "lane" was declared but never referenced
+      unsigned i=blockIdx.x*blockDim.x+threadIdx.x,lane=i&31;bool valid=i<n;
+                                                   ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(78): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto compact=[&]{ck(cudaMemsetAsync(count.p,0,sizeof(unsigned)));ck(cudaMemsetAsync(dropped.p,0,sizeof(unsigned)));if(n){cheap_all<<<blocks(n),128>>>(in.p,out.p,n);select_queue<<<blocks(n),128>>>(in.p,n,threshold,queue.p,n,count.p,dropped.p);refine_queue<<<resident,128>>>(in.p,queue.p,count.p,n,dw.p,out.p);}};
+                                                                                                                                                                                                                     ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(79): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto warp=[&]{if(n){cheap_all<<<blocks(n),128>>>(in.p,out.p,n);refine_warp_direct<<<resident,128>>>(in.p,n,threshold,dw.p,out.p);}};
+                                                                                                                     ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(80): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto thread=[&]{if(n)refine_thread_direct<<<blocks(n),128>>>(in.p,n,threshold,dw.p,out.p);};
+                                                                              ^
+
+/home/tumlinson/Baseplane/experiments/cuda_lab/cuda/driver.cu(81): warning #3357-D: capturing structured bindings is a C++20 feature
+          auto cub=[&]{if(n){cheap_all<<<blocks(n),128>>>(in.p,out.p,n);std::size_t bytes=cub_bytes;ck(select_cub(cub_storage.p,bytes,in.p,n,queue.p,count.p,threshold));refine_queue<<<resident,128>>>(in.p,queue.p,count.p,n,dw.p,out.p);}};
+                                                                                                                                                             ^
+
+ptxas info    : 31 bytes gmem, 248 bytes cmem[4]
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200802_SM_70023DeviceSelectSweepKernelINS0_6detail6select10policy_hubIjNS0_8NullTypeEiLb0ELb0ELb0EE10Policy1000EN6thrust23THRUST_200802_SM_700_NS17counting_iteratorIjNS9_11use_defaultESB_SB_EEPS5_PjSE_NS0_13ScanTileStateIiLb1EEEN11bp_cuda_lab16CUBSelectedIndexES5_iNS3_19streaming_context_tIlLb1EEELb0ELb0EEEvT0_T1_T2_T3_T4_T5_T6_T7_iT8_NS2_7vsmem_tE' for 'sm_70'
+ptxas info    : Function properties for _ZN3cub17CUB_200802_SM_70023DeviceSelectSweepKernelINS0_6detail6select10policy_hubIjNS0_8NullTypeEiLb0ELb0ELb0EE10Policy1000EN6thrust23THRUST_200802_SM_700_NS17counting_iteratorIjNS9_11use_defaultESB_SB_EEPS5_PjSE_NS0_13ScanTileStateIiLb1EEEN11bp_cuda_lab16CUBSelectedIndexES5_iNS3_19streaming_context_tIlLb1EEELb0ELb0EEEvT0_T1_T2_T3_T4_T5_T6_T7_iT8_NS2_7vsmem_tE
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 1 barriers, 5120 bytes smem, 472 bytes cmem[0]
+ptxas info    : Compile time = 163.688 ms
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200802_SM_70023DeviceCompactInitKernelINS0_13ScanTileStateIiLb1EEEPjEEvT_iT0_' for 'sm_70'
+ptxas info    : Function properties for _ZN3cub17CUB_200802_SM_70023DeviceCompactInitKernelINS0_13ScanTileStateIiLb1EEEPjEEvT_iT0_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, used 0 barriers, 376 bytes cmem[0]
+ptxas info    : Compile time = 1.090 ms
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200802_SM_70011EmptyKernelIvEEvv' for 'sm_70'
+ptxas info    : Function properties for _ZN3cub17CUB_200802_SM_70011EmptyKernelIvEEvv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 4 registers, used 0 barriers, 352 bytes cmem[0]
+ptxas info    : Compile time = 0.481 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab19rendezvous_pairwiseEPKNS_3VecEPKjPNS_5MatchEj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab19rendezvous_pairwiseEPKNS_3VecEPKjPNS_5MatchEj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 15.657 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab10rendezvousEPKNS_3VecEPKjPNS_5MatchEj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab10rendezvousEPKNS_3VecEPKjPNS_5MatchEj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 22 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 11.652 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab20refine_thread_directEPKNS_3VecEjfPKNS_7WeightsEPf' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab20refine_thread_directEPKNS_3VecEjfPKNS_7WeightsEPf
+    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 53 registers, used 0 barriers, 16 bytes cumulative stack size, 384 bytes cmem[0]
+ptxas info    : Compile time = 43.391 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab18refine_warp_directEPKNS_3VecEjfPKNS_7WeightsEPf' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab18refine_warp_directEPKNS_3VecEjfPKNS_7WeightsEPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 31 registers, used 0 barriers, 384 bytes cmem[0]
+ptxas info    : Compile time = 31.729 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab20refine_queue_sourcesEPKNS_3VecEPKjS4_jS4_PKNS_7WeightsEPf' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab20refine_queue_sourcesEPKNS_3VecEPKjS4_jS4_PKNS_7WeightsEPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, used 0 barriers, 408 bytes cmem[0]
+ptxas info    : Compile time = 22.984 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab17cheap_all_sourcesEPKNS_3VecEPKjPfj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab17cheap_all_sourcesEPKNS_3VecEPKjPfj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 4.256 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab21coarsen_float_recordsEPKfjPNS_3VecEPjj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab21coarsen_float_recordsEPKfjPNS_3VecEPjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 388 bytes cmem[0]
+ptxas info    : Compile time = 34.703 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab12refine_queueEPKNS_3VecEPKjS4_jPKNS_7WeightsEPf' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab12refine_queueEPKNS_3VecEPKjS4_jPKNS_7WeightsEPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, used 0 barriers, 400 bytes cmem[0]
+ptxas info    : Compile time = 22.748 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab9cheap_allEPKNS_3VecEPfj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab9cheap_allEPKNS_3VecEPfj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 2.605 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab12select_queueEPKNS_3VecEjfPjjS3_S3_' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab12select_queueEPKNS_3VecEjfPjjS3_S3_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 13 registers, used 0 barriers, 400 bytes cmem[0]
+ptxas info    : Compile time = 2.989 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab10scan_carryEPNS_6AffineEPKS0_j' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab10scan_carryEPNS_6AffineEPKS0_j
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 1.619 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab10scan_tilesEPKNS_6AffineEPS0_S3_j' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab10scan_tilesEPKNS_6AffineEPS0_S3_j
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 10.409 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab14bitlift_threadEPKNS_6PlanesEPNS_3VecEPKNS_7WeightsEj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab14bitlift_threadEPKNS_6PlanesEPNS_3VecEPKNS_7WeightsEj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 9.928 ms
+ptxas info    : Compiling entry function '_ZN11bp_cuda_lab12bitlift_warpEPKNS_6PlanesEPNS_3VecEPKNS_7WeightsEj' for 'sm_70'
+ptxas info    : Function properties for _ZN11bp_cuda_lab12bitlift_warpEPKNS_6PlanesEPNS_3VecEPKNS_7WeightsEj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 16 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 6.718 ms
+[100%] Linking CXX executable lab_cuda
+[100%] Built target lab_cuda

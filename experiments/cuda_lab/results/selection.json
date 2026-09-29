@@ -1,0 +1,28 @@
+{
+  "status": "completed",
+  "selected": [
+    "scan"
+  ],
+  "rationale": "The bounded ordered affine summary composes exactly for its defined operation and has a checked two-level source interval path; CUB is the faster measured executor. Other mechanisms are negative on this synthetic fixture or lose needed information. No production or biological claim.",
+  "evidence": [
+    "results/selection/report.md",
+    "results/selection/source_hashes.json",
+    "results/selection-build.log",
+    "results/selection/replay.py",
+    "results/selection/final-bench-1025.json",
+    "results/selection/final-bench-65536.json",
+    "results/selection/final-memcheck.json",
+    "results/selection/final-initcheck.json",
+    "results/selection/final-racecheck.json",
+    "results/selection/final-synccheck.json"
+  ],
+  "two_level_probe": {
+    "executed": true,
+    "evidence": [
+      "results/scan/cuda-gate.log",
+      "results/scan/quality.json",
+      "results/selection/final-bench-1025.json",
+      "results/selection/final-bench-65536.json"
+    ]
+  }
+}

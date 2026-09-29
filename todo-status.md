@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Status v2 Projection
 
-Project revision: `133`
+Project revision: `196`
 
 ## Workstreams
 - `STACK-BITOP-01` | status: done | execution: closed | next: Verify the recorded evidence against current Git/source without changing implementation; run context, changes, guard, and audit; then complete validated.
@@ -39,11 +39,11 @@ Project revision: `133`
 - `CE-BITOP-45` | status: blocked | execution: blocked_dependency | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `CS-BITOP-60` | status: blocked | execution: blocked_dependency | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `BITOP-00` | status: blocked | execution: inactive | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
-- `BP-CUDA-LAB-00` | status: planned | execution: inactive | next: Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.
-- `BP-CUDA-LAB-01` | status: planned | execution: ready | next: Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.
-- `BP-CUDA-LAB-10` | status: planned | execution: ready | next: Complete experiments/cuda_lab/experiments/bitlift.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/bitlift.json.
-- `BP-CUDA-LAB-20` | status: planned | execution: ready | next: Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.
-- `BP-CUDA-LAB-30` | status: planned | execution: ready | next: Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.
-- `BP-CUDA-LAB-40` | status: planned | execution: ready | next: Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.
-- `BP-CUDA-LAB-90` | status: planned | execution: ready | next: Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.
+- `BP-CUDA-LAB-00` | status: done | execution: closed | next: Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.
+- `BP-CUDA-LAB-01` | status: done | execution: closed | next: Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.
+- `BP-CUDA-LAB-10` | status: done | execution: closed | next: Complete experiments/cuda_lab/experiments/bitlift.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/bitlift.json.
+- `BP-CUDA-LAB-20` | status: done | execution: closed | next: Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.
+- `BP-CUDA-LAB-30` | status: done | execution: closed | next: Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.
+- `BP-CUDA-LAB-40` | status: done | execution: closed | next: Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.
+- `BP-CUDA-LAB-90` | status: done | execution: closed | next: Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.
 <!-- todo-orchestrator:v2-managed:end -->

@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-CUDA-LAB-20: CarryFold: make a conditional history composable
 
-Task revision: `133`; current project revision is in `todo-status.md`.
+Task revision: `194`; current project revision is in `todo-status.md`.
 
 ## Objective
 Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `validated`
 
 ## Next Action
 _None._

@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-CUDA-LAB-90: Select the revealing results and publish a bounded two-level demonstration
 
-Task revision: `133`; current project revision is in `todo-status.md`.
+Task revision: `194`; current project revision is in `todo-status.md`.
 
 ## Objective
 Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `validated`
 
 ## Next Action
 _None._

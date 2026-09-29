@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-CUDA-LAB-30: Rethread: let informative objects recruit a whole warp
 
-Task revision: `133`; current project revision is in `todo-status.md`.
+Task revision: `194`; current project revision is in `todo-status.md`.
 
 ## Objective
 Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `evaluated_not_promoted`
 
 ## Next Action
 _None._

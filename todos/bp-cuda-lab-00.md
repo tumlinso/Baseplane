@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-CUDA-LAB-00: CUDA-native online representation experiments
 
-Task revision: `133`; current project revision is in `todo-status.md`.
+Task revision: `196`; current project revision is in `todo-status.md`.
 
 ## Objective
 Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `inactive`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `validated`
 
 ## Next Action
 _None._

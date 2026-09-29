@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "fixture": "128 current candidates with oracle-assembled distant source IDs; upper-bound packet formation",
+  "source_span": 12700381,
+  "same_key_directed_partners": 994,
+  "no_regroup_missed_directed_partners": 2,
+  "regroup_missed_directed_partners": 120,
+  "higher_level_reused": true,
+  "collision_note": "equal routing key merges different source identities and values; exact key grouping is not biological correctness",
+  "placement_note": "controlled 31/32 pair crosses a warp boundary and becomes visible only after placement change; source mapping checked"
+}

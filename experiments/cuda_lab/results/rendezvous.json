@@ -1,0 +1,67 @@
+{
+  "experiment": "rendezvous",
+  "status": "completed",
+  "verdict": "evaluated_not_promoted",
+  "correctness": {
+    "passed": true,
+    "evidence": [
+      "results/rendezvous/cuda-gate.log",
+      "results/rendezvous/quality.json"
+    ]
+  },
+  "cuda": {
+    "compiled": true,
+    "executed": true,
+    "evidence": [
+      "results/rendezvous/build-cuda.log",
+      "results/rendezvous/cuda-gate.log"
+    ]
+  },
+  "sanitizers": {
+    "passed": true,
+    "evidence": [
+      "results/rendezvous/memcheck.json",
+      "results/rendezvous/initcheck.json",
+      "results/rendezvous/racecheck.json",
+      "results/rendezvous/synccheck.json"
+    ]
+  },
+  "baselines": [
+    {
+      "name": "same-packet no-regroup warp match and exact all-pairs candidate comparison",
+      "evidence": [
+        "results/rendezvous/bench-1025.json",
+        "results/rendezvous/bench-65536.json"
+      ]
+    }
+  ],
+  "costs": {
+    "scope": "device-resident sort/gather/match/scatter with preallocated scratch; packet formation, allocation and transfers excluded",
+    "evidence": [
+      "results/rendezvous/bench-1025.json",
+      "results/rendezvous/bench-65536.json",
+      "results/rendezvous/report.md"
+    ]
+  },
+  "quality": {
+    "probe": "controlled cross-warp placement, exact partner recall and collision/source-identity accounting on an upper-bound distant-source packet",
+    "evidence": [
+      "results/rendezvous/quality.json",
+      "results/rendezvous/cuda-gate.log",
+      "tests/host_tests.cc"
+    ]
+  },
+  "limitations": [
+    "oracle-assembled distant-source packet is an upper-bound fixture, not deployed candidate routing",
+    "sorted equal-key group spans warp boundary and loses 120 of 994 directed partner relations",
+    "CUB regrouping is slower than no-regroup and all-pairs for the fixed 128-candidate packet",
+    "equal keys do not establish biological identity or useful interaction",
+    "no complete packet formation, H2D/D2H or arbitrary nonlocal movement cost"
+  ],
+  "conclusion": "Do not promote online CUB regrouping from this fixture: it is slower and loses defined-key partners at warp boundaries; retain source-preserving bounded tests only.",
+  "controller_evidence_ids": [
+    "f694d6ee-01d2-4f56-8c7a-3d944dd4ca61",
+    "c02ec2e5-ff56-4a30-bc96-48f27d36f13c",
+    "7599d983-4d93-42bb-84e4-692cfebebff8"
+  ]
+}

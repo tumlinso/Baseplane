@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-CUDA-LAB-40: Rendezvous: make current information determine who talks
 
-Task revision: `133`; current project revision is in `todo-status.md`.
+Task revision: `194`; current project revision is in `todo-status.md`.
 
 ## Objective
 Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `evaluated_not_promoted`
 
 ## Next Action
 _None._

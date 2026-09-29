@@ -1,0 +1,743 @@
+{
+  "schema_version": 3,
+  "project": {
+    "name": "baseplane"
+  },
+  "invariants": [
+    {
+      "id": "non-goals",
+      "rule": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types. Scoped exception authorized by the 2026-09-28 CUDA prototyping request: experiments/cuda_lab may contain isolated small parameterized floating-point inference probes and online routing/hierarchy tests. No production API, trainer/autograd framework, dense genome-token model, or unrestricted runtime is authorized by this exception.",
+      "severity": "error",
+      "scope": {}
+    },
+    {
+      "id": "ownership",
+      "rule": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked. Experimental clarification for experiments/cuda_lab only: temporary local floating arithmetic, candidate grouping and conditional sequence-representation kernels are allowed to test the new hypothesis; they do not acquire shared numerical/ABI ownership or authorize edits in Cellerator, CelleraTorch, GlassHelix or CellShard.",
+      "severity": "error",
+      "scope": {}
+    },
+    {
+      "id": "BP-CUDA-LAB-TRUTH",
+      "rule": "This epic is scoped to experiments/cuda_lab; keep every prototype unpromoted until measured. No false claim of learned weights, lossless embeddings, genome-scale representation, GPU execution or speedup. Negative findings are first-class outcomes. Existing exact APIs and unrelated dirty files remain untouched.",
+      "severity": "error",
+      "scope": {
+        "paths": [
+          "experiments/cuda_lab"
+        ]
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "BP-CUDA-LAB-00",
+      "kind": "epic",
+      "title": "CUDA-native online representation experiments",
+      "objective": "Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "notes": "Read experiments/cuda_lab/START_HERE.md. Prewritten source and references are supplied. Existing BitOp work remains separate. Complete after BP-CUDA-LAB-90 evidence review; do not mark constituent kernels as validated before their gates run.",
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "evaluated_not_promoted"
+        ]
+      }
+    },
+    {
+      "id": "BP-CUDA-LAB-01",
+      "kind": "task",
+      "title": "Adopt the isolated lab and qualify its scalar contracts",
+      "objective": "Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.",
+      "notes": "Do not rebuild infrastructure already supplied. No genome data or ML framework download. Use the existing scheduler; do not create an independent GPU lease mechanism. Native plan may be imported only after reviewing its scoped invariant diff.",
+      "depends_on": [],
+      "gates": [
+        {
+          "id": "BP-CUDA-LAB-01-HOST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/run.py",
+            "--phase",
+            "host",
+            "--case",
+            "all",
+            "--build-dir",
+            "build-bitop-BP-CUDA-LAB-01-host"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/host",
+            "experiments/cuda_lab/include",
+            "experiments/cuda_lab/tests/host_tests.cc",
+            "experiments/cuda_lab/tools/run.py",
+            "experiments/cuda_lab/CMakeLists.txt"
+          ],
+          "expected_exit_code": 0
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "parent_id": "BP-CUDA-LAB-00",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "scope": {
+        "exclusive_paths": [
+          "experiments/cuda_lab"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "include/Baseplane",
+          "src/seq",
+          "docs/FOUNDATIONS.md",
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          ".todo-orchestrator",
+          "todo-status.md",
+          "todos.md",
+          "todos",
+          "include/Baseplane/seq/sequence_event.hh"
+        ]
+      },
+      "invariants": [
+        "BP-CUDA-LAB-TRUTH",
+        "non-goals",
+        "ownership"
+      ]
+    },
+    {
+      "id": "BP-CUDA-LAB-10",
+      "kind": "task",
+      "title": "BitLift: use Boolean evidence without unpacking it into expensive work",
+      "objective": "Complete experiments/cuda_lab/experiments/bitlift.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/bitlift.json.",
+      "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-01"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-CUDA-LAB-10-CUDA",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/run.py",
+            "--phase",
+            "gpu",
+            "--case",
+            "bitlift",
+            "--n",
+            "1025",
+            "--build-dir",
+            "build-bitop-BP-CUDA-LAB-10-cuda"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/cuda",
+            "experiments/cuda_lab/host",
+            "experiments/cuda_lab/include",
+            "experiments/cuda_lab/tools/run.py",
+            "experiments/cuda_lab/CMakeLists.txt"
+          ],
+          "expected_exit_code": 0,
+          "cuda": {
+            "gpus": 1,
+            "build_argv": [
+              "python3",
+              "experiments/cuda_lab/tools/run.py",
+              "--phase",
+              "build-cuda",
+              "--build-dir",
+              "build-bitop-BP-CUDA-LAB-10-cuda"
+            ],
+            "binary_paths": [
+              "build-bitop-BP-CUDA-LAB-10-cuda/lab_cuda"
+            ],
+            "quiescence": {
+              "timeout_seconds": 45,
+              "consecutive_idle_samples": 3,
+              "interval_seconds": 0.2
+            },
+            "toolchain": {
+              "root": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9",
+              "require_sanitizer": true
+            }
+          }
+        },
+        {
+          "id": "BP-CUDA-LAB-10-RESULT",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/check.py",
+            "--result",
+            "bitlift"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/results/bitlift.json",
+            "experiments/cuda_lab/results/bitlift",
+            "experiments/cuda_lab/tools/check.py"
+          ],
+          "expected_exit_code": 0
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "evaluated_not_promoted",
+          "implemented"
+        ]
+      },
+      "parent_id": "BP-CUDA-LAB-00",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "scope": {
+        "exclusive_paths": [
+          "experiments/cuda_lab"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "include/Baseplane",
+          "src/seq",
+          "docs/FOUNDATIONS.md",
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          ".todo-orchestrator",
+          "todo-status.md",
+          "todos.md",
+          "todos",
+          "include/Baseplane/seq/sequence_event.hh"
+        ]
+      },
+      "invariants": [
+        "BP-CUDA-LAB-TRUTH",
+        "non-goals",
+        "ownership"
+      ]
+    },
+    {
+      "id": "BP-CUDA-LAB-20",
+      "kind": "task",
+      "title": "CarryFold: make a conditional history composable",
+      "objective": "Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.",
+      "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-01"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-CUDA-LAB-20-CUDA",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/run.py",
+            "--phase",
+            "gpu",
+            "--case",
+            "scan",
+            "--n",
+            "1025",
+            "--build-dir",
+            "build-bitop-BP-CUDA-LAB-20-cuda"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/cuda",
+            "experiments/cuda_lab/host",
+            "experiments/cuda_lab/include",
+            "experiments/cuda_lab/tools/run.py",
+            "experiments/cuda_lab/CMakeLists.txt"
+          ],
+          "expected_exit_code": 0,
+          "cuda": {
+            "gpus": 1,
+            "build_argv": [
+              "python3",
+              "experiments/cuda_lab/tools/run.py",
+              "--phase",
+              "build-cuda",
+              "--build-dir",
+              "build-bitop-BP-CUDA-LAB-20-cuda"
+            ],
+            "binary_paths": [
+              "build-bitop-BP-CUDA-LAB-20-cuda/lab_cuda"
+            ],
+            "quiescence": {
+              "timeout_seconds": 45,
+              "consecutive_idle_samples": 3,
+              "interval_seconds": 0.2
+            },
+            "toolchain": {
+              "root": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9",
+              "require_sanitizer": true
+            }
+          }
+        },
+        {
+          "id": "BP-CUDA-LAB-20-RESULT",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/check.py",
+            "--result",
+            "scan"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/results/scan.json",
+            "experiments/cuda_lab/results/scan",
+            "experiments/cuda_lab/tools/check.py"
+          ],
+          "expected_exit_code": 0
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "evaluated_not_promoted",
+          "implemented"
+        ]
+      },
+      "parent_id": "BP-CUDA-LAB-00",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "scope": {
+        "exclusive_paths": [
+          "experiments/cuda_lab"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "include/Baseplane",
+          "src/seq",
+          "docs/FOUNDATIONS.md",
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          ".todo-orchestrator",
+          "todo-status.md",
+          "todos.md",
+          "todos",
+          "include/Baseplane/seq/sequence_event.hh"
+        ]
+      },
+      "invariants": [
+        "BP-CUDA-LAB-TRUTH",
+        "non-goals",
+        "ownership"
+      ]
+    },
+    {
+      "id": "BP-CUDA-LAB-30",
+      "kind": "task",
+      "title": "Rethread: let informative objects recruit a whole warp",
+      "objective": "Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.",
+      "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-01"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-CUDA-LAB-30-CUDA",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/run.py",
+            "--phase",
+            "gpu",
+            "--case",
+            "rethread",
+            "--n",
+            "1025",
+            "--build-dir",
+            "build-bitop-BP-CUDA-LAB-30-cuda"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/cuda",
+            "experiments/cuda_lab/host",
+            "experiments/cuda_lab/include",
+            "experiments/cuda_lab/tools/run.py",
+            "experiments/cuda_lab/CMakeLists.txt"
+          ],
+          "expected_exit_code": 0,
+          "cuda": {
+            "gpus": 1,
+            "build_argv": [
+              "python3",
+              "experiments/cuda_lab/tools/run.py",
+              "--phase",
+              "build-cuda",
+              "--build-dir",
+              "build-bitop-BP-CUDA-LAB-30-cuda"
+            ],
+            "binary_paths": [
+              "build-bitop-BP-CUDA-LAB-30-cuda/lab_cuda"
+            ],
+            "quiescence": {
+              "timeout_seconds": 45,
+              "consecutive_idle_samples": 3,
+              "interval_seconds": 0.2
+            },
+            "toolchain": {
+              "root": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9",
+              "require_sanitizer": true
+            }
+          }
+        },
+        {
+          "id": "BP-CUDA-LAB-30-RESULT",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/check.py",
+            "--result",
+            "rethread"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/results/rethread.json",
+            "experiments/cuda_lab/results/rethread",
+            "experiments/cuda_lab/tools/check.py"
+          ],
+          "expected_exit_code": 0
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "evaluated_not_promoted",
+          "implemented"
+        ]
+      },
+      "parent_id": "BP-CUDA-LAB-00",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "scope": {
+        "exclusive_paths": [
+          "experiments/cuda_lab"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "include/Baseplane",
+          "src/seq",
+          "docs/FOUNDATIONS.md",
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          ".todo-orchestrator",
+          "todo-status.md",
+          "todos.md",
+          "todos",
+          "include/Baseplane/seq/sequence_event.hh"
+        ]
+      },
+      "invariants": [
+        "BP-CUDA-LAB-TRUTH",
+        "non-goals",
+        "ownership"
+      ]
+    },
+    {
+      "id": "BP-CUDA-LAB-40",
+      "kind": "task",
+      "title": "Rendezvous: make current information determine who talks",
+      "objective": "Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.",
+      "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-01"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-CUDA-LAB-40-CUDA",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/run.py",
+            "--phase",
+            "gpu",
+            "--case",
+            "rendezvous",
+            "--n",
+            "1025",
+            "--build-dir",
+            "build-bitop-BP-CUDA-LAB-40-cuda"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/cuda",
+            "experiments/cuda_lab/host",
+            "experiments/cuda_lab/include",
+            "experiments/cuda_lab/tools/run.py",
+            "experiments/cuda_lab/CMakeLists.txt"
+          ],
+          "expected_exit_code": 0,
+          "cuda": {
+            "gpus": 1,
+            "build_argv": [
+              "python3",
+              "experiments/cuda_lab/tools/run.py",
+              "--phase",
+              "build-cuda",
+              "--build-dir",
+              "build-bitop-BP-CUDA-LAB-40-cuda"
+            ],
+            "binary_paths": [
+              "build-bitop-BP-CUDA-LAB-40-cuda/lab_cuda"
+            ],
+            "quiescence": {
+              "timeout_seconds": 45,
+              "consecutive_idle_samples": 3,
+              "interval_seconds": 0.2
+            },
+            "toolchain": {
+              "root": "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9",
+              "require_sanitizer": true
+            }
+          }
+        },
+        {
+          "id": "BP-CUDA-LAB-40-RESULT",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/check.py",
+            "--result",
+            "rendezvous"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/results/rendezvous.json",
+            "experiments/cuda_lab/results/rendezvous",
+            "experiments/cuda_lab/tools/check.py"
+          ],
+          "expected_exit_code": 0
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "evaluated_not_promoted",
+          "implemented"
+        ]
+      },
+      "parent_id": "BP-CUDA-LAB-00",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "scope": {
+        "exclusive_paths": [
+          "experiments/cuda_lab"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "include/Baseplane",
+          "src/seq",
+          "docs/FOUNDATIONS.md",
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          ".todo-orchestrator",
+          "todo-status.md",
+          "todos.md",
+          "todos",
+          "include/Baseplane/seq/sequence_event.hh"
+        ]
+      },
+      "invariants": [
+        "BP-CUDA-LAB-TRUTH",
+        "non-goals",
+        "ownership"
+      ]
+    },
+    {
+      "id": "BP-CUDA-LAB-90",
+      "kind": "validation",
+      "title": "Select the revealing results and publish a bounded two-level demonstration",
+      "objective": "Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.",
+      "notes": "The two-level probe is a small consumer of selected primitives, not a mandatory general encoder or training loop. A clear negative result satisfies the epic. No CV/publication performance claim until full cost and quality evidence supports it.",
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-10"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-20"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-30"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-CUDA-LAB-40"
+        }
+      ],
+      "gates": [
+        {
+          "id": "BP-CUDA-LAB-90-EVIDENCE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "experiments/cuda_lab/tools/check.py",
+            "--all-results"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "experiments/cuda_lab/results",
+            "experiments/cuda_lab/tools/check.py"
+          ],
+          "expected_exit_code": 0
+        }
+      ],
+      "result_policy": {
+        "allowed_dispositions": [
+          "validated",
+          "evaluated_not_promoted"
+        ]
+      },
+      "parent_id": "BP-CUDA-LAB-00",
+      "priority": 1,
+      "parallel_policy": "serial",
+      "scope": {
+        "exclusive_paths": [
+          "experiments/cuda_lab"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "include/Baseplane",
+          "src/seq",
+          "docs/FOUNDATIONS.md",
+          "docs/BITOP_ARCHITECTURE.md",
+          "docs/PERFORMANCE_CONTRACT.md"
+        ],
+        "forbidden_paths": [
+          "CMakeLists.txt",
+          ".todo-orchestrator",
+          "todo-status.md",
+          "todos.md",
+          "todos",
+          "include/Baseplane/seq/sequence_event.hh"
+        ]
+      },
+      "invariants": [
+        "BP-CUDA-LAB-TRUTH",
+        "non-goals",
+        "ownership"
+      ]
+    }
+  ],
+  "interfaces": [],
+  "barriers": [],
+  "decisions": [],
+  "locks": [],
+  "resource_classes": [],
+  "runs": [
+    {
+      "id": "BP-CUDA-LAB-RUN-1",
+      "root_task_id": "BP-CUDA-LAB-00",
+      "charter": {
+        "objective": "Qualify the four isolated CUDA lab mechanisms and select at most two based on measured evidence.",
+        "boundaries": [
+          "Only experiments/cuda_lab source and results",
+          "Preserve frozen exact APIs and other repositories",
+          "Use the existing assigned GPU scheduler and serialized benchmark resources"
+        ],
+        "invariants": [
+          "BP-CUDA-LAB-TRUTH",
+          "non-goals",
+          "ownership"
+        ],
+        "acceptance_conditions": [
+          "All required gates are valid",
+          "Four result receipts support correctness, cost, quality, and limitations",
+          "Final selection contains at most two mechanisms or a supported negative result"
+        ]
+      },
+      "lanes": [
+        {
+          "id": "BP-CUDA-LAB-MAIN",
+          "role": "coordinator",
+          "tasks": [
+            "BP-CUDA-LAB-01",
+            "BP-CUDA-LAB-30",
+            "BP-CUDA-LAB-20",
+            "BP-CUDA-LAB-10",
+            "BP-CUDA-LAB-40",
+            "BP-CUDA-LAB-90"
+          ],
+          "workspace": {
+            "mode": "exclusive"
+          }
+        }
+      ],
+      "rendezvous": []
+    },
+    {
+      "id": "BP-CUDA-LAB-CLOSE-1",
+      "root_task_id": "BP-CUDA-LAB-00",
+      "charter": {
+        "objective": "Close the CUDA lab parent epic after the four experiment receipts and final selection have passed.",
+        "boundaries": [
+          "No new implementation or production API changes"
+        ],
+        "invariants": [
+          "BP-CUDA-LAB-TRUTH"
+        ],
+        "acceptance_conditions": [
+          "BP-CUDA-LAB-90 is complete with valid evidence",
+          "Four case receipts are complete"
+        ]
+      },
+      "lanes": [
+        {
+          "id": "BP-CUDA-LAB-CLOSE",
+          "role": "coordinator",
+          "tasks": [
+            "BP-CUDA-LAB-00"
+          ],
+          "workspace": {
+            "mode": "exclusive"
+          }
+        }
+      ],
+      "rendezvous": []
+    }
+  ]
+}

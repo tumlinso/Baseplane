@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "phase": "gpu",
+  "case": "all",
+  "command": [
+    "/opt/nvidia/hpc_sdk/Linux_x86_64/26.1/cuda/12.9/compute-sanitizer/compute-sanitizer",
+    "--tool",
+    "synccheck",
+    "--error-exitcode",
+    "1",
+    "/home/tumlinson/Baseplane/build-bitop-BP-CUDA-LAB-final-cuda/lab_cuda",
+    "all",
+    "1025",
+    "0"
+  ],
+  "stdout": "========= COMPUTE-SANITIZER\n{\"device\":\"Tesla V100-SXM2-16GB\",\"sm\":70,\"cudart\":12090,\"untrained_fixture_weights\":true}\n{\"case\":\"rethread\",\"n\":1025,\"target_density_pct\":0,\"threshold\":1.42905,\"selected\":0}\n{\"case\":\"rethread\",\"n\":1025,\"target_density_pct\":1,\"threshold\":1.29282,\"selected\":10}\n{\"case\":\"rethread\",\"n\":1025,\"target_density_pct\":5,\"threshold\":1.06895,\"selected\":51}\n{\"case\":\"rethread\",\"n\":1025,\"target_density_pct\":25,\"threshold\":0.527225,\"selected\":256}\n{\"case\":\"rethread\",\"n\":1025,\"target_density_pct\":50,\"threshold\":0.00535001,\"selected\":513}\n{\"case\":\"rethread\",\"n\":1025,\"target_density_pct\":100,\"threshold\":-1.45825,\"selected\":1025}\n{\"case\":\"rethread_two_level\",\"fine_records\":1025,\"coarse_records\":257,\"source_identity\":\"reverse_map_preserved\"}\n{\"case\":\"rendezvous\",\"n\":1025,\"key_mode\":0}\n{\"case\":\"rendezvous\",\"n\":1025,\"key_mode\":1}\n{\"case\":\"rendezvous\",\"n\":1025,\"key_mode\":2}\n{\"case\":\"rendezvous_supertile\",\"candidates\":128,\"packet_fixture\":\"upper_bound_distant_sources\",\"source_span\":12700381,\"scratch_bytes\":1,\"same_key_partners\":994,\"no_regroup_missed\":2,\"regroup_missed\":120,\"higher_level_reused\":true}\n{\"phase\":\"cuda_correctness\",\"case\":\"all\",\"n\":1025,\"passed\":true}\n========= ERROR SUMMARY: 0 errors\n",
+  "stderr": ""
+}

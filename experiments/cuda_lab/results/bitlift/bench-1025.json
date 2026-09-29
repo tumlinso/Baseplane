@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "phase": "bench",
+  "case": "bitlift",
+  "command": [
+    "/home/tumlinson/Baseplane/build-bitop-BP-CUDA-LAB-10-cuda/lab_cuda",
+    "bitlift",
+    "1025",
+    "31"
+  ],
+  "stdout": "{\"device\":\"Tesla V100-SXM2-16GB\",\"sm\":70,\"cudart\":12090,\"untrained_fixture_weights\":true}\n{\"phase\":\"device_resident_pipeline\",\"case\":\"bitlift\",\"variant\":\"packed_prepare_plus_warp_lop3_popc_fp\",\"n\":1025,\"iterations\":31,\"median_ms\":0.008192,\"p95_ms\":0.009216,\"scalar_checked\":true}\n{\"phase\":\"device_resident_pipeline\",\"case\":\"bitlift\",\"variant\":\"packed_prepare_plus_thread_bitset_fp\",\"n\":1025,\"iterations\":31,\"median_ms\":0.008192,\"p95_ms\":0.009216,\"scalar_checked\":true}\n{\"phase\":\"cuda_correctness\",\"case\":\"bitlift\",\"n\":1025,\"passed\":true}\n",
+  "stderr": ""
+}

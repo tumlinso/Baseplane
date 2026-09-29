@@ -1,0 +1,5 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/tumlinson/Baseplane/build-bitop-BP-CUDA-LAB-40-cuda
+[ 50%] Built target lab_reference
+[100%] Built target lab_cuda

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Orchestrator v2 Projection
 
-Project revision: `133`
+Project revision: `196`
 
 ## Workstreams
 - `STACK-BITOP-01` | kind: validation_task | status: done | parent: BITOP-00 | objective: Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.
@@ -39,11 +39,11 @@ Project revision: `133`
 - `CE-BITOP-45` | kind: workstream | status: blocked | parent: BITOP-00 | objective: If activated by a biological objective, perform sparse retrieval/edge proposal/message passing over event or region objects in Cellerator.
 - `CS-BITOP-60` | kind: workstream | status: blocked | parent: BITOP-00 | objective: Only after ABI stability and demonstrated cross-process reuse need, let external CellShard wrap an opaque versioned Baseplane/Cellerator-owned image.
 - `BITOP-00` | kind: epic | status: blocked | parent: - | objective: Coordinate Baseplane sequence primitives as a subordinate library of the Cellerator biological execution model, preserving standalone CPU/CUDA capability while deferring shared identities, relations, runtime integration, numerical interpretation, fusion, and planning to CE-ARCH-00.
-- `BP-CUDA-LAB-00` | kind: epic | status: planned | parent: - | objective: Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.
-- `BP-CUDA-LAB-01` | kind: task | status: planned | parent: BP-CUDA-LAB-00 | objective: Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.
-- `BP-CUDA-LAB-10` | kind: task | status: planned | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/bitlift.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/bitlift.json.
-- `BP-CUDA-LAB-20` | kind: task | status: planned | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.
-- `BP-CUDA-LAB-30` | kind: task | status: planned | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.
-- `BP-CUDA-LAB-40` | kind: task | status: planned | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.
-- `BP-CUDA-LAB-90` | kind: validation | status: planned | parent: BP-CUDA-LAB-00 | objective: Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.
+- `BP-CUDA-LAB-00` | kind: epic | status: done | parent: - | objective: Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.
+- `BP-CUDA-LAB-01` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.
+- `BP-CUDA-LAB-10` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/bitlift.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/bitlift.json.
+- `BP-CUDA-LAB-20` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.
+- `BP-CUDA-LAB-30` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.
+- `BP-CUDA-LAB-40` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.
+- `BP-CUDA-LAB-90` | kind: validation | status: done | parent: BP-CUDA-LAB-00 | objective: Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.
 <!-- todo-orchestrator:v2-managed:end -->

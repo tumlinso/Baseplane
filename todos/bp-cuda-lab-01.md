@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-CUDA-LAB-01: Adopt the isolated lab and qualify its scalar contracts
 
-Task revision: `133`; current project revision is in `todo-status.md`.
+Task revision: `194`; current project revision is in `todo-status.md`.
 
 ## Objective
 Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `validated`
 
 ## Next Action
 _None._

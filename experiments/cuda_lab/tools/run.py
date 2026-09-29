@@ -9,6 +9,16 @@ CASES=('all','bitlift','scan','rethread','rendezvous')
 def invoke(argv,*,capture=False):
     return subprocess.run([str(x) for x in argv],check=True,text=True,capture_output=capture)
 
+def cuda_129_compiler():
+    """Select the recorded toolchain even when an older nvcc precedes it in PATH."""
+    explicit=os.environ.get('CUDACXX')
+    candidates=[Path(explicit)] if explicit else [Path(p)/'nvcc' for p in os.environ.get('PATH','').split(os.pathsep) if p]
+    for candidate in candidates:
+        if not candidate.is_file():continue
+        result=subprocess.run([str(candidate),'--version'],text=True,capture_output=True)
+        if result.returncode==0 and 'release 12.9' in result.stdout:return str(candidate.resolve())
+    return None
+
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--phase',choices=('host','build-cuda','gpu','bench'),required=True)
@@ -32,9 +42,10 @@ def main(argv=None):
         if cache.exists() and 'CMAKE_PROJECT_NAME:STATIC=BaseplaneCudaLab' not in cache.read_text():raise ValueError('build directory belongs to another project')
         if a.phase in ('host','build-cuda'):
             cuda=a.phase=='build-cuda'
-            if cuda and not (os.environ.get('CUDACXX') or shutil.which('nvcc')):
+            compiler=cuda_129_compiler() if cuda else None
+            if cuda and not compiler:
                 print(json.dumps({'status':'unavailable','reason':'CUDA 12.9 nvcc not found','passed':False}));return 77
-            invoke(['cmake','-S',ROOT,'-B',build,f'-DLAB_CUDA={"ON" if cuda else "OFF"}',f'-DLAB_SANITIZE_HOST={"ON" if a.host_sanitize else "OFF"}','-DCMAKE_BUILD_TYPE=Release','-DCMAKE_CUDA_ARCHITECTURES=70'])
+            invoke(['cmake','-S',ROOT,'-B',build,f'-DLAB_CUDA={"ON" if cuda else "OFF"}',f'-DLAB_SANITIZE_HOST={"ON" if a.host_sanitize else "OFF"}','-DCMAKE_BUILD_TYPE=Release','-DCMAKE_CUDA_ARCHITECTURES=70',*([f'-DCMAKE_CUDA_COMPILER={compiler}'] if cuda else [])])
             invoke(['cmake','--build',build,'--parallel','2','--target','lab_cuda' if cuda else 'lab_host'])
             if cuda:return 0
             cmd=[build/'lab_host',a.case]
@@ -48,8 +59,9 @@ def main(argv=None):
             cmd=[build/'lab_cuda',a.case,str(a.n),str(a.iterations if a.phase=='bench' else 0)]
             if a.sanitizer:
                 if a.phase=='bench':raise ValueError('sanitizer timings are not benchmarks')
-                exe=shutil.which('compute-sanitizer')
-                if not exe:raise ValueError('matching CUDA 12.9 Compute Sanitizer is required')
+                compiler=cuda_129_compiler()
+                exe=Path(compiler).parents[1]/'compute-sanitizer'/'compute-sanitizer' if compiler else None
+                if not exe or not exe.is_file():raise ValueError('matching CUDA 12.9 Compute Sanitizer is required')
                 cmd=[exe,'--tool',a.sanitizer,'--error-exitcode','1',*cmd]
         result=invoke(cmd,capture=bool(a.output))
         if a.output:

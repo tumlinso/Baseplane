@@ -1,0 +1,66 @@
+{
+  "experiment": "bitlift",
+  "status": "completed",
+  "verdict": "evaluated_not_promoted",
+  "correctness": {
+    "passed": true,
+    "evidence": [
+      "results/bitlift/cuda-gate.log",
+      "results/bitlift/quality.json"
+    ]
+  },
+  "cuda": {
+    "compiled": true,
+    "executed": true,
+    "evidence": [
+      "results/bitlift/build-cuda.log",
+      "results/bitlift/cuda-gate.log",
+      "results/bitlift/sass.log"
+    ]
+  },
+  "sanitizers": {
+    "passed": true,
+    "evidence": [
+      "results/bitlift/memcheck.json",
+      "results/bitlift/initcheck.json",
+      "results/bitlift/racecheck.json",
+      "results/bitlift/synccheck.json"
+    ]
+  },
+  "baselines": [
+    {
+      "name": "same packed preparation plus ordinary one-thread-per-tile bitset computation",
+      "evidence": [
+        "results/bitlift/bench-1025.json",
+        "results/bitlift/bench-65536.json"
+      ]
+    }
+  ],
+  "costs": {
+    "scope": "device-resident packed preparation plus warp/thread computation; allocation/transfers and source revisit excluded",
+    "evidence": [
+      "results/bitlift/bench-1025.json",
+      "results/bitlift/bench-65536.json",
+      "results/bitlift/report.md"
+    ]
+  },
+  "quality": {
+    "probe": "rotated order-sensitive label and same-sign different-magnitude lower-float witness",
+    "evidence": [
+      "results/bitlift/quality.json",
+      "results/bitlift/quality_probe.cc"
+    ]
+  },
+  "limitations": [
+    "warp path slower at 65536 tiles",
+    "histogram embedding loses order and thresholded child magnitude",
+    "no complete H2D/D2H or source-revisit timing",
+    "synthetic untrained fixture does not establish biological utility"
+  ],
+  "conclusion": "Do not promote the warp histogram path: thread comparator is faster at large size and the summary loses order and magnitude; retain as a bounded lab evaluation.",
+  "controller_evidence_ids": [
+    "4b0371e7-5f1f-44e7-9c7e-8e5f2f6de9de",
+    "33f9399b-c07e-425c-9c15-850d9e82bc78",
+    "e76ca898-f18c-449b-9b25-5e3079432282"
+  ]
+}
