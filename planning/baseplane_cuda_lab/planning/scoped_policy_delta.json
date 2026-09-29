@@ -1,0 +1,16 @@
+{
+  "reason": "User authorized CUDA-centric online hierarchical embedding prototypes, beyond older BitOp-only intent.",
+  "updates": [
+    {
+      "id": "non-goals",
+      "before": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types.",
+      "after": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types. Scoped exception authorized by the 2026-09-28 CUDA prototyping request: experiments/cuda_lab may contain isolated small parameterized floating-point inference probes and online routing/hierarchy tests. No production API, trainer/autograd framework, dense genome-token model, or unrestricted runtime is authorized by this exception."
+    },
+    {
+      "id": "ownership",
+      "before": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked.",
+      "after": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked. Experimental clarification for experiments/cuda_lab only: temporary local floating arithmetic, candidate grouping and conditional sequence-representation kernels are allowed to test the new hypothesis; they do not acquire shared numerical/ABI ownership or authorize edits in Cellerator, CelleraTorch, GlassHelix or CellShard."
+    }
+  ],
+  "unchanged": "All other invariants, existing tasks/statuses, frozen interfaces, GPUs and source files; no live apply performed."
+}

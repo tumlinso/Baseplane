@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T05:49:36Z",
+  "generated_at": "2026-09-29T07:54:15Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 132,
+  "project_revision": 133,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -1950,6 +1950,16 @@
         "revision": 132,
         "seq": 132,
         "timestamp": "2026-09-29T05:49:36Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+        "entity_type": "project",
+        "event_type": "plan.applied",
+        "payload_json": "{\"plan_digest\": \"5a55d89a745b8dabde9b11636d58fd306250472a023a7a466242fb492b4255c2\", \"source\": \"project-control\"}",
+        "revision": 133,
+        "seq": 133,
+        "timestamp": "2026-09-29T07:54:15Z"
       }
     ],
     "evidence": [
@@ -3257,6 +3267,136 @@
       },
       {
         "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"host\", \"--case\", \"all\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-01-host\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/host\", \"experiments/cuda_lab/include\", \"experiments/cuda_lab/tests/host_tests.cc\", \"experiments/cuda_lab/tools/run.py\", \"experiments/cuda_lab/CMakeLists.txt\"]}",
+        "id": "BP-CUDA-LAB-01-HOST",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-01",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"gpu\", \"--case\", \"bitlift\", \"--n\", \"1025\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-10-cuda\"], \"cuda\": {\"binary_paths\": [\"build-bitop-BP-CUDA-LAB-10-cuda/lab_cuda\"], \"build_argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"build-cuda\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-10-cuda\"], \"gpus\": 1}, \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/cuda\", \"experiments/cuda_lab/host\", \"experiments/cuda_lab/include\", \"experiments/cuda_lab/tools/run.py\", \"experiments/cuda_lab/CMakeLists.txt\"]}",
+        "id": "BP-CUDA-LAB-10-CUDA",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-10",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--result\", \"bitlift\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/results/bitlift.json\", \"experiments/cuda_lab/results/bitlift\", \"experiments/cuda_lab/tools/check.py\"]}",
+        "id": "BP-CUDA-LAB-10-RESULT",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-10",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"gpu\", \"--case\", \"scan\", \"--n\", \"1025\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-20-cuda\"], \"cuda\": {\"binary_paths\": [\"build-bitop-BP-CUDA-LAB-20-cuda/lab_cuda\"], \"build_argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"build-cuda\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-20-cuda\"], \"gpus\": 1}, \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/cuda\", \"experiments/cuda_lab/host\", \"experiments/cuda_lab/include\", \"experiments/cuda_lab/tools/run.py\", \"experiments/cuda_lab/CMakeLists.txt\"]}",
+        "id": "BP-CUDA-LAB-20-CUDA",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-20",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--result\", \"scan\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/results/scan.json\", \"experiments/cuda_lab/results/scan\", \"experiments/cuda_lab/tools/check.py\"]}",
+        "id": "BP-CUDA-LAB-20-RESULT",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-20",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"gpu\", \"--case\", \"rethread\", \"--n\", \"1025\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-30-cuda\"], \"cuda\": {\"binary_paths\": [\"build-bitop-BP-CUDA-LAB-30-cuda/lab_cuda\"], \"build_argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"build-cuda\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-30-cuda\"], \"gpus\": 1}, \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/cuda\", \"experiments/cuda_lab/host\", \"experiments/cuda_lab/include\", \"experiments/cuda_lab/tools/run.py\", \"experiments/cuda_lab/CMakeLists.txt\"]}",
+        "id": "BP-CUDA-LAB-30-CUDA",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-30",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--result\", \"rethread\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/results/rethread.json\", \"experiments/cuda_lab/results/rethread\", \"experiments/cuda_lab/tools/check.py\"]}",
+        "id": "BP-CUDA-LAB-30-RESULT",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-30",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"gpu\", \"--case\", \"rendezvous\", \"--n\", \"1025\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-40-cuda\"], \"cuda\": {\"binary_paths\": [\"build-bitop-BP-CUDA-LAB-40-cuda/lab_cuda\"], \"build_argv\": [\"python3\", \"experiments/cuda_lab/tools/run.py\", \"--phase\", \"build-cuda\", \"--build-dir\", \"build-bitop-BP-CUDA-LAB-40-cuda\"], \"gpus\": 1}, \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/cuda\", \"experiments/cuda_lab/host\", \"experiments/cuda_lab/include\", \"experiments/cuda_lab/tools/run.py\", \"experiments/cuda_lab/CMakeLists.txt\"]}",
+        "id": "BP-CUDA-LAB-40-CUDA",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-40",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--result\", \"rendezvous\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/results/rendezvous.json\", \"experiments/cuda_lab/results/rendezvous\", \"experiments/cuda_lab/tools/check.py\"]}",
+        "id": "BP-CUDA-LAB-40-RESULT",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-40",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--all-results\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/cuda_lab/results\", \"experiments/cuda_lab/tools/check.py\"]}",
+        "id": "BP-CUDA-LAB-90-EVIDENCE",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 133,
+        "status": "pending",
+        "task_id": "BP-CUDA-LAB-90",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
         "config_json": "{\"argv\": [\"cmake\", \"--build\", \"/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40\", \"--target\", \"sequenceComputeRuntimeTest\", \"coreSparseLayoutRuntimeTest\", \"-j\", \"4\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"timeout\": 1800, \"track_git_head\": true}",
         "id": "CE-BITOP-40-BUILD",
         "input_fingerprint": null,
@@ -4100,6 +4240,13 @@
     "invariants": [
       {
         "enforcement": null,
+        "id": "BP-CUDA-LAB-TRUTH",
+        "rule": "This epic is scoped to experiments/cuda_lab; keep every prototype unpromoted until measured. No false claim of learned weights, lossless embeddings, genome-scale representation, GPU execution or speedup. Negative findings are first-class outcomes. Existing exact APIs and unrelated dirty files remain untouched.",
+        "scope_json": "{\"paths\": [\"experiments/cuda_lab\"]}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
         "id": "canonical-source",
         "rule": "Canonical C++/CUDA source is authoritative. Use cpp-context-compiler where configured; generated .ctxpp views are read-only. Fall back to focused canonical reads when semantic indexing is unavailable or owned by another session.",
         "scope_json": "{}",
@@ -4164,14 +4311,14 @@
       {
         "enforcement": null,
         "id": "non-goals",
-        "rule": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types.",
+        "rule": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types. Scoped exception authorized by the 2026-09-28 CUDA prototyping request: experiments/cuda_lab may contain isolated small parameterized floating-point inference probes and online routing/hierarchy tests. No production API, trainer/autograd framework, dense genome-token model, or unrestricted runtime is authorized by this exception.",
         "scope_json": "{}",
         "severity": "error"
       },
       {
         "enforcement": null,
         "id": "ownership",
-        "rule": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked.",
+        "rule": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked. Experimental clarification for experiments/cuda_lab only: temporary local floating arithmetic, candidate grouping and conditional sequence-representation kernels are allowed to test the new hypothesis; they do not acquire shared numerical/ABI ownership or authorize edits in Cellerator, CelleraTorch, GlassHelix or CellShard.",
         "scope_json": "{}",
         "severity": "error"
       },
@@ -5251,6 +5398,396 @@
         "mode": "read",
         "path": "tests",
         "task_id": "BP-BITOP-50"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "forbidden",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "forbidden",
+        "path": "include/Baseplane/seq/sequence_event.hh",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "read",
+        "path": "docs/BITOP_ARCHITECTURE.md",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "read",
+        "path": "docs/FOUNDATIONS.md",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "read",
+        "path": "docs/PERFORMANCE_CONTRACT.md",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "include/Baseplane/seq/sequence_event.hh",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "read",
+        "path": "docs/BITOP_ARCHITECTURE.md",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "read",
+        "path": "docs/FOUNDATIONS.md",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "read",
+        "path": "docs/PERFORMANCE_CONTRACT.md",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "include/Baseplane/seq/sequence_event.hh",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "read",
+        "path": "docs/BITOP_ARCHITECTURE.md",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "read",
+        "path": "docs/FOUNDATIONS.md",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "read",
+        "path": "docs/PERFORMANCE_CONTRACT.md",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "include/Baseplane/seq/sequence_event.hh",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "read",
+        "path": "docs/BITOP_ARCHITECTURE.md",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "read",
+        "path": "docs/FOUNDATIONS.md",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "read",
+        "path": "docs/PERFORMANCE_CONTRACT.md",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "forbidden",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "forbidden",
+        "path": "include/Baseplane/seq/sequence_event.hh",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "read",
+        "path": "docs/BITOP_ARCHITECTURE.md",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "read",
+        "path": "docs/FOUNDATIONS.md",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "read",
+        "path": "docs/PERFORMANCE_CONTRACT.md",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "include/Baseplane/seq/sequence_event.hh",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "read",
+        "path": "docs/BITOP_ARCHITECTURE.md",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "read",
+        "path": "docs/FOUNDATIONS.md",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "read",
+        "path": "docs/PERFORMANCE_CONTRACT.md",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-CUDA-LAB-90"
       },
       {
         "mode": "forbidden",
@@ -7021,6 +7558,94 @@
         "prerequisite_task_id": null,
         "task_id": "STACK-BITOP-53",
         "type": "barrier"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1411,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-01",
+        "task_id": "BP-CUDA-LAB-10",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1412,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-01",
+        "task_id": "BP-CUDA-LAB-20",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1413,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-01",
+        "task_id": "BP-CUDA-LAB-30",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1414,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-01",
+        "task_id": "BP-CUDA-LAB-40",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1415,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-10",
+        "task_id": "BP-CUDA-LAB-90",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1416,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-20",
+        "task_id": "BP-CUDA-LAB-90",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1417,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-30",
+        "task_id": "BP-CUDA-LAB-90",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1418,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-CUDA-LAB-40",
+        "task_id": "BP-CUDA-LAB-90",
+        "type": "task"
       }
     ],
     "task_invariants": [
@@ -7919,6 +8544,78 @@
       {
         "invariant_id": "unique-builds",
         "task_id": "BP-BITOP-50"
+      },
+      {
+        "invariant_id": "BP-CUDA-LAB-TRUTH",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "invariant_id": "non-goals",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "invariant_id": "ownership",
+        "task_id": "BP-CUDA-LAB-01"
+      },
+      {
+        "invariant_id": "BP-CUDA-LAB-TRUTH",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "invariant_id": "non-goals",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "invariant_id": "ownership",
+        "task_id": "BP-CUDA-LAB-10"
+      },
+      {
+        "invariant_id": "BP-CUDA-LAB-TRUTH",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "invariant_id": "non-goals",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "invariant_id": "ownership",
+        "task_id": "BP-CUDA-LAB-20"
+      },
+      {
+        "invariant_id": "BP-CUDA-LAB-TRUTH",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "invariant_id": "non-goals",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "invariant_id": "ownership",
+        "task_id": "BP-CUDA-LAB-30"
+      },
+      {
+        "invariant_id": "BP-CUDA-LAB-TRUTH",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "invariant_id": "non-goals",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "invariant_id": "ownership",
+        "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "invariant_id": "BP-CUDA-LAB-TRUTH",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "invariant_id": "non-goals",
+        "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "invariant_id": "ownership",
+        "task_id": "BP-CUDA-LAB-90"
       },
       {
         "invariant_id": "canonical-source",
@@ -9235,6 +9932,181 @@
         "title": "Benchmark matrix and measured backend selector",
         "updated_at": "2026-09-29T05:49:36Z",
         "version": 17
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-00",
+        "kind": "epic",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Read experiments/cuda_lab/START_HERE.md. Prewritten source and references are supplied. Existing BitOp work remains separate. Complete after BP-CUDA-LAB-90 evidence review; do not mark constituent kernels as validated before their gates run.",
+        "objective": "Evaluate four minimal, creative CUDA mechanisms for Baseplane online hierarchical floating representations; retain at most two evidence-supported demonstrations, not a new general framework.",
+        "parallel_policy": "serial",
+        "parent_id": null,
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"evaluated_not_promoted\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "CUDA-native online representation experiments",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-01",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Do not rebuild infrastructure already supplied. No genome data or ML framework download. Use the existing scheduler; do not create an independent GPU lease mechanism. Native plan may be imported only after reviewing its scoped invariant diff.",
+        "objective": "Check dirty work and the two narrow invariant changes; install the prepared lab without root CMake/ABI edits, run host reference tests, verify CUDA12.9/sm70 build route and record the exact remaining prototype gaps.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-CUDA-LAB-00",
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"no_change_required\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Adopt the isolated lab and qualify its scalar contracts",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-10",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+        "objective": "Complete experiments/cuda_lab/experiments/bitlift.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/bitlift.json.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-CUDA-LAB-00",
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"evaluated_not_promoted\", \"implemented\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "BitLift: use Boolean evidence without unpacking it into expensive work",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-20",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+        "objective": "Complete experiments/cuda_lab/experiments/scan.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/scan.json.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-CUDA-LAB-00",
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"evaluated_not_promoted\", \"implemented\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "CarryFold: make a conditional history composable",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-30",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+        "objective": "Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-CUDA-LAB-00",
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"evaluated_not_promoted\", \"implemented\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Rethread: let informative objects recruit a whole warp",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-40",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Read the supplied brief; no context rediscovery. Re-run scalar tests after edits. Use serialized canonical resources for GPU benchmarks and sanitizers. Negative results may complete as evaluated_not_promoted; broken or unrun CUDA may not.",
+        "objective": "Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-CUDA-LAB-00",
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"evaluated_not_promoted\", \"implemented\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Rendezvous: make current information determine who talks",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T07:54:15Z",
+        "id": "BP-CUDA-LAB-90",
+        "kind": "validation",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "The two-level probe is a small consumer of selected primitives, not a mandatory general encoder or training loop. A clear negative result satisfies the epic. No CV/publication performance claim until full cost and quality evidence supports it.",
+        "objective": "Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-CUDA-LAB-00",
+        "priority": 1,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"evaluated_not_promoted\"]}",
+        "revision": 133,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Select the revealing results and publish a bounded two-level demonstration",
+        "updated_at": "2026-09-29T07:54:15Z",
+        "version": 1
       },
       {
         "attention_reason": null,

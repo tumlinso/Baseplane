@@ -1,0 +1,94 @@
+{
+  "seed": 20260928,
+  "native_architecture": "sm_70",
+  "toolchain": "CUDA 12.9",
+  "correctness_sizes": [
+    0,
+    1,
+    17,
+    31,
+    32,
+    33,
+    63,
+    64,
+    65,
+    1023,
+    1024,
+    1025,
+    4097
+  ],
+  "performance_sizes": [
+    1024,
+    16384,
+    65536
+  ],
+  "performance_iterations": 31,
+  "bitlift": {
+    "valid_counts": [
+      0,
+      1,
+      16,
+      31,
+      32
+    ],
+    "patterns": [
+      "constant",
+      "random",
+      "alternating",
+      "same_histogram_different_order"
+    ]
+  },
+  "scan": {
+    "retention": [
+      "all_reset",
+      "mixed",
+      "no_reset",
+      "near_one"
+    ],
+    "boundary_offsets": [
+      0,
+      1,
+      15,
+      31
+    ]
+  },
+  "rethread": {
+    "selection_fractions": [
+      0,
+      0.01,
+      0.05,
+      0.25,
+      0.5,
+      1
+    ],
+    "layouts": [
+      "clustered",
+      "scattered"
+    ],
+    "required_baselines": [
+      "thread",
+      "warp_without_queue",
+      "warp_with_queue",
+      "CUB_select_or_explicit_reason"
+    ]
+  },
+  "rendezvous": {
+    "keys": [
+      "unique",
+      "identical",
+      "uniform",
+      "skewed",
+      "deliberate_collision"
+    ],
+    "candidate_origins": [
+      "local",
+      "mixed_remote",
+      "oracle_upper_bound_labeled"
+    ]
+  },
+  "notes": [
+    "Run a small representative subset first; expand only to explain a regime or failure. This is not a mandatory Cartesian-product campaign.",
+    "All scores/timings absent until measured; allocations and transfers reported separately.",
+    "Correctness phases never treated as benchmark measurements."
+  ]
+}

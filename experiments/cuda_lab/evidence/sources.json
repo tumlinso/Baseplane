@@ -1,0 +1,114 @@
+{
+  "retrieved_on": "2026-09-28",
+  "primary_sources": [
+    {
+      "id": "N1",
+      "title": "CUDA C++ Programming Guide 12.9.1",
+      "url": "https://docs.nvidia.com/cuda/archive/12.9.1/cuda-c-programming-guide/index.html",
+      "use": "Warp vote/match/shuffle contracts; Volta independent thread scheduling; match_any supports sm_70+, reduce_sync needs sm_80+; WMMA collective constraints."
+    },
+    {
+      "id": "N2",
+      "title": "PTX ISA 8.8",
+      "url": "https://docs.nvidia.com/cuda/archive/12.9.1/parallel-thread-execution/index.html",
+      "use": "lop3.b32 implements a ternary Boolean lookup with an instruction-immediate truth table; shf is a funnel shift. Fixed primitives are not pre-discovered genomic biology."
+    },
+    {
+      "id": "N3",
+      "title": "Using CUDA Warp-Level Primitives",
+      "url": "https://developer.nvidia.com/blog/using-cuda-warp-level-primitives/",
+      "use": "Explicit participant masks, warp-local collectives and Volta-safe synchronization."
+    },
+    {
+      "id": "N4",
+      "title": "Register Cache: Caching for Warp-Centric CUDA Programs",
+      "url": "https://developer.nvidia.com/blog/register-cache-warp-cuda/",
+      "use": "Shuffle-based register exchange is prior art; register pressure and spills can negate benefits. This does not establish a free arbitrary dynamic register array."
+    },
+    {
+      "id": "N5",
+      "title": "Optimized Filtering with Warp-Aggregated Atomics",
+      "url": "https://developer.nvidia.com/blog/cuda-pro-tip-optimized-filtering-warp-aggregated-atomics/",
+      "use": "Ballot/rank and leader reservation are established; compilers can aggregate atomics already. Stable and unordered selection have different contracts."
+    },
+    {
+      "id": "N6",
+      "title": "CUDA Toolkit 13.0 release notes",
+      "url": "https://docs.nvidia.com/cuda/archive/13.0.0/cuda-toolkit-release-notes/index.html",
+      "use": "Offline compilation and library support for Volta removed in CUDA 13; use the recorded 12.9 toolchain, not latest by default."
+    },
+    {
+      "id": "N7",
+      "title": "CUB WarpScan",
+      "url": "https://nvidia.github.io/cccl/cub/api/classcub_1_1WarpScan.html",
+      "use": "Library scan baseline; use the CUB shipped with CUDA 12.9, not unpinned latest CCCL."
+    },
+    {
+      "id": "N8",
+      "title": "CUTLASS: Fast Linear Algebra in CUDA C++",
+      "url": "https://developer.nvidia.com/blog/cutlass-linear-algebra-cuda/",
+      "use": "Volta WMMA and hierarchical tiling exist; no justification to force tiny ragged operators onto Tensor Cores before measurement."
+    },
+    {
+      "id": "P1",
+      "title": "Dynamic Chunking for End-to-End Hierarchical Sequence Modeling",
+      "url": "https://arxiv.org/html/2507.07955v2",
+      "use": "Learned content/context-dependent hierarchical chunking, including DNA experiments, already exists. Do not claim dynamic hierarchy itself as novel."
+    },
+    {
+      "id": "P2",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "url": "https://arxiv.org/html/2312.00752v2",
+      "use": "Input-dependent state propagation with hardware-aware recurrent computation is established. Affine/selective scan is an algorithmic reference, not a Baseplane invention."
+    },
+    {
+      "id": "P3",
+      "title": "Mixture-of-Depths",
+      "url": "https://arxiv.org/abs/2404.02258",
+      "use": "Content-dependent allocation of computation under a bounded budget; selection quality and routing overhead matter."
+    },
+    {
+      "id": "P4",
+      "title": "MegaBlocks: Efficient Sparse Training with Mixture-of-Experts",
+      "url": "https://arxiv.org/abs/2211.15841",
+      "use": "Packing variable routed work without discarding tokens motivates a conditional tile-batching extension; no training framework is copied into Baseplane."
+    }
+  ],
+  "repository_sources": [
+    {
+      "id": "B1",
+      "tool": "project-control.architecture_context",
+      "project": "baseplane",
+      "observed_at": "2026-09-28T18:14:54Z",
+      "commit": "7846247277fec303cca9343adea4dd2db3c591bb",
+      "dirty": true,
+      "todo_revision": 131,
+      "working_tree_fingerprint": "2d8cafc266835b13df6eb40bccaa0da394fddeb414a598de14dedd219f863316",
+      "finding": "sm_70/CUDA12.9 invariant; frozen sequence event/predicate interfaces; legacy non-goals/ownership more restrictive than current user intent; no active run observed; stale legacy dependency warnings."
+    },
+    {
+      "id": "B2",
+      "tool": "project-control.source_context",
+      "project": "baseplane",
+      "paths": [
+        "AGENTS.md:1-137",
+        "CMakeLists.txt:1-132",
+        "src/seq/dna2.cu:120-245",
+        "docs/bitop_baseline_evidence.md:1-129"
+      ],
+      "finding": "Standalone Baseplane::seq C++17/CUDA; warp bit-plane conversion is a proof path; historical 0.325ms run was count-only, not dense embedding throughput; preserve caller-owned buffers and exact APIs."
+    },
+    {
+      "id": "T1",
+      "tool": "project-control.source_context",
+      "project": "skills",
+      "commit": "fc9d083afd614b43f16bdd1557243015a6ecc899",
+      "paths": [
+        "todo-orchestrator/todo_orchestrator/plan.py:1-290",
+        "todo-orchestrator/todo_orchestrator/gates.py:1-167"
+      ],
+      "finding": "Native schema-v2, parent_id, local dependencies, command/CUDA gates and evaluated_not_promoted disposition."
+    }
+  ],
+  "intent_source": "User corrections in this conversation are the authority for the proposed scientific direction; they are not implementation evidence."
+}

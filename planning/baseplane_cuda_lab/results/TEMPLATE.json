@@ -1,0 +1,34 @@
+{
+  "experiment": "replace_with_case",
+  "status": "not_run",
+  "verdict": "pending",
+  "correctness": {
+    "passed": false,
+    "evidence": []
+  },
+  "cuda": {
+    "compiled": false,
+    "executed": false,
+    "evidence": []
+  },
+  "sanitizers": {
+    "passed": false,
+    "evidence": []
+  },
+  "baselines": [
+    {
+      "name": "",
+      "evidence": []
+    }
+  ],
+  "costs": {
+    "scope": "device-resident pipeline plus separately reported preparation/transfers",
+    "evidence": []
+  },
+  "quality": {
+    "probe": "",
+    "evidence": []
+  },
+  "limitations": [],
+  "conclusion": ""
+}

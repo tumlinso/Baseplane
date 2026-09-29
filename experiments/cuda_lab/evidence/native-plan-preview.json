@@ -1,0 +1,51 @@
+{
+  "record_type": "bounded transcription of actual Project Control response; source/canonical hashes checked",
+  "request": {
+    "tool": "project-control.plan_preview",
+    "project": "baseplane",
+    "mode": "validate",
+    "detail": "compact",
+    "proposal_file": "planning/epic.v2.json",
+    "proposal_file_sha256": "90509e2165d3e4df2c86e6b6e68e2dd5c3fa44e5f93d9ec990e7a7391fdd5084"
+  },
+  "response": {
+    "schema_version": 1,
+    "tool": "plan_preview",
+    "status": "ok",
+    "observed_at": "2026-09-28T18:39:09Z",
+    "data": {
+      "mode": "validate",
+      "valid": true,
+      "would_add": [
+        "BP-CUDA-LAB-00",
+        "BP-CUDA-LAB-01",
+        "BP-CUDA-LAB-10",
+        "BP-CUDA-LAB-20",
+        "BP-CUDA-LAB-30",
+        "BP-CUDA-LAB-40",
+        "BP-CUDA-LAB-90"
+      ],
+      "would_modify": [],
+      "dependency_errors": [],
+      "scope_conflicts": [],
+      "interface_errors": [],
+      "warnings": [],
+      "plan_digest": "f1a559de8a5047a24bae3352126261bd078d1fbc963eefbb168a1d8ece8ce9e4",
+      "base_revision": 131,
+      "base_commits": {
+        "baseplane": "7846247277fec303cca9343adea4dd2db3c591bb"
+      },
+      "mutation_guard": "unchanged",
+      "plan_schema_version_observed": 2,
+      "accepted_plan_schema_versions": [
+        2,
+        3
+      ]
+    },
+    "warnings": []
+  },
+  "interpretation": "Native plan validation passed against the observed live authority. would_modify is the task-diff field, not a statement that no invariant changes are proposed: the plan separately contains two existing-invariant text upserts documented in scoped_policy_delta.json. Revalidate current state before local apply.",
+  "plan_applied": false,
+  "remote_source_modified": false,
+  "gpu_work_launched": false
+}

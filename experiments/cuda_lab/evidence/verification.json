@@ -1,0 +1,104 @@
+{
+  "prepared_at": "2026-09-28T18:40:06.916241+00:00",
+  "host_reference": {
+    "passed": true,
+    "assertions": 1045957,
+    "independent_test_count_claimed": false,
+    "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+    "address_sanitizer": true,
+    "undefined_behavior_sanitizer": true,
+    "receipt": "evidence/host-reference-check.json",
+    "build_log": "evidence/host-build.log"
+  },
+  "python_tests": {
+    "passed": true,
+    "tests": 15,
+    "coverage": "installer preview/conflicts/idempotence/symlinks; result guards; package graph; unavailability handling"
+  },
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "/mnt/data/baseplane_cuda_lab/tools/check.py",
+        "--package"
+      ],
+      "expected_exit_code": 0,
+      "actual_exit_code": 0,
+      "check_passed": true,
+      "log": "evidence/check-1.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/mnt/data/baseplane_cuda_lab/tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "expected_exit_code": 0,
+      "actual_exit_code": 0,
+      "check_passed": true,
+      "log": "evidence/check-2.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "/mnt/data/baseplane_cuda_lab/tools/check.py",
+        "--all-results"
+      ],
+      "expected_exit_code": 1,
+      "actual_exit_code": 1,
+      "check_passed": true,
+      "log": "evidence/check-3.log"
+    },
+    {
+      "argv": [
+        "python3",
+        "/mnt/data/baseplane_cuda_lab/tools/run.py",
+        "--phase",
+        "build-cuda",
+        "--build-dir",
+        "/mnt/data/bp_lab_unavailable_check"
+      ],
+      "expected_exit_code": 77,
+      "actual_exit_code": 77,
+      "check_passed": true,
+      "log": "evidence/check-4.log"
+    }
+  ],
+  "cuda": {
+    "nvcc_available": false,
+    "device_utility_available": false,
+    "compiled": false,
+    "executed": false,
+    "benchmarked": false,
+    "reason": "No CUDA toolchain/GPU in the preparation environment; supplied source is an unqualified starting point."
+  },
+  "native_plan": {
+    "valid": true,
+    "canonical_digest": "f1a559de8a5047a24bae3352126261bd078d1fbc963eefbb168a1d8ece8ce9e4",
+    "receipt": "evidence/native-plan-preview.json",
+    "applied": false
+  },
+  "experiment_outcomes": "not yet run; host oracles and packaging tests are not GPU or biological results",
+  "source_hashes": {
+    "cuda/driver.cu": "ef6d3804d7b985191853d695f4a16155233c11844fea838a5ee86403fe768a6a",
+    "cuda/kernels.cuh": "dc105e0d77b3b79df342d3f777e711ea1244d56c812c8ffedc59a6fef4895147",
+    "host/reference.cc": "fd95f63136f4f0f9852031b344f5b487946ce33b818beba428abf787ed56ebfa",
+    "include/lab.hh": "f4d8e82e22304cd68b78f4910027c25aa19480b5e9254e09be94c797d4ea711b",
+    "tests/host_tests.cc": "91d3f727636b64d8014c25e76673916689efbc055cbba00858bbdc8364d7e9a5",
+    "tests/test_tools.py": "ab65eaa40401a709b1e503acb660db25b3741493955aed00fe682b366fd05ced",
+    "tools/check.py": "cefb5708bd863b14112dee00734db45ddbdaab4e86ed0c9a12d37e83c3f065e1",
+    "tools/install.py": "a0006ad3f227b509910fbe3304fa542ce01727f17ff0e1b1b83f069ab9cd982e",
+    "tools/run.py": "60c8e97980aca7bb12f07849c2c39789ca6ff98a1b7af55f7ae53629b77ff3bb"
+  },
+  "remaining_work": [
+    "Compile and qualify CUDA kernels on assigned V100 with CUDA12.9, including sanitizers.",
+    "Finish the minimal on-device input adapters, strong baselines and hierarchical/information probes described in each brief.",
+    "Measure routing/packing/initialization and representation quality; no current speedup or trained-model claim."
+  ]
+}

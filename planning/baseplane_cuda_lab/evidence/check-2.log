@@ -1,0 +1,24 @@
+{"status": "unavailable", "reason": "CUDA 12.9 nvcc not found", "passed": false}
+test_evidence_cannot_escape (test_tools.PackageTests.test_evidence_cannot_escape) ... ok
+test_gpu_requires_assignment (test_tools.PackageTests.test_gpu_requires_assignment) ... {"status": "failed", "reason": "GPU run needs an externally assigned CUDA_VISIBLE_DEVICES; use the canonical scheduler", "passed": false}
+ok
+test_install_additive_idempotent (test_tools.PackageTests.test_install_additive_idempotent) ... ok
+test_install_conflict_preserves_files (test_tools.PackageTests.test_install_conflict_preserves_files) ... ok
+test_install_preview_does_not_write (test_tools.PackageTests.test_install_preview_does_not_write) ... ok
+test_install_rejects_symlink (test_tools.PackageTests.test_install_rejects_symlink) ... ok
+test_negative_selection_needs_no_fake_model (test_tools.PackageTests.test_negative_selection_needs_no_fake_model) ... ok
+test_no_cuda_is_unavailable_not_pass (test_tools.PackageTests.test_no_cuda_is_unavailable_not_pass) ... ok
+test_nonempty_evidence_required (test_tools.PackageTests.test_nonempty_evidence_required) ... ok
+test_package_contract (test_tools.PackageTests.test_package_contract) ... ok
+test_positive_selection_needs_execution_evidence (test_tools.PackageTests.test_positive_selection_needs_execution_evidence) ... ok
+test_receipt_does_not_overwrite_package_sources (test_tools.PackageTests.test_receipt_does_not_overwrite_package_sources) ... {"status": "failed", "reason": "receipts inside the package belong only under results/", "passed": false}
+ok
+test_reject_unrelated_build (test_tools.PackageTests.test_reject_unrelated_build) ... {"status": "failed", "reason": "refusing nonempty unrelated build directory", "passed": false}
+ok
+test_template_cannot_pass (test_tools.PackageTests.test_template_cannot_pass) ... ok
+test_template_starts_unrun (test_tools.PackageTests.test_template_starts_unrun) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.031s
+
+OK

@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "files_checked": 19,
+  "native_task_count": 7,
+  "scope": "local structural checks; not native execution, CUDA validation or experimental results"
+}

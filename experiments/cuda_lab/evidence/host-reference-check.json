@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "phase": "host",
+  "case": "all",
+  "command": [
+    "/mnt/data/bp_lab_checked_host/lab_host",
+    "all"
+  ],
+  "stdout": "{\"phase\":\"host_reference\",\"case\":\"all\",\"assertions\":1045957,\"passed\":true}\n",
+  "stderr": ""
+}
