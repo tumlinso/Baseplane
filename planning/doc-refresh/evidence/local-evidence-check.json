@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "python3",
+    "planning/doc-refresh/tools/check.py",
+    "--local",
+    "--project",
+    "baseplane",
+    "--repo",
+    ".",
+    "--evidence"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"status\": \"passed\",\n  \"checks\": [\n    {\n      \"project\": \"baseplane\",\n      \"templates\": 11,\n      \"result_records\": [\n        \"bp-carryfold\",\n        \"bp-rethread\"\n      ],\n      \"plan\": {\n        \"tasks\": 5,\n        \"outcomes\": 4,\n        \"structural_check\": \"passed; native validation is separate\"\n      },\n      \"selected_results\": [\n        \"bp-carryfold\"\n      ]\n    }\n  ]\n}\n",
+  "stderr": ""
+}

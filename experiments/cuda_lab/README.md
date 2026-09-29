@@ -1,9 +1,19 @@
 # Baseplane CUDA lab
 
-**Start:** [START_HERE.md](START_HERE.md) · [research and shortlist](RESEARCH.md) · [native epic](planning/epic.v2.json).
+**Status:** the four bounded synthetic experiments are complete. Read the
+[final selection report](results/selection/report.md) for the measured
+comparisons, decisions, and claim limits. Its combined-source replay and final
+CUDA sanitizer receipts are linked from that report.
 
-Four unpromoted mechanisms: BitLift (Boolean evidence → floats), CarryFold (conditional history → associative summaries), Rethread (selected records → cooperative warps), Rendezvous (runtime keys → peer masks).
+The lab evaluated BitLift (Boolean evidence into floating summaries), CarryFold
+(ordered affine summaries), Rethread (selected objects into cooperative work),
+and Rendezvous (runtime-key peer grouping). CarryFold remains one restricted
+research candidate; CUB was the faster measured executor in the reported scan
+fixtures. The other three were evaluated and not promoted. All weights and
+routing keys were untrained synthetic fixtures. These results do not establish
+a trained genome model, biological validity, or organism-scale context
+construction.
 
-One CMake project, no extra runtime or model download. Host/scalar checks work without CUDA. The GPU starting implementation targets CUDA12.9/Volta and is explicitly uncompiled/unrun until the local agent executes the CUDA gates. This package is additive and does not modify the live Baseplane workspace or Todo.
-
-Source files are experimental specifications and scaffolds, not published biological results or claimed performance gains. See DOCTRINE.md for scope, experiment briefs for missing work, and evidence/ for actual preparation receipts.
+The lab remains separate from the exact-sequence library. It changed no public
+Baseplane API and is not a production numerical interface. For completed run
+status and bounded reproduction steps, see [START_HERE.md](START_HERE.md).

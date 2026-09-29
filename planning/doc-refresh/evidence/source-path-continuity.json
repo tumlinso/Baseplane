@@ -1,0 +1,62 @@
+{
+  "qualified_head": "271843a2d2ceff434c97c8eb5fd13555567034c4",
+  "reviewed_source_paths": {
+    "include/Baseplane/dna2.hh": true,
+    "include/Baseplane/seq/dna2_validity.hh": true,
+    "src/seq/dna2_scalar.cpp": true,
+    "src/seq/dna2.cu": true,
+    "tests/seq": true,
+    "CMakeLists.txt": true,
+    "experiments/cuda_lab/cuda/driver.cu": true,
+    "experiments/cuda_lab/results/selection/report.md": true
+  },
+  "all_source_paths_exist": true,
+  "source_build_test_git_changes": [],
+  "no_source_move": true,
+  "managed_agents_block_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "managed_agents_block_matches_adoption": true,
+  "carryfold_raw_receipts": {
+    "experiments/cuda_lab/results/selection/final-bench-1025.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/final-bench-65536.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/source_hashes.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/final-memcheck.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/final-initcheck.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/final-racecheck.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/final-synccheck.json": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    },
+    "experiments/cuda_lab/results/selection/report.md": {
+      "exists": true,
+      "tracked": true,
+      "sha256_matches": true
+    }
+  },
+  "all_carryfold_receipts_portable_in_repository": true,
+  "active_bitop_run_observation": "planning/doc-refresh/evidence/bitop-continuity.json"
+}

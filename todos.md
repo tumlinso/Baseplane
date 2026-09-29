@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Orchestrator v2 Projection
 
-Project revision: `197`
+Project revision: `216`
 
 ## Workstreams
 - `STACK-BITOP-01` | kind: validation_task | status: done | parent: BITOP-00 | objective: Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.
@@ -46,9 +46,9 @@ Project revision: `197`
 - `BP-CUDA-LAB-30` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/rethread.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rethread.json.
 - `BP-CUDA-LAB-40` | kind: task | status: done | parent: BP-CUDA-LAB-00 | objective: Complete experiments/cuda_lab/experiments/rendezvous.md: qualify supplied CUDA, add the minimal live/hierarchical probe and strong baseline, measure costs and information retention, record results/rendezvous.json.
 - `BP-CUDA-LAB-90` | kind: validation | status: done | parent: BP-CUDA-LAB-00 | objective: Compare the four results at equivalent semantics/quality. Keep at most two promising ideas and one minimal two-level integration, or document why no promotion is warranted. Deliver runnable commands and a candid evidence report without promoting new public APIs.
-- `BP-DOCS-000` | kind: epic | status: planned | parent: - | objective: Apply the prewritten public/agent/developer/status hierarchy, perform only useful small moves, and qualify selected result displays. Part of DOCS-REFRESH-2026-09; authority remains local.
-- `BP-DOCS-10` | kind: task | status: planned | parent: BP-DOCS-000 | objective: Refresh source/claims after prior packages; classify important documents; stage the already-written README, design, status, source-map and agent pages without rederiving intent.
-- `BP-DOCS-20` | kind: task | status: planned | parent: BP-DOCS-000 | objective: Move at most one useful mechanical source cluster by default, or keep source as-is; repair living docs/build/import/export references and preserve all semantic/evidence boundaries.
-- `BP-DOCS-30` | kind: task | status: planned | parent: BP-DOCS-000 | objective: Verify existing result records, export portable raw evidence, and refresh only bounded selected cases when justified. Choose at most two public studies. Optional GH capability probe only; no broad benchmark or model work.
-- `BP-DOCS-90` | kind: task | status: planned | parent: BP-DOCS-000 | objective: Apply reviewed final staged docs, validate local links/status/evidence and affected builds/tests, inspect rendered pages/figures, and write one authentic local handoff receipt.
+- `BP-DOCS-000` | kind: epic | status: done | parent: - | objective: Apply the prewritten public/agent/developer/status hierarchy, perform only useful small moves, and qualify selected result displays. Part of DOCS-REFRESH-2026-09; authority remains local.
+- `BP-DOCS-10` | kind: task | status: done | parent: BP-DOCS-000 | objective: Refresh source/claims after prior packages; classify important documents; stage the already-written README, design, status, source-map and agent pages without rederiving intent.
+- `BP-DOCS-20` | kind: task | status: done | parent: BP-DOCS-000 | objective: Move at most one useful mechanical source cluster by default, or keep source as-is; repair living docs/build/import/export references and preserve all semantic/evidence boundaries.
+- `BP-DOCS-30` | kind: task | status: done | parent: BP-DOCS-000 | objective: Verify existing result records, export portable raw evidence, and refresh only bounded selected cases when justified. Choose at most two public studies. Optional GH capability probe only; no broad benchmark or model work.
+- `BP-DOCS-90` | kind: task | status: done | parent: BP-DOCS-000 | objective: Apply reviewed final staged docs, validate local links/status/evidence and affected builds/tests, inspect rendered pages/figures, and write one authentic local handoff receipt.
 <!-- todo-orchestrator:v2-managed:end -->

@@ -29,7 +29,7 @@ The long-term idea extends to other highly parallel accelerators; CUDA is the cu
 
 {{README_RESULTS}}
 
-The [results pages](docs/results/index.md) preserve the useful failures as well as the capabilities. They distinguish a working information representation from a faster executor and from a validated biological model.
+The [results index](docs/results/index.md) links to the single selected historical study and the full lab selection report.
 
 ## Explore the repository
 

@@ -1,0 +1,751 @@
+──────────────── README.md ─────────────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                Baseplane                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+A genome is not three billion equally       
+expensive tokens. Can its organization guide
+how we compute on it?                       
+
+Baseplane aims to build hierarchical,       
+learned floating-point representations of   
+genome-wide information while staying       
+grounded in exact sequence. Its hypothesis  
+is that useful biological organization can  
+make relevant information computationally   
+close, without forcing every later operation
+to pay equally for every intervening base.  
+
+The useful hierarchy is part of what the    
+encoder must learn. Baseplane therefore     
+cannot assume a complete genome-wide map of 
+biologically meaningful objects before      
+representation begins. It can prepare the   
+machinery; the current information must help
+decide how that machinery is used.          
+
+
+Adapt the information flow, not a forest of 
+                  branches                  
+
+Nearby sequence is a natural starting point 
+because it is cheap to bring together on a  
+computer, and locality is often a useful    
+biochemical clue. This is an opportunity to 
+exploit—not a compulsory distance weight, an
+annotation catalogue, or a separate         
+cis/trans architecture. More distant        
+information must remain accessible as the   
+representation develops.                    
+
+The CUDA experiments ask whether that       
+conditional computation can be expressed    
+through collective operations: turn         
+decisions into masks, regroup or compose    
+information, and allocate richer            
+floating-point work where it is useful. The 
+same question applies at more than one      
+scale. Warp-level bit operations are a      
+concrete experiment in this design, not     
+Baseplane's endpoint.                       
+
+                                            
+ exact sequence and current representations 
+     → cheap local/collective computation   
+     → adaptive composition, routing and    
+ refinement                                 
+     → richer hierarchical representations  
+                                            
+
+The long-term idea extends to other highly  
+parallel accelerators; CUDA is the current  
+experimental platform. Keeping exact        
+sequence available does not make every      
+learned embedding lossless, nor does a      
+routing decision establish a biological     
+mechanism.                                  
+
+
+              What exists now               
+
+The exact-sequence library provides compact 
+representations, validity/coordinate        
+contracts, scalar references and optional   
+CUDA paths. The isolated CUDA lab has now   
+been compiled and run: all four experiments 
+have records, and a two-level affine-summary
+candidate remains. The lab is still a set of
+untrained synthetic experiments, not a      
+trained genome model.                       
+
+
+       What the experiments taught us       
+
+The selected CarryFold study is a historical
+synthetic control: CUB was faster than      
+custom scan at both measured sizes, while   
+the restricted ordered affine summary       
+composed across two levels. The result page 
+states its scope and exclusions. The linked 
+lab selection report preserves other        
+outcomes; no trained genome model or        
+biological validation is claimed.           
+
+The results index links to the single       
+selected historical study and the full lab  
+selection report.                           
+
+
+           Explore the repository           
+
+Start with the design, source map, or       
+build/use guide. The current snapshot       
+explains which exact-sequence operations and
+experimental hierarchy paths exist.         
+
+How the projects fit together: Baseplane    
+owns sequence meaning and provenance;       
+Cellerator owns general structured numerical
+execution; GlassHelix asks which dynamical  
+mechanisms the observations support.        
+
+Baseplane is an experimental research       
+project, not yet a validated whole-genome   
+learned model.                              
+────────────── docs/index.md ───────────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃            Reading Baseplane             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Understand the idea: README → design → the  
+shared program.                             
+
+See what exists: current snapshot → selected
+results.                                    
+
+Work on it: build/use → source map → the    
+relevant subsystem and test.                
+
+Use an agent: AGENTS.md and the live        
+task—not every historical plan.             
+
+Read the history: archive guide. Historical 
+evidence remains evidence for its recorded  
+code/conditions, not a statement of current 
+design.                                     
+───────── docs/design/overview.md ──────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Baseplane: construct the representation  ┃
+┃            while computing it            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+
+                The question                
+
+An entire genome is a large sequence, but   
+not every useful question needs equally     
+expensive interaction with every base. Can  
+hierarchical representations make that      
+information accessible at a cost shaped by  
+useful organization rather than raw span    
+alone?                                      
+
+Baseplane's endpoint includes learned       
+floating-point embeddings. Compact DNA and  
+exact bit-level predicates are the grounding
+layer, not a substitute for learning or the 
+project's complete identity. Exact sequence,
+coordinates, strand and validity remain     
+available beneath higher representations. An
+accessible source is not a proof that a     
+lossy summary preserves every task-relevant 
+fact.                                       
+
+
+   Do not put the answer in a preparatory   
+                   oracle                   
+
+Cellerator can discover substantial system  
+structure before compiling repeated         
+execution. Baseplane is trying to infer     
+useful sequence organization during         
+representation. It may compile a vocabulary 
+of transforms, use learned parameters, pack 
+sequence and revisit inputs. It must not    
+assume a completed biological hierarchy and 
+then count only the inexpensive operation on
+that hierarchy as the cost of discovery.    
+
+“Online” here means input-dependent         
+structure is built as part of encoding. It  
+does not forbid multiple passes, exact      
+preprocessing or reuse within a run. The    
+important accounting boundary includes the  
+work that creates routing, candidates,      
+summaries and refinements.                  
+
+
+Locality is an affordance, not a biological 
+                  verdict                   
+
+Contiguous sequence is naturally cheap to   
+load and process together. This provides a  
+useful starting organization, without an    
+explicit mandatory genomic-distance         
+weighting or a separate cis/trans model. It 
+does not prove that the important           
+relationship is local. Higher               
+representations may reorganize information, 
+and source coordinates remain recoverable   
+after that reorganization.                  
+
+A global relation is not free just because  
+its eventual participants fit in a warp.    
+Candidate discovery, movement and           
+missed/colliding matches must be measured.  
+Known annotations may help, but must not    
+become the complete ontology of what can    
+matter.                                     
+
+
+        Conditional information flow        
+
+A conventional branch tree gives different  
+lanes different programs. Baseplane instead 
+experiments with collective operations that 
+turn current decisions into data: masks,    
+compacted records, composable transforms,   
+routing keys or refinement requests. Those  
+data determine the next regular operation.  
+Fewer source-level branches is not itself   
+success; extra arithmetic, registers,       
+movement and unused work can make a         
+branchless formulation slower.              
+
+This principle should recur across scales. A
+physical warp tile is not a biological      
+segmentation rule. Every hierarchical       
+proposal must explain its seam behavior,    
+order sensitivity, source map, summary      
+losses and route for retrieving missing     
+detail.                                     
+
+
+The completed CUDA lab is evidence, not the 
+             final architecture             
+
+The lab tested four ways of mapping         
+information to execution: Boolean evidence  
+into floating summaries (BitLift),          
+composable conditional history (CarryFold), 
+selected objects into cooperative work      
+(Rethread), and runtime keys into peer      
+groups (Rendezvous). The recorded result    
+retained only CarryFold's restricted ordered
+affine representation as a bounded          
+candidate; CUB was its faster executor.     
+Other fixtures exposed costs or information 
+loss.                                       
+
+That is useful progress: the mechanism,     
+executor and scientific utility are separate
+things to evaluate. Untrained synthetic     
+fixtures do not establish an organism-scale 
+encoder. The current project should keep the
+useful substrate and the failed hypotheses  
+legible without freezing them into a        
+universal API.                              
+
+
+  Relationship to the rest of the program   
+
+Baseplane owns sequence meaning and         
+provenance. It may use Cellerator's         
+numerical execution without abandoning its  
+encoding question. GlassHelix can eventually
+use sequence-grounded information to        
+constrain hypotheses about dynamics;        
+sequence compatibility alone is not causal  
+evidence. FPGA/streaming realizations remain
+a longer-term possibility; this cleanup adds
+no FPGA backend.                            
+
+See current capabilities, results and the   
+source map.                                 
+────────── docs/status/current.md ──────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃     Current implementation snapshot      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Inspected: 2026-09-29 · Source:             
+271843a2d2ceff434c97c8eb5fd13555567034c4    
+
+This is a human-readable source snapshot,   
+not a second task ledger. Revalidate it     
+after a meaningful implementation change;   
+the live project workflow holds task/claim  
+state.                                      
+
+
+           Implemented facilities           
+
+The exact substrate supplies packed         
+sequence, explicit validity/tail semantics, 
+bounded local coordinates and global        
+origins, scalar references, public exact    
+count/emit entry points, and bounded        
+predicate description/verification          
+facilities. CUDA is optional. The isolated  
+CUDA lab has completed its four synthetic   
+experiments with a final combined-source    
+replay and sanitizer receipts; see its      
+current README and START_HERE guide.        
+
+
+    Experimental or deliberately bounded    
+
+BitLift, CarryFold, Rethread and Rendezvous 
+are isolated experiments. The final         
+selection retained one restricted ordered   
+affine representation (CarryFold), with CUB 
+as the faster measured executor. Rethread   
+did not win its large fixture; BitLift loses
+arrangement/magnitude information;          
+Rendezvous missed cross-warp peers and used 
+oracle-assembled candidate packets. No      
+public Baseplane API changed in that epic.  
+
+
+     Future intent and outstanding work     
+
+A trained genome-wide hierarchical          
+embedding, general online context           
+construction and scientifically demonstrated
+nonlocal representation remain future work. 
+The older BitOp CUDA/backend tasks are not  
+all complete merely because the independent 
+lab finished. Do not require those old tasks
+to be completed for this documentation pass.
+
+
+          Important qualifications          
+
+All lab weights and routing keys were       
+untrained. Device-resident timings exclude  
+allocation and transfer; some information   
+probes are scalar fixtures. At the inspected
+head, the working tree showed active Todo   
+projection updates and this documentation   
+package; preserve them. No source edits were
+reported by git status. The inventory is a  
+classification aid, not deletion authority. 
+
+See the source map for current code paths,  
+results for measured evidence, and design   
+for the scientific purpose that these       
+facilities serve.                           
+────────── docs/results/index.md ───────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃       Results and useful failures        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+ • CUB beat custom scan on untrained affine 
+   fixtures. In these untrained synthetic   
+   affine-summary fixtures, CUB had a lower 
+   recorded median than the custom scan at  
+   both tested sizes. The defined ordered   
+   summary composed exactly across two      
+   levels with source intervals, but this   
+   does not establish sequence utility or a 
+   learned genomic hierarchy.               
+
+
+     Selection report and claim limits      
+
+The original lab selection report preserves 
+the full bounded experiment decisions,      
+including Rethread, BitLift, and Rendezvous.
+They are not additional selected result     
+pages here.                                 
+
+The August exact-count measurement remains  
+historical and is described in its original 
+record. It is not a genome-embedding        
+throughput claim. Synthetic experiments     
+establish bounded numerical or systems      
+behavior, not biological validity.          
+─────── docs/results/bp-carryfold.md ───────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ CUB beat custom scan on untrained affine ┃
+┃                 fixtures                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Evidence state: verified historical         
+
+Did custom hierarchical scan lower the cost 
+of the same bounded affine-summary          
+computation?                                
+
+In these untrained synthetic affine-summary 
+fixtures, CUB had a lower recorded median   
+than the custom scan at both tested sizes.  
+The defined ordered summary composed exactly
+across two levels with source intervals, but
+this does not establish sequence utility or 
+a learned genomic hierarchy.                
+
+🌆 CUB beat custom scan on untrained affine 
+fixtures                                    
+
+                                            
+                      Custom           CUB  
+                  producer +    producer +  
+  Case             scan (ms)     scan (ms)  
+ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+  n = 1,025         0.019456      0.016384  
+  records                                   
+  n = 65,536        0.070656      0.059392  
+  records                                   
+                                            
+
+
+             What was measured              
+
+Scope: Device-resident coefficient/gate     
+producer plus complete inclusive affine scan
+pipeline, with scratch preallocated.        
+Statistic: Median of 31 device-event samples
+in one recorded invocation. Uncertainty: P95
+values are retained in each raw receipt; no 
+confidence interval or independent repeat is
+available.                                  
+
+Hardware: Tesla V100-SXM2-16GB / sm_70      
+
+Cuda: 12.9.86 (cudart 12090)                
+
+Precision: float, Release without fast math 
+(as recorded)                               
+
+Warmups: 3 device-pipeline calls before     
+timing, confirmed by the recorded driver    
+
+Repeats: 31 timed samples per variant at    
+each size; one invocation per receipt       
+
+Source: Final integrated replay; all six    
+recorded SHA-256 source hashes match the    
+current lab files.                          
+
+
+         Interpretation and limits          
+
+ • Synthetic four-float records with        
+   untrained fixture parameters; no         
+   biological sequence labels or            
+   genome-derived inputs.                   
+ • Device-resident pipeline only: excludes  
+   allocation, host fixture construction,   
+   H2D/D2H, and result interpretation.      
+ • The two sample sizes and variants are one
+   recorded invocation each (31 timed       
+   samples); p95 is not a confidence        
+   interval.                                
+ • The final combined-source replay is      
+   distinct from earlier per-case receipts. 
+   This result uses only the final          
+   combined-source receipts and does not    
+   pool them.                               
+ • This is an exactness/cost observation for
+   a restricted affine operator, not        
+   evidence of general context construction 
+   or information preservation.             
+ • Tracked raw receipts contain the original
+   machine-local binary path in their       
+   command field; their recorded stdout is  
+   path-independent, and the reproduction   
+   recipe below uses relative repository    
+   commands.                                
+
+
+            Reproduce / inspect             
+
+Historical recipe only; no rerun was made   
+for this documentation pass. With CUDA 12.9,
+sm_70, and the canonical controller holding 
+the assigned GPU resource, use:             
+
+                                            
+ python3 experiments/cuda_lab/tools/run.py  
+ \                                          
+   --phase build-cuda \                     
+   --build-dir                              
+ build-bitop-BP-CUDA-LAB-final-cuda         
+ python3 experiments/cuda_lab/results/\     
+ selection/replay.py parent                 
+ python3 experiments/cuda_lab/tools/\       
+ check.py --all-results                     
+                                            
+
+The replay runs the recorded all-case       
+sanitizer and benchmark checks. Do not      
+invoke its GPU work without the actual      
+exclusive resource lease.                   
+
+Original recorded explanation · observed    
+2026-09-29 at                               
+e37f85b4f651a1cddfcb481610ecff94e735d03f.   
+
+Inspected implementation: driver.cu.        
+
+Measurement source: Final combined-source   
+replay; source hashes are recorded in       
+results/selection/source_hashes.json.       
+(different from the current document-read   
+revision where stated).                     
+
+Portable evidence: report.md,               
+final-bench-1025.json,                      
+final-bench-65536.json, source_hashes.json, 
+final-memcheck.json, final-initcheck.json,  
+final-racecheck.json, final-synccheck.json. 
+
+Chart/table input · All selected results    
+──────── docs/development/start.md ─────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃         Build, use and validate          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Start with one supported path rather than   
+every historical target. Commands below must
+be qualified against the source version in  
+the current snapshot.                       
+
+                                            
+ cmake -S . -B build-docs-cpu               
+ -DBASEPLANE_ENABLE_CUDA=OFF                
+ cmake --build build-docs-cpu --target      
+ baseplaneDna2Test                          
+ baseplaneBitOpContractTest                 
+ baseplaneDna2ValidityTest -j 4             
+ ./build-docs-cpu/baseplaneDna2Test         
+ ./build-docs-cpu/baseplaneBitOpContractTes 
+ t                                          
+ ./build-docs-cpu/baseplaneDna2ValidityTest 
+ # Isolated lab scalar checks do not        
+ require a GPU.                             
+ python3 experiments/cuda_lab/tools/run.py  
+ --phase host --case all --build-dir        
+ build-docs-lab-host                        
+                                            
+
+For the optional CUDA build use the         
+installed compatible toolchain and          
+-DBASEPLANE_ENABLE_CUDA=ON. Build/run the   
+lab with its existing runner and leased GPU 
+procedure; do not invoke a performance phase
+while merely rebuilding these documents.    
+
+
+        Work on a bounded component         
+
+Follow the source map, inspect its nearest  
+guidance and tests, and keep an             
+example/reference beside the behavior it    
+exercises. A documentation change does not  
+require a full hardware campaign. A source  
+move does require updating                  
+build/install/import/include references and 
+rerunning the affected targets.             
+
+For measured claims follow results. Use     
+assigned resources; record command, source, 
+toolchain, input, precision, outputs,       
+warmup/repeats and timed phases. Keep       
+profiler diagnostics separate from benchmark
+timings. Preserve the original evidence when
+rendering new documentation.                
+
+
+     Code and documentation boundaries      
+
+Durable design goes in docs/design/,        
+practical instructions here, dated summaries
+in docs/status/, and evidence in            
+docs/results/ linked to original records.   
+Use experiments for unpromoted mechanisms.  
+Generated Todo state and historical notes   
+are not substitute architecture.            
+────── docs/development/source-map.md ──────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃      Source map: exact input, then       ┃
+┃       experimental representation        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+                                            
+                              What to look  
+  Question      Start here    for           
+ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 
+  What is the   CPU-safe      Public        
+  current       include       library       
+  exact-sequ…                 entry; not    
+  entry?                      the eventual  
+                              full encoder  
+                              API.          
+  How are       validity      Exact source  
+  invalid       contract      semantics     
+  bases,                      and chunk     
+  tails and                   identity.     
+  coordinates                               
+  represente…                               
+  Where are     scalar,       Same-operat…  
+  reference     CUDA          comparisons   
+  and GPU                     and explicit  
+  paths?                      buffer/stre…  
+                              behavior.     
+  What tests    sequence      Boundary,     
+  protect       tests         validity,     
+  exact                       capacity and  
+  behavior?                   output        
+                              contracts.    
+  Where are     CUDA lab,     Four          
+  the online    driver        experiments,  
+  representa…                 their         
+  experiment…                 current       
+                              implementat…  
+                              and           
+                              comparators.  
+  What          selection     One bounded   
+  survived      report        representat…  
+  the                         candidate;    
+  experiment…                 measured      
+                              failures are  
+                              preserved.    
+                                            
+
+The root build and isolated lab build serve 
+different purposes. Do not merge the lab    
+into the exact library just to make the tree
+look uniform. A shared test/driver split is 
+justified only if the actual files have     
+become difficult to navigate; the default   
+source disposition is to keep this useful   
+separation.                                 
+───────────── CONTRIBUTING.md ──────────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃           Developing Baseplane           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Start with the scientific/design overview,  
+then the build and development guide and    
+source map. The current snapshot            
+distinguishes shipped facilities from       
+experimental and future work.               
+
+Prefer a small, evidence-bearing change.    
+Keep the claim attached to the code and     
+tests that support it; document the regime  
+where a computational shortcut helps or     
+fails. New public abstractions need a real  
+consumer, not just architectural symmetry.  
+
+Coding agents additionally follow AGENTS.md 
+and the live scoped workflow. Project       
+Control/Todo is the operational authority;  
+README is not a task tracker. Benchmark     
+contributors follow the results methodology.
+──────────────── AGENTS.md ─────────────────
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃         Repository work contract         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+Read the design for intent, current snapshot
+for its dated implementation boundary, and  
+source map for entry points. For an edit,   
+the current scoped task and inspected       
+source—not a historical plan or README      
+completion sentence—determine what exists   
+and what is authorized.                     
+
+
+    Operate within the current authority    
+
+Use the installed Project Control/Codex     
+front door and this repository's Todo       
+authority. Take one bounded outcome, inspect
+only what it needs, preserve other          
+claims/dirty work, and finish with actual   
+evidence. Delegate bounded research,        
+implementation, tests and review to         
+configured Codex subagents when useful; the 
+owner retains task lifecycle and final      
+acceptance. Do not use Project Control      
+delegate_task or local-coding-worker for    
+ordinary delegated implementation; local    
+workers are reserved for Project Control    
+observers. Never edit SQLite, generated Todo
+views, recovery snapshots or generated      
+context indexes by hand. Keep managed       
+workflow blocks intact.                     
+
+
+Preserve the architecture while changing the
+               implementation               
+
+ • Preserve exact sequence identity,        
+   coordinates, strand, validity and        
+   provenance; do not treat invalid packed  
+   payloads as biology.                     
+ • Keep online hierarchical floating-point  
+   representation as the goal. Packed       
+   predicates are a foundation, not the     
+   whole project; no preparatory oracle may 
+   supply the hierarchy being claimed as    
+   learned.                                 
+ • Measure information loss and             
+   candidate/routing/revisit costs. A source
+   map is not proof of a lossless embedding.
+ • Keep CPU reference correctness and       
+   optional CUDA usability; caller-owned    
+   buffers, explicit                        
+   streams/capacity/overflow and target     
+   capability remain visible.               
+ • The isolated CUDA lab is experimental,   
+   not a production interface. Preserve its 
+   evidence and completed negative          
+   decisions. Cellerator general numerical  
+   ownership and Baseplane sequence-native  
+   experiments must not be conflated.       
+
+External compatibility is not an absolute   
+constraint at this stage. A reviewed        
+internal move may change names/interfaces if
+it improves development; repair real sibling
+consumers and relevant tests together.      
+Frozen contracts and overlapping active work
+still require their owner's explicit        
+reconciliation. Do not use a documentation  
+task to rewrite numerical behavior,         
+introduce another planner, or complete      
+unrelated old epics.                        
+
+
+           Validate what changed            
+
+Use the development guide for the current   
+commands. Run affected source/build/tests   
+after code moves. For prose-only changes    
+check links, status boundaries and rendered 
+pages. Keep scientific claims scoped; record
+what was not run. Benchmarks require the    
+existing assigned resources and clean timing
+interval. Include setup/transfer/routing    
+when the claim needs them; no benchmark is  
+launched by document generation.            
+
+Current work belongs in live status tools;  
+experimental findings in results; durable   
+rationale in design/development docs;       
+superseded plans in the archive. Do not     
+recreate the same mutable status table in   
+all four places.                            

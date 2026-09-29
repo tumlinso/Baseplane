@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "python3",
+    "planning/doc-refresh/tools/render.py",
+    "--project",
+    "baseplane",
+    "--repo",
+    ".",
+    "--out",
+    "planning/doc-refresh/staged",
+    "--figures",
+    "--final"
+  ],
+  "returncode": 0,
+  "stdout": "[\n  {\n    \"project\": \"baseplane\",\n    \"out\": \"planning/doc-refresh/staged\",\n    \"documents\": 12,\n    \"results\": 1,\n    \"mode\": \"final\"\n  }\n]\n",
+  "stderr": ""
+}

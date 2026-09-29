@@ -2,5 +2,16 @@
   "project": "baseplane",
   "approved_moves": [],
   "deletions": [],
-  "policy": "One coherent mechanical source cluster maximum by default. Use migration-map.md to choose; no automatic moves are authorized by a suggested path."
+  "policy": "One coherent mechanical source cluster maximum by default. Use migration-map.md to choose; no automatic moves are authorized by a suggested path.",
+  "no_move_reason": "No source move: the exact-sequence library and isolated CUDA lab have useful, independent grouping; moving either would add navigation/build churn without improving the current reader or developer paths. Preserve the lab boundary and leave all source, tests, build targets, evidence paths, and active BitOp task references unchanged.",
+  "reviewed_current_paths": [
+    "include/Baseplane/dna2.hh",
+    "include/Baseplane/seq/dna2_validity.hh",
+    "src/seq/dna2_scalar.cpp",
+    "src/seq/dna2.cu",
+    "tests/seq",
+    "CMakeLists.txt",
+    "experiments/cuda_lab/cuda/driver.cu",
+    "experiments/cuda_lab/results/selection/report.md"
+  ]
 }

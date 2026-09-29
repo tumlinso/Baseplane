@@ -1,0 +1,2056 @@
+{
+  "repository": "/home/tumlinson/Baseplane",
+  "head": "271843a2d2ceff434c97c8eb5fd13555567034c4",
+  "status": " M .todo-orchestrator/state.snapshot.json\n M AGENTS.md\n M README.md\n M experiments/cuda_lab/README.md\n M experiments/cuda_lab/START_HERE.md\n M planning/doc-refresh/inputs/bindings.json\n M planning/doc-refresh/inputs/moves.json\n M planning/doc-refresh/inputs/results/bp-carryfold.json\n M planning/doc-refresh/inputs/results/bp-rethread.json\n M planning/doc-refresh/inputs/review.json\n M planning/doc-refresh/inputs/selection-notes.md\n M planning/doc-refresh/templates/AGENTS.md\n M planning/doc-refresh/templates/README.md\n M planning/doc-refresh/templates/docs/results/index.md\n M planning/doc-refresh/tools/render.py\n M todo-status.md\n M todos.md\n M todos/bp-docs-000.md\n M todos/bp-docs-10.md\n M todos/bp-docs-20.md\n M todos/bp-docs-30.md\n M todos/bp-docs-90.md\n?? CONTRIBUTING.md\n?? docs/archive/\n?? docs/design/\n?? docs/development/\n?? docs/index.md\n?? docs/results/\n?? docs/status/\n?? planning/doc-refresh/evidence/\n?? planning/doc-refresh/inputs/handoff.json\n?? planning/doc-refresh/inputs/inventory.json\n?? planning/doc-refresh/run.v3.json\n?? planning/doc-refresh/staged/\n?? planning/doc-refresh/tools/__pycache__/figures.cpython-313.pyc\n",
+  "tracked_count": 294,
+  "untracked_count": 47,
+  "files": [
+    {
+      "path": ".DS_Store",
+      "tracked": true,
+      "category": "other",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp.toml",
+      "tracked": true,
+      "category": "other",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/compdb.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/core-doctor.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/freshness.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/lexical-overlay.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/publish.lock",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/readiness.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/resource-reservations.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/resource-reservations.lock",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/scheduler.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/scheduler.lock",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/tu-state.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/tu/40607178eba542dacc2c1ee9599197eecdc45c7cab520940110a2edc38511e3b.jsonl",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/tu/56a6fe103462c0c5a2faffc6b5d88b9de8bb662c8a571b56595a672d5318b12a.jsonl",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/cache/tu/9ae43fc159c825f8827cef2548d58d931d8b215d78397b9727f99244443d9936.jsonl",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/index.jsonl",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/logs/scan-828f2a704c9d46e5.log",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/logs/status-05cbc42ae354da83.log",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/manifest.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/token-cache.json",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".ctxpp/token-cache.json.lock",
+      "tracked": true,
+      "category": "generated-or-tool-state",
+      "decision": "review"
+    },
+    {
+      "path": ".gitignore",
+      "tracked": true,
+      "category": "other",
+      "decision": "review"
+    },
+    {
+      "path": ".todo-orchestrator/project.json",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": ".todo-orchestrator/state.snapshot.json",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "AGENTS.md",
+      "tracked": true,
+      "category": "agent-guidance",
+      "decision": "review"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "tracked": true,
+      "category": "other",
+      "decision": "review"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "tracked": false,
+      "category": "public-entry",
+      "decision": "review"
+    },
+    {
+      "path": "README.md",
+      "tracked": true,
+      "category": "public-entry",
+      "decision": "review"
+    },
+    {
+      "path": "bench/benchmark_mutex.hh",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "bench/seq/bench_dna2.cu",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "bench/seq/bench_dna2_cpu.cpp",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "cmake/BaseplaneConfig.cmake.in",
+      "tracked": true,
+      "category": "other",
+      "decision": "review"
+    },
+    {
+      "path": "docs/BITOP_ARCHITECTURE.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/FOUNDATIONS.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/PERFORMANCE_CONTRACT.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/SEQUENCE_BITS.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/archive/README.md",
+      "tracked": false,
+      "category": "historical-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/bitop_baseline_evidence.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/design/overview.md",
+      "tracked": false,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/design/program.md",
+      "tracked": false,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/development/source-map.md",
+      "tracked": false,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/development/start.md",
+      "tracked": false,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/index.md",
+      "tracked": false,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/results/assets/bp-carryfold.png",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/results/assets/bp-carryfold.svg",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/results/bp-carryfold.md",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/results/data/bp-carryfold.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/results/index.md",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/sequence_bits_cuda_profile.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/sequence_simd_backend.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "docs/status/current.md",
+      "tracked": false,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/.gitignore",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/AGENT_PROMPT.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/BENCHMARK_PROTOCOL.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/CMakeLists.txt",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/DOCTRINE.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/MANIFEST.sha256",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/README.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/RESEARCH.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/START_HERE.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/cuda/driver.cu",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/cuda/kernels.cuh",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/REFERENCES.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/VALIDATION.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/check-1.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/check-2.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/check-3.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/check-4.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/host-build.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/host-reference-check.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/native-plan-preview.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/sources.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/evidence/verification.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/experiments/bitlift.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/experiments/rendezvous.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/experiments/rethread.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/experiments/scan.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/host/reference.cc",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/include/lab.hh",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/planning/EPIC.md",
+      "tracked": true,
+      "category": "documentation-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/planning/benchmark_matrix.json",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/planning/epic.v2.json",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/planning/scoped_policy_delta.json",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/SELECTION_TEMPLATE.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/TEMPLATE.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/adoption.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/bench-1025.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/bench-65536.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/build-cuda.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/cuda-gate.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/initcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/memcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/quality.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/quality_probe.cc",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/racecheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/report.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/sass.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/bitlift/synccheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/bench-1025.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/bench-65536.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/build-cuda.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/cuda-gate.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/initcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/memcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/quality.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/racecheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/report.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rendezvous/synccheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/bench-1025.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/bench-65536.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/build-cuda.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/cuda-gate-final.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/initcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/memcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/quality.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/quality_probe.cc",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/racecheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/report.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/rethread/synccheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/bench-1025.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/bench-65536.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/build-cuda.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/cuda-gate.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/initcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/memcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/quality.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/quality_probe.cc",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/racecheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/report.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/scan/synccheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection-build.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/final-bench-1025.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/final-bench-65536.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/final-initcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/final-memcheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/final-racecheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/final-synccheck.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/replay.py",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/report.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/results/selection/source_hashes.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/tests/host_tests.cc",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/tests/test_tools.py",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/tools/check.py",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/tools/install.py",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "experiments/cuda_lab/tools/run.py",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/core/status.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/dna2.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2.cuh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_allowed.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_motif.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_ops.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_scan.cuh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_scan.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_validity.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/dna2_views.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/predicate_plan.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "include/Baseplane/seq/sequence_event.hh",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "planning/README.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/.gitignore",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/AGENT_PROMPT.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/BENCHMARK_PROTOCOL.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/CMakeLists.txt",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/DOCTRINE.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/MANIFEST.sha256",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/README.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/RESEARCH.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/START_HERE.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/cuda/driver.cu",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/cuda/kernels.cuh",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/REFERENCES.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/VALIDATION.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/check-1.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/check-2.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/check-3.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/check-4.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/host-build.log",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/host-reference-check.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/native-plan-preview.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/sources.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/evidence/verification.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/experiments/bitlift.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/experiments/rendezvous.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/experiments/rethread.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/experiments/scan.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/host/reference.cc",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/include/lab.hh",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/planning/EPIC.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/planning/benchmark_matrix.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/planning/epic.v2.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/planning/scoped_policy_delta.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/results/SELECTION_TEMPLATE.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/results/TEMPLATE.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/tests/host_tests.cc",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/tests/test_tools.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/tools/check.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/tools/install.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/baseplane_cuda_lab/tools/run.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/bitop/README.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/bitop/bitop-plan.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/cuda_lab_run.v3.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/START_LOCAL.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/benchmarks/GH_CAPABILITY.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/benchmarks/RESULT_RECORDS.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/benchmarks/SHORTLIST.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/benchmarks/gh_reference.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/bitop-continuity.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/carryfold-grayscale-preview.png",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/cpu-build-use.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/final-check.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/final-handoff-self-check.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/git-diff-check.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/lab-results-check.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/local-evidence-check.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/reader-render-narrow.txt",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/reader-render-normal.txt",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/reader-review.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/render-final.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/review_render.py",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/evidence/source-path-continuity.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/adoption.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/bindings.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/handoff.json",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/handoff.template.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/inventory.json",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/moves.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/results/bp-carryfold.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/results/bp-rethread.json",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/review.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/inputs/selection-notes.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/migration-map.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/plan.v2.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/project.json",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/run.v3.json",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/shared/ACCEPTANCE.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/shared/DOCTRINE.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/shared/INFORMATION_ARCHITECTURE.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/shared/REORGANIZATION.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/shared/RESULTS_POLICY.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/shared/TASKS.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/.docstage.json",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/AGENTS.md",
+      "tracked": false,
+      "category": "agent-guidance",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/CONTRIBUTING.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/README.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/archive/README.md",
+      "tracked": false,
+      "category": "historical-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/design/overview.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/design/program.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/development/source-map.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/development/start.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/index.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/results/assets/bp-carryfold.png",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/results/assets/bp-carryfold.svg",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/results/bp-carryfold.md",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/results/data/bp-carryfold.json",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/results/index.md",
+      "tracked": false,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/staged/docs/status/current.md",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/AGENTS.md",
+      "tracked": true,
+      "category": "agent-guidance",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/CONTRIBUTING.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/README.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/archive/README.md",
+      "tracked": true,
+      "category": "historical-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/design/overview.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/design/program.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/development/source-map.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/development/start.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/index.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/results/index.md",
+      "tracked": true,
+      "category": "evidence-review-needed",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/templates/docs/status/current.md",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/__pycache__/common.cpython-313.pyc",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/__pycache__/figures.cpython-313.pyc",
+      "tracked": false,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/check.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/common.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/figures.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/install.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/inventory.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/program_check.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "planning/doc-refresh/tools/render.py",
+      "tracked": true,
+      "category": "planning-not-architecture",
+      "decision": "review"
+    },
+    {
+      "path": "src/seq/dna2.cu",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "src/seq/dna2_allowed.cpp",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "src/seq/dna2_highway.cpp",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "src/seq/dna2_scalar.cpp",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "src/seq/dna2_validity.cpp",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "src/seq/predicate_plan.cpp",
+      "tracked": true,
+      "category": "source-build-or-tool",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/dna2_test_helpers.hh",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/test_dna2.cpp",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/test_dna2_allowed.cpp",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/test_dna2_cuda.cu",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/test_dna2_validity.cpp",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/test_predicate_plan.cpp",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "tests/seq/test_sequence_event.cpp",
+      "tracked": true,
+      "category": "experiment-test-or-example",
+      "decision": "review"
+    },
+    {
+      "path": "todo-status.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bitop-00.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-03.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-10.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-11.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-12.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-13.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-20.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-21.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-22.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-23.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-24.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-25.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-30.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-31.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-32.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-33.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-34.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-35.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-36.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-bitop-50.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-00.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-01.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-10.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-20.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-30.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-40.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-cuda-lab-90.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-docs-000.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-docs-10.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-docs-20.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-docs-30.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/bp-docs-90.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/ce-bitop-40.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/ce-bitop-41.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/ce-bitop-42.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/ce-bitop-43.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/ce-bitop-44.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/ce-bitop-45.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/cs-bitop-60.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/stack-bitop-01.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/stack-bitop-02.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/stack-bitop-04.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/stack-bitop-51.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/stack-bitop-52.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    },
+    {
+      "path": "todos/stack-bitop-53.md",
+      "tracked": true,
+      "category": "generated-operational-state",
+      "decision": "review"
+    }
+  ],
+  "note": "Complete Git listing at invocation, not proof every file was semantically read. No moves/deletions performed."
+}

@@ -1,0 +1,56 @@
+{
+  "observed_at": "2026-09-29T12:54:58Z",
+  "authority": "todo_semantic_workflow",
+  "project": "baseplane",
+  "todo_revision": 211,
+  "run_id": "compat-v2",
+  "run_status": "active",
+  "lane_id": "compat-v2-main",
+  "lane_state": "ready",
+  "workspace_mode": "exclusive",
+  "queued_baseplane_bitop_tasks": [
+    "BP-BITOP-20",
+    "BP-BITOP-21",
+    "BP-BITOP-22",
+    "BP-BITOP-23",
+    "BP-BITOP-24",
+    "BP-BITOP-25",
+    "BP-BITOP-30",
+    "BP-BITOP-31",
+    "BP-BITOP-32",
+    "BP-BITOP-33",
+    "BP-BITOP-34",
+    "BP-BITOP-35",
+    "BP-BITOP-36",
+    "BP-BITOP-50"
+  ],
+  "task_states": {
+    "BP-BITOP-20": "queued",
+    "BP-BITOP-21": "queued",
+    "BP-BITOP-22": "queued",
+    "BP-BITOP-23": "queued",
+    "BP-BITOP-24": "queued",
+    "BP-BITOP-25": "queued",
+    "BP-BITOP-30": "queued",
+    "BP-BITOP-31": "queued",
+    "BP-BITOP-32": "queued",
+    "BP-BITOP-33": "queued",
+    "BP-BITOP-34": "queued",
+    "BP-BITOP-35": "queued",
+    "BP-BITOP-36": "queued",
+    "BP-BITOP-50": "queued"
+  },
+  "recovery_needed": [
+    {
+      "kind": "dispatch",
+      "id": "4d661e39-03fd-4f38-93e0-b98a13325607",
+      "reason": "stale_heartbeat"
+    },
+    {
+      "kind": "session",
+      "id": "9e5568b7-2b84-443a-b1eb-923afbee29ea",
+      "reason": "stale_heartbeat"
+    }
+  ],
+  "observation": "Read-only Project Control coordination_view. Documentation made no source move or code/interface changes; queued tasks remain on the existing lane. coordination_view also reported two stale-heartbeat recovery items; no recovery action was taken."
+}

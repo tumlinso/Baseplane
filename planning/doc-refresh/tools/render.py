@@ -32,6 +32,8 @@ def result_page(record,figures):
     parts += ['## Interpretation and limits','\n'.join('- '+s for s in record['limitations']),'## Reproduce / inspect',record.get('reproduce','')]
     source=record['source']
     if source.get('path'):parts.append(f"[Original recorded explanation](../../{source['path']}) · observed {source.get('observed_at','date unrecorded')} at `{source.get('repository_head_when_read','source pending')}`.")
+    code_paths=source.get('code_paths',[])
+    if code_paths:parts.append('Inspected implementation: '+', '.join(f"[{Path(path).name}](../../{path})" for path in code_paths)+'.')
     if source.get('measurement_revision'):parts.append(f"Measurement source: `{source['measurement_revision']}` (different from the current document-read revision where stated).")
     if source.get('file_identity'):parts.append('Observed source-file identity: `'+source['file_identity']+'`.')
     evidence=record['review'].get('public_evidence_paths',[])

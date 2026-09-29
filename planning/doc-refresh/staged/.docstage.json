@@ -1,0 +1,21 @@
+{
+  "project": "baseplane",
+  "mode": "final",
+  "files": {
+    "README.md": "ecdf43cbc6561ca06bb8653ea6bef52da886bdccc1f4baf6ebc2549a476f1e02",
+    "CONTRIBUTING.md": "5256b1b99423169afd47f4d451961c168803b5c0d550d39711b42f469db2e79b",
+    "AGENTS.md": "34f0df48991db3852c9f6e19d166e84a799d6c541cdaa7065d1d5b15d25fc6ed",
+    "docs/index.md": "480e54bb73e4108a4d28da06467c43f28f701d198226c894fefd85b569b4e0d0",
+    "docs/results/index.md": "863cf8143a264e258346aee920458c5d8bb6a4ba7e12d65aa475b2a08a072edc",
+    "docs/results/bp-carryfold.md": "faa94e877581a2732cd937dd92855b062f69fc329286ad0b31aca90b9ec84313",
+    "docs/status/current.md": "8a3d5e7ae3628499d10e1523efdc24a3158e4f8b637173139d8b5f49c59be782",
+    "docs/archive/README.md": "e2a0cb21f85e2ee4266500c601b802ff4290d6fc98b17bf8decb16af6e735afa",
+    "docs/development/start.md": "181d5a8d17977be11ea2b163b88a93b0f6a6c6f1d0d8d052918441152b21ae93",
+    "docs/development/source-map.md": "f8a031ad060d19c53e3d0eafe8326fae9ff1ae121700d5f37239f5692ce2efcd",
+    "docs/design/program.md": "ca5cc05410a6454a2a6baefd29f3896566c49b6100239a9e776581381bd1ed3d",
+    "docs/design/overview.md": "92bb971393d2a3b592aaad8e68bb7c7dd7d8ee25f1815896403e7dcd33b5b29a",
+    "docs/results/assets/bp-carryfold.png": "a3f3be8389ea654360d8bd3385f83f526857e71a7b56623e0b096def28d1496c",
+    "docs/results/assets/bp-carryfold.svg": "8ad616a09ae13e6b73025b3ab9e45cd363136c4aa277740ae40bb3b904512f2a",
+    "docs/results/data/bp-carryfold.json": "9d3c881fcbf55f0a3a19f9d64426d441c3269909223848d9345139587744e2b4"
+  }
+}

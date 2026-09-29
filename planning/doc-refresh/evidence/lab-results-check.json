@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "python3",
+    "experiments/cuda_lab/tools/check.py",
+    "--all-results"
+  ],
+  "returncode": 0,
+  "stdout": "{\n  \"results\": [\n    {\n      \"experiment\": \"bitlift\",\n      \"evidence_complete\": true,\n      \"verdict\": \"evaluated_not_promoted\"\n    },\n    {\n      \"experiment\": \"scan\",\n      \"evidence_complete\": true,\n      \"verdict\": \"promote_candidate\"\n    },\n    {\n      \"experiment\": \"rethread\",\n      \"evidence_complete\": true,\n      \"verdict\": \"evaluated_not_promoted\"\n    },\n    {\n      \"experiment\": \"rendezvous\",\n      \"evidence_complete\": true,\n      \"verdict\": \"evaluated_not_promoted\"\n    }\n  ],\n  \"selection\": {\n    \"selected\": [\n      \"scan\"\n    ],\n    \"evidence_complete\": true\n  }\n}\n",
+  "stderr": ""
+}

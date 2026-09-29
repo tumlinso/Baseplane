@@ -1,0 +1,51 @@
+{
+  "renderer": "Rich Markdown terminal renderer",
+  "browser_available": false,
+  "summary": [
+    {
+      "viewport_columns": 96,
+      "label": "normal",
+      "pages": [
+        "README.md",
+        "docs/index.md",
+        "docs/design/overview.md",
+        "docs/status/current.md",
+        "docs/results/index.md",
+        "docs/results/bp-carryfold.md",
+        "docs/development/start.md",
+        "docs/development/source-map.md",
+        "CONTRIBUTING.md",
+        "AGENTS.md"
+      ],
+      "output": "planning/doc-refresh/evidence/reader-render-normal.txt",
+      "line_count": 465
+    },
+    {
+      "viewport_columns": 44,
+      "label": "narrow",
+      "pages": [
+        "README.md",
+        "docs/index.md",
+        "docs/design/overview.md",
+        "docs/status/current.md",
+        "docs/results/index.md",
+        "docs/results/bp-carryfold.md",
+        "docs/development/start.md",
+        "docs/development/source-map.md",
+        "CONTRIBUTING.md",
+        "AGENTS.md"
+      ],
+      "output": "planning/doc-refresh/evidence/reader-render-narrow.txt",
+      "line_count": 751
+    },
+    {
+      "grayscale_preview": "planning/doc-refresh/evidence/carryfold-grayscale-preview.png",
+      "dimensions": [
+        1460,
+        860
+      ],
+      "mode": "L",
+      "derived_from": "docs/results/assets/bp-carryfold.png"
+    }
+  ]
+}

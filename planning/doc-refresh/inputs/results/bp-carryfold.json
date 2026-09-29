@@ -2,34 +2,53 @@
   "schema_version": 1,
   "id": "bp-carryfold",
   "project": "baseplane",
-  "title": "Keep the ordered representation; choose the better executor",
-  "question": "Can a conditional summary survive two levels without insisting on a custom kernel?",
-  "evidence_state": "recorded_summary",
+  "title": "CUB beat custom scan on untrained affine fixtures",
+  "question": "Did custom hierarchical scan lower the cost of the same bounded affine-summary computation?",
+  "evidence_state": "verified_historical",
   "source": {
-    "path": "experiments/cuda_lab/results/scan/report.md",
+    "path": "experiments/cuda_lab/results/selection/report.md",
     "observed_at": "2026-09-29",
     "repository_head_when_read": "e37f85b4f651a1cddfcb481610ecff94e735d03f",
-    "file_identity": "37d767564ca0521ed93943b5d10a176cbea167a392908621ddb21b8671fc3890",
-    "measurement_revision": null,
+    "file_identity": null,
+    "measurement_revision": "Final combined-source replay; source hashes are recorded in results/selection/source_hashes.json.",
     "raw_paths": [
-      "experiments/cuda_lab/results/scan/bench-1025.json",
-      "experiments/cuda_lab/results/scan/bench-65536.json",
-      "experiments/cuda_lab/results/scan/quality.json"
+      "experiments/cuda_lab/results/selection/report.md",
+      "experiments/cuda_lab/results/selection/final-bench-1025.json",
+      "experiments/cuda_lab/results/selection/final-bench-65536.json",
+      "experiments/cuda_lab/results/selection/source_hashes.json",
+      "experiments/cuda_lab/results/selection/final-memcheck.json",
+      "experiments/cuda_lab/results/selection/final-initcheck.json",
+      "experiments/cuda_lab/results/selection/final-racecheck.json",
+      "experiments/cuda_lab/results/selection/final-synccheck.json"
     ],
-    "basis": "Transcribed from an inspected repository summary; not a new run."
+    "raw_identities_sha256": {
+      "experiments/cuda_lab/results/selection/final-bench-1025.json": "f419346b86ad6827e5d84bee6ba20fda8b941f75d0018b330d80e8f70008d53c",
+      "experiments/cuda_lab/results/selection/final-bench-65536.json": "5a838c251ae8854f4019ac8f6cd20f005f75b68923c2178ebc9252d04afacc20",
+      "experiments/cuda_lab/results/selection/source_hashes.json": "3d4155a5ac7a200ef545dfca73915e756f9cb5522574c18c82fceda54e051024",
+      "experiments/cuda_lab/results/selection/final-memcheck.json": "a7ce2c40203dfc46ae7971bf1deb4ab6e7b42e3f01e76a234d07e6fddf4c28cc",
+      "experiments/cuda_lab/results/selection/final-initcheck.json": "4db31230693f35f1d961d6a74111b419d33114f355c9c56855b758f3669871f6",
+      "experiments/cuda_lab/results/selection/final-racecheck.json": "1232766b83798ffef41699e6a732260323468606bcf06704af018eba43340263",
+      "experiments/cuda_lab/results/selection/final-synccheck.json": "88c5d12b619efe1d448443213c12e9d50a681076e63e0a275825d2b160b5e1a3",
+      "experiments/cuda_lab/results/selection/report.md": "84774aefcf86e25404c26fe06df04707f42ee37def83f8a5983f3ac1939c54da"
+    },
+    "basis": "Verified historical record: report and tracked raw receipts were read locally; all six final integrated source hashes match the files in this checkout. No measurement was rerun for documentation.",
+    "code_paths": [
+      "experiments/cuda_lab/cuda/driver.cu"
+    ]
   },
   "metric": {
     "unit": "ms",
-    "timing_scope": "device-resident producer and complete scan pipeline; preallocated scratch",
-    "statistic": "median",
-    "uncertainty": "not available unless row bounds are supplied"
+    "timing_scope": "Device-resident coefficient/gate producer plus complete inclusive affine scan pipeline, with scratch preallocated",
+    "statistic": "Median of 31 device-event samples in one recorded invocation",
+    "uncertainty": "P95 values are retained in each raw receipt; no confidence interval or independent repeat is available"
   },
-  "hardware": "Tesla V100-SXM2-16GB / sm_70 (reported)",
+  "hardware": "Tesla V100-SXM2-16GB / sm_70",
   "environment": {
-    "cuda": "12.9.86",
-    "precision": "float, Release without fast math; verify all build flags in replay",
-    "warmups": null,
-    "repeats": null
+    "cuda": "12.9.86 (cudart 12090)",
+    "precision": "float, Release without fast math (as recorded)",
+    "warmups": "3 device-pipeline calls before timing, confirmed by the recorded driver",
+    "repeats": "31 timed samples per variant at each size; one invocation per receipt",
+    "source": "Final integrated replay; all six recorded SHA-256 source hashes match the current lab files."
   },
   "series": [
     {
@@ -43,15 +62,15 @@
   ],
   "rows": [
     {
-      "case": "1,025 records",
+      "case": "n = 1,025 records",
       "x": 1025,
       "values": {
         "custom": 0.019456,
-        "cub": 0.014336
+        "cub": 0.016384
       }
     },
     {
-      "case": "65,536 records",
+      "case": "n = 65,536 records",
       "x": 65536,
       "values": {
         "custom": 0.070656,
@@ -60,25 +79,36 @@
     }
   ],
   "chart": "bar",
-  "claim": "CUB is the faster reported executor at both sizes. The restricted ordered affine summary and source interval mapping remain the useful two-level candidate.",
+  "claim": "In these untrained synthetic affine-summary fixtures, CUB had a lower recorded median than the custom scan at both tested sizes. The defined ordered summary composed exactly across two levels with source intervals, but this does not establish sequence utility or a learned genomic hierarchy.",
   "limitations": [
-    "Deterministic untrained four-float records, not a learned genomic model.",
-    "Excludes allocation, host fixture generation, transfers and result interpretation.",
-    "Per-case source identities differ from the later combined-source replay; do not merge them as independent repeats.",
-    "Composition retains order that averaging loses but does not establish general information preservation."
+    "Synthetic four-float records with untrained fixture parameters; no biological sequence labels or genome-derived inputs.",
+    "Device-resident pipeline only: excludes allocation, host fixture construction, H2D/D2H, and result interpretation.",
+    "The two sample sizes and variants are one recorded invocation each (31 timed samples); p95 is not a confidence interval.",
+    "The final combined-source replay is distinct from earlier per-case receipts. This result uses only the final combined-source receipts and does not pool them.",
+    "This is an exactness/cost observation for a restricted affine operator, not evidence of general context construction or information preservation.",
+    "Tracked raw receipts contain the original machine-local binary path in their command field; their recorded stdout is path-independent, and the reproduction recipe below uses relative repository commands."
   ],
-  "reproduce": "Resolve the current benchmark driver and source-specific command from the original record; run under the existing assigned resources only if a refresh is justified.",
+  "reproduce": "Historical recipe only; no rerun was made for this documentation pass. With CUDA 12.9, sm_70, and the canonical controller holding the assigned GPU resource, use:\n\n```sh\npython3 experiments/cuda_lab/tools/run.py \\\n  --phase build-cuda \\\n  --build-dir build-bitop-BP-CUDA-LAB-final-cuda\npython3 experiments/cuda_lab/results/\\\nselection/replay.py parent\npython3 experiments/cuda_lab/tools/\\\ncheck.py --all-results\n```\n\nThe replay runs the recorded all-case sanitizer and benchmark checks. Do not invoke its GPU work without the actual exclusive resource lease.",
   "selection": {
     "recommended": true,
-    "selected": false,
-    "rationale": "Prepared candidate; final editor must verify evidence and select for explanatory value, not maximum speedup."
+    "selected": true,
+    "rationale": "One narrow historical control result: preserves ordered-composition correctness while making the unfavorable executor comparison explicit. Selected for explanatory value, not because it is a speedup. Rethread is omitted as a separate public page; its full sweep remains in the linked selection report and combined raw receipts."
   },
   "review": {
-    "reviewer": null,
-    "verified_at_head": null,
-    "source_verified": false,
-    "method_verified": false,
-    "public_evidence_paths": []
+    "reviewer": "Codex BP-DOCS-30 evidence review",
+    "verified_at_head": "271843a2d2ceff434c97c8eb5fd13555567034c4",
+    "source_verified": true,
+    "method_verified": true,
+    "public_evidence_paths": [
+      "experiments/cuda_lab/results/selection/report.md",
+      "experiments/cuda_lab/results/selection/final-bench-1025.json",
+      "experiments/cuda_lab/results/selection/final-bench-65536.json",
+      "experiments/cuda_lab/results/selection/source_hashes.json",
+      "experiments/cuda_lab/results/selection/final-memcheck.json",
+      "experiments/cuda_lab/results/selection/final-initcheck.json",
+      "experiments/cuda_lab/results/selection/final-racecheck.json",
+      "experiments/cuda_lab/results/selection/final-synccheck.json"
+    ]
   },
-  "figure_context": "V100-SXM2-16GB · CUDA 12.9.86 · untrained synthetic float records"
+  "figure_context": "Tesla V100-SXM2-16GB \u00b7 CUDA 12.9.86 \u00b7 sm_70 \u00b7 untrained synthetic affine fixtures \u00b7 final combined-source replay"
 }

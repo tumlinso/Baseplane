@@ -1,0 +1,58 @@
+{
+  "purpose": "bounded CPU-only build/use verification for docs handoff",
+  "commands": [
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        ".",
+        "-B",
+        "build-docs-cpu",
+        "-DBASEPLANE_ENABLE_CUDA=OFF"
+      ],
+      "returncode": 0,
+      "stdout": "-- The CXX compiler identification is GNU 13.3.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring done (0.2s)\n-- Generating done (0.0s)\n-- Build files have been written to: /home/tumlinson/Baseplane/build-docs-cpu\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "build-docs-cpu",
+        "--target",
+        "baseplaneDna2Test",
+        "baseplaneBitOpContractTest",
+        "baseplaneDna2ValidityTest",
+        "-j",
+        "4"
+      ],
+      "returncode": 0,
+      "stdout": "[ 14%] Building CXX object CMakeFiles/baseplane_seq.dir/src/seq/dna2_scalar.cpp.o\n[ 28%] Building CXX object CMakeFiles/baseplane_seq.dir/src/seq/predicate_plan.cpp.o\n[ 42%] Building CXX object CMakeFiles/baseplane_seq.dir/src/seq/dna2_validity.cpp.o\n[ 57%] Building CXX object CMakeFiles/baseplane_seq.dir/src/seq/dna2_allowed.cpp.o\n[ 71%] Linking CXX static library libbaseplane_seq.a\n[ 71%] Built target baseplane_seq\n[ 85%] Building CXX object CMakeFiles/baseplaneDna2Test.dir/tests/seq/test_dna2.cpp.o\n[100%] Linking CXX executable baseplaneDna2Test\n[100%] Built target baseplaneDna2Test\n[ 71%] Built target baseplane_seq\n[ 85%] Building CXX object CMakeFiles/baseplaneBitOpContractTest.dir/tests/seq/test_predicate_plan.cpp.o\n[100%] Linking CXX executable baseplaneBitOpContractTest\n[100%] Built target baseplaneBitOpContractTest\n[ 71%] Built target baseplane_seq\n[ 85%] Building CXX object CMakeFiles/baseplaneDna2ValidityTest.dir/tests/seq/test_dna2_validity.cpp.o\n[100%] Linking CXX executable baseplaneDna2ValidityTest\n[100%] Built target baseplaneDna2ValidityTest\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./build-docs-cpu/baseplaneDna2Test"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./build-docs-cpu/baseplaneBitOpContractTest"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "./build-docs-cpu/baseplaneDna2ValidityTest"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

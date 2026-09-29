@@ -1,0 +1,182 @@
+{
+  "project": "baseplane",
+  "program_id": "DOCS-REFRESH-2026-09",
+  "status": "completed",
+  "qualified_head": "271843a2d2ceff434c97c8eb5fd13555567034c4",
+  "reviewer": "Codex BP-DOCS-90 final review",
+  "managed_workflow_preserved": true,
+  "source_moves": [],
+  "commands": [
+    {
+      "argv": [
+        "mcp__codex_apps__project_control_coordination_view",
+        "project=baseplane",
+        "run_id=compat-v2",
+        "detail=compact"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/bitop-continuity.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "planning/doc-refresh/tools/inventory.py",
+        "--repo",
+        ".",
+        "--out",
+        "planning/doc-refresh/inputs/inventory.json"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/inputs/inventory.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "planning/doc-refresh/tools/render.py",
+        "--project",
+        "baseplane",
+        "--repo",
+        ".",
+        "--out",
+        "planning/doc-refresh/staged",
+        "--figures",
+        "--final"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/render-final.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "planning/doc-refresh/tools/check.py",
+        "--local",
+        "--project",
+        "baseplane",
+        "--repo",
+        ".",
+        "--evidence"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/local-evidence-check.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "experiments/cuda_lab/tools/check.py",
+        "--all-results"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/lab-results-check.json"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/git-diff-check.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "planning/doc-refresh/evidence/review_render.py"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/reader-review.json"
+    },
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        ".",
+        "-B",
+        "build-docs-cpu",
+        "-DBASEPLANE_ENABLE_CUDA=OFF"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/cpu-build-use.json"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "build-docs-cpu",
+        "--target",
+        "baseplaneDna2Test",
+        "baseplaneBitOpContractTest",
+        "baseplaneDna2ValidityTest",
+        "-j",
+        "4"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/cpu-build-use.json"
+    },
+    {
+      "argv": [
+        "./build-docs-cpu/baseplaneDna2Test"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/cpu-build-use.json"
+    },
+    {
+      "argv": [
+        "./build-docs-cpu/baseplaneBitOpContractTest"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/cpu-build-use.json"
+    },
+    {
+      "argv": [
+        "./build-docs-cpu/baseplaneDna2ValidityTest"
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/cpu-build-use.json"
+    },
+    {
+      "argv": [
+        "python3",
+        "planning/doc-refresh/tools/check.py",
+        "--final",
+        "--project",
+        "baseplane",
+        "--repo",
+        "."
+      ],
+      "returncode": 0,
+      "expected_exit_code": 0,
+      "basis": "executed",
+      "evidence_path": "planning/doc-refresh/evidence/final-check.json"
+    }
+  ],
+  "result_ids": [
+    "bp-carryfold"
+  ],
+  "reader_walkthrough": true,
+  "pending": [],
+  "notes": "Qualified source HEAD 271843a2d2ceff434c97c8eb5fd13555567034c4; public documentation, result page/data/figure, and planning evidence remain uncommitted. The shared worktree also contains preserved concurrent Todo projection/snapshot changes. No source or Todo authority was modified by this documentation handoff. Project Control coordination_view observed compat-v2 active with BP-BITOP-20 through BP-BITOP-50 queued; no relevant source paths or build/test routes were moved. Normal/narrow reader review used Rich Markdown terminal output at 96/44 columns (no browser installed); selected figure inspected in grayscale. The historical selected benchmark was not rerun; only CPU build/use verification and existing lab receipt checks were executed. Final local gate output is recorded at planning/doc-refresh/evidence/final-check.json. The latest read-only coordination_view (revision 211) also exposed two stale-heartbeat recovery items; they were left untouched."
+}

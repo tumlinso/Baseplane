@@ -1,18 +1,14 @@
 {
   "project": "baseplane",
-  "qualified_head": null,
-  "reviewer": null,
-  "paths_finalized": false,
-  "status_reconciled": false,
-  "build_instructions_verified": false,
-  "managed_workflow_preserved": false,
-  "source_moves_reviewed": false,
-  "rendered_pages_reviewed": false,
-  "evidence_selection_reviewed": false,
-  "pending": [
-    "Reinspect after intervening source work.",
-    "Finalize bindings after moves.",
-    "Verify selected historical/raw evidence or record a bounded fresh replay."
-  ],
-  "notes": "Flags record actual implementing-agent review, not user reconfirmation of already-settled intent."
+  "qualified_head": "271843a2d2ceff434c97c8eb5fd13555567034c4",
+  "reviewer": "Codex BP-DOCS-90 final review",
+  "paths_finalized": true,
+  "status_reconciled": true,
+  "build_instructions_verified": true,
+  "managed_workflow_preserved": true,
+  "source_moves_reviewed": true,
+  "rendered_pages_reviewed": true,
+  "evidence_selection_reviewed": true,
+  "pending": [],
+  "notes": "Qualified source HEAD 271843a2d2ceff434c97c8eb5fd13555567034c4. No source move; actual current source paths, public links, selected historical evidence, and CPU-only build/use route were checked. Documentation/bootstrap and concurrent Todo projection/snapshot changes remain uncommitted and preserved. Reader review used Rich Markdown at 96 and 44 terminal columns because no browser renderer is installed; the selected PNG was also inspected in grayscale. The existing BitOp run and queued tasks remain continuable per Project Control read-only evidence."
 }
