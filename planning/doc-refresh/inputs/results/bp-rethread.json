@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "id": "bp-rethread",
+  "project": "baseplane",
+  "title": "Routing cost depends on the workload",
+  "question": "Did compacting selected objects make cooperative execution worthwhile?",
+  "evidence_state": "recorded_summary",
+  "source": {
+    "path": "experiments/cuda_lab/results/rethread/report.md",
+    "observed_at": "2026-09-29",
+    "repository_head_when_read": "e37f85b4f651a1cddfcb481610ecff94e735d03f",
+    "file_identity": "4ad5e1a043450394aca091f1adf2572e348390a442fd00ee865b2d73957503be",
+    "measurement_revision": null,
+    "raw_paths": [],
+    "basis": "Transcribed from an inspected repository summary; not a new run."
+  },
+  "metric": {
+    "unit": "ms",
+    "timing_scope": "device-resident launches including cheap output, queue and refinement",
+    "statistic": "as reported",
+    "uncertainty": "not available unless row bounds are supplied"
+  },
+  "hardware": "Tesla V100-SXM2-16GB / sm_70 (reported)",
+  "environment": {
+    "cuda": "12.9.86",
+    "precision": "float, Release without fast math",
+    "warmups": null,
+    "repeats": null
+  },
+  "series": [
+    {
+      "key": "thread",
+      "label": "Thread"
+    },
+    {
+      "key": "warp",
+      "label": "Direct warp"
+    },
+    {
+      "key": "compact",
+      "label": "Compacted warp"
+    },
+    {
+      "key": "cub",
+      "label": "CUB select + warp"
+    }
+  ],
+  "rows": [
+    {
+      "case": "1,025 records; 0% target selected",
+      "x": 0,
+      "n": 1025,
+      "values": {
+        "thread": 0.011264,
+        "warp": 0.014336,
+        "compact": 0.019456,
+        "cub": 0.019456
+      }
+    },
+    {
+      "case": "1,025 records; 1% target selected",
+      "x": 1,
+      "n": 1025,
+      "values": {
+        "thread": 0.033792,
+        "warp": 0.01536,
+        "compact": 0.023552,
+        "cub": 0.023552
+      }
+    },
+    {
+      "case": "1,025 records; 5% target selected",
+      "x": 5,
+      "n": 1025,
+      "values": {
+        "thread": 0.033792,
+        "warp": 0.016384,
+        "compact": 0.022528,
+        "cub": 0.023552
+      }
+    },
+    {
+      "case": "1,025 records; 25% target selected",
+      "x": 25,
+      "n": 1025,
+      "values": {
+        "thread": 0.033792,
+        "warp": 0.02048,
+        "compact": 0.023552,
+        "cub": 0.023552
+      }
+    },
+    {
+      "case": "1,025 records; 50% target selected",
+      "x": 50,
+      "n": 1025,
+      "values": {
+        "thread": 0.032768,
+        "warp": 0.023552,
+        "compact": 0.026624,
+        "cub": 0.026624
+      }
+    },
+    {
+      "case": "1,025 records; 100% target selected",
+      "x": 100,
+      "n": 1025,
+      "values": {
+        "thread": 0.033792,
+        "warp": 0.027648,
+        "compact": 0.033792,
+        "cub": 0.033792
+      }
+    },
+    {
+      "case": "65,536 records; 0% target selected",
+      "x": 0,
+      "n": 65536,
+      "values": {
+        "thread": 0.1024,
+        "warp": 0.14848,
+        "compact": 0.111616,
+        "cub": 0.113664
+      }
+    },
+    {
+      "case": "65,536 records; 1% target selected",
+      "x": 1,
+      "n": 65536,
+      "values": {
+        "thread": 0.11776,
+        "warp": 0.1536,
+        "compact": 0.123904,
+        "cub": 0.124928
+      }
+    },
+    {
+      "case": "65,536 records; 5% target selected",
+      "x": 5,
+      "n": 65536,
+      "values": {
+        "thread": 0.130048,
+        "warp": 0.16896,
+        "compact": 0.151552,
+        "cub": 0.154624
+      }
+    },
+    {
+      "case": "65,536 records; 25% target selected",
+      "x": 25,
+      "n": 65536,
+      "values": {
+        "thread": 0.123904,
+        "warp": 0.293888,
+        "compact": 0.284672,
+        "cub": 0.284672
+      }
+    },
+    {
+      "case": "65,536 records; 50% target selected",
+      "x": 50,
+      "n": 65536,
+      "values": {
+        "thread": 0.124928,
+        "warp": 0.459776,
+        "compact": 0.45056,
+        "cub": 0.45056
+      }
+    },
+    {
+      "case": "65,536 records; 100% target selected",
+      "x": 100,
+      "n": 65536,
+      "values": {
+        "thread": 0.285696,
+        "warp": 0.761856,
+        "compact": 0.786432,
+        "cub": 0.78848
+      }
+    }
+  ],
+  "chart": "table",
+  "claim": "The compacted path did not win the recorded fixture. Direct warp helped the small nonzero-density cases; thread execution won the larger cases.",
+  "limitations": [
+    "The two input sizes must not be collapsed into a single favorable point.",
+    "Untrained fixture; skipping rich work omitted nonzero outputs.",
+    "Input/output: 4 floats to 32 floats per record. Allocation and transfer excluded; variants were run in fixed order.",
+    "A 65,536-record timing is not evidence of whole-genome scaling."
+  ],
+  "reproduce": "Resolve the current benchmark driver and source-specific command from the original record; run under the existing assigned resources only if a refresh is justified.",
+  "selection": {
+    "recommended": false,
+    "selected": false,
+    "rationale": "Supplementary full table preserves both workload sizes; CarryFold is the primary Baseplane figure. The final editor may replace, not pile on, a highlight."
+  },
+  "review": {
+    "reviewer": null,
+    "verified_at_head": null,
+    "source_verified": false,
+    "method_verified": false,
+    "public_evidence_paths": []
+  }
+}

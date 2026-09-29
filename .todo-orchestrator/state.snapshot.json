@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T08:59:50Z",
+  "generated_at": "2026-09-29T12:00:43Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 196,
+  "project_revision": 197,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -2590,6 +2590,16 @@
         "revision": 196,
         "seq": 196,
         "timestamp": "2026-09-29T08:59:50Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+        "entity_type": "project",
+        "event_type": "plan.applied",
+        "payload_json": "{\"plan_digest\": \"99bb62998e0e98bc6363fb314c474650ddaafaa2dbd8c381bde3ca8373dbf2a3\", \"source\": \"project-control\"}",
+        "revision": 197,
+        "seq": 197,
+        "timestamp": "2026-09-29T12:00:43Z"
       }
     ],
     "evidence": [
@@ -4326,6 +4336,58 @@
       },
       {
         "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"planning/doc-refresh/tools/check.py\", \"--local\", \"--project\", \"baseplane\", \"--repo\", \".\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"planning/doc-refresh\", \"README.md\", \"AGENTS.md\", \"docs\"]}",
+        "id": "BP-DOCS-10-CHECK",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 197,
+        "status": "pending",
+        "task_id": "BP-DOCS-10",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"planning/doc-refresh/tools/check.py\", \"--local\", \"--project\", \"baseplane\", \"--repo\", \".\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"planning/doc-refresh\", \"README.md\", \"AGENTS.md\", \"docs\"]}",
+        "id": "BP-DOCS-20-CHECK",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 197,
+        "status": "pending",
+        "task_id": "BP-DOCS-20",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"planning/doc-refresh/tools/check.py\", \"--local\", \"--evidence\", \"--project\", \"baseplane\", \"--repo\", \".\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"planning/doc-refresh\", \"README.md\", \"AGENTS.md\", \"docs\"]}",
+        "id": "BP-DOCS-30-CHECK",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 197,
+        "status": "pending",
+        "task_id": "BP-DOCS-30",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"planning/doc-refresh/tools/check.py\", \"--final\", \"--project\", \"baseplane\", \"--repo\", \".\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"input_paths\": [\"planning/doc-refresh\", \"README.md\", \"AGENTS.md\", \"docs\"]}",
+        "id": "BP-DOCS-90-CHECK",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 197,
+        "status": "pending",
+        "task_id": "BP-DOCS-90",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
         "config_json": "{\"argv\": [\"cmake\", \"--build\", \"/home/tumlinson/Cellerator/build-bitop-CE-BITOP-40\", \"--target\", \"sequenceComputeRuntimeTest\", \"coreSparseLayoutRuntimeTest\", \"-j\", \"4\"], \"cwd\": \".\", \"expected_exit_code\": 0, \"timeout\": 1800, \"track_git_head\": true}",
         "id": "CE-BITOP-40-BUILD",
         "input_fingerprint": null,
@@ -5242,6 +5304,20 @@
         "id": "BP-CUDA-LAB-TRUTH",
         "rule": "This epic is scoped to experiments/cuda_lab; keep every prototype unpromoted until measured. No false claim of learned weights, lossless embeddings, genome-scale representation, GPU execution or speedup. Negative findings are first-class outcomes. Existing exact APIs and unrelated dirty files remain untouched.",
         "scope_json": "{\"paths\": [\"experiments/cuda_lab\"]}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
+        "id": "BP-DOCS-EVIDENCE",
+        "rule": "Public results are source-linked and scoped. No invented data, timing-phase substitution, hidden selection of only winning points, or historical summary presented as a new run. Existing GPU resource control remains required.",
+        "scope_json": "{}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
+        "id": "BP-DOCS-SCOPE",
+        "rule": "Documentation-first, at most one coherent mechanical source cluster by default. Preserve numerical/scientific semantics, live ownership, generated authority state and immutable evidence. Final source paths and status must be checked after intervening packages.",
+        "scope_json": "{}",
         "severity": "error"
       },
       {
@@ -6787,6 +6863,456 @@
         "mode": "read",
         "path": "src/seq",
         "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CONTRIBUTING.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "exclusive",
+        "path": "README.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/doc-refresh",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "bench",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "examples",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-DOCS-10"
+      },
+      {
+        "mode": "exclusive",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CONTRIBUTING.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "README.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "bench",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/doc-refresh",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "bench",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "examples",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-DOCS-20"
+      },
+      {
+        "mode": "exclusive",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CONTRIBUTING.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "README.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "bench",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/doc-refresh",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "bench",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "examples",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-DOCS-30"
+      },
+      {
+        "mode": "exclusive",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CONTRIBUTING.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "README.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "bench",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/doc-refresh",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "bench",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "examples",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-DOCS-90"
       },
       {
         "mode": "forbidden",
@@ -8775,6 +9301,39 @@
         "interface_id": null,
         "prerequisite_task_id": "BP-CUDA-LAB-40",
         "task_id": "BP-CUDA-LAB-90",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1443,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-DOCS-10",
+        "task_id": "BP-DOCS-20",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1444,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-DOCS-20",
+        "task_id": "BP-DOCS-30",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1445,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-DOCS-30",
+        "task_id": "BP-DOCS-90",
         "type": "task"
       }
     ],
@@ -11237,6 +11796,131 @@
         "title": "Select the revealing results and publish a bounded two-level demonstration",
         "updated_at": "2026-09-29T08:59:40Z",
         "version": 6
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T12:00:43Z",
+        "id": "BP-DOCS-000",
+        "kind": "epic",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Read planning/doc-refresh/START_LOCAL.md and shared/TASKS.md. Local authority only; preserve current claims and source.",
+        "objective": "Apply the prewritten public/agent/developer/status hierarchy, perform only useful small moves, and qualify selected result displays. Part of DOCS-REFRESH-2026-09; authority remains local.",
+        "parallel_policy": "serial",
+        "parent_id": null,
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{}",
+        "revision": 197,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Baseplane documentation-first cleanup and selected evidence",
+        "updated_at": "2026-09-29T12:00:43Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T12:00:43Z",
+        "id": "BP-DOCS-10",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Use the prepared shared/TASKS.md outcome and migration map. Preserve dirty work, managed agent instructions and old evidence. Bound source changes and measurements; final paths are local decisions.",
+        "objective": "Refresh source/claims after prior packages; classify important documents; stage the already-written README, design, status, source-map and agent pages without rederiving intent.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-DOCS-000",
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"evaluated_not_promoted\", \"no_change_required\"]}",
+        "revision": 197,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Reconcile the current tree and apply the prewritten documentation",
+        "updated_at": "2026-09-29T12:00:43Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T12:00:43Z",
+        "id": "BP-DOCS-20",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Use the prepared shared/TASKS.md outcome and migration map. Preserve dirty work, managed agent instructions and old evidence. Bound source changes and measurements; final paths are local decisions.",
+        "objective": "Move at most one useful mechanical source cluster by default, or keep source as-is; repair living docs/build/import/export references and preserve all semantic/evidence boundaries.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-DOCS-000",
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"evaluated_not_promoted\", \"no_change_required\"]}",
+        "revision": 197,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Perform bounded moves and bind final source/build paths",
+        "updated_at": "2026-09-29T12:00:43Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T12:00:43Z",
+        "id": "BP-DOCS-30",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Use the prepared shared/TASKS.md outcome and migration map. Preserve dirty work, managed agent instructions and old evidence. Bound source changes and measurements; final paths are local decisions.",
+        "objective": "Verify existing result records, export portable raw evidence, and refresh only bounded selected cases when justified. Choose at most two public studies. Optional GH capability probe only; no broad benchmark or model work.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-DOCS-000",
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"evaluated_not_promoted\", \"no_change_required\"]}",
+        "revision": 197,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Qualify and curate the selected result displays",
+        "updated_at": "2026-09-29T12:00:43Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-09-29T12:00:43Z",
+        "id": "BP-DOCS-90",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "Use the prepared shared/TASKS.md outcome and migration map. Preserve dirty work, managed agent instructions and old evidence. Bound source changes and measurements; final paths are local decisions.",
+        "objective": "Apply reviewed final staged docs, validate local links/status/evidence and affected builds/tests, inspect rendered pages/figures, and write one authentic local handoff receipt.",
+        "parallel_policy": "serial",
+        "parent_id": "BP-DOCS-000",
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"evaluated_not_promoted\", \"no_change_required\"]}",
+        "revision": 197,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Validate the human/agent reading paths and publish the local handoff",
+        "updated_at": "2026-09-29T12:00:43Z",
+        "version": 1
       },
       {
         "attention_reason": null,

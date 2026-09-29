@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "id": "bp-carryfold",
+  "project": "baseplane",
+  "title": "Keep the ordered representation; choose the better executor",
+  "question": "Can a conditional summary survive two levels without insisting on a custom kernel?",
+  "evidence_state": "recorded_summary",
+  "source": {
+    "path": "experiments/cuda_lab/results/scan/report.md",
+    "observed_at": "2026-09-29",
+    "repository_head_when_read": "e37f85b4f651a1cddfcb481610ecff94e735d03f",
+    "file_identity": "37d767564ca0521ed93943b5d10a176cbea167a392908621ddb21b8671fc3890",
+    "measurement_revision": null,
+    "raw_paths": [
+      "experiments/cuda_lab/results/scan/bench-1025.json",
+      "experiments/cuda_lab/results/scan/bench-65536.json",
+      "experiments/cuda_lab/results/scan/quality.json"
+    ],
+    "basis": "Transcribed from an inspected repository summary; not a new run."
+  },
+  "metric": {
+    "unit": "ms",
+    "timing_scope": "device-resident producer and complete scan pipeline; preallocated scratch",
+    "statistic": "median",
+    "uncertainty": "not available unless row bounds are supplied"
+  },
+  "hardware": "Tesla V100-SXM2-16GB / sm_70 (reported)",
+  "environment": {
+    "cuda": "12.9.86",
+    "precision": "float, Release without fast math; verify all build flags in replay",
+    "warmups": null,
+    "repeats": null
+  },
+  "series": [
+    {
+      "key": "custom",
+      "label": "Custom producer + scan"
+    },
+    {
+      "key": "cub",
+      "label": "CUB producer + scan"
+    }
+  ],
+  "rows": [
+    {
+      "case": "1,025 records",
+      "x": 1025,
+      "values": {
+        "custom": 0.019456,
+        "cub": 0.014336
+      }
+    },
+    {
+      "case": "65,536 records",
+      "x": 65536,
+      "values": {
+        "custom": 0.070656,
+        "cub": 0.059392
+      }
+    }
+  ],
+  "chart": "bar",
+  "claim": "CUB is the faster reported executor at both sizes. The restricted ordered affine summary and source interval mapping remain the useful two-level candidate.",
+  "limitations": [
+    "Deterministic untrained four-float records, not a learned genomic model.",
+    "Excludes allocation, host fixture generation, transfers and result interpretation.",
+    "Per-case source identities differ from the later combined-source replay; do not merge them as independent repeats.",
+    "Composition retains order that averaging loses but does not establish general information preservation."
+  ],
+  "reproduce": "Resolve the current benchmark driver and source-specific command from the original record; run under the existing assigned resources only if a refresh is justified.",
+  "selection": {
+    "recommended": true,
+    "selected": false,
+    "rationale": "Prepared candidate; final editor must verify evidence and select for explanatory value, not maximum speedup."
+  },
+  "review": {
+    "reviewer": null,
+    "verified_at_head": null,
+    "source_verified": false,
+    "method_verified": false,
+    "public_evidence_paths": []
+  },
+  "figure_context": "V100-SXM2-16GB · CUDA 12.9.86 · untrained synthetic float records"
+}

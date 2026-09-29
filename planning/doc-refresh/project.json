@@ -1,0 +1,9 @@
+{
+  "id": "baseplane",
+  "name": "Baseplane",
+  "snapshot_head": "e37f85b4f651a1cddfcb481610ecff94e735d03f",
+  "snapshot_todo_revision": 196,
+  "snapshot_dirty": true,
+  "observed_at": "2026-09-29",
+  "package_version": 1
+}
