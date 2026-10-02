@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T13:19:25Z",
+  "generated_at": "2026-10-02T13:34:01Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 219,
+  "project_revision": 221,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -2820,6 +2820,26 @@
         "revision": 219,
         "seq": 219,
         "timestamp": "2026-10-02T13:19:25Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-L-FOUNDATION",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-MOON-L-FOUNDATION\", \"run_id\": \"BP-MOON-RUN-1\", \"status\": \"claimed\", \"task_id\": \"BP-MOON-010\"}",
+        "revision": 220,
+        "seq": 220,
+        "timestamp": "2026-10-02T13:27:03Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-010",
+        "entity_type": "task",
+        "event_type": "task.completed",
+        "payload_json": "{\"completion_revision\": 221, \"disposition\": \"implemented\", \"reached_checkpoints\": []}",
+        "revision": 221,
+        "seq": 221,
+        "timestamp": "2026-10-02T13:34:01Z"
       }
     ],
     "evidence": [
@@ -5290,6 +5310,16 @@
         "payload_json": "{\"authority_commit\": \"09bb2024874a3232964e2cce4812a87004fa7878\", \"changed_owned_paths\": [\"experiments/cuda_lab/cuda/driver.cu\", \"experiments/cuda_lab/cuda/kernels.cuh\", \"experiments/cuda_lab/host/reference.cc\", \"experiments/cuda_lab/include/lab.hh\", \"experiments/cuda_lab/results/adoption.md\", \"experiments/cuda_lab/results/bitlift.json\", \"experiments/cuda_lab/results/bitlift/bench-1025.json\", \"experiments/cuda_lab/results/bitlift/bench-65536.json\", \"experiments/cuda_lab/results/bitlift/build-cuda.log\", \"experiments/cuda_lab/results/bitlift/cuda-gate.log\", \"experiments/cuda_lab/results/bitlift/initcheck.json\", \"experiments/cuda_lab/results/bitlift/memcheck.json\", \"experiments/cuda_lab/results/bitlift/quality.json\", \"experiments/cuda_lab/results/bitlift/quality_probe.cc\", \"experiments/cuda_lab/results/bitlift/racecheck.json\", \"experiments/cuda_lab/results/bitlift/report.md\", \"experiments/cuda_lab/results/bitlift/sass.log\", \"experiments/cuda_lab/results/bitlift/synccheck.json\", \"experiments/cuda_lab/results/rendezvous.json\", \"experiments/cuda_lab/results/rendezvous/bench-1025.json\", \"experiments/cuda_lab/results/rendezvous/bench-65536.json\", \"experiments/cuda_lab/results/rendezvous/build-cuda.log\", \"experiments/cuda_lab/results/rendezvous/cuda-gate.log\", \"experiments/cuda_lab/results/rendezvous/initcheck.json\", \"experiments/cuda_lab/results/rendezvous/memcheck.json\", \"experiments/cuda_lab/results/rendezvous/quality.json\", \"experiments/cuda_lab/results/rendezvous/racecheck.json\", \"experiments/cuda_lab/results/rendezvous/report.md\", \"experiments/cuda_lab/results/rendezvous/synccheck.json\", \"experiments/cuda_lab/results/rethread.json\", \"experiments/cuda_lab/results/rethread/bench-1025.json\", \"experiments/cuda_lab/results/rethread/bench-65536.json\", \"experiments/cuda_lab/results/rethread/build-cuda.log\", \"experiments/cuda_lab/results/rethread/cuda-gate-final.log\", \"experiments/cuda_lab/results/rethread/initcheck.json\", \"experiments/cuda_lab/results/rethread/memcheck.json\", \"experiments/cuda_lab/results/rethread/quality.json\", \"experiments/cuda_lab/results/rethread/quality_probe.cc\", \"experiments/cuda_lab/results/rethread/racecheck.json\", \"experiments/cuda_lab/results/rethread/report.md\", \"experiments/cuda_lab/results/rethread/synccheck.json\", \"experiments/cuda_lab/results/scan.json\", \"experiments/cuda_lab/results/scan/bench-1025.json\", \"experiments/cuda_lab/results/scan/bench-65536.json\", \"experiments/cuda_lab/results/scan/build-cuda.log\", \"experiments/cuda_lab/results/scan/cuda-gate.log\", \"experiments/cuda_lab/results/scan/initcheck.json\", \"experiments/cuda_lab/results/scan/memcheck.json\", \"experiments/cuda_lab/results/scan/quality.json\", \"experiments/cuda_lab/results/scan/quality_probe.cc\", \"experiments/cuda_lab/results/scan/racecheck.json\", \"experiments/cuda_lab/results/scan/report.md\", \"experiments/cuda_lab/results/scan/synccheck.json\", \"experiments/cuda_lab/tests/host_tests.cc\", \"experiments/cuda_lab/tools/run.py\"], \"checkpoints\": [], \"completion_commit\": \"09bb2024874a3232964e2cce4812a87004fa7878\", \"completion_gates\": [{\"evidence_id\": \"edce3e7c-db40-416d-967b-3b5955a2cf77\", \"evidence_revision\": 186, \"id\": \"BP-CUDA-LAB-40-CUDA\", \"input_fingerprint\": \"e011220534477650cc11259780e9c4e6635e827e449e029975c748903103366c\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"09bb2024874a3232964e2cce4812a87004fa7878\"}, {\"evidence_id\": \"4ef8fdd8-2cdd-44b8-8ed3-0b984c8d296e\", \"evidence_revision\": 188, \"id\": \"BP-CUDA-LAB-40-RESULT\", \"input_fingerprint\": \"25b73e4a39f33ee3d531a6f1790dd556f712e36631847c37d3a5e4a9bf0cfd80\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"09bb2024874a3232964e2cce4812a87004fa7878\"}], \"completion_revision\": 189, \"finalized_checkpoints\": [], \"gates\": [{\"id\": \"BP-CUDA-LAB-40-CUDA\", \"input_fingerprint\": \"e011220534477650cc11259780e9c4e6635e827e449e029975c748903103366c\", \"last_run_at\": \"2026-09-29T08:54:00Z\", \"revision\": 186, \"status\": \"passed\", \"valid\": 1}, {\"id\": \"BP-CUDA-LAB-40-RESULT\", \"input_fingerprint\": \"25b73e4a39f33ee3d531a6f1790dd556f712e36631847c37d3a5e4a9bf0cfd80\", \"last_run_at\": \"2026-09-29T08:54:00Z\", \"revision\": 188, \"status\": \"passed\", \"valid\": 1}], \"git_diffstat\": \".todo-orchestrator/state.snapshot.json   | 1334 +++++++++++++++++++++++++++---\\n experiments/cuda_lab/cuda/driver.cu      |  119 ++-\\n experiments/cuda_lab/cuda/kernels.cuh    |   77 ++\\n experiments/cuda_lab/host/reference.cc   |   19 +\\n experiments/cuda_lab/include/lab.hh      |    5 +\\n experiments/cuda_lab/tests/host_tests.cc |   25 +\\n experiments/cuda_lab/tools/run.py        |   20 +-\\n todo-status.md                           |   12 +-\\n todos.md                                 |   12 +-\\n todos/bp-cuda-lab-00.md                  |    4 +-\\n todos/bp-cuda-lab-01.md                  |   10 +-\\n todos/bp-cuda-lab-10.md                  |   10 +-\\n todos/bp-cuda-lab-20.md                  |   10 +-\\n todos/bp-cuda-lab-30.md                  |   10 +-\\n todos/bp-cuda-lab-40.md                  |    8 +-\\n todos/bp-cuda-lab-90.md                  |    4 +-\\n 16 files changed, 1530 insertions(+), 149 deletions(-)\", \"git_head\": \"09bb2024874a3232964e2cce4812a87004fa7878\", \"integration_commit\": null, \"interfaces\": [], \"note\": \"CUDA12.9 sm70 correctness and four sanitizers passed. CUB regrouping 0.031744 ms versus local 0.009216 and exact all-pairs 0.011264 for fixed 128 candidates; sorting missed 120/994 directed same-key partners versus 2 local. Oracle packet is upper-bound fixture. Receipt results/rendezvous.json.\", \"producer_commit\": \"09bb2024874a3232964e2cce4812a87004fa7878\", \"producer_root\": \"/home/tumlinson/Baseplane\", \"resources\": [], \"task_id\": \"BP-CUDA-LAB-40\"}",
         "revision": 189,
         "task_id": "BP-CUDA-LAB-40"
+      },
+      {
+        "claim_id": null,
+        "created_at": "2026-10-02T13:34:01Z",
+        "id": "9a3615f7-ac3f-4249-919b-447b4c8e12ac",
+        "kind": "complete",
+        "note": "Implemented scoped sequence fixture/source map/validity/capacity foundation and thin Cellerator provider consumer; host configure/build and 3 CTests plus demo passed. Independent review found no BP correctness issue. No GPU execution or performance claim. Receipt planning/baseplane_moonshot_bootstrap/results/bp-foundation-host.json; code committed before isolated family bases.",
+        "payload_json": "{\"authority_commit\": \"fce1c6687eed03ce78a1d1cb17a1b893aaa64e50\", \"changed_owned_paths\": [], \"checkpoints\": [], \"completion_commit\": \"fce1c6687eed03ce78a1d1cb17a1b893aaa64e50\", \"completion_gates\": [], \"completion_revision\": 221, \"finalized_checkpoints\": [], \"gates\": [], \"git_diffstat\": \".todo-orchestrator/state.snapshot.json | 34 ++++++++++++++++++++++------------\\n todo-status.md                         |  4 ++--\\n todos.md                               |  4 ++--\\n todos/bp-moon-010.md                   |  6 +++---\\n 4 files changed, 29 insertions(+), 19 deletions(-)\", \"git_head\": \"fce1c6687eed03ce78a1d1cb17a1b893aaa64e50\", \"integration_commit\": null, \"interfaces\": [], \"note\": \"Implemented scoped sequence fixture/source map/validity/capacity foundation and thin Cellerator provider consumer; host configure/build and 3 CTests plus demo passed. Independent review found no BP correctness issue. No GPU execution or performance claim. Receipt planning/baseplane_moonshot_bootstrap/results/bp-foundation-host.json; code committed before isolated family bases.\", \"producer_commit\": \"fce1c6687eed03ce78a1d1cb17a1b893aaa64e50\", \"producer_root\": \"/home/tumlinson/Baseplane\", \"resources\": [], \"task_id\": \"BP-MOON-010\"}",
+        "revision": 221,
+        "task_id": "BP-MOON-010"
       },
       {
         "claim_id": null,
@@ -13205,9 +13235,9 @@
       },
       {
         "attention_reason": null,
-        "completion_commit": null,
-        "completion_git_head": null,
-        "completion_revision": null,
+        "completion_commit": "fce1c6687eed03ce78a1d1cb17a1b893aaa64e50",
+        "completion_git_head": "fce1c6687eed03ce78a1d1cb17a1b893aaa64e50",
+        "completion_revision": 221,
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-010",
         "kind": "task",
@@ -13219,14 +13249,14 @@
         "parallel_policy": "integration_exclusive",
         "parent_id": "BP-MOON-000",
         "priority": 100,
-        "result": null,
+        "result": "implemented",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 219,
-        "status": "planned",
+        "revision": 221,
+        "status": "done",
         "tags_json": "[]",
         "title": "Install a small experimental substrate, not a universal framework",
-        "updated_at": "2026-10-02T13:19:25Z",
-        "version": 2
+        "updated_at": "2026-10-02T13:34:01Z",
+        "version": 4
       },
       {
         "attention_reason": null,
@@ -15480,13 +15510,13 @@
         "task_id": "BP-MOON-040"
       },
       {
-        "activated_at": null,
-        "completed_at": null,
+        "activated_at": "2026-10-02T13:27:03Z",
+        "completed_at": "2026-10-02T13:34:01Z",
         "enqueued_at": "2026-10-02T13:11:58Z",
         "lane_id": "BP-MOON-L-FOUNDATION",
         "position": 0,
-        "revision": 217,
-        "state": "queued",
+        "revision": 221,
+        "state": "completed",
         "task_id": "BP-MOON-010"
       },
       {
@@ -16010,11 +16040,11 @@
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-FOUNDATION",
         "parent_lane_id": null,
-        "revision": 217,
+        "revision": 221,
         "role": "implementer",
         "run_id": "BP-MOON-RUN-1",
-        "state": "ready",
-        "updated_at": "2026-10-02T13:11:58Z",
+        "state": "closed",
+        "updated_at": "2026-10-02T13:34:01Z",
         "workspace_mode": "exclusive"
       },
       {
