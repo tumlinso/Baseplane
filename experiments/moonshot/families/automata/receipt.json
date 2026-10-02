@@ -1,0 +1,93 @@
+{
+  "task": "BP-MOON-030",
+  "observed_at_utc": "2026-10-02T13:46:07.150096+00:00",
+  "baseplane_baseline": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+  "provider": {
+    "baseline_commit": "544a1ae6e2925146f78a6ef62123ba5257c45251",
+    "source_dir": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-effects/experiments/baseplane_moonshot",
+    "effects_header_sha256": "cbcf4c5c7c48c554763c28e553bf95ed3cd0b29d0ea72c7db792403a808122fb",
+    "qualification": "Worker-owned candidate provider verified by consumer tests; root integrates separately."
+  },
+  "compiler": "GNU C++ 13.3.0, Debug, C++17",
+  "commands": [
+    "cmake -S experiments/moonshot -B /tmp/bp-moon-automata-build -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-effects/experiments/baseplane_moonshot -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
+    "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-automata-build --target bp_moon_automata_smoke bp_moon_automata_weighted_smoke -j 1",
+    "ctest --test-dir /tmp/bp-moon-automata-build -R '^bp_moon_automata.*smoke$' --output-on-failure"
+  ],
+  "outcomes": {
+    "configure": "passed",
+    "build": "passed",
+    "ctest": "2/2 passed",
+    "tests": [
+      "bp_moon_automata_smoke",
+      "bp_moon_automata_weighted_smoke"
+    ],
+    "small_sources_exhausted": 3906,
+    "source_lengths": [
+      0,
+      5
+    ],
+    "alphabet": "ACGTN",
+    "seams": "every split",
+    "cuda_authored": false,
+    "cuda_compiled": false,
+    "gpu_launched": false,
+    "benchmarked": false
+  },
+  "cards": {
+    "E05": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "automata.hpp:EffectHierarchy"
+    },
+    "E06": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "automata.hpp:WitnessedEffect/replay_motif"
+    },
+    "E07": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "automata.hpp:GrammarTile/grammar_replay"
+    },
+    "E08": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "weighted.hpp:summarize_alternatives"
+    }
+  },
+  "semantic_evidence": [
+    "DFA all-entry states agree with direct sequence scan; order sensitivity and associativity checked.",
+    "Motif counts and first/last witnesses agree with independent source event oracle at all seams; count overflow rejects.",
+    "Grammar summaries agree with independent stack oracle at all seams whenever exact; depth overflow requires replay.",
+    "Probability merges to0.42; max-plus best probability0.36; Boolean reachability1. Declared edge pruning changes0.42 to0.06."
+  ],
+  "failures": [
+    {
+      "type": "transient provider configuration",
+      "message": "First effects-provider configure failed because provider smoke.cpp was still being authored.",
+      "disposition": "resolved; subsequent full configure, build and focused CTest passed."
+    }
+  ],
+  "later_work": [
+    "CUDA lane-as-state and bounded stack executor adaptations",
+    "trained parameters and calibration",
+    "genome-scale cost and information-loss measurements"
+  ],
+  "context_fallback": "New experimental TUs lie outside configured ctxpp sources; canonical inspection and local compile_commands.json used; generated indexes preserved.",
+  "source_sha256": {
+    "automata.hpp": "f921f8ea49bb3de0b369ca974f63c90e7dddd86123ed3fcc55a9df9c77f9c348",
+    "CMakeLists.txt": "a430ab2950537c916947e3b7669af41484b12d0d7ef4b1fecb7e4e97bd1aeddf",
+    "weighted_smoke.cpp": "bd4661c2597b10d22bf9b296aeade8711ec1a9eb24ae644b74bb82a38536ddd1",
+    "smoke.cpp": "a19972703d25de307d15d863824eaf7934f8dbf7a15b924046c6f0a261d47793",
+    "weighted.hpp": "de306b52487aba3256bc6e86f406d383f3e02f839098f2f8775e8ac0c3cd5792"
+  },
+  "binary_sha256": {
+    "bp_moon_automata_smoke": "ac0bc6147efa58250166d2d00f6c1bb0f61186282cbf9dda6b237d40fdad9f8d",
+    "bp_moon_automata_weighted_smoke": "ee77a9b8ef8489b3bb374b4f010a29600e4330d11529f9eeb3ea5b1e76f954c1"
+  }
+}
