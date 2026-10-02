@@ -1,0 +1,44 @@
+[
+  {
+    "argv": [
+      "/tmp/bp-moon-logic-build/families/logic/bp_moon_logic_cuda",
+      "--run",
+      "0"
+    ],
+    "binary_sha256": "60d52cbe541dd0d413efbe7cd70405b39e517fa98912edfae61d6811e99d8984",
+    "returncode": 0,
+    "stdout": "{\"status\":\"pass\",\"cuda_mechanisms\":4}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/tmp/bp-moon-rendezvous/families/rendezvous/bp_moon_rendezvous_cuda_smoke",
+      "--run",
+      "0"
+    ],
+    "binary_sha256": "812d44064a8b5503df0cd494d759b3acf7b4df8acd7dbb77775403b130995c22",
+    "returncode": 0,
+    "stdout": "E18 CUDA groups=209 overflow_rows=6 queries=210 passed\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/tmp/bp-moon-machine/families/machine/bp_moon_machine_cuda_smoke",
+      "--run",
+      "0"
+    ],
+    "binary_sha256": "07d0e12db50d01439f397c8c14146830f41fe3f9f3cc98f2219e68e978563694",
+    "returncode": 0,
+    "stdout": "E45 max_texture_error=0.00924778 E46 DP4A words=282 butterfly roundtrip passed E47 two transposes passed E48 three GC paths passed\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/tmp/ce-moon-final-cuda/families/tensor/ce_moon_tensor_cuda"
+    ],
+    "binary_sha256": "138e79cf79eee487108dadecbcadb94578f0ab873d07e10038e210f9c74abf6c",
+    "returncode": 0,
+    "stdout": "E21-E24 GPU compared against host oracles; directed provenance and overflow passed\n",
+    "stderr": ""
+  }
+]

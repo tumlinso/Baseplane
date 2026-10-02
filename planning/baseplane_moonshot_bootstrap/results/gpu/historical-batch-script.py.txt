@@ -1,0 +1,16 @@
+import hashlib,json,subprocess
+from pathlib import Path
+commands=[
+["/tmp/bp-moon-logic-build/families/logic/bp_moon_logic_cuda","--run","0"],
+["/tmp/bp-moon-rendezvous/families/rendezvous/bp_moon_rendezvous_cuda_smoke","--run","0"],
+["/tmp/bp-moon-machine/families/machine/bp_moon_machine_cuda_smoke","--run","0"],
+["/tmp/ce-moon-final-cuda/families/tensor/ce_moon_tensor_cuda"]]
+results=[]
+for command in commands:
+ p=Path(command[0]); digest=hashlib.sha256(p.read_bytes()).hexdigest()
+ r=subprocess.run(command,text=True,capture_output=True)
+ item={"argv":command,"binary_sha256":digest,"returncode":r.returncode,"stdout":r.stdout,"stderr":r.stderr}
+ results.append(item); print(json.dumps(item),flush=True)
+Path("/tmp/moonshot-gpu-batch-results.json").write_text(json.dumps(results,indent=2)+"\n")
+raise SystemExit(0 if all(x["returncode"]==0 for x in results) else 1)
+

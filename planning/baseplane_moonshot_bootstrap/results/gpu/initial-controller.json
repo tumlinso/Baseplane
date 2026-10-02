@@ -1,0 +1,11 @@
+{
+  "classification": "decision-result",
+  "evidence_id": "a5e31189-5005-48dd-a9dc-ef3e4cebdd6a",
+  "lease_receipt": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/.todo-orchestrator/runtime/background-artifacts/foreground/b3da834f-1191-44d3-a7be-742f3ba0f1a2/lease.json",
+  "message": "No action-worthy result; evidence stored.",
+  "ok": true,
+  "returncode": 0,
+  "status": "succeeded",
+  "stderr_path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/.todo-orchestrator/runtime/background-artifacts/foreground/b3da834f-1191-44d3-a7be-742f3ba0f1a2/foreground.stderr.txt",
+  "stdout_path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/.todo-orchestrator/runtime/background-artifacts/foreground/b3da834f-1191-44d3-a7be-742f3ba0f1a2/foreground.stdout.txt"
+}

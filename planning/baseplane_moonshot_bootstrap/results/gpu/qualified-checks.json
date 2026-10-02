@@ -1,0 +1,133 @@
+{
+  "status": "four_gpu_probes_compared",
+  "records": [
+    {
+      "argv": [
+        "/tmp/bp-moon-logic-build/families/logic/bp_moon_logic_cuda",
+        "--run",
+        "0"
+      ],
+      "binary_sha256": "60d52cbe541dd0d413efbe7cd70405b39e517fa98912edfae61d6811e99d8984",
+      "returncode": 0,
+      "stdout": "{\"status\":\"pass\",\"cuda_mechanisms\":4}\n",
+      "stderr": "",
+      "repository": "baseplane",
+      "cards": [
+        "E01",
+        "E02",
+        "E03",
+        "E04"
+      ],
+      "controller_evidence_id": "a5e31189-5005-48dd-a9dc-ef3e4cebdd6a",
+      "source_identity": {
+        "build_cache_source_directory": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-logic/experiments/moonshot",
+        "family_source_commit_observed": "9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b",
+        "family_code_matches_commit": true,
+        "family_code_sha256": {
+          "families/logic/cuda.cu": "afcc7119f5942b5a33deba5566cd771ac0c76794c50cfec558fdfb8b1b3a8a74",
+          "families/logic/logic.hpp": "f6a0a59fe2fbee011491cd1f3a9776f9919ac08ecf81d6d36d72f9e3104ea079",
+          "families/logic/smoke.cpp": "0c7e1638a2e30facef59f0e6b3a2a20c8e032ad630061f66ef58fb64a5a88e38"
+        },
+        "controller_snapshot_commit": "fcd99cba67d501bd443238bab55d250470cbdb09",
+        "coverage_limit": "Build cache and unchanged family code identify the family source; no new full dependency fingerprint is reconstructed."
+      }
+    },
+    {
+      "argv": [
+        "/tmp/bp-moon-rendezvous/families/rendezvous/bp_moon_rendezvous_cuda_smoke",
+        "--run",
+        "0"
+      ],
+      "binary_sha256": "812d44064a8b5503df0cd494d759b3acf7b4df8acd7dbb77775403b130995c22",
+      "returncode": 0,
+      "stdout": "E18 CUDA groups=209 overflow_rows=6 queries=210 passed\n",
+      "stderr": "",
+      "repository": "baseplane",
+      "cards": [
+        "E18"
+      ],
+      "controller_evidence_id": "a5e31189-5005-48dd-a9dc-ef3e4cebdd6a",
+      "source_identity": {
+        "build_cache_source_directory": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-rendezvous/experiments/moonshot",
+        "family_source_commit_observed": "ad5f74eb0aac6d7ef26ddb87c477df83eb5f6cba",
+        "family_code_matches_commit": true,
+        "family_code_sha256": {
+          "families/rendezvous/cuda_smoke.cu": "9022688f079168c43f8f83a7a98e0ea6c87c2a8922e1eedd33afcbd05f09604e",
+          "families/rendezvous/e18_cuda.cu": "01035e419927c48347cc8c520d43b39def134766318f1cd685eaf78972feb13e",
+          "families/rendezvous/e18_cuda.cuh": "fcc1c415bc53e2f959a7d1d3e334117e9e0b5e521e6e3ad8b059564f1f1c390a",
+          "families/rendezvous/e18_layout.hpp": "615696625398f48252fee9456cfe45ea5c75e84e845ac384874be7eea5c058b7",
+          "families/rendezvous/rendezvous.hpp": "4c13b5a32b4d062c138444f219bc7b14b3f5554b7882e6abb6253546a940339b",
+          "families/rendezvous/smoke.cpp": "e4af2ad5fdef6f77f3ccf7cca20e94d0a64e210817b099632f9e8cc80f047285"
+        },
+        "controller_snapshot_commit": "fcd99cba67d501bd443238bab55d250470cbdb09",
+        "coverage_limit": "Build cache and unchanged family code identify the family source; no new full dependency fingerprint is reconstructed."
+      }
+    },
+    {
+      "argv": [
+        "/tmp/bp-moon-machine/families/machine/bp_moon_machine_cuda_smoke",
+        "--run",
+        "0"
+      ],
+      "binary_sha256": "07d0e12db50d01439f397c8c14146830f41fe3f9f3cc98f2219e68e978563694",
+      "returncode": 0,
+      "stdout": "E45 max_texture_error=0.00924778 E46 DP4A words=282 butterfly roundtrip passed E47 two transposes passed E48 three GC paths passed\n",
+      "stderr": "",
+      "repository": "baseplane",
+      "cards": [
+        "E45",
+        "E46",
+        "E47",
+        "E48"
+      ],
+      "controller_evidence_id": "a5e31189-5005-48dd-a9dc-ef3e4cebdd6a",
+      "source_identity": {
+        "build_cache_source_directory": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-machine/experiments/moonshot",
+        "family_source_commit_observed": "6c2cf561d454215453c85b19444422404f15447d",
+        "family_code_matches_commit": true,
+        "family_code_sha256": {
+          "families/machine/reference.hpp": "49eff6cbb590dd62336bd3735cf57b87fcd951e5656835f05443b66f2d52d738",
+          "families/machine/smoke.cpp": "71b9124c2318c4c203864753612374cc33ade9958b8e383e6735a27b58fb7dbd",
+          "families/machine/machine_cuda.cu": "f65c9e336671eea39fb427a30f50b69713aad1265c6c4dd21f0303c24e1e4ee8"
+        },
+        "controller_snapshot_commit": "fcd99cba67d501bd443238bab55d250470cbdb09",
+        "coverage_limit": "Build cache and unchanged family code identify the family source; no new full dependency fingerprint is reconstructed."
+      }
+    },
+    {
+      "repository": "cellerator",
+      "cards": [
+        "E21",
+        "E22",
+        "E23",
+        "E24"
+      ],
+      "argv": [
+        "/tmp/ce-moon-final-cuda/families/tensor/ce_moon_tensor_cuda"
+      ],
+      "binary_sha256": "599954303efa6a859b9168c7767ef7516858d74f954f9a9b1c56fa79ff84801d",
+      "returncode": 0,
+      "stdout": "E21-E24 GPU compared against host oracles; directed provenance and overflow passed\n",
+      "stderr": "[benchmark-mutex] acquired cuda-controller-foreground via /tmp/cuda_v100_benchmark.lock\n[benchmark-mutex] released cuda-controller-foreground via /tmp/cuda_v100_benchmark.lock\n",
+      "controller_evidence_id": "fba3e31c-a618-4903-9dfb-f2559c85e11e",
+      "source_identity": {
+        "source_commit": "f6425a78ad728212ba3d24a40cfa1630d2ad18b8",
+        "committed_receipt_commit": "b2a65353d543a8d77d051be2d277d0c6ba4371dc",
+        "committed_receipt_path": "planning/baseplane_moonshot_bootstrap/results/cellerator/tensor-gpu-final.json"
+      }
+    }
+  ],
+  "baseplane_card_count": 9,
+  "cellerator_provider_card_count": 4,
+  "superseded_initial_tensor": {
+    "binary_sha256": "138e79cf79eee487108dadecbcadb94578f0ab873d07e10038e210f9c74abf6c",
+    "reason": "Earlier comparator accepted nonfinite results; use the hardened final tensor binary and receipt. Original run remains historical evidence.",
+    "superseded_by_binary_sha256": "599954303efa6a859b9168c7767ef7516858d74f954f9a9b1c56fa79ff84801d"
+  },
+  "benchmark_run": false,
+  "performance_metrics": null,
+  "biological_validation": false,
+  "portable_runner_executed": false,
+  "historical_invocation": "python3 /tmp/moonshot_gpu_batch.py under the native foreground controller; final tensor invoked separately",
+  "limits": "Tiny correctness fixtures only. Original family receipts remain historical compile-only. Quiescence/resource samples describe the recorded intervals, not current hardware state."
+}

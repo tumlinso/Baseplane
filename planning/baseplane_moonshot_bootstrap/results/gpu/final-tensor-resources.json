@@ -1,0 +1,232 @@
+{
+  "evidence_id": "fba3e31c-a618-4903-9dfb-f2559c85e11e",
+  "parser_version": "cuda-controller/1",
+  "source_snapshot": {
+    "commit": "f6425a78ad728212ba3d24a40cfa1630d2ad18b8",
+    "dirty": true,
+    "fingerprint": "54e06c79ae237f4412b1f14db8efc2333ab1a929e3969598fa7ce933d16501cf",
+    "patch_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "project_root": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration",
+    "safe": true,
+    "source_root": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/.todo-orchestrator/runtime/background-artifacts/snapshots/54e06c79ae237f4412b1f14db8efc2333ab1a929e3969598fa7ce933d16501cf/source",
+    "untracked": []
+  },
+  "historical_controller_argv": [
+    "/tmp/ce-moon-final-cuda/families/tensor/ce_moon_tensor_cuda"
+  ],
+  "historical_interlock_argv": [
+    "/home/tumlinson/.agents/skills/cuda/scripts/with_benchmark_mutex.sh",
+    "--label",
+    "cuda-controller-foreground",
+    "--",
+    "/tmp/ce-moon-final-cuda/families/tensor/ce_moon_tensor_cuda"
+  ],
+  "lease_observation": {
+    "format": "CUDA-FOREGROUND-LEASE/1",
+    "owner_id": "foreground:7da0adc8-196d-460f-8e8b-5191ccd0f351",
+    "project_root": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration",
+    "pid": 328098,
+    "resource_ids": [
+      "accelerator:GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+    ],
+    "observed_unix": 1790950879.3383393,
+    "state": "active"
+  },
+  "resource_samples": {
+    "after": {
+      "busy": true,
+      "foreign_processes": false,
+      "idle": false,
+      "samples": [
+        {
+          "devices": [
+            {
+              "clocks_sm_mhz": 1312.0,
+              "compute_capability": "7.0",
+              "driver_version": "580.173.02",
+              "index": 0,
+              "memory_free_mib": 16145,
+              "memory_total_mib": 16384,
+              "name": "Tesla V100-SXM2-16GB",
+              "pci_bus_id": "00000000:02:00.0",
+              "temperature_c": 37.0,
+              "throttle_reasons": "0x0000000000000000",
+              "utilization_percent": 7.0,
+              "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+            }
+          ],
+          "foreign_processes": [],
+          "timestamp": 1790950879.7545557
+        },
+        {
+          "devices": [
+            {
+              "clocks_sm_mhz": 1312.0,
+              "compute_capability": "7.0",
+              "driver_version": "580.173.02",
+              "index": 0,
+              "memory_free_mib": 16145,
+              "memory_total_mib": 16384,
+              "name": "Tesla V100-SXM2-16GB",
+              "pci_bus_id": "00000000:02:00.0",
+              "temperature_c": 37.0,
+              "throttle_reasons": "0x0000000000000000",
+              "utilization_percent": 0.0,
+              "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+            }
+          ],
+          "foreign_processes": [],
+          "timestamp": 1790950880.101426
+        },
+        {
+          "devices": [
+            {
+              "clocks_sm_mhz": 1312.0,
+              "compute_capability": "7.0",
+              "driver_version": "580.173.02",
+              "index": 0,
+              "memory_free_mib": 16145,
+              "memory_total_mib": 16384,
+              "name": "Tesla V100-SXM2-16GB",
+              "pci_bus_id": "00000000:02:00.0",
+              "temperature_c": 37.0,
+              "throttle_reasons": "0x0000000000000000",
+              "utilization_percent": 0.0,
+              "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+            }
+          ],
+          "foreign_processes": [],
+          "timestamp": 1790950880.4570613
+        }
+      ]
+    },
+    "before": {
+      "busy": false,
+      "foreign_processes": false,
+      "idle": true,
+      "samples": [
+        {
+          "devices": [
+            {
+              "clocks_sm_mhz": 135.0,
+              "compute_capability": "7.0",
+              "driver_version": "580.173.02",
+              "index": 0,
+              "memory_free_mib": 16145,
+              "memory_total_mib": 16384,
+              "name": "Tesla V100-SXM2-16GB",
+              "pci_bus_id": "00000000:02:00.0",
+              "temperature_c": 36.0,
+              "throttle_reasons": "0x0000000000000001",
+              "utilization_percent": 0.0,
+              "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+            }
+          ],
+          "foreign_processes": [],
+          "timestamp": 1790950877.1088836
+        }
+      ]
+    },
+    "quiescence": {
+      "device_uuids": [
+        "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+      ],
+      "elapsed_seconds": 0.8499346949975006,
+      "format": "CUDA-QUIESCENCE/1",
+      "observations": [
+        {
+          "busy": false,
+          "foreign_processes": false,
+          "idle": true,
+          "samples": [
+            {
+              "devices": [
+                {
+                  "clocks_sm_mhz": 135.0,
+                  "compute_capability": "7.0",
+                  "driver_version": "580.173.02",
+                  "index": 0,
+                  "memory_free_mib": 16145,
+                  "memory_total_mib": 16384,
+                  "name": "Tesla V100-SXM2-16GB",
+                  "pci_bus_id": "00000000:02:00.0",
+                  "temperature_c": 36.0,
+                  "throttle_reasons": "0x0000000000000001",
+                  "utilization_percent": 0.0,
+                  "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+                }
+              ],
+              "foreign_processes": [],
+              "timestamp": 1790950876.408416
+            }
+          ]
+        },
+        {
+          "busy": false,
+          "foreign_processes": false,
+          "idle": true,
+          "samples": [
+            {
+              "devices": [
+                {
+                  "clocks_sm_mhz": 135.0,
+                  "compute_capability": "7.0",
+                  "driver_version": "580.173.02",
+                  "index": 0,
+                  "memory_free_mib": 16145,
+                  "memory_total_mib": 16384,
+                  "name": "Tesla V100-SXM2-16GB",
+                  "pci_bus_id": "00000000:02:00.0",
+                  "temperature_c": 36.0,
+                  "throttle_reasons": "0x0000000000000001",
+                  "utilization_percent": 0.0,
+                  "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+                }
+              ],
+              "foreign_processes": [],
+              "timestamp": 1790950876.7517557
+            }
+          ]
+        },
+        {
+          "busy": false,
+          "foreign_processes": false,
+          "idle": true,
+          "samples": [
+            {
+              "devices": [
+                {
+                  "clocks_sm_mhz": 135.0,
+                  "compute_capability": "7.0",
+                  "driver_version": "580.173.02",
+                  "index": 0,
+                  "memory_free_mib": 16145,
+                  "memory_total_mib": 16384,
+                  "name": "Tesla V100-SXM2-16GB",
+                  "pci_bus_id": "00000000:02:00.0",
+                  "temperature_c": 36.0,
+                  "throttle_reasons": "0x0000000000000001",
+                  "utilization_percent": 0.0,
+                  "uuid": "GPU-21131915-1488-23af-38dd-1743ae1f5cc8"
+                }
+              ],
+              "foreign_processes": [],
+              "timestamp": 1790950877.1088836
+            }
+          ]
+        }
+      ],
+      "observed_consecutive_samples": 3,
+      "required_consecutive_samples": 3,
+      "samples_observed": 3,
+      "schema_version": 1,
+      "state": "quiescent",
+      "uncontaminated": true
+    }
+  },
+  "controller_returncode": 0,
+  "contaminated": 0,
+  "benchmark": null,
+  "interlock_stderr": "[benchmark-mutex] acquired cuda-controller-foreground via /tmp/cuda_v100_benchmark.lock\n[benchmark-mutex] released cuda-controller-foreground via /tmp/cuda_v100_benchmark.lock\n",
+  "source_evidence_reference": "/tmp/moonshot-tensor-gpu-full-evidence.json"
+}
