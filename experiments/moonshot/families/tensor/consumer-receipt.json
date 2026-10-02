@@ -1,0 +1,66 @@
+{
+  "task": "BP-MOON-070",
+  "contract": "BPCE-MOON-030",
+  "provider": {
+    "task": "CE-MOON-030",
+    "commit": "c21ca661150baf7bee58e8264bac048d37b9ee43",
+    "receipt_path": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-tensor/experiments/baseplane_moonshot/families/tensor/provider-receipt.json",
+    "receipt_sha256": "372d01506c553a50797b790ad78266a3132b04fbe0322dfce0a2c1eb7214fbed",
+    "consumed_header_sha256": "8b7c1b6d0e07b757d98fc43a8ebe57dc4691b7ccea20cd3a43983dcf47e07d51",
+    "target": "Cellerator::moonshot_tensor"
+  },
+  "consumer_source_digests": {
+    "experiments/moonshot/families/tensor/include/bp_moon/tensor.hpp": "f0e57ea5cd4deb28281ff9a42ad106cfa68a0c5fa2004e543a53d2cd6631497c",
+    "experiments/moonshot/families/tensor/CMakeLists.txt": "522761c7333096fba431baa5ee105b46d73b3d4c5949d105872365b26da154ab",
+    "experiments/moonshot/families/tensor/host.cpp": "24dd08165ad2e766464c39f61c2506f4a3279c2a505568b78a6206ec5f195e3d",
+    "experiments/moonshot/families/tensor/README.md": "7f7d15abfb7119e6802ba5ecd55d87da9bb6bea00bd84b491c06bb18b38b410f"
+  },
+  "dispositions": {
+    "E21": "implemented experimentally",
+    "E22": "implemented experimentally",
+    "E23": "implemented experimentally",
+    "E24": "implemented experimentally"
+  },
+  "states": {
+    "host": {
+      "authored": true,
+      "compiled": true,
+      "run": true,
+      "compared": true
+    },
+    "baseplane_cuda_consumer": {
+      "authored": false,
+      "compiled": false,
+      "run": false,
+      "compared": false,
+      "reason": "Host sequence consumers bind real CE numerical provider; GPU qualification remains provider/root scope"
+    }
+  },
+  "minimal_examples": {
+    "E21": "GGCT -> [7,-2] transformed features with ID10 and source77/contig3/version9/coords100..103",
+    "E22": "GGCT source100..103 -> AAAT source10000..10003 directed score7, unknown NAC excluded",
+    "E23": "A then CG contiguous chunks match scalar last-two-base transition over ACG for all16 input states",
+    "E24": "GC=.75, incoming states[-1,0,1], query .5 interpolation error .0600214, source GGCT retained for revisit"
+  },
+  "loss_and_revisit": [
+    "Counts lose nucleotide order; exact presented sequence + coordinates + validity stored",
+    "Authored feature/role/state weights untrained; no hierarchy or biological validation",
+    "Invalid states rejected for E23/E24; invalid window retained in E21 and excluded by E22",
+    "Capacity truncation reports required and overflow; cohort retains omitted source objects",
+    "Continuous response sampling approximate; scalar coordinate only, no extrapolation"
+  ],
+  "evidence": {
+    "build_directory": "/tmp/bp-moon-tensor-build",
+    "test_log": "/tmp/bp-moon-tensor-build/Testing/Temporary/LastTest.log",
+    "commands": [
+      "python /tmp/moonshot_build_slot.py cmake -S experiments/moonshot -B /tmp/bp-moon-tensor-build -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-tensor/experiments/baseplane_moonshot",
+      "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-tensor-build --target bp_moon_tensor_host -j1",
+      "ctest --test-dir /tmp/bp-moon-tensor-build -R '^bp_moon_tensor_host$' --output-on-failure"
+    ],
+    "not_run": [
+      "performance benchmark",
+      "biological efficacy",
+      "GPU consumer"
+    ]
+  }
+}
