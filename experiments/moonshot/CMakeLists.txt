@@ -36,3 +36,6 @@ foreach(family_build IN LISTS family_builds)
   get_filename_component(family_name "${family_dir}" NAME)
   add_subdirectory("${family_dir}" "families/${family_name}")
 endforeach()
+# Compositions reuse the same substrate and providers; the child entry guards
+# recursive inclusion when configured standalone through this parent project.
+add_subdirectory(compositions)
