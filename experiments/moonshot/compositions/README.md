@@ -1,18 +1,18 @@
 # Sequence-grounded compositions
 
-BP-MOON-140 combines family mechanisms into executable source-to-query paths. The [catalogue](../../../planning/baseplane_moonshot_bootstrap/machine/compositions.json) proposes ten combinations. Five are being implemented in this integration wave; the remaining five have explicit deferred scope below. Individual family probes do not establish these end-to-end combinations by themselves.
+BP-MOON-140 combines family mechanisms into executable source-to-query paths. The [catalogue](../../../planning/baseplane_moonshot_bootstrap/machine/compositions.json) proposes ten combinations. Five are implemented experimentally and passed the aggregate Debug host tests; the remaining five have explicit deferred scope below. Individual family probes do not establish these end-to-end combinations by themselves.
 
-## Current implementation wave
+## Implemented experimental combinations
 
 | Card | Local directory | Intended executable path | Evidence status |
 |---|---|---|---|
-| C01: sequence effects that answer questions | [sequence_effects](sequence_effects) | Exact sequence → finite and affine effect hierarchy → incoming-state query → source refinement | Being implemented; use the local receipt for actual compiled/run results. |
-| C03: one genome, many variants | [variants](variants) | Exact repeat reuse → counterfactual variant worlds → value and directory invalidation → guarded memo | Being implemented; compare each tiny variant world with independent execution. |
-| C04: real nonlocal context | [nonlocal_context](nonlocal_context) | Input-derived keys → whole-input directory → relation tiles → contextual update wave | Being implemented; candidate construction and missed/colliding candidates remain visible. |
-| C05: learning compiles away | [compiled_learning](compiled_learning) | Floating teacher → discrete circuit → conditioned predicates → candidate nomination → exact verification | Being implemented; preserve teacher/hardened disagreement and candidate verification. |
-| C06: ports and factorized hypotheses | [ports_factor](ports_factor) | Regional response ports → multi-role factor join → counterfactual packet | Being implemented; retain exact occurrence support and distinguish synthetic algebra from biology. |
+| C01: sequence effects that answer questions | [sequence_effects](sequence_effects) | Exact sequence → finite and affine effect hierarchy → incoming-state query → source refinement | Debug host aggregate passed; see the local receipt for its semantic scope. |
+| C03: one genome, many variants | [variants](variants) | Exact repeat reuse → counterfactual variant worlds → value and directory invalidation → guarded memo | Debug host aggregate passed; independent-world comparisons are scoped in its receipt. |
+| C04: real nonlocal context | [nonlocal_context](nonlocal_context) | Input-derived keys → whole-input directory → relation tiles → contextual update wave | Debug host aggregate passed; its receipt records candidate construction and limits. |
+| C05: learning compiles away | [compiled_learning](compiled_learning) | Floating teacher → discrete circuit → conditioned predicates → candidate nomination → exact verification | Debug host aggregate passed; its receipt records teacher/hardened comparison and verification. |
+| C06: ports and factorized hypotheses | [ports_factor](ports_factor) | Regional response ports → multi-role factor join → counterfactual packet | Debug host aggregate passed; its receipt scopes the synthetic algebra and source support. |
 
-This inventory records the assigned implementation scope. It makes no test-pass or completion claim; local receipts and the root's integrated checks establish those states. The reviewed Cellerator provider baseline for this wave is commit `b72bfa3af4782303bc8630ff355d308b54f55ede`; each executable receipt must identify the provider it actually compiled against.
+The final Debug aggregate passed all 25 registered host tests, including these five combinations, against Baseplane `e5ddae14e6e690b68215fc1ec9586622bf54d6e9` and Cellerator `b2a65353d543a8d77d051be2d277d0c6ba4371dc`. [Aggregate validation](validation/receipt.md) records commands, source identities, binary hashes and logs. Local receipts describe which catalogue mechanisms each executable actually connects. The Cellerator provider includes the reviewed repairs and the later comparator-only change; this host check makes no GPU, timing or biological claim.
 
 ## Deferred combinations
 

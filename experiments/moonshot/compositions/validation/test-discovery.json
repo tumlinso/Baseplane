@@ -1,0 +1,520 @@
+{
+  "backtraceGraph": {
+    "commands": [
+      "add_test"
+    ],
+    "files": [
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/CMakeLists.txt",
+      "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot/CMakeLists.txt",
+      "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot/families/effects/CMakeLists.txt",
+      "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot/families/learning/CMakeLists.txt",
+      "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot/families/mechanisms/CMakeLists.txt",
+      "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot/families/tensor/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/automata/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/compiler/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/demand/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/effects/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/hierarchy/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/hypotheses/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/incremental/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/logic/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/machine/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/ports/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/rendezvous/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/families/tensor/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/compositions/compiled_learning/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/compositions/nonlocal_context/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/compositions/ports_factor/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/compositions/sequence_effects/CMakeLists.txt",
+      "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/compositions/variants/CMakeLists.txt"
+    ],
+    "nodes": [
+      {
+        "file": 0
+      },
+      {
+        "command": 0,
+        "file": 0,
+        "line": 25,
+        "parent": 0
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 23,
+        "parent": 2
+      },
+      {
+        "file": 1
+      },
+      {
+        "command": 0,
+        "file": 1,
+        "line": 26,
+        "parent": 4
+      },
+      {
+        "file": 2
+      },
+      {
+        "command": 0,
+        "file": 2,
+        "line": 7,
+        "parent": 6
+      },
+      {
+        "file": 3
+      },
+      {
+        "command": 0,
+        "file": 3,
+        "line": 7,
+        "parent": 8
+      },
+      {
+        "file": 4
+      },
+      {
+        "command": 0,
+        "file": 4,
+        "line": 16,
+        "parent": 10
+      },
+      {
+        "file": 5
+      },
+      {
+        "command": 0,
+        "file": 5,
+        "line": 7,
+        "parent": 12
+      },
+      {
+        "file": 6
+      },
+      {
+        "command": 0,
+        "file": 6,
+        "line": 4,
+        "parent": 14
+      },
+      {
+        "file": 6
+      },
+      {
+        "command": 0,
+        "file": 6,
+        "line": 10,
+        "parent": 16
+      },
+      {
+        "file": 7
+      },
+      {
+        "command": 0,
+        "file": 7,
+        "line": 10,
+        "parent": 18
+      },
+      {
+        "file": 8
+      },
+      {
+        "command": 0,
+        "file": 8,
+        "line": 4,
+        "parent": 20
+      },
+      {
+        "file": 9
+      },
+      {
+        "command": 0,
+        "file": 9,
+        "line": 7,
+        "parent": 22
+      },
+      {
+        "file": 10
+      },
+      {
+        "command": 0,
+        "file": 10,
+        "line": 12,
+        "parent": 24
+      },
+      {
+        "file": 11
+      },
+      {
+        "command": 0,
+        "file": 11,
+        "line": 10,
+        "parent": 26
+      },
+      {
+        "file": 12
+      },
+      {
+        "command": 0,
+        "file": 12,
+        "line": 4,
+        "parent": 28
+      },
+      {
+        "file": 13
+      },
+      {
+        "command": 0,
+        "file": 13,
+        "line": 4,
+        "parent": 30
+      },
+      {
+        "file": 14
+      },
+      {
+        "command": 0,
+        "file": 14,
+        "line": 4,
+        "parent": 32
+      },
+      {
+        "file": 15
+      },
+      {
+        "command": 0,
+        "file": 15,
+        "line": 21,
+        "parent": 34
+      },
+      {
+        "file": 16
+      },
+      {
+        "command": 0,
+        "file": 16,
+        "line": 4,
+        "parent": 36
+      },
+      {
+        "file": 17
+      },
+      {
+        "command": 0,
+        "file": 17,
+        "line": 11,
+        "parent": 38
+      },
+      {
+        "file": 18
+      },
+      {
+        "command": 0,
+        "file": 18,
+        "line": 15,
+        "parent": 40
+      },
+      {
+        "file": 19
+      },
+      {
+        "command": 0,
+        "file": 19,
+        "line": 4,
+        "parent": 42
+      },
+      {
+        "file": 20
+      },
+      {
+        "command": 0,
+        "file": 20,
+        "line": 17,
+        "parent": 44
+      },
+      {
+        "file": 21
+      },
+      {
+        "command": 0,
+        "file": 21,
+        "line": 25,
+        "parent": 46
+      },
+      {
+        "file": 22
+      },
+      {
+        "command": 0,
+        "file": 22,
+        "line": 15,
+        "parent": 48
+      }
+    ]
+  },
+  "kind": "ctestInfo",
+  "tests": [
+    {
+      "backtrace": 1,
+      "name": "bp_moon_host_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate"
+        }
+      ]
+    },
+    {
+      "backtrace": 3,
+      "name": "ce_moon_host_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/cellerator-moonshot"
+        }
+      ]
+    },
+    {
+      "backtrace": 5,
+      "command": [
+        "/home/tumlinson/Software/miniconda3/bin/python3",
+        "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot/python/learn_lut.py"
+      ],
+      "name": "ce_moon_learn_lut",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/cellerator-moonshot"
+        }
+      ]
+    },
+    {
+      "backtrace": 7,
+      "name": "ce_moon_effects_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/cellerator-moonshot/families/effects"
+        }
+      ]
+    },
+    {
+      "backtrace": 9,
+      "name": "ce_moon_learning_test",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/cellerator-moonshot/families/learning"
+        }
+      ]
+    },
+    {
+      "backtrace": 11,
+      "name": "ce_moon_mechanisms_probe",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/cellerator-moonshot/families/mechanisms"
+        }
+      ]
+    },
+    {
+      "backtrace": 13,
+      "name": "ce_moon_tensor_host",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/cellerator-moonshot/families/tensor"
+        }
+      ]
+    },
+    {
+      "backtrace": 15,
+      "name": "bp_moon_automata_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/automata"
+        }
+      ]
+    },
+    {
+      "backtrace": 17,
+      "name": "bp_moon_automata_weighted_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/automata"
+        }
+      ]
+    },
+    {
+      "backtrace": 19,
+      "name": "bp_moon_compiler_test",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/compiler"
+        }
+      ]
+    },
+    {
+      "backtrace": 21,
+      "name": "bp_moon_demand_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/demand"
+        }
+      ]
+    },
+    {
+      "backtrace": 23,
+      "name": "bp_moon_effects_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/effects"
+        }
+      ]
+    },
+    {
+      "backtrace": 25,
+      "name": "bp_moon_hierarchy_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/hierarchy"
+        }
+      ]
+    },
+    {
+      "backtrace": 27,
+      "name": "bp_moon_hypotheses_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/hypotheses"
+        }
+      ]
+    },
+    {
+      "backtrace": 29,
+      "name": "bp_moon_incremental_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/incremental"
+        }
+      ]
+    },
+    {
+      "backtrace": 31,
+      "name": "bp_moon_logic_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/logic"
+        }
+      ]
+    },
+    {
+      "backtrace": 33,
+      "name": "bp_moon_machine_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/machine"
+        }
+      ]
+    },
+    {
+      "backtrace": 35,
+      "name": "bp_moon_ports_probe",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/ports"
+        }
+      ]
+    },
+    {
+      "backtrace": 37,
+      "name": "bp_moon_rendezvous_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/rendezvous"
+        }
+      ]
+    },
+    {
+      "backtrace": 39,
+      "name": "bp_moon_tensor_host",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/substrate/families/tensor"
+        }
+      ]
+    },
+    {
+      "backtrace": 41,
+      "name": "bp_moon_composition_compiled_learning",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/compiled_learning"
+        }
+      ]
+    },
+    {
+      "backtrace": 43,
+      "name": "bp_moon_nonlocal_context",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/nonlocal_context"
+        }
+      ]
+    },
+    {
+      "backtrace": 45,
+      "name": "bp_moon_c06_ports_factor",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/ports_factor"
+        }
+      ]
+    },
+    {
+      "backtrace": 47,
+      "name": "bp_moon_c01_smoke",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/sequence_effects"
+        }
+      ]
+    },
+    {
+      "backtrace": 49,
+      "name": "bp_moon_composition_variants",
+      "properties": [
+        {
+          "name": "WORKING_DIRECTORY",
+          "value": "/tmp/bp-moon-compositions-final-debug/variants"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 0
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "source_commits": {
+    "baseplane": "e5ddae14e6e690b68215fc1ec9586622bf54d6e9",
+    "cellerator": "b2a65353d543a8d77d051be2d277d0c6ba4371dc"
+  },
+  "build_directory": "/tmp/bp-moon-compositions-final-debug",
+  "provider_source_directory": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot",
+  "configure_command": [
+    "cmake",
+    "-S",
+    "experiments/moonshot/compositions",
+    "-B",
+    "/tmp/bp-moon-compositions-final-debug",
+    "-DCMAKE_BUILD_TYPE=Debug",
+    "-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot",
+    "-DBUILD_TESTING=ON"
+  ],
+  "configure_exit": 0,
+  "build_command": [
+    "python",
+    "/tmp/moonshot_build_slot.py",
+    "cmake",
+    "--build",
+    "/tmp/bp-moon-compositions-final-debug",
+    "-j1"
+  ],
+  "build_exit": 0,
+  "ctest_command": [
+    "ctest",
+    "--test-dir",
+    "/tmp/bp-moon-compositions-final-debug",
+    "--output-on-failure",
+    "--output-junit",
+    "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/experiments/moonshot/compositions/validation/ctest.xml"
+  ],
+  "ctest_exit": 0,
+  "observed_at": "2026-10-02T14:24:38.655564+00:00",
+  "build_type": "Debug",
+  "gpu_executed": false,
+  "test_count": 25,
+  "passed": 25,
+  "composition_binary_sha256": {
+    "compiled_learning/bp_moon_composition_compiled_learning": "9743e677cc320068ce25d4af96556113fe0f315d3ad0b7203bd385f30af1faab",
+    "nonlocal_context/bp_moon_nonlocal_context": "ac353ed95c8f2768bbbd25cd635c90d1333caa8fe60ef0ad55d80c1616fbbada",
+    "ports_factor/bp_moon_c06_ports_factor": "1228af8d3e97564e5b82b82ed7c0fa2335f4bdaf6ddf4030090344626574faf0",
+    "sequence_effects/bp_moon_c01_smoke": "f3832cc3378c7c02a137f42997f95c6c35fcf1be2033fcf931a09c3974b5d0a3",
+    "variants/bp_moon_composition_variants": "c78e9378b1ba8dd7af56191bc875bab549894ff1de775c290681993bf7302565"
+  },
+  "baseplane_head_after_test": "e5ddae14e6e690b68215fc1ec9586622bf54d6e9",
+  "cellerator_head_after_test": "b2a65353d543a8d77d051be2d277d0c6ba4371dc"
+}

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="25"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="testlsserver"
+	time="3"
+	timestamp="2026-10-02T14:24:35"
+	>
+	<testcase name="bp_moon_host_smoke" classname="bp_moon_host_smoke" time="0.0023347" status="run">
+		<properties/>
+		<system-out>{"status":"bp_foundation_smoke_pass","case_groups":10,"gpu_executed":false,"biological_validation":false}
+</system-out>
+	</testcase>
+	<testcase name="ce_moon_host_smoke" classname="ce_moon_host_smoke" time="0.00298999" status="run">
+		<properties/>
+		<system-out>{"status":"host_smoke_pass","random_dfa_cases":100,"gpu_executed":false,"biological_validation":false}
+</system-out>
+	</testcase>
+	<testcase name="ce_moon_learn_lut" classname="ce_moon_learn_lut" time="0.0565655" status="run">
+		<properties/>
+		<system-out>{
+  "fixture": "synthetic_truth_table",
+  "logits": [
+    -4.57891203005526,
+    -4.57891203005526,
+    -4.57891203005526,
+    4.578912030055261,
+    4.578912030055261,
+    4.578912030055261,
+    4.578912030055261,
+    -4.57891203005526
+  ],
+  "lop3_immediate": "0x78",
+  "teacher_lut": "0x78",
+  "truth_table_agreement": true,
+  "biological_validation": false,
+  "generalization_evaluated": false
+}
+</system-out>
+	</testcase>
+	<testcase name="ce_moon_effects_smoke" classname="ce_moon_effects_smoke" time="0.00533437" status="run">
+		<properties/>
+		<system-out>{"status":"effects_pass","block_random_cases":80,"jet_truncation_error":0.0041,"checkpoint_maps":8,"gpu_run":false}
+</system-out>
+	</testcase>
+	<testcase name="ce_moon_learning_test" classname="ce_moon_learning_test" time="0.495538" status="run">
+		<properties/>
+		<system-out>E14 objective 0.693147 -&gt; 0.0149117; rate 0.993223 -&gt; 0.287083; E29 LUT 120; E30 banks 0/1; E31 cost 3 -&gt; 2; E32 four guard invalidations pass
+</system-out>
+	</testcase>
+	<testcase name="ce_moon_mechanisms_probe" classname="ce_moon_mechanisms_probe" time="0.00278306" status="run">
+		<properties/>
+		<system-out>E41 full solve=(0.454545,0.818182), sensitivity=0.272727
+E42 loss fixed=0 fitted alpha=1 bad restriction=1
+E43 tuples=2/27 scores=(30,36), opaque role IDs retained
+E44 query=(5,9,5) evaluations=7 independent=15; E45 step error=0.49
+CE-MOON-050 scalar references and shape/score overflow guards compared successfully
+</system-out>
+	</testcase>
+	<testcase name="ce_moon_tensor_host" classname="ce_moon_tensor_host" time="0.00318174" status="run">
+		<properties/>
+		<system-out>E21 identity/nontrivial/padding passed; E22 directed mask/capacity/IDs passed; E23 integer oracle/count16 passed; E24 interpolation_error=0.0813201 passed; extreme interpolation passed
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_automata_smoke" classname="bp_moon_automata_smoke" time="0.40029" status="run">
+		<properties/>
+		<system-out>E05 exact all-entry hierarchy; E06 counted witnessed source replay; E07 bounded grammar seams: PASS
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_automata_weighted_smoke" classname="bp_moon_automata_weighted_smoke" time="0.00271032" status="run">
+		<properties/>
+		<system-out>E08 probability/max-plus/Boolean alternatives; explicit pruning counterexample: PASS
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_compiler_test" classname="bp_moon_compiler_test" time="0.473544" status="run">
+		<properties/>
+		<system-out>E29 LUT 234, held-out hits 25, seam anchors 1; E30 AC/GT hits 10/10; E31 cost 3 -&gt; 2, matches 17; E32 fresh reuse + six invalidations pass
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_demand_smoke" classname="bp_moon_demand_smoke" time="0.00239333" status="run">
+		<properties/>
+		<system-out>{"status":"pass","cards":4,"host_mechanisms":4,"gpu_executed":false}
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_effects_smoke" classname="bp_moon_effects_smoke" time="0.00351122" status="run">
+		<properties/>
+		<system-out>E11 in-radius truncation error=4.02e-05; out-radius replay=1.342
+E09-E12 source-grounded continuous effects: PASS
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_hierarchy_smoke" classname="bp_moon_hierarchy_smoke" time="0.0355336" status="run">
+		<properties/>
+		<system-out>E13 full_positive=6 coarse_positive=0 residual_bytes=48 source_replayed=12
+E15 easy_planes=2 ambiguous_planes=11 lower=0.500977 upper=0.500977
+E16 chunks_before=12 chunks_after=13 exact_reused=11 alternative_windows=20 replay_windows=2
+E14 transition_probability=0.861819 homogeneous_probability=0.0279993 learned_chunks=22 inserted_chunks=22 fixed_chunks=8 surprise_chunks=25 learned_reused=21 fixed_reused=0 surprise_reused=24 inverse_positions=13
+hierarchy semantic checks passed; CPU fixture only
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_hypotheses_smoke" classname="bp_moon_hypotheses_smoke" time="0.00554527" status="run">
+		<properties/>
+		<system-out>{"status":"hypotheses_pass","cards":["E37","E38","E39","E40"],"fit_initial_loss":0.693147,"fit_final_loss":0.20984,"collision_left":"CAAAA","collision_right":"AAAAC","repaired_sites":2,"gpu_run":false}
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_incremental_smoke" classname="bp_moon_incremental_smoke" time="0.00243552" status="run">
+		<properties/>
+		<system-out>E33 contents=2 occurrences=3 exact_comparisons=2 contextual_answers=2,5
+E34 dirty_nodes=6 preserved_sibling=1 directory_keys=2
+E35 cached_answer=2 recomputed_after_negative_edit=3 inspected_support_bases=4
+E36 grammar_nodes=13 incremental_compositions=8 static_compositions=4 shared_phrase_occurrences=2
+incremental semantic checks passed; CPU fixture only
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_logic_smoke" classname="bp_moon_logic_smoke" time="0.00322009" status="run">
+		<properties/>
+		<system-out>{"status":"pass","cards":4,"mechanisms":4,"gpu_executed":false}
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_machine_smoke" classname="bp_moon_machine_smoke" time="0.0468666" status="run">
+		<properties/>
+		<system-out>E45 bilinear/clamp/discontinuity passed; E46 dot=5 butterfly_roundtrip=32 lanes
+E47 candidates=8 survivors=2 search_checks=131085 lookup_domain=65536
+E48 words=17 variants=3 identical, invalid excluded
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_ports_probe" classname="bp_moon_ports_probe" time="0.00323445" status="run">
+		<properties/>
+		<system-out>E41 valid=6 ports=(1006,1000) reconstruction agrees with full CE solve; invalid gap uncoupled
+E42 observed bins=3 fitted alpha=1.01591 residual loss 17.5 -&gt; 0.496539
+E43 sequence role positions=(1,3,5) key=T score=14; N-preceded roles excluded
+E44 outputs=(7,10,10,3) shared evaluations=13 independent=28; equal-query worlds retain source alternatives
+BP-MOON-120 four sequence consumers compared successfully
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_rendezvous_smoke" classname="bp_moon_rendezvous_smoke" time="0.00246127" status="run">
+		<properties/>
+		<system-out>E17 objects=99 inspected=306 groups=3 pairs=9312 stored=37 dropped=9275
+E18 overflow_rows=2 probes=15 collisions=3
+E19 primary_candidates=2 multiprobe_candidates=4 verified=4 evaluation_comparisons=6 adversarial_missed=2
+E20 evaluations=9 inspected_supports=15 answers=7 bounded_dropped=5
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_tensor_host" classname="bp_moon_tensor_host" time="0.0025517" status="run">
+		<properties/>
+		<system-out>E21 source-grounded counts/promote passed; E22 distant directed pair+invalid mask passed; E23 adjacent chunk scalar oracle passed; E24 GC-conditioned query error=0.0600214 exact revisit passed
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_composition_compiled_learning" classname="bp_moon_composition_compiled_learning" time="1.88715" status="run">
+		<properties/>
+		<system-out>{"composition":"C05","status":"pass","learned_admitted_objects":3,"nominees":3,"exact_verified_pairs":2,"one_probe_missed":2,"two_probe_missed":0,"gpu_executed":false}
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_nonlocal_context" classname="bp_moon_nonlocal_context" time="0.0977937" status="run">
+		<properties/>
+		<system-out>C04 fitted_boundaries=8 input_objects=10 directory_pairs=18 scored_remote_edges=14 waves=8 updates=16 deferred=24 exact_revisits=28 convergence=1
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_c06_ports_factor" classname="bp_moon_c06_ports_factor" time="0.0063164" status="run">
+		<properties/>
+		<system-out>C06 reconstructed port -&gt; factor -&gt; world path: candidates=8 initial_written=1 refined=8
+C06 world queries=11.2244 11.239 11.3965 11.3965 shared evaluations=36 topology-rebuild world=14
+C06 full-solve/brute-join/independent-world oracles agree; source roles, invalidity, reverse coordinates and alternatives retained
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_c01_smoke" classname="bp_moon_c01_smoke" time="0.00330462" status="run">
+		<properties/>
+		<system-out>C01 predicates -&gt; finite/affine trees -&gt; incoming-state decision -&gt; bounded source refinement/resume: PASS
+</system-out>
+	</testcase>
+	<testcase name="bp_moon_composition_variants" classname="bp_moon_composition_variants" time="0.00258877" status="run">
+		<properties/>
+		<system-out>{"composition":"C03","status":"pass","worlds":4,"memo_reused":2,"memo_recomputed":2,"gpu_executed":false}
+</system-out>
+	</testcase>
+</testsuite>
