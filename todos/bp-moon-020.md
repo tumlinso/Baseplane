@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-020: Masks as executable geometry
 
-Task revision: `217`; current project revision is in `todo-status.md`.
+Task revision: `246`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement a diverse set of concrete masks as executable geometry experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `in_progress`
+- Execution: `claimed`
 - Parallel policy: `parallel_safe`
 - Result: `-`
 
