@@ -1,0 +1,8 @@
+if(NOT TARGET Cellerator::moonshot_effects)
+  message(FATAL_ERROR "Sequence response family requires Cellerator::moonshot_effects")
+endif()
+add_executable(bp_moon_effects_smoke smoke.cpp)
+target_link_libraries(bp_moon_effects_smoke PRIVATE Baseplane::moonshot Cellerator::moonshot_effects)
+if(BUILD_TESTING)
+  add_test(NAME bp_moon_effects_smoke COMMAND bp_moon_effects_smoke)
+endif()
