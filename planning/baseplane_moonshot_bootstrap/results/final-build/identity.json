@@ -1,0 +1,52 @@
+{
+  "observed_at": "2026-10-02T14:30:35.800282+00:00",
+  "build_type": "Debug",
+  "baseplane_commit": "9f236675da70792db73c4ea945de5c1d96e9341d",
+  "cellerator_commit": "eb9a131d92cf0dd38de8a6f1833797f6a68214ce",
+  "provider_source_directory": "/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+  "build_directory": "/tmp/bp-moon-final-normal-debug",
+  "gpu_executed": false,
+  "baseplane_cmake_sha256": "84264275080cb2372c27789ec903871f30dd7703da9deccf100cd9bd75810788",
+  "cellerator_reference_sha256": "dcb8b316a823c48fc7ffcbbee0cd7ab7d9bf06e3935d5fcdf972a751269138ed",
+  "configure_command": [
+    "cmake",
+    "-S",
+    "experiments/moonshot",
+    "-B",
+    "/tmp/bp-moon-final-normal-debug",
+    "-DCMAKE_BUILD_TYPE=Debug",
+    "-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+    "-DBUILD_TESTING=ON"
+  ],
+  "configure_exit": 0,
+  "build_command": [
+    "python",
+    "/tmp/moonshot_build_slot.py",
+    "cmake",
+    "--build",
+    "/tmp/bp-moon-final-normal-debug",
+    "-j1"
+  ],
+  "build_exit": 0,
+  "ctest_command": [
+    "ctest",
+    "--test-dir",
+    "/tmp/bp-moon-final-normal-debug",
+    "--output-on-failure",
+    "--output-junit",
+    "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration/planning/baseplane_moonshot_bootstrap/results/final-build/ctest.xml"
+  ],
+  "ctest_exit": 0,
+  "test_count": 25,
+  "passed": 25,
+  "completed_at": "2026-10-02T14:32:12.639343+00:00",
+  "baseplane_head_after_test": "9f236675da70792db73c4ea945de5c1d96e9341d",
+  "cellerator_head_after_test": "fc26f007033763c8d773af536f0d5d015c8f9cf5",
+  "normal_entry_executables_sha256": {
+    "compositions/sequence_effects/bp_moon_c01_smoke": "a47f66808868c0504a6fa77c096b19dd2fccbc6ff0721ee0b80542dd6fe5af59",
+    "compositions/variants/bp_moon_composition_variants": "4adace8e0c4ecbec017ee3e4ffbd9c7a2d755414047a7e9c9136821a904d77b2",
+    "compositions/ports_factor/bp_moon_c06_ports_factor": "40dab64bda25abd84a24d2ccfa6a28d8ee372cad6163ee37c6e845ba72f2e3b4",
+    "compositions/nonlocal_context/bp_moon_nonlocal_context": "3badf23c81254d13ab2da41bfb358363b8e182dcdf0cab79b37c22b3f17a3a74",
+    "compositions/compiled_learning/bp_moon_composition_compiled_learning": "1238280a24340134795cfe462c30479d9775750ed8d6c12fcbc9646dbef42e63"
+  }
+}

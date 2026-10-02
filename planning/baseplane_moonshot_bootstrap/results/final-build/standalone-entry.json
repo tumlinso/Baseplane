@@ -1,0 +1,14 @@
+{
+  "command": [
+    "cmake",
+    "-S",
+    "experiments/moonshot/compositions",
+    "-B",
+    "/tmp/bp-moon-final-standalone-entry",
+    "-DCMAKE_BUILD_TYPE=Debug",
+    "-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+    "-DBUILD_TESTING=ON"
+  ],
+  "configure_exit": 0,
+  "registered_tests": 25
+}
