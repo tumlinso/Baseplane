@@ -1,0 +1,5 @@
+[ 16%] Building CXX object CMakeFiles/bp_moon_ports_probe.dir/probe.cpp.o
+[ 33%] Linking CXX executable bp_moon_ports_probe
+[ 33%] Built target bp_moon_ports_probe
+[ 66%] Built target ce_moon_host_smoke
+[100%] Built target ce_moon_mechanisms_probe

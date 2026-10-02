@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "task": "BP-MOON-120",
+  "source_sha256": {
+    "experiments/moonshot/families/ports/CMakeLists.txt": "65902c3f3f9e057b956372d6fe8b95d82ba9c6ba0436b520330a55a7c9f58cf4",
+    "experiments/moonshot/families/ports/include/bp_moon/ports.hpp": "d86560a44b8537a959c9fba1f930a22ecdb602f8ee460e71e362855ffb6c9e56",
+    "experiments/moonshot/families/ports/probe.cpp": "60d4003fe9b0058094eaa48db88de29c5651ee8bc1f220eabf7fee15f4784d7b",
+    "experiments/moonshot/families/ports/README.md": "a96c897b67359554282357b6fd102909ca1fda5726acd2b9805e3683ad53cd20"
+  },
+  "source_identity": {
+    "base_commit": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+    "algorithm": "sha256",
+    "digest": "3e189205c2a219896a1ea95dfb6ed24fe762e306bb44dda24da0454d9bc8c29a",
+    "recipe": "sha256 compact sorted JSON source_sha256"
+  },
+  "provider_binding": {
+    "contract": "BPCE-MOON-050",
+    "task": "CE-MOON-050",
+    "repository": "cellerator",
+    "commit": "b1aeabd696060e1b445a6c44c59828be0fccbd4d",
+    "source_digest": "6ae404161d934167e2e95d9ec82f1b1c1b745b18e2db433ed2457af326ab82a2",
+    "receipt": "experiments/moonshot/families/ports/receipts/producer-ce-moon-050.json",
+    "target": "Cellerator::moonshot_mechanisms",
+    "entry_point": "ce_moon/mechanisms.hpp",
+    "source_digests_checked": true
+  },
+  "status": {
+    "authored": true,
+    "compiled": true,
+    "run": true,
+    "compared": true,
+    "GPU_run": false
+  },
+  "cards": {
+    "E41": {
+      "disposition": "implemented_experimentally",
+      "path": "experiments/moonshot/families/ports/include/bp_moon/ports.hpp",
+      "entry": "expose_ports, reconstruct_region",
+      "comparison": "Six valid sites of ACNTGCA match full CE numerical solve. Reverse source ports 1006/1000. N breaks coupling."
+    },
+    "E42": {
+      "disposition": "implemented_experimentally",
+      "entry": "correct_sequence",
+      "comparison": "Observed three position bins; fitted alpha 1.01591; residual objective 17.5 -> 0.496539; zero alpha no improvement.",
+      "remaining_variant": "Learned P/R maps and fine residual-driven selective correction"
+    },
+    "E43": {
+      "disposition": "implemented_experimentally",
+      "entry": "discover_factors",
+      "comparison": "Whole-fixture preceding-base keyed roles at 1/3/5 of TATCTGNACAG share T context; score 14; N-preceded roles excluded; capacity zero reports overflow with no records."
+    },
+    "E44": {
+      "disposition": "implemented_experimentally",
+      "entry": "alternative_worlds",
+      "comparison": "ACNT alternative exact sequences independently scored 7/10/10/3; shared evaluation count 13 versus 28; equal query outputs retain distinct alternatives/validity masks."
+    }
+  },
+  "source_support": "source ID, contig, coordinate, strand, source version, local position, exact base; role joins also retain context-base provenance; worlds retain world ID plus exact alternative sequence",
+  "loss_revisit": "E41 revisits interiors through CE backsolve, exact only for specified linear fixture; E42 coarse representation approximates fine response; E43 factorized totals require input postings to recover tuples; E44 query equality loses no stored alternative sequence but scalar response omits sequence arrangement",
+  "buffer_counter_policy": "Host owning vectors; fixtures bounded to 128 positions. CE join exposes required/written/overflow. No device allocation or launch. Duplicate world IDs/changed positions and coordinate overflow rejected.",
+  "semantic_distinction": "Source lineage is preserved independently from numeric output. Identical E44 queried sums do not authorize sequence identity or causal claims. Numerical ownership remains CE050.",
+  "validation": {
+    "passed": 1,
+    "failed": 0,
+    "test": "bp_moon_ports_probe",
+    "evidence": "experiments/moonshot/families/ports/receipts/test.log",
+    "configure_command": "python /tmp/moonshot_build_slot.py cmake -S experiments/moonshot/families/ports -B /tmp/bp-moon-ports-build -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-mechanisms/experiments/baseplane_moonshot -DCE_MOON_ENABLE_CUDA=OFF",
+    "build_command": "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-ports-build -j1",
+    "test_command": "ctest --test-dir /tmp/bp-moon-ports-build -R bp_moon_ports_probe -V"
+  },
+  "limitations": [
+    "Synthetic sequence model and fixed bins; no trained hierarchy",
+    "Learned restriction/prolongation and learned boundary ports remain variants",
+    "No biological efficacy, causal identification, timing or GPU runtime claim",
+    "CE050 numeric hardening noted by root is an integration followup; frozen producer source used for this test"
+  ]
+}
