@@ -48,5 +48,28 @@
     "compositions/ports_factor/bp_moon_c06_ports_factor": "40dab64bda25abd84a24d2ccfa6a28d8ee372cad6163ee37c6e845ba72f2e3b4",
     "compositions/nonlocal_context/bp_moon_nonlocal_context": "3badf23c81254d13ab2da41bfb358363b8e182dcdf0cab79b37c22b3f17a3a74",
     "compositions/compiled_learning/bp_moon_composition_compiled_learning": "1238280a24340134795cfe462c30479d9775750ed8d6c12fcbc9646dbef42e63"
-  }
+  },
+  "provider_head_drift": "Generated Todo projection commits only; consumed source unchanged",
+  "provider_changed_paths_during_test": [
+    ".todo-orchestrator/state.snapshot.json",
+    "todo-status.md",
+    "todos.md",
+    "todos/ce-moon-000.md",
+    "todos/ce-moon-0000.md",
+    "todos/ce-moon-010.md",
+    "todos/ce-moon-020.md",
+    "todos/ce-moon-030.md",
+    "todos/ce-moon-040.md",
+    "todos/ce-moon-050.md",
+    "todos/ce-moon-090.md",
+    "todos/ce-moon-diff.md",
+    "todos/ce-moon-integrate.md",
+    "todos/ce-moon-merge-diff.md",
+    "todos/ce-moon-merge-foundation.md",
+    "todos/ce-moon-mma.md",
+    "todos/ce-moon-native-ready.md",
+    "todos/ce-moon-rewrite.md",
+    "todos/ce-moon-state.md",
+    "todos/ce-moon-trajectory.md"
+  ]
 }
