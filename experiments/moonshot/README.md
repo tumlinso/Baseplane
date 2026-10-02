@@ -1,26 +1,90 @@
-# Sequence moonshot foundation
+# Sequence moonshot research library
 
-This isolated C++17 substrate grounds experiments in exact sequence, validity and source coordinates. Cellerator owns the general numerical provider from inception. The supplied mixed seed was split by ownership; the immutable planning package remains available for comparison.
+The workshop in `BP-MOON-RUN-1`, paired with Cellerator `CE-MOON-RUN-1`, now contains
+48 bounded host representatives across 12 families and five connected
+compositions. These are experimental sequence representations and execution paths;
+the intended learned genome hierarchy remains a research objective. Cellerator
+owns numerical and learned providers, Baseplane owns exact sequence grounding.
+The separately named `CE-MOON-RUN-V1` and GlassHelix campaigns have their own
+unchanged authority.
+
+Start with the [handoff](../../planning/baseplane_moonshot_bootstrap/results/baseplane-handoff.md)
+and [48-card inventory](../../planning/baseplane_moonshot_bootstrap/results/catalogue.json).
+Every inventory row records actual source, semantic comparison, loss/revisit
+behavior, CUDA/GPU coverage and remaining variants. Family receipts retain their
+original observations; later root checks are additive.
+
+| Family | Cards | Runnable representative and retained limits |
+|---|---|---|
+| [Logic](families/logic/README.md) | E01–E04 | LUT circuits, carry counters, strand grammar and sparse query routing; general grammar/learned circuits remain variants. |
+| [Automata](families/automata/README.md) | E05–E08 | Finite effects, witnesses, bounded grammar and distinct weighted alternatives; device executors and calibrated weights remain. |
+| [Effects](families/effects/README.md) | E09–E12 | Affine/block responses, approximate jets and checkpoints; no certified jet bound or trained continuous hierarchy. |
+| [Hierarchy](families/hierarchy/README.md) | E13–E16 | Detail reservoirs, synthetic learned cuts, finite precision and alternative seams; no learned biological hierarchy. |
+| [Rendezvous](families/rendezvous/README.md) | E17–E20 | Whole-input keys, exact overflow lookup, approximate nomination and subscriptions; broader recall/streaming remains. |
+| [Tensor consumers](families/tensor/README.md) | E21–E24 | Sequence feature/relation/state consumers of CE math; Baseplane consumers remain host paths. |
+| [Demand](families/demand/README.md) | E25–E28 | Certified fixture pull, opcode waves, debt/exploration and context wakeup; resident/learned/asynchronous variants remain. |
+| [Compiler](families/compiler/README.md) | E29–E32 | Fitted teacher hardening, bank selection, typed rewriting and specialization guards; no biological training claim. |
+| [Incremental](families/incremental/README.md) | E33–E36 | Exact repeat sharing, dirty cones, guarded memos and grammar reuse; persistent/distributed caches remain. |
+| [Hypotheses](families/hypotheses/README.md) | E37–E40 | Parse alternatives, lossy sketches, query portfolios and targeted repair; held-out repair remains untested. |
+| [Ports](families/ports/README.md) | E41–E44 | Synthetic regional solves, coarse correction, factor joins and alternative worlds; learned ports/P/R remain variants. |
+| [Machine](families/machine/README.md) | E45–E48 | Texture responses, DP4A/butterfly, bounded transpose search and three residency routes; speed/crossover remains unmeasured. |
+
+The [composition inventory](compositions/README.md) identifies five connected host
+paths: C01 sequence effects, C03 variants, C04 nonlocal context, C05 compiled
+learning and C06 ports/factors. C02/C07/C08/C09/C10 remain explicitly deferred.
+The source-scoped [composition aggregate](compositions/validation/receipt.md) and
+later [normal-entry Debug build](../../planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md)
+each passed 25/25 host tests. Nine Baseplane cards additionally passed root-assigned device
+smokes: E01–E04, E18 and E45–E48. Twelve cards have compiled Baseplane sm_70 paths;
+E26/E28/E38 remain compile-only. CE tensor E21–E24 GPU comparisons are separate
+provider evidence, and do not imply Baseplane GPU consumers. See the additive
+[GPU receipt](../../planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json).
+
+## Build and run
+
+Supply an explicit current CE provider source. The normal entry includes family
+and composition tests; the aggregate can also be configured independently.
 
 ```sh
-cmake -S experiments/moonshot -B /tmp/bp-moon-foundation \
+cmake -S experiments/moonshot -B /tmp/bp-moon-host \
   -DCE_MOON_SOURCE_DIR=/explicit/path/to/experiments/baseplane_moonshot \
-  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-cmake --build /tmp/bp-moon-foundation -j 2
-ctest --test-dir /tmp/bp-moon-foundation --output-on-failure
-/tmp/bp-moon-foundation/bp_moon_demo
+  -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
+cmake --build /tmp/bp-moon-host -j1
+ctest --test-dir /tmp/bp-moon-host --output-on-failure
+/tmp/bp-moon-host/bp_moon_demo
 ```
 
-The provider source path is explicit and has no sibling default. An enclosing build may instead supply `Cellerator::moonshot`; an installed provider may expose the `CelleratorMoonshot` CMake package. `Baseplane::moonshot` exports this directory's headers and consumes that provider. The sequence adapter needs `ce_moon::Dfa32`, `compose` and `ResidualTree` from `ce_moon/reference.hpp`.
+Optional CUDA uses `BP_MOON_ENABLE_CUDA=ON` and an sm_70-capable toolkit (tested
+CUDA12.9). CUDA13 removes offline compilation for pre-7.5 targets. Family device
+executables are excluded from automatic CTest launch; use explicit resource
+assignment, stream/capacity contracts and recorded runtime checks. Build commands
+do not assign a GPU. The campaign used a shared four-slot build wrapper and one
+compiler job per build; that temporary wrapper is not an installed dependency.
 
-`bp_moon/reference.hpp` preserves the seed's sequence fixture, mask/LUT/rank/count helpers, toy sequence-to-state effects, source-support union and exact sequence dictionary. Lowercase canonical bases are valid and share the uppercase transition semantics; original spelling remains recoverable. Invalid packed payloads have cleared validity and reset the toy transition. The last-two-base toy effect loses sequence information; the fixture retains the original sequence for exact recovery.
+## Substrate and information contract
 
-`bp_moon/source.hpp` attaches source ID, contig, version, strand and origin to fixture coordinates. Reverse maps convert an oriented fixture position to its source coordinate; callers supply the oriented sequence. Emission accepts caller-owned output and capacity, skips invalid payloads, and reports produced/stored/dropped counts. It preserves selection order. Mask counters explicitly report overflow instead of saturating silently. Support union keeps gaps between disjoint source intervals.
+`Baseplane::moonshot` exports `include/` and consumes the explicit Cellerator
+provider. `bp_moon/reference.hpp` retains sequence fixtures, validity, LUT/rank/count
+helpers, toy finite effects, support union and exact dictionaries.
+`bp_moon/source.hpp` retains source ID, contig, version, strand and origin; reverse
+maps expect caller-oriented sequence. Invalid payloads never become canonical
+bases. Emission uses caller-owned capacity and separates produced/stored/dropped.
+Masks refer to declared coordinate domains; support union keeps gaps.
 
-The demonstration uses fixed four-base windows, sequence-derived effects and the Cellerator residual tree. Its scalar threshold pruning is meaningful only for that toy query. Exact source revisits, tree visits and dictionary cardinality are reported; no hierarchy-learning, biological-validation or timing claim follows from them.
+Exact source allows revisit; it does not make lossy counts, thresholds, sketches,
+jets or latent responses lossless. Toy finite effects retain bounded state, and
+floating evaluation has its stated approximation/rounding limits. Training here
+uses small synthetic questions; no organism dataset or genome-wide learned model
+was evaluated. There is no production ABI freeze or throughput result.
 
-Each family owns `families/<name>/CMakeLists.txt` and its source directory. Configure-time discovery adds those local targets without editing this shared file; family targets can link `Baseplane::moonshot` and `Cellerator::moonshot`. Shared headers, host targets, CUDA/Python seams and this file retain one integration owner.
+The [adoption receipt](../../planning/baseplane_moonshot_adoption/README.md) preserves
+completed BitOp, CUDA-lab and documentation evidence. Representative experiments
+cover selected migrated scope while general executor coverage, sanitizers,
+performance policy, production adapters, biological evaluation and distribution
+remain [Q01–Q05](../../planning/baseplane_moonshot_bootstrap/docs/06_LATER_QUALIFICATION.md).
+Those are future obligations, not silently activated tasks. Current workflow state
+belongs to native Todo authority.
 
-CUDA is optional (`BP_MOON_ENABLE_CUDA=OFF` by default). Enabling it sets architecture 70 for later family targets and requires an sm_70-capable toolchain. The foundation introduces no CUDA kernel or launch. General CUDA numerical seeds and Python learning fixtures live with Cellerator. Resource leases, explicit streams and capacity checks remain required for future GPU execution.
-
-The repository ctxpp configuration indexes public source/test paths, excluding this new isolated directory. Canonical source was inspected directly and the isolated build exports its compilation database. Existing ctxpp status reports stale source and prior benchmark parse failures; this foundation does not refresh unrelated indexes or claim a semantic-index pass.
+The isolated sources lie outside the configured ctxpp source globs; canonical
+inspection and actual compiler/test evidence were used. Generated context indexes
+and historical receipts were preserved.
