@@ -20,7 +20,7 @@ intended architecture in the original cards.
 | Connected compositions | C01/C03/C04/C05/C06 host executed; C02/C07/C08/C09/C10 deferred |
 | Final composition Debug aggregate | [25/25 passed](../../../experiments/moonshot/compositions/validation/receipt.md), source-scoped to BP `e5ddae14e6e690b68215fc1ec9586622bf54d6e9` and CE `b2a65353d543a8d77d051be2d277d0c6ba4371dc` |
 | Final normal-entry Debug build | [25/25 passed](final-build/receipt.md) at BP `9f236675da70792db73c4ea945de5c1d96e9341d`, CE `eb9a131d92cf0dd38de8a6f1833797f6a68214ce`; includes reverse-coordinate repair and normal composition wiring |
-| Baseplane CUDA compilation | 12 cards: E01–E04, E18, E26, E28, E38, E45–E48; CUDA12.9 sm_70 |
+| Baseplane CUDA compilation | 12 cards: E01–E04, E18, E26, E28, E38, E45–E48; CUDA 12.9 sm_70 |
 | Baseplane GPU comparison | Nine cards: E01–E04, E18, E45–E48; [root qualified checks](gpu/qualified-checks.json) |
 | CE GPU provider comparison | E21–E24 numerical kernels with hardened comparator; separate CE receipt linked from root GPU checks |
 | Biological/performance qualification | Not performed; no production or speed claim |

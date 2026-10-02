@@ -55,7 +55,7 @@ ctest --test-dir /tmp/bp-moon-host --output-on-failure
 ```
 
 Optional CUDA uses `BP_MOON_ENABLE_CUDA=ON` and an sm_70-capable toolkit (tested
-CUDA12.9). CUDA13 removes offline compilation for pre-7.5 targets. Family device
+CUDA 12.9). CUDA 13 removes offline compilation for pre-7.5 targets. Family device
 executables are excluded from automatic CTest launch; use explicit resource
 assignment, stream/capacity contracts and recorded runtime checks. Build commands
 do not assign a GPU. The campaign used a shared four-slot build wrapper and one
