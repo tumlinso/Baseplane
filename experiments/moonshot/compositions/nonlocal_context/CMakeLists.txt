@@ -1,0 +1,5 @@
+add_executable(bp_moon_nonlocal_context smoke.cpp)
+target_link_libraries(bp_moon_nonlocal_context PRIVATE Baseplane::moonshot_tensor Cellerator::moonshot_learning)
+if(BUILD_TESTING)
+  add_test(NAME bp_moon_nonlocal_context COMMAND bp_moon_nonlocal_context)
+endif()

@@ -1,0 +1,1 @@
+C04 fitted_boundaries=8 input_objects=10 directory_pairs=18 scored_remote_edges=14 waves=8 updates=16 deferred=24 exact_revisits=28 convergence=1

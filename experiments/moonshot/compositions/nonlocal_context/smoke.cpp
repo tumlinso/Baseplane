@@ -1,0 +1,16 @@
+#include "nonlocal_context.hpp"
+#include <iostream>
+using namespace bp_moon;
+using namespace bp_moon::compositions::nonlocal;
+void check(bool x,const char* message){if(!x)throw std::runtime_error(message);}
+template<class F> void rejected(F f){bool did=false;try{f();}catch(const std::invalid_argument&){did=true;}check(did,"expected rejection");}
+int main(){std::vector<discovery::Sequence> sources{{PackedFixture("GATCGATC"),{7,3,100,9,Strand::forward,8}},{PackedFixture("GATCGATC"),{7,3,10000,9,Strand::forward,8}}};
+ auto result=run(sources,256,1,64);check(result.model.fit.final_loss<result.model.fit.initial_loss,"actual fitted boundary objective improvement");check(result.objects.size()==10&&result.candidates.produced==18,"whole input directory expected pairs");check(result.required==14&&result.edges.size()==14&&!result.overflow,"directory restricted relation count");check(result.converged&&result.deferred_updates>0,"bounded sparse wave replay");
+ unsigned reference_pairs=0;for(const auto& a:result.objects)for(const auto& b:result.objects)if(a.id!=b.id&&a.exact==b.exact)++reference_pairs;check(reference_pairs==result.candidates.produced,"independent exact candidate oracle");
+ bool crossing=false;for(const auto& edge:result.edges){check(edge.from_support.exact==edge.to_support.exact&&edge.score>0,"exact revisit and score");const auto& a=result.objects[edge.from];const auto& b=result.objects[edge.to];unsigned ag=0,ac=0,ba=0,bt=0;for(char c:a.exact){ag+=c=='G';ac+=c=='C';}for(char c:b.exact){ba+=c=='A';bt+=c=='T';}check(edge.score==ag*ba+ac*bt,"independent relation score oracle");check(edge.from_source!=edge.to_source,"real remote edge");crossing|=edge.destination_chunks.size()>1;for(auto chunk:edge.destination_chunks){const auto& cell=result.cells[edge.to_source][chunk];check(cell.context==1&&cell.message_sources.count(a.source.source_id)&&cell.source.version==b.source.version,"sparse lineage and exact support");}}
+ check(crossing,"candidate spanning inferred boundary retained");
+ for(std::size_t source=0;source<sources.size();++source){std::string exact;for(auto span:result.chunks[source])exact+=sources[source].sequence.original.substr(span.begin,span.end-span.begin);check(exact==sources[source].sequence.original,"boundary inverse recovery");}
+ auto capped=run(sources,1,1,1);check(capped.overflow&&capped.required==14&&capped.edges.size()==1&&!capped.converged&&capped.deferred_updates>0,"capacity and wave budget truthful");
+ auto stale=sources;++stale[0].source.version;rejected([&]{revisit(stale,result.objects[0]);});auto changed=sources;changed[0].sequence=PackedFixture("NATCGATC");rejected([&]{revisit(changed,result.objects[0]);});auto invalid=sources;invalid[0].sequence=PackedFixture("NATCGATC");auto skipped=run(invalid);for(const auto& object:skipped.objects)check(!(object.source.origin==100&&object.local==0),"invalid payload excluded before directory");
+ std::cout<<"C04 fitted_boundaries="<<result.chunks[0].size()+result.chunks[1].size()<<" input_objects="<<result.objects.size()<<" directory_pairs="<<result.candidates.produced<<" scored_remote_edges="<<result.edges.size()<<" waves="<<result.waves<<" updates="<<result.updates<<" deferred="<<result.deferred_updates<<" exact_revisits="<<result.edges.size()*2<<" convergence="<<result.converged<<"\n";
+}

@@ -1,0 +1,73 @@
+{
+  "composition": "C04",
+  "owner_task": "BP-MOON-140",
+  "cards": [
+    "E14",
+    "E17",
+    "E22",
+    "E28"
+  ],
+  "status": "implemented experimentally",
+  "states": {
+    "host": {
+      "authored": true,
+      "compiled": true,
+      "run": true,
+      "compared": true
+    },
+    "cuda": {
+      "authored": false,
+      "compiled": false,
+      "run": false,
+      "compared": false
+    }
+  },
+  "ce_provider_commit": "b72bfa3af4782303bc8630ff355d308b54f55ede",
+  "source_digests": {
+    "experiments/moonshot/compositions/nonlocal_context/nonlocal_context.hpp": "8b1ea4d49ffd120cc63e4b9a82e553445fe68ab09ffb8e23081af4d86e334f56",
+    "experiments/moonshot/compositions/nonlocal_context/smoke.cpp": "51a3576f52ec8000a07e2e66ff471b451d7f377b6e82d54a6602b8d26051f2a5",
+    "experiments/moonshot/compositions/nonlocal_context/CMakeLists.txt": "98866bdc94e96f455f91aa76dc703f19ed3baddc3b41c73f0272a9c364527311",
+    "experiments/moonshot/compositions/nonlocal_context/README.md": "a7bc25b18b9e59b2672a026d5ad0b4296d92ace39d31ae430089f71370a84b6a",
+    "experiments/moonshot/compositions/nonlocal_context/host-evidence.txt": "4bc77295ad11fc9c8f88e9942149d9802221d0e9c5115f70bba11b6ee1503676"
+  },
+  "connected_path": [
+    "CE-fit contextual boundaries -> hierarchy inverse map",
+    "whole-region valid sliding windows -> exact directory -> actual candidate pairs",
+    "candidate mask -> real CE directed relation scores -> capacity-bounded emit",
+    "destination interval -> inferred chunk indices -> demand wake/jacobi",
+    "edge source/target -> exact source/version/validity/payload/coordinate revisit"
+  ],
+  "counts": {
+    "chunks": 8,
+    "objects": 10,
+    "directory_pairs": 18,
+    "remote_edges": 14,
+    "waves": 8,
+    "updates": 16,
+    "deferred_update_visits": 24,
+    "exact_endpoint_revisits": 28,
+    "converged": true
+  },
+  "source_fixture": "One source genome ID7, contig3, version9, forward strand; distant origins100 and10000, both GATCGATC",
+  "comparison": "Independent all-pairs exact directory oracle and count arithmetic score oracle; fitted objective improves; cross-boundary candidate retention and source recovery checked",
+  "negative_checks": [
+    "one-edge capacity emits overflow",
+    "one-wave budget leaves convergence unfinished",
+    "stale source version rejected",
+    "changed validity rejected",
+    "invalid windows excluded before directory"
+  ],
+  "evidence": {
+    "host": "experiments/moonshot/compositions/nonlocal_context/host-evidence.txt",
+    "ctest": "/tmp/bp-moon-c04-build/Testing/Temporary/LastTest.log",
+    "build": "/tmp/bp-moon-c04-build",
+    "target": "bp_moon_nonlocal_context"
+  },
+  "limits": [
+    "At most16 extracted objects; reject larger input",
+    "At most64 chunk cells per source region and64 update waves",
+    "Bit-tag Jacobi update and authored role maps are hypotheses",
+    "Synthetic boundary fit; no learned whole-genome hierarchy claim",
+    "No GPU run, biological efficacy or throughput benchmark"
+  ]
+}
