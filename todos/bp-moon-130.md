@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-130: Unconventional Volta execution paths
 
-Task revision: `217`; current project revision is in `todo-status.md`.
+Task revision: `269`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement a diverse set of concrete unconventional volta execution paths experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `in_progress`
+- Execution: `claimed`
 - Parallel policy: `parallel_safe`
 - Result: `-`
 
