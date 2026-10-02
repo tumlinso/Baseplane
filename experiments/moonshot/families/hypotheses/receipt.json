@@ -1,0 +1,117 @@
+{
+  "task": "BP-MOON-110",
+  "recorded_at": "2026-10-02T13:57:45.295834+00:00",
+  "producer_base_commit": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+  "producer_source_digest": "edf1ae0e1aafb8b0b986e9c819a41996240dcfaae64444881838877e12afa439",
+  "artifact_sha256": {
+    "experiments/moonshot/families/hypotheses/CMakeLists.txt": "8a17262b634431614f4fe59f222b27c1696ad1777c6625c514370d831f68b588",
+    "experiments/moonshot/families/hypotheses/README.md": "cac9491b834bdd6a75316766ebc43d804f397c0f44919f7b004731c4afa49f5f",
+    "experiments/moonshot/families/hypotheses/hypotheses.hpp": "d188389fed97ff5d7a8aebb9bcd3e8ce1f4ae1e2f13616ced9a1ee189aa59742",
+    "experiments/moonshot/families/hypotheses/sketch.cu": "be32e4897d5915470f4dacbaa59d3c9a65e066a01b9e27830507de6aa0fcf441",
+    "experiments/moonshot/families/hypotheses/smoke.cpp": "6db1e3e70daf8cc08596391fbcf413f93544d7efdb5e6eca228c21d7a834216f"
+  },
+  "provider": {
+    "repository": "cellerator",
+    "commit": "760873bd852369a8aabad1d9a8e233a930097fa4",
+    "header": "experiments/baseplane_moonshot/families/learning/learning.hpp",
+    "sha256": "a4fa4c3312fb26492a6cb217b4aad91aa17be95a4e43ff7fe442a9727d4ba8f3",
+    "entrypoints": [
+      "ce_moon::learning::fit_logistic",
+      "ce_moon::learning::predict_logistic"
+    ],
+    "build_binding": "explicit CE_MOON_SOURCE_DIR and Cellerator::moonshot_learning target"
+  },
+  "entrypoints": [
+    "extend",
+    "parse_supports",
+    "branch_score",
+    "retain_beam",
+    "role_sketch",
+    "verify_sketch",
+    "Portfolio",
+    "ask",
+    "RepairIndex::repaired",
+    "RepairIndex::terminal",
+    "RepairIndex::exploration_site"
+  ],
+  "cards": {
+    "E37": {
+      "disposition": "implemented_experimentally",
+      "mechanism": "persistent exact-source parse forest with shared common prefix; CE-fitted query scorer; bounded beam losses",
+      "test": "two query scorers prefer different boundary branches; source and prior branches remain immutable; beam prunes later-preferred branch"
+    },
+    "E38": {
+      "disposition": "implemented_experimentally",
+      "mechanism": "8-bit role/position-bound XOR sketch, candidate nomination then exact verification",
+      "test": "AC and CA differ; two different five-base sequences collide then exact replay rejects"
+    },
+    "E39": {
+      "disposition": "implemented_experimentally",
+      "mechanism": "typed count/effect portfolio and unsupported-question source replay",
+      "test": "AC/CA same abundance but different terminal-state effects; exact motifs replay valid original bases"
+    },
+    "E40": {
+      "disposition": "implemented_experimentally",
+      "mechanism": "counterexample-specific residual key added in copied index; seeded exploration beyond failure sites",
+      "test": "two histogram collision sites repaired; previous index intact; unseen site replays; unrelated pair does not trigger repair"
+    }
+  },
+  "source_support": "immutable source references retain exact bytes, validity, contig, absolute origin/end, supplied strand and epoch; local domain <=0x7fffffff and uint64 coordinate overflow checks",
+  "buffer_policy": "host-owned bounded fixture containers; beam retained/drop accounting explicit; optional CUDA caller validates nonaliasing input/output/offset/length capacities; no allocations or synchronization inside kernel",
+  "loss_revisit_behavior": [
+    "beam may irreversibly discard later-preferred interpretation unless caller preserves original forest",
+    "8-bit sketch lossy, exact nomination verification must replay retained source",
+    "counts discard order, DFA preserves only bounded terminal-state query",
+    "repair residual answers only demonstrated terminal-state query, others replay source",
+    "source pointer is replay availability, not lossless latent representation"
+  ],
+  "status": {
+    "authored": true,
+    "host_compiled": true,
+    "host_run": true,
+    "host_compared": true,
+    "cuda_sm70_compiled": true,
+    "gpu_run": false,
+    "gpu_compared": false,
+    "benchmark_run": false,
+    "biological_validation": false,
+    "synthetic_query_scores_fitted": true,
+    "learned_genome_hierarchy": false,
+    "held_out_repair_evaluated": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "/tmp/bp-moon-hypotheses-host",
+        "-R",
+        "bp_moon_hypotheses_smoke",
+        "--output-on-failure"
+      ],
+      "returncode": 0,
+      "output": "Internal ctest changing into directory: /tmp/bp-moon-hypotheses-host\nTest project /tmp/bp-moon-hypotheses-host\n    Start 5: bp_moon_hypotheses_smoke\n1/1 Test #5: bp_moon_hypotheses_smoke .........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 1\n\nTotal Test time (real) =   0.01 sec\n"
+    },
+    {
+      "argv": [
+        "/tmp/bp-moon-hypotheses-host/families/hypotheses/bp_moon_hypotheses_smoke"
+      ],
+      "returncode": 0,
+      "output": "{\"status\":\"hypotheses_pass\",\"cards\":[\"E37\",\"E38\",\"E39\",\"E40\"],\"fit_initial_loss\":0.693147,\"fit_final_loss\":0.20984,\"collision_left\":\"CAAAA\",\"collision_right\":\"AAAAC\",\"repaired_sites\":2,\"gpu_run\":false}\n"
+    },
+    {
+      "argv": [
+        "python",
+        "/tmp/moonshot_build_slot.py",
+        "cmake",
+        "--build",
+        "/tmp/bp-moon-hypotheses-cuda",
+        "--target",
+        "bp_moon_hypotheses_cuda_compile",
+        "-j1"
+      ],
+      "returncode": 0,
+      "output": "[100%] Built target bp_moon_hypotheses_cuda_compile\n"
+    }
+  ]
+}
