@@ -1,0 +1,27 @@
+{
+  "task": "BP-MOON-020",
+  "date": "2026-10-02",
+  "authored_mechanisms": 4,
+  "host_compiled_mechanisms": 4,
+  "host_run_mechanisms": 4,
+  "cuda_authored_kernels": 4,
+  "cuda_compiled_kernels": 4,
+  "cuda_run_kernels": 0,
+  "compiler": "GNU 13.3.0; NVIDIA CUDA 12.9.86",
+  "target": "sm_70",
+  "build_directory": "/tmp/bp-moon-logic-build",
+  "build_parallelism": 1,
+  "checks": {
+    "host_ctest": "bp_moon_logic_smoke: 1/1 passed",
+    "lut": "256 truth tables by 8 rows; fixed circuit scalar comparison; tail validity",
+    "counter": "15/16 overflow, saturation distinction, random scalar thresholds",
+    "grammar": "31/32 seam; reverse original-coordinate anchor; palindrome policies; invalid payload",
+    "query": "empty/full/random rank-select; compact descriptor routing; support composition; domain rejection"
+  },
+  "cuda_runtime_status": "Not run; no GPU assignment to family worker",
+  "cuda_runtime_entry": "families/logic/bp_moon_logic_cuda --run DEVICE",
+  "benchmark_status": "Not run",
+  "biological_validation": false,
+  "cards": {"E01":"implemented experimentally", "E02":"implemented experimentally", "E03":"implemented experimentally", "E04":"implemented experimentally"},
+  "limitations": ["Fixed fixture circuit is not trained", "CUDA saturation and reverse-strand variants pending", "Arbitrary grammar spacing and exclusions pending", "No generalized whole-genome launch API"]
+}
