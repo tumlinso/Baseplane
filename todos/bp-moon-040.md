@@ -3,14 +3,14 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-040: Continuous response algebras
 
-Task revision: `217`; current project revision is in `todo-status.md`.
+Task revision: `266`; current project revision is in `todo-status.md`.
 
 ## Objective
 Build sequence-grounded fixtures, source mapping and hierarchical consumers for continuous, refinable and multi-state numerical operators. Use CE-MOON-020 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `in_progress`
+- Execution: `claimed`
 - Parallel policy: `parallel_safe`
 - Result: `-`
 
