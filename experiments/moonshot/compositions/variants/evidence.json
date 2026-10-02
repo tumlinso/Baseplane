@@ -1,0 +1,31 @@
+{
+  "composition": "C03",
+  "cards_connected": [
+    "E33",
+    "E34",
+    "E35",
+    "E44"
+  ],
+  "disposition": "implemented compiled and host-executed",
+  "date": "2026-10-02",
+  "compiler": "GNU 13.3.0",
+  "ce_provider_source": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot",
+  "ce_provider_commit": "b72bfa3af4782303bc8630ff355d308b54f55ede",
+  "test": "bp_moon_composition_variants",
+  "ctest": "1/1 passed",
+  "build_parallelism": 1,
+  "build_slot_wrapper": "/tmp/moonshot_build_slot.py",
+  "build_directory": "/tmp/bp-moon-c03-build",
+  "source": "smoke.cpp",
+  "checks": {
+    "worlds": 4,
+    "memos_reused": 2,
+    "memos_recomputed": 2,
+    "independent_world_comparisons": 4,
+    "content_objects": 4,
+    "occurrences": 8
+  },
+  "gpu_executed": false,
+  "benchmark_run": false,
+  "biological_validation": false
+}
