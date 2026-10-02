@@ -1,0 +1,94 @@
+{
+  "task": "BP-MOON-090",
+  "base_commit": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+  "source_digest": "6fe967c2129a57469a55a05333a7810a14204d46c43c18a2bf46d3a001c87a26",
+  "sha256": {
+    "compiler.hpp": "0b1569d1bf15d6e4bb821b3d4df64be86700ae291d2acad2e20858bc099fbbe0",
+    "test.cpp": "0d910a37ec158db3745856e210879d4396b274e9b000ecd6ebe41bc2926e8fd8",
+    "CMakeLists.txt": "670b20e997c0ac3b64f5fb2df8f5fc0b645cf26a1b1dffe8fd0c1044ed94ab66",
+    "README.md": "f164adc80e548892910e9f19652c5e53f112eca59fe96fca658ac08eba5fa79f"
+  },
+  "artifacts": [
+    "experiments/moonshot/families/compiler/compiler.hpp",
+    "experiments/moonshot/families/compiler/test.cpp",
+    "experiments/moonshot/families/compiler/CMakeLists.txt",
+    "experiments/moonshot/families/compiler/README.md"
+  ],
+  "provider": {
+    "contract": "BPCE-MOON-040",
+    "repository": "cellerator",
+    "task": "CE-MOON-040",
+    "commit": "b16295a56e02d98b299bc2c828e1b69aeb7ea58d",
+    "header_sha256": "a4fa4c3312fb26492a6cb217b4aad91aa17be95a4e43ff7fe442a9727d4ba8f3",
+    "source_directory": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-learning/experiments/baseplane_moonshot",
+    "receipt": "experiments/baseplane_moonshot/families/learning/receipt.json"
+  },
+  "cards": {
+    "E29": {
+      "disposition": "implemented experimentally",
+      "mechanism": "sequence-triplet teacher targets, CE fit/hardening, packed LUT routing with full triplet validity",
+      "authored": true,
+      "host_compiled": true,
+      "run": true,
+      "compared": "eight truth rows; held-out64 canonical triplets and lowercase/invalid payloads; seam31/32 reverse supports",
+      "lut_immediate": 234,
+      "heldout_hits": 25
+    },
+    "E30": {
+      "disposition": "implemented experimentally",
+      "mechanism": "CE-trained state-bank choice and exact AC/GT predicate consumer on same source",
+      "authored": true,
+      "host_compiled": true,
+      "run": true,
+      "compared": "source/selection provenance and scalar exact motif semantics under two states",
+      "bank_hits": [
+        10,
+        10
+      ]
+    },
+    "E31": {
+      "disposition": "implemented experimentally",
+      "mechanism": "source-domain typed CE Boolean extraction and packed source-witness emission",
+      "authored": true,
+      "host_compiled": true,
+      "run": true,
+      "compared": "held-out sequence scalar decisions, domain rejection, strict-float rejection",
+      "instruction_count": [
+        3,
+        2
+      ],
+      "heldout_matches": 17,
+      "later_variants": [
+        "affine/layout rewrites",
+        "register/movement cost",
+        "SASS inspection"
+      ]
+    },
+    "E32": {
+      "disposition": "implemented experimentally",
+      "mechanism": "versioned regional specialization plus full source identity guards and current teacher fallback",
+      "authored": true,
+      "host_compiled": true,
+      "run": true,
+      "compared": "fresh reuse and independent changed query/state/source_version/source_id/origin/weights",
+      "later_variants": [
+        "reuse-count driven respecialization"
+      ]
+    }
+  },
+  "source_support": "source_id, contig, version, strand, anchor and exact2/3 support coordinates; caller-oriented input",
+  "buffer_counter_policy": "caller output and capacity; produced/stored/dropped; invalid bases skipped; source shape and unsigned coordinate/count overflow checked",
+  "loss_and_revisit": "hardening loses confidence; source sequence retained; mismatched guards replay current teacher and record source revisits; no universal embedding claim",
+  "validation": {
+    "configure_command": "cmake -S experiments/moonshot -B /tmp/bp-moon-compiler-build -DCMAKE_BUILD_TYPE=Release -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-learning/experiments/baseplane_moonshot",
+    "build_command": "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-compiler-build --target bp_moon_compiler_test -j1",
+    "test_command": "ctest --test-dir /tmp/bp-moon-compiler-build -R '^bp_moon_compiler_test$' --output-on-failure -V",
+    "compiler": "GNU C++13.3.0, C++17, Release",
+    "result": "1/1 passed",
+    "stdout": "E29 LUT234, held-out hits25, seam anchors1; E30 AC/GT hits10/10; E31 cost3 ->2, matches17; E32 fresh reuse + six invalidations pass"
+  },
+  "native_lop3_source": "CE authored; GPU instruction compilation not_run",
+  "gpu_launch": "not_run",
+  "benchmark": "not_run",
+  "biological_validation": "not_run"
+}
