@@ -11,6 +11,7 @@ int main(){std::vector<discovery::Sequence> sources{{PackedFixture("GATCGATC"),{
  check(crossing,"candidate spanning inferred boundary retained");
  for(std::size_t source=0;source<sources.size();++source){std::string exact;for(auto span:result.chunks[source])exact+=sources[source].sequence.original.substr(span.begin,span.end-span.begin);check(exact==sources[source].sequence.original,"boundary inverse recovery");}
  auto capped=run(sources,1,1,1);check(capped.overflow&&capped.required==14&&capped.edges.size()==1&&!capped.converged&&capped.deferred_updates>0,"capacity and wave budget truthful");
+ auto malformed=result.objects[0];malformed.exact.clear();rejected([&]{revisit(sources,malformed);});
  auto stale=sources;++stale[0].source.version;rejected([&]{revisit(stale,result.objects[0]);});auto changed=sources;changed[0].sequence=PackedFixture("NATCGATC");rejected([&]{revisit(changed,result.objects[0]);});auto invalid=sources;invalid[0].sequence=PackedFixture("NATCGATC");auto skipped=run(invalid);for(const auto& object:skipped.objects)check(!(object.source.origin==100&&object.local==0),"invalid payload excluded before directory");
  std::cout<<"C04 fitted_boundaries="<<result.chunks[0].size()+result.chunks[1].size()<<" input_objects="<<result.objects.size()<<" directory_pairs="<<result.candidates.produced<<" scored_remote_edges="<<result.edges.size()<<" waves="<<result.waves<<" updates="<<result.updates<<" deferred="<<result.deferred_updates<<" exact_revisits="<<result.edges.size()*2<<" convergence="<<result.converged<<"\n";
 }

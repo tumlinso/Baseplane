@@ -24,10 +24,10 @@
   },
   "ce_provider_commit": "b72bfa3af4782303bc8630ff355d308b54f55ede",
   "source_digests": {
-    "experiments/moonshot/compositions/nonlocal_context/nonlocal_context.hpp": "8b1ea4d49ffd120cc63e4b9a82e553445fe68ab09ffb8e23081af4d86e334f56",
-    "experiments/moonshot/compositions/nonlocal_context/smoke.cpp": "51a3576f52ec8000a07e2e66ff471b451d7f377b6e82d54a6602b8d26051f2a5",
+    "experiments/moonshot/compositions/nonlocal_context/nonlocal_context.hpp": "3db20bc3c99cf1a5197201a6a3b3dc8fb52a73c1900af347758335dcbab8afdf",
+    "experiments/moonshot/compositions/nonlocal_context/smoke.cpp": "0dea4436d53b8c653d55a3a1a48f4c5d2ddb02b02db20d55463b8f2882c30706",
     "experiments/moonshot/compositions/nonlocal_context/CMakeLists.txt": "98866bdc94e96f455f91aa76dc703f19ed3baddc3b41c73f0272a9c364527311",
-    "experiments/moonshot/compositions/nonlocal_context/README.md": "a7bc25b18b9e59b2672a026d5ad0b4296d92ace39d31ae430089f71370a84b6a",
+    "experiments/moonshot/compositions/nonlocal_context/README.md": "11930c5d26149862710ae182055ae7d8c909ef157a2be715a7703ae9807657cc",
     "experiments/moonshot/compositions/nonlocal_context/host-evidence.txt": "4bc77295ad11fc9c8f88e9942149d9802221d0e9c5115f70bba11b6ee1503676"
   },
   "connected_path": [
@@ -55,7 +55,8 @@
     "one-wave budget leaves convergence unfinished",
     "stale source version rejected",
     "changed validity rejected",
-    "invalid windows excluded before directory"
+    "invalid windows excluded before directory",
+    "malformed empty object support rejected before coordinate access"
   ],
   "evidence": {
     "host": "experiments/moonshot/compositions/nonlocal_context/host-evidence.txt",
@@ -69,5 +70,13 @@
     "Bit-tag Jacobi update and authored role maps are hypotheses",
     "Synthetic boundary fit; no learned whole-genome hierarchy claim",
     "No GPU run, biological efficacy or throughput benchmark"
-  ]
+  ],
+  "review_regression": {
+    "finding": "Empty exact object payload could reach vector front/back on an empty coordinate list",
+    "repair": "Reject empty payload before reading any coordinate",
+    "regression": "Copy valid object, clear exact payload, expect invalid_argument",
+    "original_source": "284275588176b8293bb812bd0c9ec6ef51ce36ee",
+    "reproducer": "/tmp/c04-empty-support-repro/probe",
+    "focused_ctest": "/tmp/bp-moon-c04-build/Testing/Temporary/LastTest.log"
+  }
 }

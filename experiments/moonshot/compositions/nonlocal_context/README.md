@@ -33,8 +33,8 @@ pairs, 14 scored inter-region edges, 8 update waves, 16 updates, 24 deferred
 update visits and 28 exact endpoint revisits. Independent all-pairs equality
 checks directory output; an independent count arithmetic oracle checks scores.
 Checks also cover inferred-boundary crossing, source reconstruction, actual fit
-objective improvement, sparse lineage/support, stale versions and changed
-validity. A one-edge/one-wave run reports overflow and unfinished convergence.
+objective improvement, sparse lineage/support, stale versions, changed
+validity and malformed empty object support. A one-edge/one-wave run reports overflow and unfinished convergence.
 Invalid windows never enter candidate discovery.
 
 The numerical owners are the real CE tensor and learning providers. This module
