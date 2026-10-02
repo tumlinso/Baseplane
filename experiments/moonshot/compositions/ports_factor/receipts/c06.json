@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "composition": "C06",
+  "task": "BP-MOON-140",
+  "status": {
+    "authored": true,
+    "compiled": true,
+    "run": true,
+    "compared": true,
+    "gpu_run": false
+  },
+  "source_sha256": {
+    "experiments/moonshot/compositions/ports_factor/CMakeLists.txt": "04789c0722234308a644d7d1141b04408e38fc5099b5c56fcaa8b0ba17e840c7",
+    "experiments/moonshot/compositions/ports_factor/probe.cpp": "431b91bd77c0ca0fef14d62e9c74ac30ddf411062133532180e8fdb01f7ec354",
+    "experiments/moonshot/compositions/ports_factor/README.md": "917ea91ad6ffc760bee6130135582d998ed78fbf344b5d6cf502976ffb62ac2d"
+  },
+  "source_digest": "ff1f9c2bea27cd4b4fde75d069c65e484abb86243349a03dded2a9edf6e55b03",
+  "digest_recipe": "sha256 compact sorted JSON source_sha256",
+  "provider": {
+    "repository": "cellerator",
+    "task": "CE-MOON-050",
+    "commit": "f6425a78ad728212ba3d24a40cfa1630d2ad18b8",
+    "header": "ce_moon/mechanisms.hpp",
+    "inputs_sha256": {
+      "experiments/baseplane_moonshot/families/mechanisms/include/ce_moon/mechanisms.hpp": "55a49f72701d21beb8e96898ec53e3096ae6e606f07ee7bcf77a3a977abfedbc",
+      "experiments/baseplane_moonshot/include/ce_moon/reference.hpp": "dcb8b316a823c48fc7ffcbbee0cd7ab7d9bf06e3935d5fcdf972a751269138ed"
+    }
+  },
+  "baseplane_inputs_sha256": {
+    "experiments/moonshot/families/ports/include/bp_moon/ports.hpp": "d86560a44b8537a959c9fba1f930a22ecdb602f8ee460e71e362855ffb6c9e56",
+    "experiments/moonshot/include/bp_moon/source.hpp": "5466404833b724ea112580bc91c0a28fd9132d0af37022430a803607f6404a68",
+    "experiments/moonshot/include/bp_moon/reference.hpp": "7711fc4740fba1d28495f018cb6ffd994738f4e5baf0dfed1591437521aebb69"
+  },
+  "connected_data_flow": [
+    "CE condensed ports reconstruct exact-source site responses",
+    "Observed sequence role/context candidates carry response values into CE factor scoring",
+    "Resulting factor scores initialize CE world DAG leaves",
+    "Alternative exact sequence responses rescore factors into sparse CE world deltas"
+  ],
+  "fixture": {
+    "baseline": "TATCTGTATCTGTT",
+    "source": {
+      "source_id": 7001,
+      "contig": 12,
+      "origin": 8000,
+      "version": 3,
+      "strand": "reverse"
+    },
+    "factor_required": 8,
+    "initial_written": 1,
+    "after_refinement_written": 8,
+    "refinement_limit": 64,
+    "worlds": [
+      {
+        "world_id": 10,
+        "changes": []
+      },
+      {
+        "world_id": 11,
+        "changes": [
+          [
+            13,
+            "N"
+          ]
+        ]
+      },
+      {
+        "world_id": 12,
+        "changes": [
+          [
+            12,
+            "N"
+          ]
+        ]
+      },
+      {
+        "world_id": 13,
+        "changes": [
+          [
+            12,
+            "X"
+          ]
+        ]
+      },
+      {
+        "world_id": 14,
+        "changes": [
+          [
+            2,
+            "N"
+          ]
+        ],
+        "disposition": "rebuild_changed_factor_topology"
+      }
+    ],
+    "fixed_world_queries_rounded": [
+      11.2244,
+      11.239,
+      11.3965,
+      11.3965
+    ],
+    "shared_DAG_evaluations": 36,
+    "independent_DAG_evaluations": 60
+  },
+  "comparisons": [
+    "Independent full CE solve plus brute sequence-compatible role enumeration",
+    "Independent CE DAG for each fixed-topology world",
+    "Changed-topology rebuilt DAG versus full sequence oracle",
+    "Exact source/role/context provenance and current validity",
+    "Duplicate world/mutation IDs and out-of-range coordinates rejected",
+    "125-factor fixture rejected at declared refinement limit"
+  ],
+  "loss_and_refinement": "Regional reconstruction revisits all needed numeric sites; candidate overflow is refined within 64-factor bound. Scalar sum omits arrangement; exact source/world carriers retained. Changed topology rebuilds rather than reusing incompatible graph.",
+  "limitations": [
+    "Synthetic numerical response and fixed observed role key, no trained hierarchy",
+    "Evaluation counts omit source/port/factor recomputation, memory, refinement and transfer; no speed claim",
+    "Equal-query numerical groups retain different exact sequences and do not identify causal effects",
+    "No GPU compilation or execution in this composition"
+  ],
+  "validation": {
+    "test": "bp_moon_c06_ports_factor",
+    "passed": 1,
+    "failed": 0,
+    "evidence": "experiments/moonshot/compositions/ports_factor/receipts/test.log",
+    "configure_command": "python /tmp/moonshot_build_slot.py cmake -S experiments/moonshot/compositions/ports_factor -B /tmp/bp-moon-c06-build -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot -DCE_MOON_ENABLE_CUDA=OFF",
+    "build_command": "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-c06-build --target bp_moon_c06_ports_factor -j1",
+    "test_command": "ctest --test-dir /tmp/bp-moon-c06-build -R bp_moon_c06_ports_factor -V"
+  }
+}

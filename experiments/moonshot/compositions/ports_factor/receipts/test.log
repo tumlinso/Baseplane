@@ -1,0 +1,27 @@
+Internal ctest changing into directory: /tmp/bp-moon-c06-build
+UpdateCTestConfiguration  from :/tmp/bp-moon-c06-build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/tmp/bp-moon-c06-build/DartConfiguration.tcl
+Test project /tmp/bp-moon-c06-build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: bp_moon_c06_ports_factor
+
+1: Test command: /tmp/bp-moon-c06-build/bp_moon_c06_ports_factor
+1: Working Directory: /tmp/bp-moon-c06-build
+1: Test timeout computed to be: 10000000
+1: C06 reconstructed port -> factor -> world path: candidates=8 initial_written=1 refined=8
+1: C06 world queries=11.2244 11.239 11.3965 11.3965 shared evaluations=36 topology-rebuild world=14
+1: C06 full-solve/brute-join/independent-world oracles agree; source roles, invalidity, reverse coordinates and alternatives retained
+1/1 Test #1: bp_moon_c06_ports_factor .........   Passed    0.01 sec
+
+The following tests passed:
+	bp_moon_c06_ports_factor
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec
