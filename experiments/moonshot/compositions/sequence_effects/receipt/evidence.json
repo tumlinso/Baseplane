@@ -1,0 +1,56 @@
+{
+  "task": "BP-MOON-140",
+  "composition": "C01",
+  "observed_at_utc": "2026-10-02T14:20:06.433947+00:00",
+  "provider_commit": "b72bfa3af4782303bc8630ff355d308b54f55ede",
+  "provider_observed_head": "b72bfa3af4782303bc8630ff355d308b54f55ede",
+  "provider_source_dir": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot",
+  "provider_header_sha256": {
+    "include/ce_moon/reference.hpp": "dcb8b316a823c48fc7ffcbbee0cd7ab7d9bf06e3935d5fcdf972a751269138ed",
+    "families/effects/include/ce_moon/effects.hpp": "cbcf4c5c7c48c554763c28e553bf95ed3cd0b29d0ea72c7db792403a808122fb"
+  },
+  "commands": [
+    "cmake -S experiments/moonshot/compositions/sequence_effects -B /tmp/bp-moon-c01-build -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-c01-build --target bp_moon_c01_smoke -j 1",
+    "ctest --test-dir /tmp/bp-moon-c01-build -R '^bp_moon_c01_smoke$' --output-on-failure"
+  ],
+  "results": {
+    "configure": "passed",
+    "host_compile": "passed",
+    "ctest": "1/1 passed",
+    "compiler": "GNU13.3.0/C++17/Debug",
+    "cuda_authored": false,
+    "gpu_launched": false,
+    "benchmark": false
+  },
+  "disposition": "implemented experimentally",
+  "connected_families": [
+    "logic::Circuit/base_mask",
+    "automata::EffectHierarchy",
+    "response::ResponseHierarchy",
+    "demand::pull/support"
+  ],
+  "evidence": [
+    "Actual GC predicate bits condition both source effect hierarchies.",
+    "All32finite entries match independent conditioned-source oracle, finite and affine outputs remain typed.",
+    "Changing finite or floating incoming state changes actual demand decision.",
+    "Exact original-source refinement matches coordinate oracle in both strands across31/32packed seam.",
+    "Wave/work/output capacity deferral preserves support; bounded resume reproduces unrestricted result.",
+    "Invalid bases/tail excluded; lowercase accepted; stale support/query versions and illegal length/state rejected."
+  ],
+  "limits": [
+    "Conditioned response discards non-GC identity through explicit resets",
+    "Synthetic untrained query policy",
+    "4096base domain",
+    "Construction/certificate costs remain source-dependent",
+    "No CUDA executor or speed/biology claim"
+  ],
+  "source_sha256": {
+    "CMakeLists.txt": "3bbadf75fa598c79993788cb14f5cec503b3270d22c439995dcccac9248cb90f",
+    "receipt/README.md": "7efb1b53320e382eaf83f6c8033b02256d0b004afa090c67fabe7df20a22a713",
+    "tests/smoke.cpp": "3de81b83236f6bc1f37c19bcefe20991f1a48cbf952cbced5dd93ff3a8c4ce0c",
+    "source/c01.hpp": "2fbcd8749e90c900c05e9fdc94d1d295bc63c3b96bf49cda6340633aa3710513"
+  },
+  "binary_sha256": "ca57cbe657bcae65dc91b78b464df324be6f6e683367aae9410fe4b11d0ae180",
+  "context_fallback": "Composition experimental TUs outside configured ctxpp globs; canonical inspection and standalone compile_commands used; generated indexes preserved."
+}
