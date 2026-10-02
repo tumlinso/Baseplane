@@ -1,0 +1,40 @@
+{
+  "task": "BP-MOON-080",
+  "date": "2026-10-02",
+  "host_mechanisms_authored": 4,
+  "host_mechanisms_compiled": 4,
+  "host_mechanisms_run": 4,
+  "cuda_kernels_authored": 2,
+  "cuda_kernels_compiled": 2,
+  "cuda_kernels_run": 0,
+  "compiler": "GNU 13.3.0; NVIDIA CUDA 12.9.86",
+  "cuda_target": "sm_70",
+  "build_directory": "/tmp/bp-moon-demand-build",
+  "build_parallelism": 1,
+  "build_slot_wrapper": "/tmp/moonshot_build_slot.py",
+  "host_test": "bp_moon_demand_smoke: 1/1 passed",
+  "checks": [
+    "Exact max absence certificate; rejection of foreign/stale support; GC question cannot reuse maximum certificate",
+    "Source-pull exact selected coordinates; queue and work-budget exhaustion return replay support",
+    "Fetch/test cohorts across three waves; empty input and capacity exhaustion; rejection of fabricated payload",
+    "Fixed five-item exploration revisits low-value item in five budgeted waves; persistent debt and invalid costs",
+    "Stable promotion; remote context wakeup; synchronous one-hop propagation; lineage/version and deferred frontier preservation"
+  ],
+  "cards": {
+    "E25": "implemented experimentally",
+    "E26": "implemented experimentally",
+    "E27": "implemented experimentally",
+    "E28": "implemented experimentally"
+  },
+  "provider_coordination": "CE040 caller score seam; CE050 residual diagnostics do not certify absence",
+  "gpu_execution": "Not run; no GPU launch authorized for family worker",
+  "benchmark": "Not run",
+  "biological_validation": false,
+  "limitations": [
+    "Sequence-derived exact max bounds rescan source; no learned summary or free construction claim",
+    "Resident CTA interpreter and device queue compaction deferred",
+    "CUDA paths are compile-only GC cohort and Jacobi-tag primitives",
+    "Fixed tag updates do not establish learned-model convergence",
+    "No asynchronous update mechanism or generalized whole-genome API"
+  ]
+}

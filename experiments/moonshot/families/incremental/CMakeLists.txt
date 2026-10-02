@@ -1,0 +1,5 @@
+add_executable(bp_moon_incremental_smoke smoke.cpp)
+target_link_libraries(bp_moon_incremental_smoke PRIVATE Baseplane::moonshot)
+if(BUILD_TESTING)
+  add_test(NAME bp_moon_incremental_smoke COMMAND bp_moon_incremental_smoke)
+endif()

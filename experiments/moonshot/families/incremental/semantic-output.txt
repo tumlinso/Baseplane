@@ -1,0 +1,5 @@
+E33 contents=2 occurrences=3 exact_comparisons=2 contextual_answers=2,5
+E34 dirty_nodes=6 preserved_sibling=1 directory_keys=2
+E35 cached_answer=2 recomputed_after_negative_edit=3 inspected_support_bases=4
+E36 grammar_nodes=13 incremental_compositions=8 static_compositions=4 shared_phrase_occurrences=2
+incremental semantic checks passed; CPU fixture only

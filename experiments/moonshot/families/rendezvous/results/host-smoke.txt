@@ -1,0 +1,11 @@
+2026-10-02 UTC; BP-MOON-060 family task worktree
+Compiler: GCC 13.3.0; CUDA 12.9.86; sm_70
+ctest --test-dir /tmp/bp-moon-rendezvous -R '^bp_moon_rendezvous_smoke$' --output-on-failure
+1/1 Test #4: bp_moon_rendezvous_smoke ......... Passed
+100% tests passed, 0 tests failed out of 1
+/tmp/bp-moon-rendezvous/families/rendezvous/bp_moon_rendezvous_smoke
+E17 objects=99 inspected=306 groups=3 pairs=9312 stored=37 dropped=9275
+E18 overflow_rows=2 probes=15 collisions=3
+E19 primary_candidates=2 multiprobe_candidates=4 verified=4 evaluation_comparisons=6 adversarial_missed=2
+E20 evaluations=9 inspected_supports=15 answers=7 bounded_dropped=5
+CUDA static library and explicit-device executable compiled; no GPU launches.

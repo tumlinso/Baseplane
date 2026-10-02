@@ -1,0 +1,96 @@
+{
+  "task": "BP-MOON-040",
+  "observed_at_utc": "2026-10-02T13:54:57.242275+00:00",
+  "baseplane_baseline": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+  "provider": {
+    "source_commit": "6b750dc18bf3cc1e18e74b4c17506347a7b63e91",
+    "observed_worktree_head": "ac61496e651db109ac14f5889d2ae21c40df1b2c",
+    "source_dir": "/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-effects/experiments/baseplane_moonshot",
+    "qualification": "Committed CE-MOON-020 numerical provider; relevant headers identical to source commit.",
+    "header_sha256": {
+      "include/ce_moon/reference.hpp": "dcb8b316a823c48fc7ffcbbee0cd7ab7d9bf06e3935d5fcdf972a751269138ed",
+      "families/effects/include/ce_moon/effects.hpp": "cbcf4c5c7c48c554763c28e553bf95ed3cd0b29d0ea72c7db792403a808122fb"
+    }
+  },
+  "compiler": "GNU C++13.3.0; C++17; Debug",
+  "commands": [
+    "cmake -S experiments/moonshot -B /tmp/bp-moon-effects-build -DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-effects/experiments/baseplane_moonshot -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
+    "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-effects-build --target bp_moon_effects_smoke -j 1",
+    "ctest --test-dir /tmp/bp-moon-effects-build -R '^bp_moon_effects_smoke$' --output-on-failure",
+    "/tmp/bp-moon-effects-build/families/effects/bp_moon_effects_smoke"
+  ],
+  "outcomes": {
+    "configure": "passed",
+    "compile": "passed",
+    "ctest": "1/1 passed",
+    "executable": "passed",
+    "cuda_authored": false,
+    "cuda_compiled": false,
+    "gpu_launched": false,
+    "benchmarked": false
+  },
+  "cards": {
+    "E09": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "response.hpp:ResponseHierarchy"
+    },
+    "E10": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "response.hpp:BlockRegion"
+    },
+    "E11": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "response.hpp:JetRegion"
+    },
+    "E12": {
+      "disposition": "implemented experimentally",
+      "compiled": true,
+      "run": true,
+      "entry": "response.hpp:SequenceCheckpoints"
+    }
+  },
+  "evidence": {
+    "E09": "Hierarchy and composed seam applications match independent sequence recurrence for three entry states; order differs; invalid symbols reset; source provenance retained.",
+    "E10": "Three source-derived 2x2-block effects agree with independent dense four-channel expansion; within-block mixing differs from monomial maps; provenance retained.",
+    "E11": {
+      "source": "AC",
+      "center": 0,
+      "in_radius_query": 0.1,
+      "truncation_error": 4.02e-05,
+      "out_radius_query": 1,
+      "source_replay_result": 1.342,
+      "source_bases_replayed": 2,
+      "source_bases_reanchored": 2,
+      "new_center": 1,
+      "certified_error_bound": false
+    },
+    "E12": {
+      "source": "AcGTNACGT",
+      "stride": 3,
+      "boundaries_checked": 10,
+      "retained_maps": 16,
+      "local_replay_bound": "less than stride in both directions",
+      "oracles": "direct forward prefix, reverse-order suffix context and forward suffix response"
+    }
+  },
+  "context_fallback": "New experimental TUs outside configured source globs; canonical reads and local compile_commands used; indexes preserved.",
+  "source_sha256": {
+    "CMakeLists.txt": "cd59811b20492922775eba79e944fb38f8f4650e805a05841aec5c97fb080716",
+    "response.hpp": "ee63722cd2959bdc9d8041d86199d88d2f7cef0f61d7c019218b1fba8ce98d6f",
+    "smoke.cpp": "399704bec77540c8444b4f15f44f9dd4a4b7c39f9009e5e36876757dd430b073"
+  },
+  "binary_sha256": "e144d8ca61d9e59c7f24a1c65b9b7b358efc2946894092a24ff8be26beb17a29",
+  "limitations": [
+    "No CUDA executor authored in this family",
+    "Synthetic untrained sequence mechanisms",
+    "No certified jet error bound",
+    "Checkpoint storage/construction remains O(N)",
+    "Floating parenthesization affects rounding"
+  ]
+}

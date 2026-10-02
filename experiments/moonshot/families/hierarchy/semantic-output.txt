@@ -1,0 +1,5 @@
+E13 full_positive=6 coarse_positive=0 residual_bytes=48 source_replayed=12
+E15 easy_planes=2 ambiguous_planes=11 lower=0.500977 upper=0.500977
+E16 chunks_before=12 chunks_after=13 exact_reused=11 alternative_windows=20 replay_windows=2
+E14 transition_probability=0.861819 homogeneous_probability=0.0279993 learned_chunks=22 inserted_chunks=22 fixed_chunks=8 surprise_chunks=25 learned_reused=21 fixed_reused=0 surprise_reused=24 inverse_positions=13
+hierarchy semantic checks passed; CPU fixture only

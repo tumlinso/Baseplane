@@ -1,0 +1,26 @@
+[ 50%] Building CXX object families/machine/CMakeFiles/bp_moon_machine_smoke.dir/smoke.cpp.o
+[100%] Linking CXX executable bp_moon_machine_smoke
+[100%] Built target bp_moon_machine_smoke
+[ 50%] Building CUDA object families/machine/CMakeFiles/bp_moon_machine_cuda_smoke.dir/machine_cuda.cu.o
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-machine/experiments/moonshot/families/machine/machine_cuda.cu(10): error: identifier "unsigned2" is undefined
+  __attribute__((global)) void make_planes(const u64* words,unsigned2* out,unsigned n){unsigned i=blockIdx.x*blockDim.x+threadIdx.x;if(i<n)out[i]=make_uint2(plane(words[i],0),plane(words[i],1));}
+                                                            ^
+
+/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-machine/experiments/moonshot/families/machine/machine_cuda.cu(11): error: identifier "unsigned2" is undefined
+  __attribute__((global)) void gc_planes(const unsigned2* planes,const unsigned* valid,unsigned* out,unsigned n){unsigned i=blockIdx.x*blockDim.x+threadIdx.x;if(i<n){auto p=planes[i];out[i]=__popc((p.x^p.y)&valid[i]);}}
+                                               ^
+
+/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-machine/experiments/moonshot/families/machine/machine_cuda.cu(32): error: identifier "unsigned2" is undefined
+      const unsigned n=unsigned(input.sequence.words.size());Device<u64> words(n);words.put(input.sequence.words.data());Device<unsigned> valid(n);valid.put(input.sequence.valid.data());Device<unsigned> out(n);Device<unsigned2> planes(n);
+                                                                                                                                                                                                                         ^
+
+/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-machine/experiments/moonshot/families/machine/machine_cuda.cu(38): error: no suitable user-defined conversion from "bp_moon::machine::Features" to "const std::array<int8_t, 4UL>" (aka "const std::array<signed char, 4UL>") exists
+      std::array<std::int8_t,4> weights{2,-1,3,-2};std::vector<int> a(n),b(n,packed(weights));for(unsigned i=0;i<n;++i)a[i]=packed(features(input,i));Device<int> da(n),db(n),dot(n);da.put(a.data());db.put(b.data());ce_moon_cuda::packed_dot<<<(n+127)/128,128>>>(da.p,db.p,dot.p,n);check(cudaGetLastError());auto score=dot.get();for(unsigned i=0;i<n;++i)if(score[i]!=scalar_dot(features(input,i),weights))throw std::runtime_error("DP4A routing");
+                                                                                                                                   ^
+
+4 errors detected in the compilation of "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-machine/experiments/moonshot/families/machine/machine_cuda.cu".
+gmake[3]: *** [families/machine/CMakeFiles/bp_moon_machine_cuda_smoke.dir/build.make:77: families/machine/CMakeFiles/bp_moon_machine_cuda_smoke.dir/machine_cuda.cu.o] Error 2
+gmake[2]: *** [CMakeFiles/Makefile2:982: families/machine/CMakeFiles/bp_moon_machine_cuda_smoke.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:989: families/machine/CMakeFiles/bp_moon_machine_cuda_smoke.dir/rule] Error 2
+gmake: *** [Makefile:551: bp_moon_machine_cuda_smoke] Error 2
