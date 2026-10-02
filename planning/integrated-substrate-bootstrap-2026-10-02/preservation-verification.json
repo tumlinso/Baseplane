@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "before_revision": 376,
+  "after_revision": 377,
+  "existing_tasks_checked": 61,
+  "existing_interfaces_checked": 6,
+  "existing_runs_checked": 5,
+  "permitted_metadata_updates": [
+    "BP-MOON-000"
+  ],
+  "errors": []
+}

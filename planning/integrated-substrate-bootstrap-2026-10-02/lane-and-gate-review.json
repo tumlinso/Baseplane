@@ -1,0 +1,175 @@
+{
+  "run_id": "BP-IS1-RUN-V1",
+  "root_task_id": "BP-IS1-000",
+  "root_lane_id": "BP-IS1-ADOPT-L",
+  "root_lane_role": "implementer",
+  "lanes": [
+    {
+      "id": "BP-IS1-ADOPT-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "exclusive"
+      },
+      "tasks": [
+        "BP-IS1-ADOPT"
+      ]
+    },
+    {
+      "id": "BP-IS1-SEQ-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-MERGE-A"
+      },
+      "tasks": [
+        "BP-IS1-SEQ"
+      ]
+    },
+    {
+      "id": "BP-IS1-HIERARCHY-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-MERGE-A"
+      },
+      "tasks": [
+        "BP-IS1-HIERARCHY"
+      ]
+    },
+    {
+      "id": "BP-IS1-INDEX-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-MERGE-A"
+      },
+      "tasks": [
+        "BP-IS1-INDEX"
+      ]
+    },
+    {
+      "id": "BP-IS1-REUSE-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-MERGE-A"
+      },
+      "tasks": [
+        "BP-IS1-REUSE"
+      ]
+    },
+    {
+      "id": "BP-IS1-LEARNING-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-MERGE-A"
+      },
+      "tasks": [
+        "BP-IS1-LEARNING"
+      ]
+    },
+    {
+      "id": "BP-IS1-BUILD-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-MERGE-A"
+      },
+      "tasks": [
+        "BP-IS1-BUILD"
+      ]
+    },
+    {
+      "id": "BP-IS1-QUALIFY-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-CLOSE"
+      },
+      "tasks": [
+        "BP-IS1-QUALIFY"
+      ]
+    },
+    {
+      "id": "BP-IS1-DOCS-L",
+      "role": "implementer",
+      "workspace": {
+        "mode": "isolated_merge",
+        "integration_task_id": "BP-IS1-CLOSE"
+      },
+      "tasks": [
+        "BP-IS1-DOCS"
+      ]
+    },
+    {
+      "id": "BP-IS1-INTEGRATOR-L",
+      "role": "integrator",
+      "workspace": {
+        "mode": "exclusive"
+      },
+      "tasks": [
+        "BP-IS1-MERGE-A",
+        "BP-IS1-BRIDGE",
+        "BP-IS1-COMPOSE",
+        "BP-IS1-CLOSE",
+        "BP-IS1-000"
+      ]
+    }
+  ],
+  "gate_bindings": [
+    {
+      "id": "BP-IS1-CLOSURE",
+      "type": "task_state",
+      "task_id": "BP-IS1-CLOSE",
+      "status": "done",
+      "required": true
+    },
+    {
+      "id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+      "type": "command",
+      "required": true,
+      "argv": [
+        "python3",
+        "-B",
+        "planning/integrated-substrate-v1/tools/gates.py",
+        "activation",
+        "--config",
+        "planning/integrated-substrate-v1/local-config.json"
+      ],
+      "cwd": ".",
+      "input_paths": [
+        "planning/integrated-substrate-v1/tools",
+        "planning/integrated-substrate-v1/local-config.json",
+        "planning/integrated-substrate-v1/machine"
+      ]
+    },
+    {
+      "id": "BP-IS1-BRIDGE-CELLERATOR-PROVIDER",
+      "type": "command",
+      "required": true,
+      "argv": [
+        "python3",
+        "-B",
+        "planning/integrated-substrate-v1/tools/gates.py",
+        "provider",
+        "--config",
+        "planning/integrated-substrate-v1/local-config.json",
+        "--consumer",
+        "BP-IS1-BRIDGE",
+        "--provider",
+        "cellerator"
+      ],
+      "cwd": ".",
+      "input_paths": [
+        "planning/integrated-substrate-v1/tools",
+        "planning/integrated-substrate-v1/local-config.json",
+        "planning/integrated-substrate-v1/machine"
+      ]
+    }
+  ],
+  "missing_gate_input_paths": [
+    "planning/integrated-substrate-v1/local-config.json",
+    "planning/integrated-substrate-v1/local-config.json"
+  ]
+}

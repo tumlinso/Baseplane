@@ -1,0 +1,35 @@
+{
+  "plan_digest": "fdf5d4e6b1d0a37a6eba04cb03ba3088caf378710f3a58e3f04b8bdac34bd4a9",
+  "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+  "revision": 376,
+  "status": "validated",
+  "valid": true,
+  "validation": {
+    "barrier_count": 0,
+    "checkpoint_count": 0,
+    "gate_count": 3,
+    "interface_count": 0,
+    "task_count": 15,
+    "valid": true
+  },
+  "warnings": [],
+  "would_add": [
+    "BP-IS1-000",
+    "BP-IS1-ADOPT",
+    "BP-IS1-BRIDGE",
+    "BP-IS1-BUILD",
+    "BP-IS1-CLOSE",
+    "BP-IS1-COMPOSE",
+    "BP-IS1-DOCS",
+    "BP-IS1-HIERARCHY",
+    "BP-IS1-INDEX",
+    "BP-IS1-LEARNING",
+    "BP-IS1-MERGE-A",
+    "BP-IS1-QUALIFY",
+    "BP-IS1-REUSE",
+    "BP-IS1-SEQ"
+  ],
+  "would_modify": [
+    "BP-MOON-000"
+  ]
+}

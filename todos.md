@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Orchestrator v2 Projection
 
-Project revision: `376`
+Project revision: `377`
 
 ## Workstreams
 - `STACK-BITOP-01` | kind: validation_task | status: done | parent: BITOP-00 | objective: Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.
@@ -28,6 +28,19 @@ Project revision: `376`
 - `BP-BITOP-35` | kind: integration_task | status: superseded | parent: BITOP-00 | objective: Provide allocation-explicit prepare/query/bind/run surface, integrate all CUDA families, and publish executable Baseplane BitOp v1.
 - `CE-BITOP-40` | kind: workstream | status: superseded | parent: BITOP-00 | objective: Preserve the historical external-adapter proposal as superseded; authoritative Cellerator integration is CE-ARCH-40 and must not bind Baseplane to DeviceMathContext.
 - `CE-BITOP-41` | kind: workstream | status: superseded | parent: BITOP-00 | objective: Park learned sparse event weighting until the Cellerator common ABI, execution order, unified runtime, operation core, and measured planner foundations exist.
+- `BP-IS1-ADOPT` | kind: task | status: planned | parent: BP-IS1-000 | objective: After the global predecessor barrier, inventory the completed frontier, assign every useful behavior/unfinished obligation, and integrate the minimum contracts needed by parallel lanes.
+- `BP-IS1-BRIDGE` | kind: task | status: planned | parent: BP-IS1-000 | objective: Consume source-bound installed CE capabilities and repair optional target/interface boundaries.
+- `BP-IS1-BUILD` | kind: task | status: planned | parent: BP-IS1-000 | objective: Build/install optional representation/query components and external-consumer fixtures without sibling-source coupling.
+- `BP-IS1-CLOSE` | kind: task | status: planned | parent: BP-IS1-000 | objective: Resolve final integration findings and publish the capability/results handoff for sibling consumption.
+- `BP-IS1-COMPOSE` | kind: task | status: planned | parent: BP-IS1-000 | objective: Compose predicates, effects, questions, nonlocal candidates and selective richer math through one prepared/client path.
+- `BP-IS1-DOCS` | kind: task | status: planned | parent: BP-IS1-000 | objective: Explain exact input, learned representation, question/refinement and real results through one human reading path.
+- `BP-IS1-HIERARCHY` | kind: task | status: planned | parent: BP-IS1-000 | objective: Integrate effect, lifting, learned/chosen chunks and question-specific summary portfolios using CE numerical providers.
+- `BP-IS1-INDEX` | kind: task | status: planned | parent: BP-IS1-000 | objective: Build coherent whole-input nomination/index/query paths that scale beyond warp-local demonstrations.
+- `BP-IS1-LEARNING` | kind: task | status: planned | parent: BP-IS1-000 | objective: Integrate sequence-conditioned learned chunking, gates, portfolios and counterexample refinement as explicit model options.
+- `BP-IS1-MERGE-A` | kind: task | status: planned | parent: BP-IS1-000 | objective: Merge independent sequence, hierarchy, indexing, reuse, learning and package work into a coherent client surface.
+- `BP-IS1-QUALIFY` | kind: task | status: planned | parent: BP-IS1-000 | objective: Activate relevant Q01–Q04 obligations and retain Q05 as an explicit external handoff.
+- `BP-IS1-REUSE` | kind: task | status: planned | parent: BP-IS1-000 | objective: Unify source/version dependency tracking, repeat sharing, memoized answers and counterfactual occurrences.
+- `BP-IS1-SEQ` | kind: task | status: planned | parent: BP-IS1-000 | objective: Retain the standalone exact core while giving higher representations a common source, validity and question boundary.
 - `BP-MOON-010` | kind: task | status: done | parent: BP-MOON-000 | objective: Adopt the reviewed successor policy; preserve exact sequence and completed evidence; install independently buildable seed fixtures, source maps, counters and capability declarations. Unblock experiments without first finishing the entire old BitOp executor. Split mixed seeds by ownership per machine/seed-ownership.json; coordinate with CE-MOON-010, but do not mutate its authority from this task.
 - `BP-MOON-020` | kind: task | status: done | parent: BP-MOON-000 | objective: Implement a diverse set of concrete masks as executable geometry experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.
 - `BP-MOON-030` | kind: task | status: done | parent: BP-MOON-000 | objective: Implement a diverse set of concrete finite-state effect machines experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.
@@ -66,5 +79,6 @@ Project revision: `376`
 - `BP-DOCS-20` | kind: task | status: done | parent: BP-DOCS-000 | objective: Move at most one useful mechanical source cluster by default, or keep source as-is; repair living docs/build/import/export references and preserve all semantic/evidence boundaries.
 - `BP-DOCS-30` | kind: task | status: done | parent: BP-DOCS-000 | objective: Verify existing result records, export portable raw evidence, and refresh only bounded selected cases when justified. Choose at most two public studies. Optional GH capability probe only; no broad benchmark or model work.
 - `BP-DOCS-90` | kind: task | status: done | parent: BP-DOCS-000 | objective: Apply reviewed final staged docs, validate local links/status/evidence and affected builds/tests, inspect rendered pages/figures, and write one authentic local handoff receipt.
+- `BP-IS1-000` | kind: epic | status: planned | parent: - | objective: Closure-only aggregate; no child depends on this epic.
 - `BP-MOON-000` | kind: epic | status: done | parent: - | objective: Aggregate the experimental outcomes and honest dispositions. This is not a prerequisite of its children and does not declare a final architecture.
 <!-- todo-orchestrator:v2-managed:end -->

@@ -1,0 +1,86 @@
+{
+  "source_plan_sha256": "abf04ab60f1825ca6438331250e4d50be742a5a18507fc808e3e3bc4268035fd",
+  "derived_plan_sha256": "56024952650fba5526e9f63f3e6d04bd977da428aed8df62db27ced41ff47487",
+  "authority_revision": 376,
+  "existing_task_definitions": [
+    {
+      "id": "BP-MOON-000",
+      "parent_id": null,
+      "kind": "epic",
+      "title": "Baseplane moonshot workshop: sequence that organizes its computation",
+      "objective": "Aggregate the experimental outcomes and honest dispositions. This is not a prerequisite of its children and does not declare a final architecture.",
+      "status": "done",
+      "priority": 0,
+      "parallel_policy": "serial",
+      "result": "implemented",
+      "next_action": "Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.",
+      "notes": "User authorized broad lightly qualified experiments on 2026-10-02. Runtime installation and old-program supersession must precede implementation; this plan file itself changes no authority.",
+      "tags": [],
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated"
+        ]
+      },
+      "scope": {
+        "exclusive_paths": [],
+        "read_paths": [
+          "experiments/moonshot",
+          "planning/baseplane_moonshot_bootstrap"
+        ],
+        "forbidden_paths": []
+      },
+      "gates": []
+    }
+  ],
+  "inherent_import_metadata_changes": [
+    "Task version increment",
+    "Task revision and updated_at refreshed",
+    "Scope rows recreated with identical mode/path"
+  ],
+  "preserved_existing_tables": [
+    "barrier_requirements",
+    "barriers",
+    "checkpoint_gates",
+    "checkpoint_interfaces",
+    "checkpoints",
+    "decisions",
+    "events",
+    "evidence",
+    "gates",
+    "handoffs",
+    "interface_consumers",
+    "interfaces",
+    "invariants",
+    "live_recovery_audit",
+    "migration_warnings",
+    "named_locks",
+    "ownership_scopes",
+    "resource_classes",
+    "resource_instances",
+    "resource_requests",
+    "task_artifacts",
+    "task_completion_gates",
+    "task_dependencies",
+    "task_invariants",
+    "task_locks",
+    "tasks",
+    "workflow_context_fragments",
+    "workflow_integration_queue",
+    "workflow_lane_tasks",
+    "workflow_lanes",
+    "workflow_message_receipts",
+    "workflow_message_recipients",
+    "workflow_messages",
+    "workflow_patch_artifacts",
+    "workflow_recovery_audit",
+    "workflow_rendezvous",
+    "workflow_rendezvous_arrivals",
+    "workflow_rendezvous_participants",
+    "workflow_run_charters",
+    "workflow_runs",
+    "workflow_workspaces"
+  ],
+  "modified_source_tasks": [],
+  "frozen_interfaces_in_proposal": []
+}

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Status v2 Projection
 
-Project revision: `376`
+Project revision: `377`
 
 ## Workstreams
 - `STACK-BITOP-01` | status: done | execution: closed | next: Verify the recorded evidence against current Git/source without changing implementation; run context, changes, guard, and audit; then complete validated.
@@ -28,6 +28,19 @@ Project revision: `376`
 - `BP-BITOP-35` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `CE-BITOP-40` | status: superseded | execution: closed | next: No implementation. This task is terminally superseded by CellStack CE-ARCH-40 and CELLERATOR_BASEPLANE_COMMON_ABI_V1_READY.
 - `CE-BITOP-41` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
+- `BP-IS1-ADOPT` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-BRIDGE` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-BUILD` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-CLOSE` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-COMPOSE` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-DOCS` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-HIERARCHY` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-INDEX` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-LEARNING` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-MERGE-A` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-QUALIFY` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-REUSE` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-SEQ` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
 - `BP-MOON-010` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-010.md and implement the assigned family, adapting within its scope. Apply the adopted ownership and research policy recorded in planning/baseplane_moonshot_adoption/baseplane-policy.todo-plan.json; verify its authority receipt before seed installation.
 - `BP-MOON-020` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-020.md and implement the assigned family, adapting within its scope.
 - `BP-MOON-030` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-030.md and implement the assigned family, adapting within its scope.
@@ -66,5 +79,6 @@ Project revision: `376`
 - `BP-DOCS-20` | status: done | execution: closed | next: Move at most one useful mechanical source cluster by default, or keep source as-is; repair living docs/build/import/export references and preserve all semantic/evidence boundaries.
 - `BP-DOCS-30` | status: done | execution: closed | next: Verify existing result records, export portable raw evidence, and refresh only bounded selected cases when justified. Choose at most two public studies. Optional GH capability probe only; no broad benchmark or model work.
 - `BP-DOCS-90` | status: done | execution: closed | next: Apply reviewed final staged docs, validate local links/status/evidence and affected builds/tests, inspect rendered pages/figures, and write one authentic local handoff receipt.
+- `BP-IS1-000` | status: planned | execution: inactive | next: Closure-only aggregate; no child depends on this epic.
 - `BP-MOON-000` | status: done | execution: closed | next: Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.
 <!-- todo-orchestrator:v2-managed:end -->

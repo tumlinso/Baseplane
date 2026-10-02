@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T14:37:57Z",
+  "generated_at": "2026-10-02T16:38:08Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 376,
+  "project_revision": 377,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -4390,6 +4390,16 @@
         "revision": 376,
         "seq": 376,
         "timestamp": "2026-10-02T14:37:57Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+        "entity_type": "project",
+        "event_type": "plan.applied",
+        "payload_json": "{\"plan_digest\": \"fdf5d4e6b1d0a37a6eba04cb03ba3088caf378710f3a58e3f04b8bdac34bd4a9\", \"source\": \"project-control\"}",
+        "revision": 377,
+        "seq": 377,
+        "timestamp": "2026-10-02T16:38:08Z"
       }
     ],
     "evidence": [
@@ -6399,6 +6409,45 @@
       },
       {
         "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/tools\", \"planning/integrated-substrate-v1/local-config.json\", \"planning/integrated-substrate-v1/machine\"]}",
+        "id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 377,
+        "status": "pending",
+        "task_id": "BP-IS1-ADOPT",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"provider\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\", \"--consumer\", \"BP-IS1-BRIDGE\", \"--provider\", \"cellerator\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/tools\", \"planning/integrated-substrate-v1/local-config.json\", \"planning/integrated-substrate-v1/machine\"]}",
+        "id": "BP-IS1-BRIDGE-CELLERATOR-PROVIDER",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 377,
+        "status": "pending",
+        "task_id": "BP-IS1-BRIDGE",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"status\": \"done\", \"task_id\": \"BP-IS1-CLOSE\"}",
+        "id": "BP-IS1-CLOSURE",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 377,
+        "status": "pending",
+        "task_id": "BP-IS1-000",
+        "type": "task_state",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
         "config_json": "{\"argv\": [\"python3\", \"-c\", \"import subprocess,tempfile\\nwith tempfile.TemporaryDirectory(prefix=\\\"bp-moon-post-merge-\\\") as b:\\n cmds=['cmake', '-S', '.', '-B', 'BUILD_PLACEHOLDER', '-DBP_MOON_ENABLE_CUDA=OFF', '-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/.git/todo-orchestrator/0ccaac37-dbbf-448e-a5f8-def197a70aba/workflow-workspaces/ce-moon-l-integration/experiments/baseplane_moonshot']\\n cmds[4]=b\\n subprocess.run(cmds,check=True)\\n subprocess.run([\\\"python3\\\",\\\"/tmp/moonshot_build_slot.py\\\",\\\"cmake\\\",\\\"--build\\\",b,\\\"--parallel\\\",\\\"1\\\"],check=True)\\n subprocess.run([\\\"ctest\\\",\\\"--test-dir\\\",b,\\\"--output-on-failure\\\",\\\"--no-tests=error\\\"],check=True)\\n\"], \"cwd\": \"experiments/moonshot\", \"expected_exit_code\": 0, \"input_paths\": [\"experiments/moonshot\"], \"timeout\": 600}",
         "id": "BP-MOON-140-HOST-POST-MERGE",
         "input_fingerprint": "a28b3658bd35d4df93b56c9fe00689633ba5a9276f5f953b40e727214bdfcf8e",
@@ -7551,6 +7600,27 @@
         "enforcement": null,
         "id": "BP-DOCS-SCOPE",
         "rule": "Documentation-first, at most one coherent mechanical source cluster by default. Preserve numerical/scientific semantics, live ownership, generated authority state and immutable evidence. Final source paths and status must be checked after intervening packages.",
+        "scope_json": "{}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
+        "id": "BP-IS1-EXTEND",
+        "rule": "Keep the libraries easy to extend and fast. No compulsory Cellpack format, universal hidden axis, second general runtime, or unmeasured default. Distinguish equivalent lowering, model choices and approximations.",
+        "scope_json": "{}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
+        "id": "BP-IS1-OWNERSHIP",
+        "rule": "Cellerator owns reusable mathematical/dynamical computation; Baseplane owns sequence meaning and representations; GlassHelix owns scientific experiments. Reuse existing numerical/lifetime owners, preserve real consumers and separate Todo authorities.",
+        "scope_json": "{}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
+        "id": "BP-IS1-PRESERVE",
+        "rule": "Execute only after the reviewed predecessor barrier. Preserve useful mechanisms, source, successful outcomes and negative evidence. No hand editing Todo/generated authority, no Ampere activation, no preprint edits, no CellShard authority changes.",
         "scope_json": "{}",
         "severity": "error"
       },
@@ -9554,6 +9624,1151 @@
         "mode": "read",
         "path": "tests",
         "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "planning/integrated-substrate-v1",
+        "task_id": "BP-IS1-000"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "exclusive",
+        "path": "cmake",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/integrated-substrate-v1",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/interop",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/integrated-substrate-v1/receipts",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src/interop",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/interop",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "cmake/substrate",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "exclusive",
+        "path": "examples/substrate/install",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/install",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "cmake",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "components",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "examples",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/integrated-substrate-v1/receipts",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "python",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "bench/substrate/composition",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "examples/substrate/sequence_tool",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/composition",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "exclusive",
+        "path": "README.md",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/representation",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src/representation",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/hierarchy",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/index",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src/index",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/index",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/learning",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "exclusive",
+        "path": "python/baseplane",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src/learning",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/learning",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "mode": "exclusive",
+        "path": "CMakeLists.txt",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "cmake",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "components",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "examples",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/integrated-substrate-v1/receipts",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "python",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "mode": "exclusive",
+        "path": "bench/substrate/qualification",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/integrated-substrate-v1/results/bp",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/qualification",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/incremental",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src/incremental",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/substrate/incremental",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/query/contracts",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "exclusive",
+        "path": "include/Baseplane/seq",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "exclusive",
+        "path": "src/seq",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "exclusive",
+        "path": "tests/seq",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "forbidden",
+        "path": "preprint",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todo-status.md",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "forbidden",
+        "path": "todos.md",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "AGENTS.md",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "README.md",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "docs",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "experiments",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "include",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "planning",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "src",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "mode": "read",
+        "path": "tests",
+        "task_id": "BP-IS1-SEQ"
       },
       {
         "mode": "read",
@@ -12521,6 +13736,215 @@
         "prerequisite_task_id": "BP-MOON-140",
         "task_id": "BP-MOON-150",
         "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1499,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-000",
+        "task_id": "BP-IS1-ADOPT",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1500,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-MERGE-A",
+        "task_id": "BP-IS1-BRIDGE",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1501,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-ADOPT",
+        "task_id": "BP-IS1-BUILD",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1502,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-QUALIFY",
+        "task_id": "BP-IS1-CLOSE",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1503,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-DOCS",
+        "task_id": "BP-IS1-CLOSE",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1504,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-BRIDGE",
+        "task_id": "BP-IS1-COMPOSE",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1505,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-COMPOSE",
+        "task_id": "BP-IS1-DOCS",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1506,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-ADOPT",
+        "task_id": "BP-IS1-HIERARCHY",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1507,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-ADOPT",
+        "task_id": "BP-IS1-INDEX",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1508,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-ADOPT",
+        "task_id": "BP-IS1-LEARNING",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1509,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-SEQ",
+        "task_id": "BP-IS1-MERGE-A",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1510,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-HIERARCHY",
+        "task_id": "BP-IS1-MERGE-A",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1511,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-INDEX",
+        "task_id": "BP-IS1-MERGE-A",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1512,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-REUSE",
+        "task_id": "BP-IS1-MERGE-A",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1513,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-LEARNING",
+        "task_id": "BP-IS1-MERGE-A",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1514,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-BUILD",
+        "task_id": "BP-IS1-MERGE-A",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1515,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-COMPOSE",
+        "task_id": "BP-IS1-QUALIFY",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1516,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-ADOPT",
+        "task_id": "BP-IS1-REUSE",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1517,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-IS1-ADOPT",
+        "task_id": "BP-IS1-SEQ",
+        "type": "task"
       }
     ],
     "task_invariants": [
@@ -13491,6 +14915,162 @@
       {
         "invariant_id": "ownership",
         "task_id": "BP-CUDA-LAB-90"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "invariant_id": "BP-IS1-EXTEND",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "invariant_id": "BP-IS1-OWNERSHIP",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
+        "invariant_id": "BP-IS1-PRESERVE",
+        "task_id": "BP-IS1-SEQ"
       },
       {
         "invariant_id": "canonical-source",
@@ -15110,6 +16690,356 @@
       },
       {
         "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-000",
+        "kind": "epic",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "",
+        "notes": "",
+        "objective": "Closure-only aggregate; no child depends on this epic.",
+        "parallel_policy": "serial",
+        "parent_id": null,
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Baseplane integrated sequence substrate",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-ADOPT",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "After the global predecessor barrier, inventory the completed frontier, assign every useful behavior/unfinished obligation, and integrate the minimum contracts needed by parallel lanes.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Reconcile finished predecessors and publish the small shared foundation",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-BRIDGE",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Consume source-bound installed CE capabilities and repair optional target/interface boundaries.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Accept the real Cellerator provider and bind the sequence bridge",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-BUILD",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Build/install optional representation/query components and external-consumer fixtures without sibling-source coupling.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Make exact and representation components cleanly installable",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-CLOSE",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Resolve final integration findings and publish the capability/results handoff for sibling consumption.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Accept the integrated, extensible sequence library",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-COMPOSE",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Compose predicates, effects, questions, nonlocal candidates and selective richer math through one prepared/client path.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Deliver an end-to-end adaptive sequence tool",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-DOCS",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Explain exact input, learned representation, question/refinement and real results through one human reading path.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Publish usable sequence APIs and the open research frontier",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-HIERARCHY",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Integrate effect, lifting, learned/chosen chunks and question-specific summary portfolios using CE numerical providers.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Make effects and refinable hierarchy a usable component",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-INDEX",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Build coherent whole-input nomination/index/query paths that scale beyond warp-local demonstrations.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Integrate real rendezvous, subscriptions and factor joins",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-LEARNING",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Integrate sequence-conditioned learned chunking, gates, portfolios and counterexample refinement as explicit model options.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Keep learned representation and routing in the integrated path",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-MERGE-A",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Merge independent sequence, hierarchy, indexing, reuse, learning and package work into a coherent client surface.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Integrate the sequence-facing domains",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-QUALIFY",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Activate relevant Q01\u2013Q04 obligations and retain Q05 as an explicit external handoff.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Qualify sequence semantics, total cost and meaningful learning scope",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-REUSE",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Unify source/version dependency tracking, repeat sharing, memoized answers and counterfactual occurrences.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Integrate edit invalidation and contextual reuse",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-SEQ",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+        "notes": "",
+        "objective": "Retain the standalone exact core while giving higher representations a common source, validity and question boundary.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-IS1-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 377,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Integrate exact sequence and source/query contracts",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
         "completion_commit": "74ef7a7103ae3bdd141080f4c39f4ffa68600a62",
         "completion_git_head": "74ef7a7103ae3bdd141080f4c39f4ffa68600a62",
         "completion_revision": 376,
@@ -15126,12 +17056,12 @@
         "priority": 0,
         "result": "implemented",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\"]}",
-        "revision": 376,
+        "revision": 377,
         "status": "done",
         "tags_json": "[]",
         "title": "Baseplane moonshot workshop: sequence that organizes its computation",
-        "updated_at": "2026-10-02T14:37:57Z",
-        "version": 5
+        "updated_at": "2026-10-02T16:38:08Z",
+        "version": 6
       },
       {
         "attention_reason": null,
@@ -16139,6 +18069,431 @@
         "series_key": "",
         "superseded_by": null,
         "task_id": "BP-DOCS-90",
+        "version": 1
+      },
+      {
+        "content_hash": "72265f26eb44303de6ce89345d29950ce2363f2b1df309638a38025a01a853cc",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-ADOPT\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-ADOPT.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"exclusive\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-ADOPT-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-ADOPT-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-ADOPT-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "04eb059fa46de2d213df05fba83879bf28cee48f6387257ec6a4f106413c8dd5",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-BUILD\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-BUILD.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-BUILD-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-BUILD-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-BUILD-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "f5782f61c2be56d43b05ded287fbd6c5048e82d077f90e4916fe250e1555cb9d",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-DOCS\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-DOCS.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-DOCS-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-DOCS-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-DOCS-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "4bf6bcc0be5f3f2545615cbb047b370289c689f861dd5194d7a9ccd1dde9812d",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-HIERARCHY\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-HIERARCHY.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-HIERARCHY-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-HIERARCHY-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-HIERARCHY-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "be01fddbbb07ee48b956a6a2aa418d7d15fea8f57ed698a6ae24b0c4dd9a734f",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-INDEX\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-INDEX.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-INDEX-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-INDEX-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INDEX-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "ff03c1d4a58f1022b25811e189ce53d1d0de2cd0d9e4f6876a19f0dfb412fed6",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"One owner for shared source, accepted lineage, intermediate integration and final capability receipts.\",\"ordered_tasks\":[\"BP-IS1-MERGE-A\",\"BP-IS1-BRIDGE\",\"BP-IS1-COMPOSE\",\"BP-IS1-CLOSE\",\"BP-IS1-000\"],\"references\":[\"planning/integrated-substrate-v1/START_CONTROLLER.md\"],\"rendezvous\":[],\"role\":\"integrator\",\"workspace_mode\":\"exclusive\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-INTEGRATOR-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INTEGRATOR-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "e8e396bc9a47f2728e99c4984db6a65c0a1d5f2f2d0ab3dca9ce1a8d02fcf2cf",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-LEARNING\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-LEARNING.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-LEARNING-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-LEARNING-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-LEARNING-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "849f9208cde969af0271ef16746b940fa6e7bff1f0f689f5d278b5199fae9209",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-QUALIFY\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-QUALIFY.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-QUALIFY-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-QUALIFY-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-QUALIFY-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "66cbee03b3262314472ceda6add6e2302ae6d3897b2caa448932c1e1ac910f87",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-REUSE\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-REUSE.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-REUSE-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-REUSE-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-REUSE-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "29d48572a22f77756b4efd1f67ffcfb800f9d4becfe0620114c6049e784affc7",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"motivation\":\"Bounded domain ownership; root accepts patches and binds dependent worktrees to accepted commits.\",\"ordered_tasks\":[\"BP-IS1-SEQ\"],\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-SEQ.md\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:lane_brief:BP-IS1-SEQ-L:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-IS1-SEQ-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-SEQ-L\",\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "e0a5181ac72e19da1455ac9f55e1ceda21a11a112b0bcb60ce931bd422981d5e",
+        "content_json": "{\"boundaries\":[\"Cellerator owns reusable mathematical/dynamical computation; Baseplane owns sequence meaning and representations; GlassHelix owns scientific experiments. Reuse existing numerical/lifetime owners, preserve real consumers and separate Todo authorities.\",\"Execute only after the reviewed predecessor barrier. Preserve useful mechanisms, source, successful outcomes and negative evidence. No hand editing Todo/generated authority, no Ampere activation, no preprint edits, no CellShard authority changes.\",\"Keep the libraries easy to extend and fast. No compulsory Cellpack format, universal hidden axis, second general runtime, or unmeasured default. Distinguish equivalent lowering, model choices and approximations.\"],\"delegated_judgment\":\"Parallelize disjoint domains under a bounded total agent budget; serialize shared integration and clean GPU timing. Accept actual patches before creating dependent worktrees. Reconcile late predecessor work and claims first.\",\"desired_end_state\":\"Usable installed APIs, real composed execution, preserved research and easier future development.\",\"objective\":\"Integrate the completed frontier into deliberate, extensible, performant tools.\",\"references\":[\"planning/integrated-substrate-v1/START_CONTROLLER.md\",\"planning/integrated-substrate-v1/docs/01_CHARTER.md\"]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:run_charter:-:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "run_charter",
+        "lane_id": null,
+        "owner_scope_json": "{\"run_id\":\"BP-IS1-RUN-V1\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "d6cab9ee0cc5dfbce1a586f2eefe5bc70f087d2ebf67d53d9d54424e9dfa2199",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Global activation gate passes against live authorities; current claims, pending patches and frozen interfaces are reconciled without taking over predecessor work.\",\"Expanded preservation and source-to-destination maps include all current predecessor outcomes and newly discovered work.\",\"Small contract and dependency-target decision is committed and available to every child worktree; no broad new framework or numerical reset.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[\"BP-IS1-ADOPT-GLOBAL-BARRIER\"],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"After the global predecessor barrier, inventory the completed frontier, assign every useful behavior/unfinished obligation, and integrate the minimum contracts needed by parallel lanes.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-ADOPT.md\"],\"scope\":{\"exclusive_paths\":[\"planning/integrated-substrate-v1\",\"include\",\"src\",\"CMakeLists.txt\",\"cmake\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[\"BP-IS1-ADOPT-GLOBAL-BARRIER\"]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-ADOPT-L:BP-IS1-ADOPT:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-ADOPT-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-ADOPT-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-ADOPT\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-ADOPT",
+        "version": 1
+      },
+      {
+        "content_hash": "4866012ddfa9878369bb74d67428d3823a0b8d4e0ed1944d4f6c8830b01c36cf",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Exact core builds alone; higher components consume selected installed CE capabilities.\",\"Acyclic target graph and CPU/CUDA availability are checked.\",\"Shared root build patch is accepted by MERGE-A, not independently rewritten by every leaf.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Build/install optional representation/query components and external-consumer fixtures without sibling-source coupling.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-BUILD.md\"],\"scope\":{\"exclusive_paths\":[\"cmake/substrate\",\"tests/substrate/install\",\"examples/substrate/install\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-BUILD-L:BP-IS1-BUILD:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-BUILD-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-BUILD-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-BUILD\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-BUILD",
+        "version": 1
+      },
+      {
+        "content_hash": "0c406599bba760ab3d068023211d6d63587baf38d50e82b5e56a3ea7fa7a8d68",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Minimal exact and hierarchical examples execute through installed components.\",\"All 48 cards retain source/evidence/destination/disposition, without claiming 48 supported implementations.\",\"Historical lab, active status and design rationale are not conflated.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Explain exact input, learned representation, question/refinement and real results through one human reading path.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-DOCS.md\"],\"scope\":{\"exclusive_paths\":[\"README.md\",\"AGENTS.md\",\"docs\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-DOCS-L:BP-IS1-DOCS:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-DOCS-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-DOCS-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-DOCS\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-DOCS",
+        "version": 1
+      },
+      {
+        "content_hash": "d74b12b0d7d661bdf9c912a9066311b689bbb52de5076e3e3bf34460fd6b17d7",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Order-sensitive composition, source revisits and coarse/detail pathways share one ownership model.\",\"Competing boundaries, multiple summary kinds and nonuniform scale remain possible.\",\"Generic numerical math is not duplicated; current provider interfaces or explicit demands are used.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Integrate effect, lifting, learned/chosen chunks and question-specific summary portfolios using CE numerical providers.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-HIERARCHY.md\"],\"scope\":{\"exclusive_paths\":[\"include/Baseplane/representation\",\"src/representation\",\"tests/substrate/hierarchy\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-HIERARCHY-L:BP-IS1-HIERARCHY:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-HIERARCHY-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-HIERARCHY-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-HIERARCHY\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-HIERARCHY",
+        "version": 1
+      },
+      {
+        "content_hash": "ee01cd763b6c87138875455704907b241d0bf1ab5443ca4ccf211ddcca0f77ff",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Complete equal-key posting ranges cross warp boundaries and handle oversized groups without silent truncation.\",\"Candidate nomination recall, exact verification and relation scoring have separate evidence.\",\"Subscription and factorized hyperedge paths preserve source roles and output/capacity accounting.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Build coherent whole-input nomination/index/query paths that scale beyond warp-local demonstrations.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-INDEX.md\"],\"scope\":{\"exclusive_paths\":[\"include/Baseplane/index\",\"src/index\",\"tests/substrate/index\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-INDEX-L:BP-IS1-INDEX:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-INDEX-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INDEX-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-INDEX\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-INDEX",
+        "version": 1
+      },
+      {
+        "content_hash": "2a86adb9aad310851220302c70bd0dabf06fc430d8582fa32bd00d53153f092d",
+        "content_json": "{\"completion_contract\":{\"required\":[\"All local required outcomes are integrated and truthfully evidenced; preserve unfinished frontier work.\"]},\"forbidden_mutations\":[],\"gates\":[\"BP-IS1-CLOSURE\"],\"next_action\":\"Closure-only aggregate; no child depends on this epic.\",\"objective\":\"Closure-only aggregate; no child depends on this epic.\",\"scope\":{\"exclusive_paths\":[],\"read_paths\":[\"planning/integrated-substrate-v1\"]},\"tests\":[\"BP-IS1-CLOSURE\"]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-INTEGRATOR-L:BP-IS1-000:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INTEGRATOR-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-000\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-000",
+        "version": 1
+      },
+      {
+        "content_hash": "b6410539ca3bc2cd970655a0d39003f8469f41605a4b6e3a99bb90a5f68a03cd",
+        "content_json": "{\"completion_contract\":{\"required\":[\"External CE-INTEGRATE is effectively done and provider receipt hashes/source/capabilities validate.\",\"A real installed consumer uses CE general effects/math; sequence identity stays BP-owned.\",\"No dependency cycle, stale DeviceMathContext or imported private implementation.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[\"BP-IS1-BRIDGE-CELLERATOR-PROVIDER\"],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Consume source-bound installed CE capabilities and repair optional target/interface boundaries.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-BRIDGE.md\"],\"scope\":{\"exclusive_paths\":[\"src/interop\",\"include/Baseplane/interop\",\"tests/substrate/interop\",\"planning/integrated-substrate-v1/receipts\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[\"BP-IS1-BRIDGE-CELLERATOR-PROVIDER\"]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-INTEGRATOR-L:BP-IS1-BRIDGE:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INTEGRATOR-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-BRIDGE\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-BRIDGE",
+        "version": 1
+      },
+      {
+        "content_hash": "1bedccda457e7cfca85132c00586680381b8aba38b0a2d68ee24ef12121dd69d",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Core sequence vertical slice, optional CE bridge and extension exercise pass.\",\"Publish receipts/provider.json with real installed-consumer evidence for the joint witness.\",\"Unfinished obligations have explicit ownership/trigger; no implicit CellShard or Ampere activation.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Resolve final integration findings and publish the capability/results handoff for sibling consumption.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-CLOSE.md\"],\"scope\":{\"exclusive_paths\":[\"CMakeLists.txt\",\"cmake\",\"include\",\"src\",\"components\",\"tests\",\"examples\",\"experiments\",\"python\",\"docs\",\"planning/integrated-substrate-v1/receipts\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-INTEGRATOR-L:BP-IS1-CLOSE:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INTEGRATOR-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-CLOSE\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-CLOSE",
+        "version": 1
+      },
+      {
+        "content_hash": "1e1a303620b2f0ee995350e5f812c8dee0ef776d3caf23598d2ff4a55522c9b3",
+        "content_json": "{\"completion_contract\":{\"required\":[\"A bounded example includes order sensitivity, exact revisit, nonlocal group, learned option and edit repair.\",\"Question/capacity/output/approximation contracts survive composition; ordinary branch/cohort alternatives are allowed.\",\"Users do not need to import experimental directories or rebuild a new driver for each query.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Compose predicates, effects, questions, nonlocal candidates and selective richer math through one prepared/client path.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-COMPOSE.md\"],\"scope\":{\"exclusive_paths\":[\"examples/substrate/sequence_tool\",\"tests/substrate/composition\",\"bench/substrate/composition\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-INTEGRATOR-L:BP-IS1-COMPOSE:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INTEGRATOR-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-COMPOSE\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-COMPOSE",
+        "version": 1
+      },
+      {
+        "content_hash": "c4518c4e200f75d06c661457a4125f3317c371e3238e54835a6f4d6ed5340a62",
+        "content_json": "{\"completion_contract\":{\"required\":[\"All accepted patches are present in the integrator lineage before dependent worktrees begin.\",\"The exact\u2192representation\u2192question route is callable, with missing new CE capabilities explicitly blocked.\",\"Old isolated drivers are mapped to integrated or optional experimental routes.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Merge independent sequence, hierarchy, indexing, reuse, learning and package work into a coherent client surface.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-MERGE-A.md\"],\"scope\":{\"exclusive_paths\":[\"CMakeLists.txt\",\"cmake\",\"include\",\"src\",\"components\",\"tests\",\"examples\",\"experiments\",\"python\",\"planning/integrated-substrate-v1/receipts\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-INTEGRATOR-L:BP-IS1-MERGE-A:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-INTEGRATOR-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-MERGE-A\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-MERGE-A",
+        "version": 1
+      },
+      {
+        "content_hash": "d4a677ec3a9a7d37418edb7752da5aa7b62f0b03a418b5ba0234a5b8bfb84ea5",
+        "content_json": "{\"completion_contract\":{\"required\":[\"A small declared learned task runs through the same representation/provider interface as constructed alternatives.\",\"Teacher, discrete/hardened route and residual correction are separately versioned; gradient conventions are stated.\",\"No annotation oracle, surprise-equals-function assumption or permanent starvation of quiet regions.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Integrate sequence-conditioned learned chunking, gates, portfolios and counterexample refinement as explicit model options.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-LEARNING.md\"],\"scope\":{\"exclusive_paths\":[\"include/Baseplane/learning\",\"src/learning\",\"python/baseplane\",\"tests/substrate/learning\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-LEARNING-L:BP-IS1-LEARNING:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-LEARNING-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-LEARNING-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-LEARNING\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-LEARNING",
+        "version": 1
+      },
+      {
+        "content_hash": "602e8d49987e12683ce7072debf5718b4ba3b63182c962786e2fec70b1e2715e",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Adversarial sequence/edit/output tests and cold/reuse/directory/refinement costs are recorded.\",\"Learned comparisons use a declared objective and proper split; unavailable biological data is not replaced by a toy claim.\",\"A new query/summary is added through the documented seam; current baseline/vendor losses remain visible.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Activate relevant Q01\u2013Q04 obligations and retain Q05 as an explicit external handoff.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-QUALIFY.md\"],\"scope\":{\"exclusive_paths\":[\"bench/substrate/qualification\",\"tests/substrate/qualification\",\"planning/integrated-substrate-v1/results/bp\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-QUALIFY-L:BP-IS1-QUALIFY:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-QUALIFY-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-QUALIFY-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-QUALIFY\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-QUALIFY",
+        "version": 1
+      },
+      {
+        "content_hash": "6b981d1dd6b7d0566b6efdfd308252d82e81201c2ea4984c3099b00d7852053e",
+        "content_json": "{\"completion_contract\":{\"required\":[\"A seam edit invalidates both affected values and directory memberships correctly.\",\"Identical content may share context-free work while occurrence/context differences remain distinct.\",\"Result caches, plan caches, residual stores and world deltas use complete version/guard keys.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Unify source/version dependency tracking, repeat sharing, memoized answers and counterfactual occurrences.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-REUSE.md\"],\"scope\":{\"exclusive_paths\":[\"include/Baseplane/incremental\",\"src/incremental\",\"tests/substrate/incremental\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-REUSE-L:BP-IS1-REUSE:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-REUSE-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-REUSE-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-REUSE\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-REUSE",
+        "version": 1
+      },
+      {
+        "content_hash": "ef42f4afc4650622b73dc1b6bf15bce74e077a44d34e20a88507ab25a482de15",
+        "content_json": "{\"completion_contract\":{\"required\":[\"Existing exact predicates remain usable without Cellerator representation dependencies.\",\"Coordinates/strand/invalid bases/halos and output capacity are checked against scalar references.\",\"Higher query contracts distinguish exact answers, certified bounds, learned confidence and detail requests.\"]},\"forbidden_mutations\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"gates\":[],\"next_action\":\"Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\",\"objective\":\"Retain the standalone exact core while giving higher representations a common source, validity and question boundary.\",\"references\":[\"planning/integrated-substrate-v1/tasks/BP-IS1-SEQ.md\"],\"scope\":{\"exclusive_paths\":[\"include/Baseplane/seq\",\"src/seq\",\"tests/seq\",\"include/Baseplane/query/contracts\"],\"forbidden_paths\":[\".todo-orchestrator\",\"todos\",\"todos.md\",\"todo-status.md\",\"preprint\"],\"read_paths\":[\"AGENTS.md\",\"README.md\",\"include\",\"src\",\"planning\",\"experiments\",\"tests\",\"docs\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "id": "BP-IS1-RUN-V1:task_brief:BP-IS1-SEQ-L:BP-IS1-SEQ:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-IS1-SEQ-L",
+        "owner_scope_json": "{\"lane_id\":\"BP-IS1-SEQ-L\",\"run_id\":\"BP-IS1-RUN-V1\",\"task_id\":\"BP-IS1-SEQ\"}",
+        "run_id": "BP-IS1-RUN-V1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-IS1-SEQ",
         "version": 1
       },
       {
@@ -17527,6 +19882,146 @@
         "task_id": "BP-DOCS-000"
       },
       {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-ADOPT-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-ADOPT"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-BUILD-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-BUILD"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-DOCS-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-DOCS"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-HIERARCHY-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-HIERARCHY"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-INDEX-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-INDEX"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-MERGE-A"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "position": 1,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-BRIDGE"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "position": 2,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-COMPOSE"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "position": 3,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-CLOSE"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-INTEGRATOR-L",
+        "position": 4,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-000"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-LEARNING-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-LEARNING"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-QUALIFY-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-QUALIFY"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-REUSE-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-REUSE"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T16:38:08Z",
+        "lane_id": "BP-IS1-SEQ-L",
+        "position": 0,
+        "revision": 377,
+        "state": "queued",
+        "task_id": "BP-IS1-SEQ"
+      },
+      {
         "activated_at": "2026-10-02T13:37:16Z",
         "completed_at": "2026-10-02T13:47:26Z",
         "enqueued_at": "2026-10-02T13:11:58Z",
@@ -18046,6 +20541,126 @@
       },
       {
         "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-ADOPT-L",
+        "parent_lane_id": null,
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "exclusive"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-BUILD-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-DOCS-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-HIERARCHY-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-INDEX-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-INTEGRATOR-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "integrator",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "exclusive"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-LEARNING-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-QUALIFY-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-REUSE-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-SEQ-L",
+        "parent_lane_id": "BP-IS1-ADOPT-L",
+        "revision": 377,
+        "role": "implementer",
+        "run_id": "BP-IS1-RUN-V1",
+        "state": "ready",
+        "updated_at": "2026-10-02T16:38:08Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-AUTOMATA",
         "parent_lane_id": "BP-MOON-L-FOUNDATION",
@@ -18545,6 +21160,16 @@
         "version": 1
       },
       {
+        "content_hash": "e0a5181ac72e19da1455ac9f55e1ceda21a11a112b0bcb60ce931bd422981d5e",
+        "content_json": "{\"boundaries\":[\"Cellerator owns reusable mathematical/dynamical computation; Baseplane owns sequence meaning and representations; GlassHelix owns scientific experiments. Reuse existing numerical/lifetime owners, preserve real consumers and separate Todo authorities.\",\"Execute only after the reviewed predecessor barrier. Preserve useful mechanisms, source, successful outcomes and negative evidence. No hand editing Todo/generated authority, no Ampere activation, no preprint edits, no CellShard authority changes.\",\"Keep the libraries easy to extend and fast. No compulsory Cellpack format, universal hidden axis, second general runtime, or unmeasured default. Distinguish equivalent lowering, model choices and approximations.\"],\"delegated_judgment\":\"Parallelize disjoint domains under a bounded total agent budget; serialize shared integration and clean GPU timing. Accept actual patches before creating dependent worktrees. Reconcile late predecessor work and claims first.\",\"desired_end_state\":\"Usable installed APIs, real composed execution, preserved research and easier future development.\",\"objective\":\"Integrate the completed frontier into deliberate, extensible, performant tools.\",\"references\":[\"planning/integrated-substrate-v1/START_CONTROLLER.md\",\"planning/integrated-substrate-v1/docs/01_CHARTER.md\"]}",
+        "created_at": "2026-10-02T16:38:08Z",
+        "creation_revision": 377,
+        "run_id": "BP-IS1-RUN-V1",
+        "superseded_at": null,
+        "superseded_revision": null,
+        "version": 1
+      },
+      {
         "content_hash": "69644b1992c9b7a4755b13dc504faf2aaf978a78f2d311cabcef21a78576b2bf",
         "content_json": "{\"acceptance_conditions\":[\"Each catalogue item has a truthful disposition and artifact or explicit defer/reject reason; seeds are not reported as completed architectures.\",\"Representative mechanisms can be built/run in their declared environments or are explicitly marked uncompiled; minimal correctness checks only.\",\"No silent dropped work, no hidden oracle candidate input, no unbounded memory/queue construction.\"],\"boundaries\":[\"This plan writes Baseplane only; the paired Cellerator plan owns experimental learned/numerical providers from inception. Neither authority silently writes the other.\",\"Maintain source validity, strand, provenance, explicit buffer capacities and Volta synchronization.\",\"Broad isolated experimentation is authorized; production promotion and broad benchmarks are not.\",\"Preserve completed old tasks, lab findings and retained work. The reviewed supersession protocol is required before claiming this run.\"],\"delegated_judgment\":\"Use dependency-driven parallel family lanes after foundation integration. Dispatch bounded configured Codex subagents under the root claim and file ownership; the root retains lifecycle and acceptance. Lane count is potential independence, not agent capacity: obey the total active agent budget including root and any heads. Shared seams have one owner; integrate family patches before compositions and closure.\",\"desired_end_state\":\"Diverse concrete experimental mechanisms, several compositions, source-grounded interfaces, and an honest later-qualification inventory.\",\"motivation\":\"Replace the deferred BitOp roadmap with a broader implementation-first workshop while preserving successful substrate and negative evidence.\",\"objective\":\"Explore many GPU-native ways for exact genomic information to build and refine hierarchical learned representations.\",\"references\":[\"planning/baseplane_moonshot_bootstrap/START_HERE.md\",\"planning/baseplane_moonshot_bootstrap/docs/00_INTENT.md\",\"planning/baseplane_moonshot_bootstrap/docs/05_EXECUTION_AND_SUPERSESSION.md\",\"planning/baseplane_moonshot_bootstrap/machine/experiments.json\",\"planning/baseplane_moonshot_bootstrap/docs/07_CELLERATOR_RESEARCH_SCOPE.md\"]}",
         "created_at": "2026-10-02T13:11:58Z",
@@ -18595,6 +21220,16 @@
         "root_task_id": "BP-DOCS-000",
         "status": "completed",
         "updated_at": "2026-09-29T12:57:39Z"
+      },
+      {
+        "active_charter_version": 1,
+        "completed_at": null,
+        "created_at": "2026-10-02T16:38:08Z",
+        "id": "BP-IS1-RUN-V1",
+        "revision": 377,
+        "root_task_id": "BP-IS1-000",
+        "status": "active",
+        "updated_at": "2026-10-02T16:38:08Z"
       },
       {
         "active_charter_version": 1,
