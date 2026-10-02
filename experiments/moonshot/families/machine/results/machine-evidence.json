@@ -1,0 +1,44 @@
+{
+  "task": "BP-MOON-130",
+  "compiler": "CUDA 12.9.86",
+  "target": "sm_70",
+  "binary_sha256": "07d0e12db50d01439f397c8c14146830f41fe3f9f3cc98f2219e68e978563694",
+  "gpu_executed": false,
+  "resources": {
+    "_Z15transpose_tablePKjPjj": {
+      "resource_line": "Used 14 registers, used 0 barriers, 372 bytes cmem[0]",
+      "stack_spills": "0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads",
+      "sass_static_instructions": 32
+    },
+    "_Z15transpose_shiftPKjPjj": {
+      "resource_line": "Used 10 registers, used 0 barriers, 372 bytes cmem[0]",
+      "stack_spills": "0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads",
+      "sass_static_instructions": 32
+    },
+    "_Z9gc_stagedPKmPKjPjj": {
+      "resource_line": "Used 22 registers, used 1 barriers, 3072 bytes smem, 380 bytes cmem[0]",
+      "stack_spills": "0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads",
+      "sass_static_instructions": null
+    },
+    "_Z9gc_planesPK5uint2PKjPjj": {
+      "resource_line": "Used 12 registers, used 0 barriers, 380 bytes cmem[0]",
+      "stack_spills": "0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads",
+      "sass_static_instructions": null
+    },
+    "_Z11make_planesPKmP5uint2j": {
+      "resource_line": "Used 38 registers, used 0 barriers, 372 bytes cmem[0]",
+      "stack_spills": "0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads",
+      "sass_static_instructions": null
+    },
+    "_Z8gc_fusedPKmPKjPjj": {
+      "resource_line": "Used 38 registers, used 0 barriers, 380 bytes cmem[0]",
+      "stack_spills": "0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads",
+      "sass_static_instructions": null
+    }
+  },
+  "source_sha256": {
+    "experiments/moonshot/families/machine/reference.hpp": "49eff6cbb590dd62336bd3735cf57b87fcd951e5656835f05443b66f2d52d738",
+    "experiments/moonshot/families/machine/machine_cuda.cu": "f65c9e336671eea39fb427a30f50b69713aad1265c6c4dd21f0303c24e1e4ee8",
+    "/home/tumlinson/Cellerator/experiments/baseplane_moonshot/include/ce_moon/volta.cuh": "b67667e42a2b82633aba07e058dfe54db87f89c1dbf2270e3eb6b4a1069f3d8a"
+  }
+}

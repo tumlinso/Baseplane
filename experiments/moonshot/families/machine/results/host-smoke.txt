@@ -1,0 +1,3 @@
+E45 bilinear/clamp/discontinuity passed; E46 dot=5 butterfly_roundtrip=32 lanes
+E47 candidates=8 survivors=2 search_checks=131085 lookup_domain=65536
+E48 words=17 variants=3 identical, invalid excluded

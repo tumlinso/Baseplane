@@ -1,0 +1,88 @@
+[ 50%] Building CXX object families/machine/CMakeFiles/bp_moon_machine_smoke.dir/smoke.cpp.o
+[100%] Linking CXX executable bp_moon_machine_smoke
+[100%] Built target bp_moon_machine_smoke
+[ 50%] Building CUDA object families/machine/CMakeFiles/bp_moon_machine_cuda_smoke.dir/machine_cuda.cu.o
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+ptxas info    : 0 bytes gmem, 64 bytes cmem[3]
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda16texture_responseEyPK6float2Pfj' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda16texture_responseEyPK6float2Pfj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 1.987 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda11butterfly32EPKfPfj' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda11butterfly32EPKfPfj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 2.550 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda10packed_dotEPKiS1_Pij' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda10packed_dotEPKiS1_Pij
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 1.098 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda17positive_relationEPKfPhj' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda17positive_relationEPKfPhj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 0.945 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda6wmma16EPK6__halfS2_Pfj' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda6wmma16EPK6__halfS2_Pfj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 3.276 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda10lift_pairsEPKfPfS2_j' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda10lift_pairsEPKfPfS2_j
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 1.177 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda16monomial_composeEPKNS_8MonoLaneES2_PS0_j' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda16monomial_composeEPKNS_8MonoLaneES2_PS0_j
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 1.648 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda19counted_dfa_composeEPKjS1_PKyS3_PjPyj' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda19counted_dfa_composeEPKjS1_PKyS3_PjPyj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 22 registers, used 0 barriers, 404 bytes cmem[0]
+ptxas info    : Compile time = 1.726 ms
+ptxas info    : Compiling entry function '_ZN12ce_moon_cuda11dfa_composeEPKjS1_Pjj' for 'sm_70'
+ptxas info    : Function properties for _ZN12ce_moon_cuda11dfa_composeEPKjS1_Pjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 1.140 ms
+ptxas info    : Compiling entry function '_Z10arithmeticPKfPK6float2Pfjb' for 'sm_70'
+ptxas info    : Function properties for _Z10arithmeticPKfPK6float2Pfjb
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 19 registers, used 0 barriers, 381 bytes cmem[0]
+ptxas info    : Compile time = 2.027 ms
+ptxas info    : Compiling entry function '_Z15transpose_tablePKjPjj' for 'sm_70'
+ptxas info    : Function properties for _Z15transpose_tablePKjPjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 14 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 1.381 ms
+ptxas info    : Compiling entry function '_Z15transpose_shiftPKjPjj' for 'sm_70'
+ptxas info    : Function properties for _Z15transpose_shiftPKjPjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 0.987 ms
+ptxas info    : Compiling entry function '_Z9gc_stagedPKmPKjPjj' for 'sm_70'
+ptxas info    : Function properties for _Z9gc_stagedPKmPKjPjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 22 registers, used 1 barriers, 3072 bytes smem, 380 bytes cmem[0]
+ptxas info    : Compile time = 6.553 ms
+ptxas info    : Compiling entry function '_Z9gc_planesPK5uint2PKjPjj' for 'sm_70'
+ptxas info    : Function properties for _Z9gc_planesPK5uint2PKjPjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 0.936 ms
+ptxas info    : Compiling entry function '_Z11make_planesPKmP5uint2j' for 'sm_70'
+ptxas info    : Function properties for _Z11make_planesPKmP5uint2j
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compile time = 3.957 ms
+ptxas info    : Compiling entry function '_Z8gc_fusedPKmPKjPjj' for 'sm_70'
+ptxas info    : Function properties for _Z8gc_fusedPKmPKjPjj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 38 registers, used 0 barriers, 380 bytes cmem[0]
+ptxas info    : Compile time = 4.047 ms
+[100%] Linking CUDA executable bp_moon_machine_cuda_smoke
+[100%] Built target bp_moon_machine_cuda_smoke
