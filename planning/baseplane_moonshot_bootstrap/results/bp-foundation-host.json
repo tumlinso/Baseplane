@@ -1,0 +1,72 @@
+{
+  "task": "BP-MOON-010",
+  "status": "host_semantic_smoke_pass",
+  "commands": [
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        "/home/tumlinson/Baseplane/experiments/moonshot",
+        "-B",
+        "/tmp/bp-moon-foundation-20261002",
+        "-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "exit_code": 0,
+      "log": "bp-foundation-0.log"
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "/tmp/bp-moon-foundation-20261002",
+        "-j",
+        "2"
+      ],
+      "exit_code": 0,
+      "log": "bp-foundation-1.log"
+    },
+    {
+      "argv": [
+        "ctest",
+        "--test-dir",
+        "/tmp/bp-moon-foundation-20261002",
+        "--output-on-failure"
+      ],
+      "exit_code": 0,
+      "log": "bp-foundation-2.log"
+    },
+    {
+      "argv": [
+        "/tmp/bp-moon-foundation-20261002/bp_moon_host_smoke"
+      ],
+      "exit_code": 0,
+      "log": "bp-foundation-3.log"
+    },
+    {
+      "argv": [
+        "/tmp/bp-moon-foundation-20261002/bp_moon_demo"
+      ],
+      "exit_code": 0,
+      "log": "bp-foundation-4.log"
+    }
+  ],
+  "authored": true,
+  "host_compiled": true,
+  "host_run": true,
+  "gpu_executed": false,
+  "cuda_kernel_authored": false,
+  "biological_validation": false,
+  "benchmark_run": false,
+  "provider_source": "/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+  "source_hashes": {
+    "experiments/moonshot/CMakeLists.txt": "fe888caf11fe0d76560e9fa30de2c2181f3cf78b78c467f0e62fa2215fdae23b",
+    "experiments/moonshot/README.md": "897fc0dfb1e65357130146a6c9b0a51a5b92cf0d382bafc3b3738c7b83f4969b",
+    "experiments/moonshot/cuda/README.md": "c9362153e630ee71b795b29319bc534f9ab64b5effb6d47a523e787dbcbc5909",
+    "experiments/moonshot/python/README.md": "3e2e2939856500118e025feebcb4888fe1112811b1f0ca2b44dadaf9ee088cdb",
+    "experiments/moonshot/host/demo.cpp": "b19b7757700f13a5675495a13d7085bd65964ebd69f9fc41f7b2d4705bbcc018",
+    "experiments/moonshot/host/smoke.cpp": "40abb5a115e9287058ee0a09fbc1fa135e2650249c17d25d9345615efa4c9e97",
+    "experiments/moonshot/include/bp_moon/source.hpp": "5466404833b724ea112580bc91c0a28fd9132d0af37022430a803607f6404a68",
+    "experiments/moonshot/include/bp_moon/reference.hpp": "7711fc4740fba1d28495f018cb6ffd994738f4e5baf0dfed1591437521aebb69"
+  }
+}

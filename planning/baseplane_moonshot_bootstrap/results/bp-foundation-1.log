@@ -1,0 +1,9 @@
+[ 16%] Building CXX object CMakeFiles/bp_moon_host_smoke.dir/host/smoke.cpp.o
+[ 33%] Building CXX object CMakeFiles/bp_moon_demo.dir/host/demo.cpp.o
+[ 50%] Linking CXX executable bp_moon_demo
+[ 66%] Linking CXX executable bp_moon_host_smoke
+[ 66%] Built target bp_moon_demo
+[ 66%] Built target bp_moon_host_smoke
+[ 83%] Building CXX object cellerator-moonshot/CMakeFiles/ce_moon_host_smoke.dir/host/smoke.cpp.o
+[100%] Linking CXX executable ce_moon_host_smoke
+[100%] Built target ce_moon_host_smoke

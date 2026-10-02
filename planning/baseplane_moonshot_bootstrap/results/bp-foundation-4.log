@@ -1,0 +1,11 @@
+Exact input: ACGTACGTTTTTACGNACGTACGTGGGGACGT
+Toy windows: 8; distinct exact strings: 4
+Query visited 15 nodes; exact source revisits: 7
+source=1 contig=1 coordinate=100 version=1 exact=ACGT effect=11
+source=1 contig=1 coordinate=104 version=1 exact=ACGT effect=11
+source=1 contig=1 coordinate=108 version=1 exact=TTTT effect=15
+source=1 contig=1 coordinate=116 version=1 exact=ACGT effect=11
+source=1 contig=1 coordinate=120 version=1 exact=ACGT effect=11
+source=1 contig=1 coordinate=124 version=1 exact=GGGG effect=10
+source=1 contig=1 coordinate=128 version=1 exact=ACGT effect=11
+Sequence-derived toy effects with explicit source recovery; no learned biology or timing claim.
