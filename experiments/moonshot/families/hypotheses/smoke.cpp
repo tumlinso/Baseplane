@@ -1,4 +1,5 @@
 #include "hypotheses.hpp"
+#include <bp_moon/source.hpp>
 #include <iostream>
 #include <type_traits>
 using namespace bp_moon::hypotheses;
@@ -10,6 +11,33 @@ int main(){try{
     static_assert(std::is_const_v<Parse::element_type>,"parse interpretations are immutable");
     // E37: same exact bases and common prefix, alternative segment boundaries.
     auto shared=source("ACGTACGT",100,Strand::reverse);
+    const auto original_bytes=shared->packed.original;
+    const auto original_validity=shared->packed.valid;
+    auto reverse_prefix=support(shared,0,2);
+    require(reverse_prefix.begin==106&&reverse_prefix.end==108,"reverse prefix maps physical coordinates");
+    for(auto strand:{Strand::forward,Strand::reverse}){
+        auto interval_source=source("ACGTACGT",100,strand);
+        bp_moon::SourceMap reference{0,7,100,3,strand==Strand::forward?bp_moon::Strand::forward:bp_moon::Strand::reverse,8};
+        for(std::size_t begin=0;begin<=8;++begin)for(std::size_t end=begin;end<=8;++end){
+            auto interval=support(interval_source,begin,end);
+            const auto first=begin==end?100+(strand==Strand::forward?begin:8-begin):std::min(reference.coordinate(begin),reference.coordinate(end-1));
+            const auto last=begin==end?first:std::max(reference.coordinate(begin),reference.coordinate(end-1))+1;
+            require(interval.begin==first&&interval.end==last&&interval.contig==7&&interval.epoch==3&&interval.strand==strand,"support agrees with shared SourceMap orientation");
+        }
+        auto empty=support(source("",100,strand),0,0);
+        require(empty.begin==100&&empty.end==100&&empty.epoch==3,"empty source boundary");
+        auto maximum=std::numeric_limits<bp_moon::u64>::max();
+        auto edge=support(source("ACGTACGT",maximum-8,strand),0,2);
+        require(edge.begin==(strand==Strand::forward?maximum-8:maximum-2)&&edge.end==(strand==Strand::forward?maximum-6:maximum),"representable coordinate endpoint");
+        rejects<std::invalid_argument>([&]{support(interval_source,2,1);});
+        rejects<std::invalid_argument>([&]{support(interval_source,0,9);});
+        rejects<std::invalid_argument>([&]{support(interval_source,9,9);});
+        rejects<std::invalid_argument>([&]{support(interval_source,std::numeric_limits<std::size_t>::max(),8);});
+    }
+    rejects<std::invalid_argument>([]{support({},0,0);});
+    auto unknown=source("ANaC",100,Strand::reverse);auto unknown_validity=unknown->packed.valid;
+    require(support(unknown,0,2).begin==102&&unknown->packed.valid==unknown_validity&&!unknown->packed.is_valid(1),"support mapping preserves unknown validity");
+    require(shared->packed.original==original_bytes&&shared->packed.valid==original_validity,"support mapping preserves immutable payload and validity");
     auto prefix=extend(shared,{},2);
     auto fine_middle=extend(shared,prefix,4),coarse_middle=extend(shared,prefix,6);
     auto fine=extend(shared,fine_middle,8),coarse=extend(shared,coarse_middle,8);
@@ -25,7 +53,7 @@ int main(){try{
     auto pruned=retain_beam({fine,coarse},positive,1);
     require(pruned.approximate&&pruned.dropped==1&&pruned.retained[0]!=narrower.retained[0],"beam may lose later answer");
     auto spans=parse_supports(fine);
-    require(spans.size()==3&&spans[0].begin==100&&spans[0].end==102&&spans[1].begin==102&&spans[2].end==108&&spans[0].strand==Strand::reverse&&spans[0].epoch==3,"exact parse support");
+    require(spans.size()==3&&spans[0].begin==106&&spans[0].end==108&&spans[1].begin==104&&spans[1].end==106&&spans[2].begin==100&&spans[2].end==104&&spans[0].strand==Strand::reverse&&spans[0].epoch==3,"exact parse support");
     require(shared->packed.original=="ACGTACGT"&&fine->parent==fine_middle,"selection preserves source and branches");
     rejects<std::invalid_argument>([&]{extend(source("AAAA"),prefix,3);});
     rejects<std::invalid_argument>([&]{retain_beam({fine},positive,0);});

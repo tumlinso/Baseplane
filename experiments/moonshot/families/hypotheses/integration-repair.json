@@ -1,0 +1,35 @@
+{
+  "owner_task": "BP-MOON-150",
+  "finding": "Reverse strand physical support used forward local offsets",
+  "before": "Source(7,100,3,reverse,ACGTACGT), support(0,2) -> [100,102)",
+  "after": "Same source support(0,2) -> [106,108)",
+  "convention": "Reverse local[begin,end) -> physical[origin+length-end,origin+length-begin); empty interval maps to oriented boundary",
+  "base_source_commit": "82417df1ecc5713868a554021b0b6b27a048ff0d",
+  "artifact_sha256": {
+    "experiments/moonshot/families/hypotheses/hypotheses.hpp": "8c72d819055c2ca6a599484b64445b134071b332eaacadbe24a1ffd0bec5c9c2",
+    "experiments/moonshot/families/hypotheses/smoke.cpp": "5160046154e991de329df6719efb207da2b119954a5f9cc0e890112e796bbdfd",
+    "experiments/moonshot/families/hypotheses/README.md": "fbebd0c42476deb1171d37d6e664f376da8c2385b1939525d1d1b60793587d1b"
+  },
+  "regression": {
+    "before_repair": "Focused CTest failed: reverse prefix maps physical coordinates",
+    "after_repair": "Focused bp_moon_hypotheses_smoke passed",
+    "coverage": [
+      "All90 valid half-open ranges of eight-base sources across forward/reverse strands compared against shared SourceMap coordinates",
+      "Full source, first/last base, endpoint empties, and empty source",
+      "Maximum representable half-open coordinate endpoint",
+      "Null source, reversed range, oversized endpoint, oversized empty interval, maximum size_t offset",
+      "Reverse parse support expectations updated",
+      "Exact bytes, unknown validity, strand, contig and epoch preserved"
+    ],
+    "test_log": "/tmp/bp-moon-c04-build/Testing/Temporary/LastTest.log",
+    "commands": [
+      "python /tmp/moonshot_build_slot.py cmake --build /tmp/bp-moon-c04-build --target bp_moon_hypotheses_smoke -j1",
+      "ctest --test-dir /tmp/bp-moon-c04-build -R '^bp_moon_hypotheses_smoke$' --output-on-failure"
+    ]
+  },
+  "not_run": [
+    "GPU correctness",
+    "performance benchmark"
+  ],
+  "historical_family_receipt": "receipt.json preserved as original evidence"
+}

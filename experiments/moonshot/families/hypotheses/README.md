@@ -38,6 +38,12 @@ require replay. The source pointers enable replay rather than lossless embedding
 
 The host fixtures own their containers, with beam capacity and drops explicit.
 Parse extension validates support bounds and source identity; coordinate overflow
-is rejected. Reverse strand is metadata for caller-supplied oriented sequence;
-the experiment does not silently reverse or complement the sequence. No benchmark,
+is rejected. Sequence is supplied in its stated strand orientation. Physical
+support maps local [begin,end) to [origin+begin,origin+end) on forward strand
+and [origin+length-end,origin+length-begin) on reverse strand, matching the
+shared SourceMap convention. Empty support maps to the oriented boundary;
+sequence bytes and validity stay unchanged. No benchmark,
 GPU correctness, biological efficacy or production-interface claim is made.
+
+The integration repair receipt `integration-repair.json` records reverse physical
+coordinate regression coverage separately from the original family receipt.

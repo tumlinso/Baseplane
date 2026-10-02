@@ -25,7 +25,13 @@ using SourceRef=std::shared_ptr<const Source>;
 struct Support {u64 contig,begin,end,epoch;Strand strand;};
 inline Support support(const SourceRef& source,std::size_t begin,std::size_t end) {
     if(!source||end<begin||end>source->packed.original.size())throw std::invalid_argument("source support range");
-    return {source->contig,source->origin+begin,source->origin+end,source->epoch,source->strand};
+    // Local offsets traverse the caller-presented strand. Physical support is
+    // half-open and ascending, matching SourceMap::coordinate for both strands.
+    // Empty ranges map to the corresponding strand-oriented boundary.
+    const auto length=source->packed.original.size();
+    const auto first=source->strand==Strand::forward?begin:length-end;
+    const auto last=source->strand==Strand::forward?end:length-begin;
+    return {source->contig,source->origin+first,source->origin+last,source->epoch,source->strand};
 }
 inline int canonical(char c) {
     switch(c){case 'A':case 'a':return 0;case 'C':case 'c':return 1;case 'G':case 'g':return 2;case 'T':case 't':return 3;default:return -1;}
