@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-BITOP-35: Prepared runtime, residency, backend planner, and CUDA fan-in
 
-Task revision: `132`; current project revision is in `todo-status.md`.
+Task revision: `218`; current project revision is in `todo-status.md`.
 
 ## Objective
 Provide allocation-explicit prepare/query/bind/run surface, integrate all CUDA families, and publish executable Baseplane BitOp v1.
 
 ## State
-- Lifecycle: `blocked`
-- Execution: `blocked_dependency`
+- Lifecycle: `superseded`
+- Execution: `closed`
 - Parallel policy: `integration_exclusive`
-- Result: `-`
+- Result: `superseded`
 
 ## Next Action
 Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.

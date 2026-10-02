@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T12:57:39Z",
+  "generated_at": "2026-10-02T13:19:25Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 216,
+  "project_revision": 219,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -2790,6 +2790,36 @@
         "revision": 216,
         "seq": 216,
         "timestamp": "2026-09-29T12:57:39Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+        "entity_type": "project",
+        "event_type": "plan.applied",
+        "payload_json": "{\"plan_digest\": \"3a9150eeda026b1fadeb679205158d65c703913d56f6dde853c3890162169fc8\", \"source\": \"project-control\"}",
+        "revision": 217,
+        "seq": 217,
+        "timestamp": "2026-10-02T13:11:58Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "compat-v2",
+        "entity_type": "workflow_run",
+        "event_type": "workflow.run.retired",
+        "payload_json": "{\"receipt\": {\"changed\": true, \"changed_task_ids\": [\"BP-BITOP-20\", \"BP-BITOP-21\", \"BP-BITOP-22\", \"BP-BITOP-23\", \"BP-BITOP-24\", \"BP-BITOP-25\", \"BP-BITOP-30\", \"BP-BITOP-31\", \"BP-BITOP-32\", \"BP-BITOP-33\", \"BP-BITOP-34\", \"BP-BITOP-35\", \"BP-BITOP-36\", \"BP-BITOP-50\", \"CE-BITOP-41\", \"CE-BITOP-42\", \"CE-BITOP-43\", \"CE-BITOP-44\", \"CE-BITOP-45\", \"CS-BITOP-60\", \"STACK-BITOP-51\", \"STACK-BITOP-52\", \"STACK-BITOP-53\"], \"intended_run_id\": \"BP-MOON-RUN-1\", \"post_revision\": 218, \"pre_revision\": 217, \"preserved_task_ids\": [\"BP-BITOP-03\", \"BP-BITOP-10\", \"BP-BITOP-11\", \"BP-BITOP-12\", \"BP-BITOP-13\", \"CE-BITOP-40\", \"STACK-BITOP-01\", \"STACK-BITOP-02\", \"STACK-BITOP-04\"], \"preserved_workspace_ids\": [], \"reason\": \"User-authorized 2026-10-02 replacement of deferred BITOP-00 execution with the reviewed Baseplane moonshot workshop; preserve successful outcomes, source and evidence, integrate unfinished scope by the old-to-new map.\", \"request_hash\": \"6b415c9909d51cc4c9faca13fd5d572082ad2af2632b8f5413139a9ae16608cf\", \"source_run_id\": \"compat-v2\", \"status\": \"retired\", \"successor_run_id\": \"BP-MOON-RUN-1\"}, \"request_hash\": \"6b415c9909d51cc4c9faca13fd5d572082ad2af2632b8f5413139a9ae16608cf\"}",
+        "revision": 218,
+        "seq": 218,
+        "timestamp": "2026-10-02T13:16:41Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+        "entity_type": "project",
+        "event_type": "plan.applied",
+        "payload_json": "{\"plan_digest\": \"8e3746dcb739b8b9ee42959471e5678631247cb76b17fcb31d79a00cac68639c\", \"source\": \"project-control\"}",
+        "revision": 219,
+        "seq": 219,
+        "timestamp": "2026-10-02T13:19:25Z"
       }
     ],
     "evidence": [
@@ -5614,6 +5644,13 @@
       },
       {
         "enforcement": null,
+        "id": "BP-MOON-RESEARCH-TRUTH",
+        "rule": "BP-MOON preserves diverse mechanisms and meaningful failures with no top-two retention limit. Record authored, compiled, run and compared separately. Source recovery is not lossless embedding; a candidate relation is not causality; fixtures do not prove trained genome-scale representation. Preserve completed lab/docs outcomes and all exact validity, provenance and caller-owned capacity contracts.",
+        "scope_json": "{\"paths\": [\"experiments/moonshot\"]}",
+        "severity": "error"
+      },
+      {
+        "enforcement": null,
         "id": "canonical-source",
         "rule": "Canonical C++/CUDA source is authoritative. Use cpp-context-compiler where configured; generated .ctxpp views are read-only. Fall back to focused canonical reads when semantic indexing is unavailable or owned by another session.",
         "scope_json": "{}",
@@ -5622,28 +5659,28 @@
       {
         "enforcement": null,
         "id": "cellerator-blocker",
-        "rule": "CELLERATOR-EXTERNAL-STATE is ready-with-mandatory-recheck because the observed CP-MATH-08A referee work landed and Cellerator implementation paths are Git-clean, but the user prohibited re-opening its todo ledger in this turn. Every external task must perform a read-only Git/session/claim/lease audit before editing, must never mutate Cellerator todo state, and must stop on any overlap.",
+        "rule": "CELLERATOR-EXTERNAL-STATE is ready-with-mandatory-recheck because the observed CP-MATH-08A referee work landed and Cellerator implementation paths are Git-clean, but the user prohibited re-opening its todo ledger in this turn. Every external task must perform a read-only Git/session/claim/lease audit before editing, must never mutate Cellerator todo state, and must stop on any overlap.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): The prior turn-specific prohibition on reopening the Cellerator ledger is superseded for the user-authorized 2026-10-02 CE-MOON companion adoption. Its plan administration is performed through Cellerator authority; implementation requires its own bounded claims and overlap/resource audit. Preserve CE-ML2, CE-PTR, CE-AMP and unrelated work; this is not permission to repair their lifecycle.",
         "scope_json": "{}",
         "severity": "error"
       },
       {
         "enforcement": null,
         "id": "communication",
-        "rule": "Use ownership intervals plus bounded halos for local dependencies, compact continuation/finite-state summaries only for small regular state, and sparse Cellerator event/object routing for long range. Raw information communicates locally; compressed meaning communicates globally.",
+        "rule": "Use ownership intervals plus bounded halos for local dependencies, compact continuation/finite-state summaries only for small regular state, and sparse Cellerator event/object routing for long range. Raw information communicates locally; compressed meaning communicates globally.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): For BP-MOON, compact summaries and demand-driven exact source/detail movement are both permitted, including real whole-input candidate directories and nonlocal retrieval. Declare traffic, candidate construction, routing and revisit costs; compressed summaries are not presumed sufficient or lossless.",
         "scope_json": "{}",
         "severity": "error"
       },
       {
         "enforcement": null,
         "id": "conditional-policy",
-        "rule": "Measure packed direct versus resident planes, direct allowed masks versus capped exact expansion, four multi-motif mappings, current versus shuffle count reduction, event mask versus records by density, stable versus unordered output, halo versus continuation, and lowered CUDA versus interpreter. Graphs/persistent kernels/NVRTC/discrete-program learning remain post-evidence.",
+        "rule": "Measure packed direct versus resident planes, direct allowed masks versus capped exact expansion, four multi-motif mappings, current versus shuffle count reduction, event mask versus records by density, stable versus unordered output, halo versus continuation, and lowered CUDA versus interpreter. Graphs/persistent kernels/NVRTC/discrete-program learning remain post-evidence.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): BP-MOON catalogue implementation does not require prior speedup evidence. Small semantic, capacity and synchronization probes support experimentation; existing required gates remain required unless explicitly revised. Production promotion, benchmarking, large training and multi-GPU qualification remain separate Q01-Q05 work. Existing measured failures remain evidence, not a blanket prohibition on different hypotheses.",
         "scope_json": "{}",
         "severity": "warning"
       },
       {
         "enforcement": null,
         "id": "cuda-v100",
-        "rule": "CUDA work targets Volta sm_70 on Tesla V100 and CUDA 12.9. Use custom bitwise kernels only when semantics or measured traffic justify them. Benchmark, profiler, sanitizer, and all-GPU gates require their exclusive resources; source must never hardcode the assigned device.",
+        "rule": "CUDA work targets Volta sm_70 on Tesla V100 and CUDA 12.9. Use custom bitwise kernels only when semantics or measured traffic justify them. Benchmark, profiler, sanitizer, and all-GPU gates require their exclusive resources; source must never hardcode the assigned device.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): For BP-MOON isolated implementation, alternative instruction compositions are permitted before performance qualification. Preserve Volta sm_70, a capable CUDA 12.9 route, explicit warp masks, legal synchronization, assigned resources and no hardcoded device. No benchmark or speed claim is authorized by a compile receipt.",
         "scope_json": "{}",
         "severity": "error"
       },
@@ -5664,7 +5701,7 @@
       {
         "enforcement": null,
         "id": "external-repositories",
-        "rule": "Cellerator, CelleraTorch, and CellShard are external to this Baseplane project root. Cellerator implementation ownership is represented only by external CE-ARCH checkpoint decisions; Baseplane tasks never duplicate or claim it. CellShard receives no work. Any future external task must inspect the owning ledger, AGENTS.md, Git state, claims, and leases and stop on overlap.",
+        "rule": "Cellerator, CelleraTorch, and CellShard are external to this Baseplane project root. Cellerator implementation ownership is represented only by external CE-ARCH checkpoint decisions; Baseplane tasks never duplicate or claim it. CellShard receives no work. Any future external task must inspect the owning ledger, AGENTS.md, Git state, claims, and leases and stop on overlap.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): For this paired adoption, Cellerator implementation ownership is additionally represented by its own CE-MOON tasks and provider receipts, not only CE-ARCH checkpoints. Apply its companion plan through its own authority. Baseplane tasks never claim Cellerator paths. Preserve ML2 and unrelated runs; no GlassHelix or CellShard work is added. Recheck owning instructions, Git, claims and resource leases before implementation.",
         "scope_json": "{}",
         "severity": "error"
       },
@@ -5678,14 +5715,14 @@
       {
         "enforcement": null,
         "id": "non-goals",
-        "rule": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types. Scoped exception authorized by the 2026-09-28 CUDA prototyping request: experiments/cuda_lab may contain isolated small parameterized floating-point inference probes and online routing/hierarchy tests. No production API, trainer/autograd framework, dense genome-token model, or unrestricted runtime is authorized by this exception.",
+        "rule": "Do not add sequence file parsers, genome/motif databases, IUPAC core parsing, PWM/ontology policy, AnnData/HDF5/CSPACK ownership, training/autograd in Baseplane, dense per-base embeddings, unrestricted GPU VM, NVRTC first path, dynamic parallelism, cooperative-grid baseline, Tensor Core Boolean claims, broad reorganization, or CP-BP matrix types. Scoped exception authorized by the 2026-09-28 CUDA prototyping request: experiments/cuda_lab may contain isolated small parameterized floating-point inference probes and online routing/hierarchy tests. No production API, trainer/autograd framework, dense genome-token model, or unrestricted runtime is authorized by this exception.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): For the isolated BP-MOON workshop, bounded finite-state interpreters, persistent/cohort experiments, parameterized inference, tensor arithmetic and learned-to-instruction consumers are permitted. Toy trainers and general learned/numerical operators belong to the paired Cellerator research scope. No unrestricted VM, general training framework, dense genome-token prerequisite, causal claim or unrelated reorganization is authorized. This extends the isolated research exception to experiments/moonshot without changing production contracts.",
         "scope_json": "{}",
         "severity": "error"
       },
       {
         "enforcement": null,
         "id": "ownership",
-        "rule": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked. Experimental clarification for experiments/cuda_lab only: temporary local floating arithmetic, candidate grouping and conditional sequence-representation kernels are allowed to test the new hypothesis; they do not acquire shared numerical/ABI ownership or authorize edits in Cellerator, CelleraTorch, GlassHelix or CellShard.",
+        "rule": "Baseplane owns packed sequence representation, validity-aware low-level predicates, portable/prepared sequence programs, CPU/SIMD/CUDA execution, explicit residency, compact masks/events, generic segments, and scalar references. Cellerator owns the shared domain/order/identity/operand ABI, relation structures, runtime integration, numerical interpretation, fusion, planning, learned/mechanistic state, and partition policy. CelleraTorch is optional. CellShard remains read-only and parked. Experimental clarification for experiments/cuda_lab only: temporary local floating arithmetic, candidate grouping and conditional sequence-representation kernels are allowed to test the new hypothesis; they do not acquire shared numerical/ABI ownership or authorize edits in Cellerator, CelleraTorch, GlassHelix or CellShard.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): For BP-MOON-RUN-1 in experiments/moonshot, Baseplane owns exact sequence grounding, validity, provenance, sequence-to-effect generation and sequence-specific representation/routing. Cellerator owns shared numerical/ABI/planning capability and experimental learned or parameterized operators from inception under independent CE-MOON tasks. General numerical seed code is split into its Cellerator provider, not duplicated. No Baseplane task acquires another repository scope; GlassHelix and CellShard remain outside this campaign.",
         "scope_json": "{}",
         "severity": "error"
       },
@@ -5727,7 +5764,7 @@
       {
         "enforcement": null,
         "id": "stop-conditions",
-        "rule": "Stop and hand off/block with exact evidence on unidentified dirty owned files, overlapping live lease, missing/frozen-interface mismatch, checkpoint/base-HEAD drift, absent resource, ownership contradiction, stable exact API break, missing CPU oracle, occupied CMake seam, material plan/code divergence, contaminated benchmark, unexplained sanitizer finding, or optional branch without activation evidence.",
+        "rule": "Stop and hand off/block with exact evidence on unidentified dirty owned files, overlapping live lease, missing/frozen-interface mismatch, checkpoint/base-HEAD drift, absent resource, ownership contradiction, stable exact API break, missing CPU oracle, occupied CMake seam, material plan/code divergence, contaminated benchmark, unexplained sanitizer finding, or optional branch without activation evidence.\nMoonshot amendment (2026-10-02; governs contrary restrictions only within this scope): For BP-MOON, stop for unsafe resources, ownership conflicts, invalid assumptions, unsupported instructions or the preserved identity/capacity/frozen-interface safeguards. Lack of a speedup, an unproven research hypothesis or an unstable isolated experimental API alone is not a stop condition. The user-authorized moonshot catalogue supplies activation evidence for isolated ideas only.",
         "scope_json": "{}",
         "severity": "error"
       },
@@ -7605,6 +7642,606 @@
         "mode": "read",
         "path": "tests",
         "task_id": "BP-DOCS-90"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-000"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-000"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/CMakeLists.txt",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/README.md",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/cuda",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/host",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/include",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/python",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/baseplane_moonshot_bootstrap/results",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/logic",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/automata",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/effects",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/hierarchy",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/rendezvous",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/tensor",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/demand",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/compiler",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/incremental",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/hypotheses",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/ports",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/families/machine",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/compositions",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "mode": "exclusive",
+        "path": "docs/status/current.md",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/CMakeLists.txt",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/README.md",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/cuda",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/host",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/include",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "experiments/moonshot/python",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "exclusive",
+        "path": "planning/baseplane_moonshot_bootstrap/results",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "forbidden",
+        "path": ".todo-orchestrator",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/cuda_lab",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "read",
+        "path": "experiments/moonshot",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "read",
+        "path": "include/Baseplane",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "read",
+        "path": "planning/baseplane_moonshot_bootstrap",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "mode": "read",
+        "path": "src/seq",
+        "task_id": "BP-MOON-150"
       },
       {
         "mode": "forbidden",
@@ -9679,6 +10316,281 @@
         "prerequisite_task_id": "BP-DOCS-30",
         "task_id": "BP-DOCS-90",
         "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1449,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-020",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1450,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-030",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1451,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-040",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1452,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-050",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1453,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-060",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1454,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-070",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1455,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-080",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1456,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-090",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1457,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-100",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1458,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-110",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1459,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-120",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1460,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-010",
+        "task_id": "BP-MOON-130",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1461,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-020",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1462,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-030",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1463,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-040",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1464,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-050",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1465,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-060",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1466,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-070",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1467,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-080",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1468,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-090",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1469,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-100",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1470,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-110",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1471,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-120",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1472,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-130",
+        "task_id": "BP-MOON-140",
+        "type": "task"
+      },
+      {
+        "barrier_id": null,
+        "checkpoint_id": null,
+        "condition_json": "{}",
+        "decision_id": null,
+        "id": 1473,
+        "interface_id": null,
+        "prerequisite_task_id": "BP-MOON-140",
+        "task_id": "BP-MOON-150",
+        "type": "task"
       }
     ],
     "task_invariants": [
@@ -11476,20 +12388,20 @@
         "kind": "epic",
         "legacy_owner": null,
         "legacy_payload_json": "{}",
-        "next_action": "Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.",
+        "next_action": "Historical aggregate superseded by BP-MOON-000. compat-v2 was retired through signed maintenance; see planning/baseplane_moonshot_adoption/baseplane-supersession.json and the original old-to-new map. Preserve completed evidence; production qualification remains Q01-Q05.",
         "notes": "Mandatory Baseplane-local completion excludes BP-BITOP-36, CE-BITOP-41/42/43/44/45, STACK-BITOP-51, and CS-BITOP-60 unless their external/activation checkpoints are satisfied. Baseplane must not freeze an independent numerical ecosystem, DeviceMathContext integration, parameter_descriptor learned boundary, or mandatory event/segment materialization. This parent owns no implementation and never edits external repositories. Deferral record: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied. Historical next action: Remain lifecycle-blocked until STACK-BITOP-53 validates every mandatory lane; then a coordinator plan revision may close the parent as validated.",
         "objective": "Coordinate Baseplane sequence primitives as a subordinate library of the Cellerator biological execution model, preserving standalone CPU/CUDA capability while deferring shared identities, relations, runtime integration, numerical interpretation, fusion, and planning to CE-ARCH-00.",
         "parallel_policy": "serial",
         "parent_id": null,
         "priority": 1,
-        "result": null,
-        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "result": "superseded",
+        "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"failed\", \"superseded\"]}",
+        "revision": 219,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Baseplane BitOp roadmap",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:19:25Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11632,14 +12544,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 170,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Scalar CPU reference execution",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11657,14 +12569,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 169,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Plan normalization, lowering, and backend classification",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11682,14 +12594,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 168,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Local mask grammar and bounded halo semantics",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11707,14 +12619,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 167,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Deterministic and fast compact emission contracts",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11732,14 +12644,14 @@
         "parallel_policy": "integration_exclusive",
         "parent_id": "BITOP-00",
         "priority": 155,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Property, adversarial, and differential test corpus",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11757,14 +12669,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 166,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Generic segment and regional-summary primitives",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11782,14 +12694,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 145,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "CUDA packed multi-exact motif backend",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11807,14 +12719,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 144,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "CUDA allowed-motif and plane-predicate backends",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11832,14 +12744,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 143,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "CUDA local grammar, halo, and ownership backend",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11857,14 +12769,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 142,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "CUDA compact emission",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11882,14 +12794,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BITOP-00",
         "priority": 141,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "CUDA segment reductions",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11907,14 +12819,14 @@
         "parallel_policy": "integration_exclusive",
         "parent_id": "BITOP-00",
         "priority": 130,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Prepared runtime, residency, backend planner, and CUDA fan-in",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11932,14 +12844,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 30,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"evaluated_not_promoted\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Conditional finite-state cross-tile composition",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -11957,14 +12869,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 90,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Benchmark matrix and measured backend selector",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12271,6 +13183,406 @@
         "completion_commit": null,
         "completion_git_head": null,
         "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-000",
+        "kind": "epic",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.",
+        "notes": "User authorized broad lightly qualified experiments on 2026-10-02. Runtime installation and old-program supersession must precede implementation; this plan file itself changes no authority.",
+        "objective": "Aggregate the experimental outcomes and honest dispositions. This is not a prerequisite of its children and does not declare a final architecture.",
+        "parallel_policy": "serial",
+        "parent_id": null,
+        "priority": 0,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\"]}",
+        "revision": 219,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Baseplane moonshot workshop: sequence that organizes its computation",
+        "updated_at": "2026-10-02T13:19:25Z",
+        "version": 2
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-010",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-010.md and implement the assigned family, adapting within its scope. Apply the adopted ownership and research policy recorded in planning/baseplane_moonshot_adoption/baseplane-policy.todo-plan.json; verify its authority receipt before seed installation.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Adopt the reviewed successor policy; preserve exact sequence and completed evidence; install independently buildable seed fixtures, source maps, counters and capability declarations. Unblock experiments without first finishing the entire old BitOp executor. Split mixed seeds by ownership per machine/seed-ownership.json; coordinate with CE-MOON-010, but do not mutate its authority from this task.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 219,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Install a small experimental substrate, not a universal framework",
+        "updated_at": "2026-10-02T13:19:25Z",
+        "version": 2
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-020",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-020.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete masks as executable geometry experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Masks as executable geometry",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-030",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-030.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete finite-state effect machines experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Finite-state effect machines",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-040",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-040.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful. Cellerator numerical research provider: CE-MOON-020. Experimental status does not transfer numerical ownership to Baseplane. Bind its actual receipt before claiming the integrated path complete.",
+        "objective": "Build sequence-grounded fixtures, source mapping and hierarchical consumers for continuous, refinable and multi-state numerical operators. Use CE-MOON-020 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Continuous response algebras",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-050",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-050.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete adaptive and refinable hierarchy experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Adaptive and refinable hierarchy",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-060",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-060.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete real nonlocal candidate discovery experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Real nonlocal candidate discovery",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-070",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-070.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful. Cellerator numerical research provider: CE-MOON-030. Experimental status does not transfer numerical ownership to Baseplane. Bind its actual receipt before claiming the integrated path complete.",
+        "objective": "Build sequence-grounded fixtures, source mapping and hierarchical consumers for tensor core relational and latent mechanisms. Use CE-MOON-030 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Meaningful Tensor Core axes",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-080",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-080.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete question-driven execution experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Question-driven execution",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-090",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-090.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful. Cellerator numerical research provider: CE-MOON-040. Experimental status does not transfer numerical ownership to Baseplane. Bind its actual receipt before claiming the integrated path complete.",
+        "objective": "Build sequence-grounded fixtures, source mapping and hierarchical consumers for learning, routing and hardening into cheap operators. Use CE-MOON-040 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Learning that becomes cheap machinery",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-100",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-100.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete reuse under context and sequence changes experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Reuse under context and sequence changes",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-110",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-110.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete multiple representations and interpretations experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Multiple representations and interpretations",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-120",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-120.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful. Cellerator numerical research provider: CE-MOON-050. Experimental status does not transfer numerical ownership to Baseplane. Bind its actual receipt before claiming the integrated path complete.",
+        "objective": "Build sequence-grounded fixtures, source mapping and hierarchical consumers for port, factor, multigrid and counterfactual mechanisms. Use CE-MOON-050 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Ports, factors and counterfactual worlds",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-130",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-130.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Implement a diverse set of concrete unconventional volta execution paths experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.",
+        "parallel_policy": "parallel_safe",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Unconventional Volta execution paths",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-140",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-140.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Build several end-to-end sequence-grounded combinations, keeping more than one architectural ontology alive. Include actual candidate construction and a refine/revisit path, not an oracle packet or disconnected kernel collection.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Compose mechanisms into alternative Baseplane paths",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-150",
+        "kind": "task",
+        "legacy_owner": null,
+        "legacy_payload_json": "{}",
+        "next_action": "Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-150.md and implement the assigned family, adapting within its scope.",
+        "notes": "Experimental implementation is the goal; validated refers only to explicitly recorded checks. no_change_required requires an artifact-level rationale, not abandonment. No biological/performance claim is implied. Use installed Todo lifecycle; never edit generated authority. Ordinary branch instructions, multiple passes and shared primitives are allowed when useful.",
+        "objective": "Resolve small shared-seam changes, keep existing Baseplane targets intact, inventory every candidate and migrated obligation, and hand back many runnable or explicitly uncompiled experiments without declaring a production architecture or scientific validation. Verify Cellerator provider receipts and keep two local authorities, not two numerical implementations.",
+        "parallel_policy": "integration_exclusive",
+        "parent_id": "BP-MOON-000",
+        "priority": 100,
+        "result": null,
+        "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
+        "revision": 217,
+        "status": "planned",
+        "tags_json": "[]",
+        "title": "Integrate a navigable research library and candid handoff",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "version": 1
+      },
+      {
+        "attention_reason": null,
+        "completion_commit": null,
+        "completion_git_head": null,
+        "completion_revision": null,
         "created_at": "2026-08-19T09:39:05Z",
         "id": "CE-BITOP-40",
         "kind": "workstream",
@@ -12307,14 +13619,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 110,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Learned sparse event weighting and regional aggregation",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12332,14 +13644,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 100,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Learned semantic partitions",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12357,14 +13669,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 20,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"evaluated_not_promoted\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Conditional continuous-to-discrete predicate induction",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12382,14 +13694,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 15,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"evaluated_not_promoted\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Conditional CelleraTorch bindings",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12407,14 +13719,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 10,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"evaluated_not_promoted\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Conditional sparse long-range object reasoning",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12432,14 +13744,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 5,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"evaluated_not_promoted\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Conditional persistence or pack delivery",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12532,14 +13844,14 @@
         "parallel_policy": "serial",
         "parent_id": "BITOP-00",
         "priority": 80,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Multi-GPU chunking and halo ownership",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12557,14 +13869,14 @@
         "parallel_policy": "integration_exclusive",
         "parent_id": "BITOP-00",
         "priority": 70,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Packaging, documentation, and consumer contract",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       },
       {
         "attention_reason": null,
@@ -12582,14 +13894,14 @@
         "parallel_policy": "project_exclusive",
         "parent_id": "BITOP-00",
         "priority": 60,
-        "result": null,
+        "result": "superseded",
         "result_policy_json": "{\"allowed_dispositions\": [\"validated\", \"failed\"]}",
-        "revision": 132,
-        "status": "blocked",
+        "revision": 218,
+        "status": "superseded",
         "tags_json": "[\"bitop-rewrite-pending\", \"deferred\"]",
         "title": "Final cross-repository integration audit",
-        "updated_at": "2026-09-29T05:49:36Z",
-        "version": 17
+        "updated_at": "2026-10-02T13:16:41Z",
+        "version": 18
       }
     ],
     "workflow_context_fragments": [
@@ -12897,6 +14209,533 @@
         "series_key": "",
         "superseded_by": null,
         "task_id": "BP-DOCS-90",
+        "version": 1
+      },
+      {
+        "content_hash": "b248a7b2c13630d50f5ea4704f8d91cad64a5e055b7ae0d8248c0134e6b870b1",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-030\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-AUTOMATA:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-AUTOMATA",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-AUTOMATA\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "6f68ea5a53942528d64dc254a3dfdea3cb294bc3a5118d69a5f65f60f1ab7ce1",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-090\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-COMPILER:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-COMPILER",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-COMPILER\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "165d0ce085298930287830ed1a8ddf348992caf1e6d4cc4bbb0bd748b57190b8",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-080\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-DEMAND:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-DEMAND",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-DEMAND\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "97d1953d2889daa5b1b49897ed0e848bbe4ad0168076bda86c363035d39aec3c",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-040\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-EFFECTS:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-EFFECTS",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-EFFECTS\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "346a30e62c519b0d21ebe2e8a0e420cd2b68dfd5285f9a51076104d2d3d7838d",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-010\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"exclusive\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-FOUNDATION:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-FOUNDATION",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-FOUNDATION\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "cb98b1857d68b8981d951ef614e860ce4c27b8c2d788ad0934c28ac628ec3f8b",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-050\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-HIERARCHY:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-HIERARCHY",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-HIERARCHY\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "bbadea27b5e0a25b802a850907cd03e34f94c2da52aff59ec9c71db8a43c6cbe",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-110\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-HYPOTHESES:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-HYPOTHESES",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-HYPOTHESES\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "87c3be9be2187bf46198ee98880cb6d547a46466058a30e32666283bdbbdbde0",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-100\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-INCREMENTAL:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-INCREMENTAL",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-INCREMENTAL\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "4c4a87d8ff8cae11c182cec059e9384946ee2444967e1cebd3e9075c3bac3e2c",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-140\",\"BP-MOON-150\",\"BP-MOON-000\"],\"rendezvous\":[],\"role\":\"integrator\",\"workspace_mode\":\"exclusive\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-INTEGRATION:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-INTEGRATION\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "b0c44b1040497221134b615b2047e612003b85621c4a0ef19ca27fb4bad0d11f",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-020\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-LOGIC:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-LOGIC",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-LOGIC\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "cbf38d5f6ff5e19159196ed3486fdbb9d140dbf78b2539245d0f9d73c3902fb5",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-130\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-MACHINE:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-MACHINE",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-MACHINE\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "c8e1bcecb0bea038fb6ddf8d49b35a28e36a0272c907bedcbb3e178274b4a5bd",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-120\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-PORTS:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-PORTS",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-PORTS\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "6be80feed209ba05b7925beff12bb35b17668c1d7d11458d7e3e79cd274126e9",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-060\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-RENDEZVOUS:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-RENDEZVOUS",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-RENDEZVOUS\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "e97a2770d2d9ac218237aa9319d0c1505187a0cc5af0712073a613b93654a58c",
+        "content_json": "{\"authority\":\"server_enforced_role_and_task_scope\",\"interfaces\":[],\"ordered_tasks\":[\"BP-MOON-070\"],\"rendezvous\":[],\"role\":\"implementer\",\"workspace_mode\":\"isolated_merge\"}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:lane_brief:BP-MOON-L-TENSOR:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "lane_brief",
+        "lane_id": "BP-MOON-L-TENSOR",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-TENSOR\",\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "69644b1992c9b7a4755b13dc504faf2aaf978a78f2d311cabcef21a78576b2bf",
+        "content_json": "{\"acceptance_conditions\":[\"Each catalogue item has a truthful disposition and artifact or explicit defer/reject reason; seeds are not reported as completed architectures.\",\"Representative mechanisms can be built/run in their declared environments or are explicitly marked uncompiled; minimal correctness checks only.\",\"No silent dropped work, no hidden oracle candidate input, no unbounded memory/queue construction.\"],\"boundaries\":[\"This plan writes Baseplane only; the paired Cellerator plan owns experimental learned/numerical providers from inception. Neither authority silently writes the other.\",\"Maintain source validity, strand, provenance, explicit buffer capacities and Volta synchronization.\",\"Broad isolated experimentation is authorized; production promotion and broad benchmarks are not.\",\"Preserve completed old tasks, lab findings and retained work. The reviewed supersession protocol is required before claiming this run.\"],\"delegated_judgment\":\"Use dependency-driven parallel family lanes after foundation integration. Dispatch bounded configured Codex subagents under the root claim and file ownership; the root retains lifecycle and acceptance. Lane count is potential independence, not agent capacity: obey the total active agent budget including root and any heads. Shared seams have one owner; integrate family patches before compositions and closure.\",\"desired_end_state\":\"Diverse concrete experimental mechanisms, several compositions, source-grounded interfaces, and an honest later-qualification inventory.\",\"motivation\":\"Replace the deferred BitOp roadmap with a broader implementation-first workshop while preserving successful substrate and negative evidence.\",\"objective\":\"Explore many GPU-native ways for exact genomic information to build and refine hierarchical learned representations.\",\"references\":[\"planning/baseplane_moonshot_bootstrap/START_HERE.md\",\"planning/baseplane_moonshot_bootstrap/docs/00_INTENT.md\",\"planning/baseplane_moonshot_bootstrap/docs/05_EXECUTION_AND_SUPERSESSION.md\",\"planning/baseplane_moonshot_bootstrap/machine/experiments.json\",\"planning/baseplane_moonshot_bootstrap/docs/07_CELLERATOR_RESEARCH_SCOPE.md\"]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:run_charter:-:-:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "run_charter",
+        "lane_id": null,
+        "owner_scope_json": "{\"run_id\":\"BP-MOON-RUN-1\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": null,
+        "version": 1
+      },
+      {
+        "content_hash": "2c3a74475576535ee80ea0f359fc1803705aaa2e11385c719e4a0ed50746b41a",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-030.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete finite-state effect machines experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/automata\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-AUTOMATA:BP-MOON-030:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-AUTOMATA",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-AUTOMATA\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-030\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-030",
+        "version": 1
+      },
+      {
+        "content_hash": "749bfa7aaf27d1fc471d51d29655e980873311a233caf96ce915a96aec79818b",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-090.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Build sequence-grounded fixtures, source mapping and hierarchical consumers for learning, routing and hardening into cheap operators. Use CE-MOON-040 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/compiler\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-COMPILER:BP-MOON-090:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-COMPILER",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-COMPILER\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-090\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-090",
+        "version": 1
+      },
+      {
+        "content_hash": "9da4f2c1c003276a2ec47ebdd7de7a4624401a285f3fb2a334043094f6fb7895",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-080.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete question-driven execution experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/demand\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-DEMAND:BP-MOON-080:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-DEMAND",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-DEMAND\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-080\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-080",
+        "version": 1
+      },
+      {
+        "content_hash": "a2af2a2d6b5cd06b91e6387936183af89f879e6079e49a3710a52144b5af5ef8",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-040.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Build sequence-grounded fixtures, source mapping and hierarchical consumers for continuous, refinable and multi-state numerical operators. Use CE-MOON-020 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/effects\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-EFFECTS:BP-MOON-040:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-EFFECTS",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-EFFECTS\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-040\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-040",
+        "version": 1
+      },
+      {
+        "content_hash": "1269277447258fc200113a22c4c100a1cf7d15878aeb3f61e5fe63fa27428300",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-010.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Adopt the reviewed successor policy; preserve exact sequence and completed evidence; install independently buildable seed fixtures, source maps, counters and capability declarations. Unblock experiments without first finishing the entire old BitOp executor. Split mixed seeds by ownership per machine/seed-ownership.json; coordinate with CE-MOON-010, but do not mutate its authority from this task.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/include\",\"experiments/moonshot/host\",\"experiments/moonshot/cuda\",\"experiments/moonshot/python\",\"experiments/moonshot/CMakeLists.txt\",\"experiments/moonshot/README.md\",\"planning/baseplane_moonshot_bootstrap/results\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-FOUNDATION:BP-MOON-010:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-FOUNDATION",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-FOUNDATION\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-010\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-010",
+        "version": 1
+      },
+      {
+        "content_hash": "09a95be4aca4b9bf4cdff8a15bf14e56f7a4a0613745abb584f4320e9a9d7a24",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-050.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete adaptive and refinable hierarchy experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/hierarchy\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-HIERARCHY:BP-MOON-050:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-HIERARCHY",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-HIERARCHY\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-050\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-050",
+        "version": 1
+      },
+      {
+        "content_hash": "4d3dcd537c0b15f3235834b6c689952c9b8a3bbe141a908381b42b9ebe7d3b8d",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-110.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete multiple representations and interpretations experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/hypotheses\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-HYPOTHESES:BP-MOON-110:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-HYPOTHESES",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-HYPOTHESES\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-110\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-110",
+        "version": 1
+      },
+      {
+        "content_hash": "f55ac368a354acb75d4aa88eece17d2be1cb1a7f74d5681193cc03a09bcb0f29",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-100.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete reuse under context and sequence changes experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/incremental\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-INCREMENTAL:BP-MOON-100:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-INCREMENTAL",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-INCREMENTAL\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-100\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-100",
+        "version": 1
+      },
+      {
+        "content_hash": "744c9d1b3a44c189124e1e556c79bc317f9e9684eb6f5e792239b86d8ddaeaf5",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[],\"gates\":[],\"next_action\":\"Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.\",\"objective\":\"Aggregate the experimental outcomes and honest dispositions. This is not a prerequisite of its children and does not declare a final architecture.\",\"scope\":{\"exclusive_paths\":[],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-INTEGRATION:BP-MOON-000:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-INTEGRATION\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-000\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-000",
+        "version": 1
+      },
+      {
+        "content_hash": "82ff7a231d8bd0d6002fd15948e31de81d996d3a9c5b3efe4074ed89fa6bffc6",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-140.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Build several end-to-end sequence-grounded combinations, keeping more than one architectural ontology alive. Include actual candidate construction and a refine/revisit path, not an oracle packet or disconnected kernel collection.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/compositions\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-INTEGRATION:BP-MOON-140:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-INTEGRATION\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-140\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-140",
+        "version": 1
+      },
+      {
+        "content_hash": "8b8eb1b48f829e2e431a40963aedb220860634a4a85ee715a38b14c406467588",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-150.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Resolve small shared-seam changes, keep existing Baseplane targets intact, inventory every candidate and migrated obligation, and hand back many runnable or explicitly uncompiled experiments without declaring a production architecture or scientific validation. Verify Cellerator provider receipts and keep two local authorities, not two numerical implementations.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/include\",\"experiments/moonshot/host\",\"experiments/moonshot/cuda\",\"experiments/moonshot/python\",\"experiments/moonshot/CMakeLists.txt\",\"experiments/moonshot/README.md\",\"planning/baseplane_moonshot_bootstrap/results\",\"docs/status/current.md\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-INTEGRATION:BP-MOON-150:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-INTEGRATION\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-150\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-150",
+        "version": 1
+      },
+      {
+        "content_hash": "07d588cc429052e445cd7000f4557dbe65ccfba6837cf9b8659947721d424f1c",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-020.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete masks as executable geometry experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/logic\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-LOGIC:BP-MOON-020:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-LOGIC",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-LOGIC\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-020\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-020",
+        "version": 1
+      },
+      {
+        "content_hash": "aa556cb0f18179b6ac6e71e127fafbc2bb3d08566f5e7ee11516af1f80662a8d",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-130.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete unconventional volta execution paths experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/machine\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-MACHINE:BP-MOON-130:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-MACHINE",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-MACHINE\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-130\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-130",
+        "version": 1
+      },
+      {
+        "content_hash": "f2483afcfe642019b3e372e22067ca7315e60ce47f401abb5577b5d52a164c1b",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-120.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Build sequence-grounded fixtures, source mapping and hierarchical consumers for port, factor, multigrid and counterfactual mechanisms. Use CE-MOON-050 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/ports\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-PORTS:BP-MOON-120:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-PORTS",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-PORTS\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-120\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-120",
+        "version": 1
+      },
+      {
+        "content_hash": "ae8e8c854a13c04aa2e161430a9d078b0faab7707bca790b8726cb2b8e3b52fe",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-060.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Implement a diverse set of concrete real nonlocal candidate discovery experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/rendezvous\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-RENDEZVOUS:BP-MOON-060:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-RENDEZVOUS",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-RENDEZVOUS\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-060\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-060",
+        "version": 1
+      },
+      {
+        "content_hash": "0d9740b0f63acc17656af1ab78dd872063b4102ab5e3adf23c9c34ec27783870",
+        "content_json": "{\"completion_contract\":null,\"forbidden_mutations\":[\".todo-orchestrator\"],\"gates\":[],\"next_action\":\"Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-070.md and implement the assigned family, adapting within its scope.\",\"objective\":\"Build sequence-grounded fixtures, source mapping and hierarchical consumers for tensor core relational and latent mechanisms. Use CE-MOON-030 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.\",\"scope\":{\"exclusive_paths\":[\"experiments/moonshot/families/tensor\"],\"forbidden_paths\":[\".todo-orchestrator\"],\"read_paths\":[\"planning/baseplane_moonshot_bootstrap\",\"experiments/moonshot\",\"include/Baseplane\",\"src/seq\",\"experiments/cuda_lab\"]},\"tests\":[]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "id": "BP-MOON-RUN-1:task_brief:BP-MOON-L-TENSOR:BP-MOON-070:1",
+        "invalidated_at": null,
+        "invalidation_revision": null,
+        "kind": "task_brief",
+        "lane_id": "BP-MOON-L-TENSOR",
+        "owner_scope_json": "{\"lane_id\":\"BP-MOON-L-TENSOR\",\"run_id\":\"BP-MOON-RUN-1\",\"task_id\":\"BP-MOON-070\"}",
+        "run_id": "BP-MOON-RUN-1",
+        "series_key": "",
+        "superseded_by": null,
+        "task_id": "BP-MOON-070",
         "version": 1
       },
       {
@@ -13603,6 +15442,166 @@
       {
         "activated_at": null,
         "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-AUTOMATA",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-030"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-COMPILER",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-090"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-DEMAND",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-080"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-EFFECTS",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-040"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-FOUNDATION",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-010"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-HIERARCHY",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-050"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-HYPOTHESES",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-110"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-INCREMENTAL",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-100"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-140"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "position": 1,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-150"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "position": 2,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-000"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-LOGIC",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-020"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-MACHINE",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-130"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-PORTS",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-120"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-RENDEZVOUS",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-060"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
+        "enqueued_at": "2026-10-02T13:11:58Z",
+        "lane_id": "BP-MOON-L-TENSOR",
+        "position": 0,
+        "revision": 217,
+        "state": "queued",
+        "task_id": "BP-MOON-070"
+      },
+      {
+        "activated_at": null,
+        "completed_at": null,
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 0,
@@ -13652,142 +15651,142 @@
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 5,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-20"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 6,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-21"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 7,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-22"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 8,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-23"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 9,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-24"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 10,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-25"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 11,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-30"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 12,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-31"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 13,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-32"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 14,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-33"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 15,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-34"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 16,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-35"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 17,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-36"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 18,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "BP-BITOP-50"
       },
       {
@@ -13802,62 +15801,62 @@
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 20,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "CE-BITOP-41"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 21,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "CE-BITOP-42"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 22,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "CE-BITOP-43"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 23,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "CE-BITOP-44"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 24,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "CE-BITOP-45"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 25,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "CS-BITOP-60"
       },
       {
@@ -13892,32 +15891,32 @@
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 29,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "STACK-BITOP-51"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 30,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "STACK-BITOP-52"
       },
       {
         "activated_at": null,
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:16:41Z",
         "enqueued_at": "2026-09-29T05:49:36Z",
         "lane_id": "compat-v2-main",
         "position": 31,
-        "revision": 132,
-        "state": "queued",
+        "revision": 218,
+        "state": "skipped",
         "task_id": "STACK-BITOP-53"
       }
     ],
@@ -13960,6 +15959,174 @@
       },
       {
         "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-AUTOMATA",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-COMPILER",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-DEMAND",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-EFFECTS",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-FOUNDATION",
+        "parent_lane_id": null,
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "exclusive"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-HIERARCHY",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-HYPOTHESES",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-INCREMENTAL",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-INTEGRATION",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "integrator",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "exclusive"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-LOGIC",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-MACHINE",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-PORTS",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-RENDEZVOUS",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-L-TENSOR",
+        "parent_lane_id": "BP-MOON-L-FOUNDATION",
+        "revision": 217,
+        "role": "implementer",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "ready",
+        "updated_at": "2026-10-02T13:11:58Z",
+        "workspace_mode": "isolated_merge"
+      },
+      {
+        "context_cursor": 0,
         "created_at": "2026-09-29T05:49:36Z",
         "id": "compat-v2-main",
         "parent_lane_id": null,
@@ -13975,7 +16142,22 @@
     "workflow_message_recipients": [],
     "workflow_messages": [],
     "workflow_patch_artifacts": [],
-    "workflow_recovery_audit": [],
+    "workflow_recovery_audit": [
+      {
+        "actor_identity": "root_retirement",
+        "completed_at": "2026-10-02T13:16:41Z",
+        "created_at": "2026-10-02T13:16:41Z",
+        "id": "adf4f32866bc4f7a97ceb1adee3b654d",
+        "lane_id": null,
+        "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+        "proposed_plan_json": "{\"dispositions\":{\"BP-BITOP-20\":\"superseded\",\"BP-BITOP-21\":\"superseded\",\"BP-BITOP-22\":\"superseded\",\"BP-BITOP-23\":\"superseded\",\"BP-BITOP-24\":\"superseded\",\"BP-BITOP-25\":\"superseded\",\"BP-BITOP-30\":\"superseded\",\"BP-BITOP-31\":\"superseded\",\"BP-BITOP-32\":\"superseded\",\"BP-BITOP-33\":\"superseded\",\"BP-BITOP-34\":\"superseded\",\"BP-BITOP-35\":\"superseded\",\"BP-BITOP-36\":\"superseded\",\"BP-BITOP-50\":\"superseded\",\"CE-BITOP-41\":\"superseded\",\"CE-BITOP-42\":\"superseded\",\"CE-BITOP-43\":\"superseded\",\"CE-BITOP-44\":\"superseded\",\"CE-BITOP-45\":\"superseded\",\"CS-BITOP-60\":\"superseded\",\"STACK-BITOP-51\":\"superseded\",\"STACK-BITOP-52\":\"superseded\",\"STACK-BITOP-53\":\"superseded\"},\"expected_fingerprint\":\"a72b6055cadd6a2237b17bd17764c975ee3159f3aedb22660749f0fee3330603\",\"expected_project_uuid\":\"1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3\",\"expected_revision\":217,\"expected_tasks\":{\"BP-BITOP-20\":{\"revision\":132,\"row_digest\":\"311ca045c512015b4c1b0e1b289fea282f8a61514b00661681b142549d9e017b\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-21\":{\"revision\":132,\"row_digest\":\"ec0d57d223134c84de9602a3289be175c85ef55071b31d83bd8d9e98d464b2bc\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-22\":{\"revision\":132,\"row_digest\":\"4878a4a5106873ba0ebde80b6981f10fcae0762107314cac34e03436c7c3e528\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-23\":{\"revision\":132,\"row_digest\":\"20ce737ca41e41ec6370cf77aab6973ddd1733123c51e75ec0890927fd2c289c\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-24\":{\"revision\":132,\"row_digest\":\"bcb39cae88251eefe8a6d91d1cd982dc26c9cde0a33b66b6bb8504c70af8eee5\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-25\":{\"revision\":132,\"row_digest\":\"7d3f82efad40c133e0a98bcb64a29ee2e83270f643bec141597030e5d9878374\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-30\":{\"revision\":132,\"row_digest\":\"21ef9716a661c5c20a69899b73ad76be77052a1e02510bd59717811567ef415a\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-31\":{\"revision\":132,\"row_digest\":\"7aad79a876e12e0db9594ef5b47863bebd98410a0443138b3c93d7707a8a174d\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-32\":{\"revision\":132,\"row_digest\":\"149b14f6fa5002a8e539a79276891012abcb14c90eb83110a9e6d8d1af7f33d1\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-33\":{\"revision\":132,\"row_digest\":\"35454d9c8f56fab784965582861d0a3fc5594459bbbd436217e0c7a71dac57ea\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-34\":{\"revision\":132,\"row_digest\":\"a7189cd21e0c71cf084311fdbc9509bc3eac520f565081287579a39cade9df3c\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-35\":{\"revision\":132,\"row_digest\":\"c72a1db7d4a8adff9a5220eb292bda9f0805fb4793420fe6a8755ae74db76416\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-36\":{\"revision\":132,\"row_digest\":\"3a5600c2c499bef15544558bd1f6b23430207cbc5626f2413b539977b530f44e\",\"status\":\"blocked\",\"version\":17},\"BP-BITOP-50\":{\"revision\":132,\"row_digest\":\"04d7d5983725aafff6228d9467d1df3451d46ceeff4b634b19bf65db9ebb2501\",\"status\":\"blocked\",\"version\":17},\"CE-BITOP-41\":{\"revision\":132,\"row_digest\":\"1dcb0db6b424b361b987a08731930e032706e2ec161bfa0098de52775fe9e136\",\"status\":\"blocked\",\"version\":17},\"CE-BITOP-42\":{\"revision\":132,\"row_digest\":\"218a5182c3f1b746d5716b5fd3fc849742012c5e0c51408303833015d57b90e2\",\"status\":\"blocked\",\"version\":17},\"CE-BITOP-43\":{\"revision\":132,\"row_digest\":\"727f00b0691dd87ecbb05523fb976045bf050bf742ea7e8e3734ed67695cd76a\",\"status\":\"blocked\",\"version\":17},\"CE-BITOP-44\":{\"revision\":132,\"row_digest\":\"8e63824187b12cfedc25fe3824580803c0d4517c16dd579269e362c3e679bcb9\",\"status\":\"blocked\",\"version\":17},\"CE-BITOP-45\":{\"revision\":132,\"row_digest\":\"d4a0336cd4db9bb5edec4bafd2683adb5e9fa28779f94def51c15a894087e200\",\"status\":\"blocked\",\"version\":17},\"CS-BITOP-60\":{\"revision\":132,\"row_digest\":\"eecca4998d26ac203d4d22ba626fa009d6f8dd31e8bab16e9784755d16f59c20\",\"status\":\"blocked\",\"version\":17},\"STACK-BITOP-51\":{\"revision\":132,\"row_digest\":\"9bf18a579f70340a81f7e11649edbb52806ec4cd23491e943c42216e465b0f94\",\"status\":\"blocked\",\"version\":17},\"STACK-BITOP-52\":{\"revision\":132,\"row_digest\":\"82f3d0d1db672f6405872ddfc937eacc63aac6bcb4d5578b1b4570e995d83d0f\",\"status\":\"blocked\",\"version\":17},\"STACK-BITOP-53\":{\"revision\":132,\"row_digest\":\"bef2694e6e3a4032ea56c886847066f6c188059c626b661502667330f360fc8b\",\"status\":\"blocked\",\"version\":17}},\"preserved_work_handoffs\":[],\"reason\":\"User-authorized 2026-10-02 replacement of deferred BITOP-00 execution with the reviewed Baseplane moonshot workshop; preserve successful outcomes, source and evidence, integrate unfinished scope by the old-to-new map.\",\"source_run_id\":\"compat-v2\",\"successor_run_id\":\"BP-MOON-RUN-1\"}",
+        "reason": "User-authorized 2026-10-02 replacement of deferred BITOP-00 execution with the reviewed Baseplane moonshot workshop; preserve successful outcomes, source and evidence, integrate unfinished scope by the old-to-new map.",
+        "result_json": "{\"changed\":true,\"changed_task_ids\":[\"BP-BITOP-20\",\"BP-BITOP-21\",\"BP-BITOP-22\",\"BP-BITOP-23\",\"BP-BITOP-24\",\"BP-BITOP-25\",\"BP-BITOP-30\",\"BP-BITOP-31\",\"BP-BITOP-32\",\"BP-BITOP-33\",\"BP-BITOP-34\",\"BP-BITOP-35\",\"BP-BITOP-36\",\"BP-BITOP-50\",\"CE-BITOP-41\",\"CE-BITOP-42\",\"CE-BITOP-43\",\"CE-BITOP-44\",\"CE-BITOP-45\",\"CS-BITOP-60\",\"STACK-BITOP-51\",\"STACK-BITOP-52\",\"STACK-BITOP-53\"],\"intended_run_id\":\"BP-MOON-RUN-1\",\"post_revision\":218,\"pre_revision\":217,\"preserved_task_ids\":[\"BP-BITOP-03\",\"BP-BITOP-10\",\"BP-BITOP-11\",\"BP-BITOP-12\",\"BP-BITOP-13\",\"CE-BITOP-40\",\"STACK-BITOP-01\",\"STACK-BITOP-02\",\"STACK-BITOP-04\"],\"preserved_workspace_ids\":[],\"reason\":\"User-authorized 2026-10-02 replacement of deferred BITOP-00 execution with the reviewed Baseplane moonshot workshop; preserve successful outcomes, source and evidence, integrate unfinished scope by the old-to-new map.\",\"source_run_id\":\"compat-v2\",\"status\":\"retired\",\"successor_run_id\":\"BP-MOON-RUN-1\"}",
+        "revision": 218,
+        "run_id": "compat-v2",
+        "task_id": null
+      }
+    ],
     "workflow_rendezvous": [],
     "workflow_rendezvous_arrivals": [],
     "workflow_rendezvous_participants": [],
@@ -14006,6 +16188,16 @@
         "created_at": "2026-09-29T12:28:06Z",
         "creation_revision": 198,
         "run_id": "BP-DOCS-RUN-V1",
+        "superseded_at": null,
+        "superseded_revision": null,
+        "version": 1
+      },
+      {
+        "content_hash": "69644b1992c9b7a4755b13dc504faf2aaf978a78f2d311cabcef21a78576b2bf",
+        "content_json": "{\"acceptance_conditions\":[\"Each catalogue item has a truthful disposition and artifact or explicit defer/reject reason; seeds are not reported as completed architectures.\",\"Representative mechanisms can be built/run in their declared environments or are explicitly marked uncompiled; minimal correctness checks only.\",\"No silent dropped work, no hidden oracle candidate input, no unbounded memory/queue construction.\"],\"boundaries\":[\"This plan writes Baseplane only; the paired Cellerator plan owns experimental learned/numerical providers from inception. Neither authority silently writes the other.\",\"Maintain source validity, strand, provenance, explicit buffer capacities and Volta synchronization.\",\"Broad isolated experimentation is authorized; production promotion and broad benchmarks are not.\",\"Preserve completed old tasks, lab findings and retained work. The reviewed supersession protocol is required before claiming this run.\"],\"delegated_judgment\":\"Use dependency-driven parallel family lanes after foundation integration. Dispatch bounded configured Codex subagents under the root claim and file ownership; the root retains lifecycle and acceptance. Lane count is potential independence, not agent capacity: obey the total active agent budget including root and any heads. Shared seams have one owner; integrate family patches before compositions and closure.\",\"desired_end_state\":\"Diverse concrete experimental mechanisms, several compositions, source-grounded interfaces, and an honest later-qualification inventory.\",\"motivation\":\"Replace the deferred BitOp roadmap with a broader implementation-first workshop while preserving successful substrate and negative evidence.\",\"objective\":\"Explore many GPU-native ways for exact genomic information to build and refine hierarchical learned representations.\",\"references\":[\"planning/baseplane_moonshot_bootstrap/START_HERE.md\",\"planning/baseplane_moonshot_bootstrap/docs/00_INTENT.md\",\"planning/baseplane_moonshot_bootstrap/docs/05_EXECUTION_AND_SUPERSESSION.md\",\"planning/baseplane_moonshot_bootstrap/machine/experiments.json\",\"planning/baseplane_moonshot_bootstrap/docs/07_CELLERATOR_RESEARCH_SCOPE.md\"]}",
+        "created_at": "2026-10-02T13:11:58Z",
+        "creation_revision": 217,
+        "run_id": "BP-MOON-RUN-1",
         "superseded_at": null,
         "superseded_revision": null,
         "version": 1
@@ -14055,12 +16247,22 @@
       {
         "active_charter_version": 1,
         "completed_at": null,
+        "created_at": "2026-10-02T13:11:58Z",
+        "id": "BP-MOON-RUN-1",
+        "revision": 217,
+        "root_task_id": "BP-MOON-000",
+        "status": "active",
+        "updated_at": "2026-10-02T13:11:58Z"
+      },
+      {
+        "active_charter_version": 1,
+        "completed_at": "2026-10-02T13:16:41Z",
         "created_at": "2026-09-29T05:49:36Z",
         "id": "compat-v2",
-        "revision": 132,
+        "revision": 218,
         "root_task_id": "BITOP-00",
-        "status": "active",
-        "updated_at": "2026-09-29T05:49:36Z"
+        "status": "cancelled",
+        "updated_at": "2026-10-02T13:16:41Z"
       }
     ],
     "workflow_workspaces": []

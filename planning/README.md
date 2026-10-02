@@ -13,3 +13,9 @@ Current plan areas:
 - `bitop/`: the deferred BitOP program retained for a later rewrite.
 - Future intermediary epics should use their own subdirectory rather than
   modifying the deferred BitOP plan in place.
+
+Moonshot campaign (adopted 2 October 2026):
+
+- [Source package](baseplane_moonshot_bootstrap/START_HERE.md): preserved attachment.
+- [Parallel plans](baseplane_moonshot_parallel/README.md): family/provider lane layout.
+- [Adoption receipt](baseplane_moonshot_adoption/README.md): applied policies and replacement evidence.

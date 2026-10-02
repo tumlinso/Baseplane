@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # CS-BITOP-60: Conditional persistence or pack delivery
 
-Task revision: `132`; current project revision is in `todo-status.md`.
+Task revision: `218`; current project revision is in `todo-status.md`.
 
 ## Objective
 Only after ABI stability and demonstrated cross-process reuse need, let external CellShard wrap an opaque versioned Baseplane/Cellerator-owned image.
 
 ## State
-- Lifecycle: `blocked`
-- Execution: `blocked_dependency`
+- Lifecycle: `superseded`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `superseded`
 
 ## Next Action
 Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
