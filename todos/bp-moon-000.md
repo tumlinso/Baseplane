@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-000: Baseplane moonshot workshop: sequence that organizes its computation
 
-Task revision: `219`; current project revision is in `todo-status.md`.
+Task revision: `376`; current project revision is in `todo-status.md`.
 
 ## Objective
 Aggregate the experimental outcomes and honest dispositions. This is not a prerequisite of its children and does not declare a final architecture.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `inactive`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `serial`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Status v2 Projection
 
-Project revision: `221`
+Project revision: `376`
 
 ## Workstreams
 - `STACK-BITOP-01` | status: done | execution: closed | next: Verify the recorded evidence against current Git/source without changing implementation; run context, changes, guard, and audit; then complete validated.
@@ -29,20 +29,20 @@ Project revision: `221`
 - `CE-BITOP-40` | status: superseded | execution: closed | next: No implementation. This task is terminally superseded by CellStack CE-ARCH-40 and CELLERATOR_BASEPLANE_COMMON_ABI_V1_READY.
 - `CE-BITOP-41` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `BP-MOON-010` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-010.md and implement the assigned family, adapting within its scope. Apply the adopted ownership and research policy recorded in planning/baseplane_moonshot_adoption/baseplane-policy.todo-plan.json; verify its authority receipt before seed installation.
-- `BP-MOON-020` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-020.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-030` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-030.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-040` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-040.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-050` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-050.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-060` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-060.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-070` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-070.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-080` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-080.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-090` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-090.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-100` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-100.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-110` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-110.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-120` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-120.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-130` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-130.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-140` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-140.md and implement the assigned family, adapting within its scope.
-- `BP-MOON-150` | status: planned | execution: ready | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-150.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-020` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-020.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-030` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-030.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-040` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-040.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-050` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-050.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-060` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-060.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-070` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-070.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-080` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-080.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-090` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-090.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-100` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-100.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-110` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-110.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-120` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-120.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-130` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-130.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-140` | status: done | execution: closed | next: Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-140.md and implement the assigned family, adapting within its scope.
+- `BP-MOON-150` | status: done | execution: closed | next: Integrate the research handoff, repair reverse-strand physical coordinates in hypotheses, rerun affected checks and preserve prior outcomes.
 - `CE-BITOP-42` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `BP-BITOP-50` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `STACK-BITOP-51` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
@@ -66,5 +66,5 @@ Project revision: `221`
 - `BP-DOCS-20` | status: done | execution: closed | next: Move at most one useful mechanical source cluster by default, or keep source as-is; repair living docs/build/import/export references and preserve all semantic/evidence boundaries.
 - `BP-DOCS-30` | status: done | execution: closed | next: Verify existing result records, export portable raw evidence, and refresh only bounded selected cases when justified. Choose at most two public studies. Optional GH capability probe only; no broad benchmark or model work.
 - `BP-DOCS-90` | status: done | execution: closed | next: Apply reviewed final staged docs, validate local links/status/evidence and affected builds/tests, inspect rendered pages/figures, and write one authentic local handoff receipt.
-- `BP-MOON-000` | status: planned | execution: inactive | next: Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.
+- `BP-MOON-000` | status: done | execution: closed | next: Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.
 <!-- todo-orchestrator:v2-managed:end -->

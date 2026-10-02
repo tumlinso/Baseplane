@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-010: Install a small experimental substrate, not a universal framework
 
-Task revision: `221`; current project revision is in `todo-status.md`.
+Task revision: `299`; current project revision is in `todo-status.md`.
 
 ## Objective
 Adopt the reviewed successor policy; preserve exact sequence and completed evidence; install independently buildable seed fixtures, source maps, counters and capability declarations. Unblock experiments without first finishing the entire old BitOp executor. Split mixed seeds by ownership per machine/seed-ownership.json; coordinate with CE-MOON-010, but do not mutate its authority from this task.

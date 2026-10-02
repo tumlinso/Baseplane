@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-070: Meaningful Tensor Core axes
 
-Task revision: `217`; current project revision is in `todo-status.md`.
+Task revision: `299`; current project revision is in `todo-status.md`.
 
 ## Objective
 Build sequence-grounded fixtures, source mapping and hierarchical consumers for tensor core relational and latent mechanisms. Use CE-MOON-030 numerical research providers from Cellerator rather than building a parallel numerical owner in Baseplane. Prototype sequence questions immediately with small reference fixtures where needed.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-070.md and implement the assigned family, adapting within its scope.

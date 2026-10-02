@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-140: Compose mechanisms into alternative Baseplane paths
 
-Task revision: `217`; current project revision is in `todo-status.md`.
+Task revision: `372`; current project revision is in `todo-status.md`.
 
 ## Objective
 Build several end-to-end sequence-grounded combinations, keeping more than one architectural ontology alive. Include actual candidate construction and a refine/revisit path, not an oracle packet or disconnected kernel collection.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `integration_exclusive`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-140.md and implement the assigned family, adapting within its scope.
