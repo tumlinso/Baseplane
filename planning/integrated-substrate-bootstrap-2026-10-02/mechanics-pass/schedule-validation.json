@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-10-03T13:19:07.066564+00:00",
+  "authority_revision": 509,
+  "authority_fingerprint": "2e918ed062135e626e0e0207dd5881c6a84a0d824d062e5a9b52cb53c55ac07f",
+  "source_head": "8e8f946a6d66418102f33ce7db2903648c08c353",
+  "runtime_fingerprint": "15521b1576eab3f0f8aec70519cd2d06f52396db6d48b3a681d5bfb9e6a3464d",
+  "proposal_sha256": "4bd0129d44a992c11a1b8cfd6724003eece8b7aadeb87d009de4505b7a1c35ad",
+  "fresh_task_metadata_verified": 15,
+  "lane_order": [
+    {
+      "lane_id": "BP-IS1-ADOPT-L",
+      "state": "closed",
+      "current_order": [
+        "BP-IS1-ADOPT"
+      ],
+      "declared_prefix": [
+        "BP-IS1-ADOPT"
+      ],
+      "expected_order": [
+        "BP-IS1-ADOPT"
+      ]
+    },
+    {
+      "lane_id": "BP-IS1-INTEGRATOR-L",
+      "state": "ready",
+      "current_order": [
+        "BP-IS1-MERGE-A",
+        "BP-IS1-BRIDGE",
+        "BP-IS1-COMPOSE",
+        "BP-IS1-CLOSE",
+        "BP-IS1-000"
+      ],
+      "declared_prefix": [
+        "BP-IS1-MERGE-A",
+        "BP-IS1-COMPOSE"
+      ],
+      "expected_order": [
+        "BP-IS1-MERGE-A",
+        "BP-IS1-COMPOSE",
+        "BP-IS1-BRIDGE",
+        "BP-IS1-CLOSE",
+        "BP-IS1-000"
+      ]
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "task_count": 15,
+    "checkpoint_count": 0,
+    "gate_count": 22,
+    "barrier_count": 0,
+    "interface_count": 0
+  }
+}
