@@ -1,0 +1,35 @@
+{
+  "task": "BP-IS1-ADOPT",
+  "base_commit": "5de838c09a7e1dd5795b0fdd4774862f0c846ebc",
+  "ce_provider_head": "41fcd6e71b220eadc4c0268575d28f4320ace354",
+  "checks": {
+    "dispositions": "48/33 passed",
+    "source_tree_native_consumers": "2/2 passed",
+    "predicate_preparation_test": "exit0",
+    "validity_test": "exit0",
+    "installed_seq_consumer": "1/1 passed"
+  },
+  "fresh_gpu_run": false,
+  "benchmarked": false,
+  "source_sha256": {
+    "CMakeLists.txt": "7a0e81d360bc05541ce0a3295810184bada9c2538340f277b5c4a9d4ab1f8e52",
+    "cmake/BaseplaneRepresentation.cmake": "55f468b2ce915ccb401b343f90098c53d37b1adea5dc9f6e44b85f12470480ee",
+    "cmake/BaseplaneConfig.cmake.in": "143572cd4bdfa31c0e6193704222bc78ab29a8e20048552a9abc8e006e85d6a0",
+    "planning/integrated-substrate-v1/adoption/CMakeLists.txt": "58331f04f0205fcb6cdf4092ef00743d89d21767c27851508f28134fc9387695",
+    "planning/integrated-substrate-v1/adoption/seq_consumer.cpp": "56cf7d17a3fcf65d86a47e6e7d4d3a264959c0d8e773b5e38326a0e098f8747e",
+    "planning/integrated-substrate-v1/adoption/source-dispositions.json": "8c52416e84896f8b201a1b37d5f10d92edf277ae878559c77818bc25da7615e8",
+    "planning/integrated-substrate-v1/adoption/check_dispositions.py": "eb8f4772793c8c5f7ba989d8b746b3f92adb34db6e0fba254f6b26739871ea12"
+  },
+  "logs": [
+    "configure.log",
+    "build.log",
+    "ctest.log",
+    "bitop-contract.log",
+    "validity.log",
+    "dispositions.log",
+    "install.log",
+    "installed-configure.log",
+    "installed-build.log",
+    "installed-ctest.log"
+  ]
+}

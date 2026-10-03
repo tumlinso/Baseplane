@@ -4,6 +4,7 @@ project(Baseplane LANGUAGES CXX)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
+include(cmake/BaseplaneRepresentation.cmake)
 
 option(BASEPLANE_ENABLE_CUDA "Enable CUDA sequence kernels and CUDA tests/benchmarks when a CUDA toolchain is available." ON)
 option(BASEPLANE_ENABLE_CUDA_LINEINFO "Emit CUDA line mapping for Nsight profiling." OFF)
@@ -208,5 +209,6 @@ write_basic_package_version_file(
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/BaseplaneConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/BaseplaneConfigVersion.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/BaseplaneRepresentation.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Baseplane
 )

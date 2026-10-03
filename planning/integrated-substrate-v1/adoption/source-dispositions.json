@@ -1,0 +1,2578 @@
+{
+  "schema_version": 1,
+  "base_commit": "5de838c09a7e1dd5795b0fdd4774862f0c846ebc",
+  "source_catalogue": "planning/baseplane_moonshot_bootstrap/results/catalogue.json",
+  "historical_status_authority": [
+    "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+    "planning/baseplane_moonshot_adoption/baseplane-policy-apply.json"
+  ],
+  "cards": [
+    {
+      "id": "BP:E01",
+      "title": "LUT3 circuit tiles",
+      "family": "logic",
+      "owner_task": "BP-MOON-020",
+      "disposition": "implemented experimentally",
+      "entry_points": "Circuit",
+      "source": [
+        "experiments/moonshot/families/logic/logic.hpp",
+        "experiments/moonshot/families/logic/cuda.cu",
+        "experiments/moonshot/families/logic/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "256 LUTs \u00d7 8 rows, scalar circuit and tail validity",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Floating magnitude omitted; source and table version retained",
+      "remaining_variants": "Learned gate DAGs; CUDA reverse/saturation variants",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-SEQ",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E02",
+      "title": "Carry-plane evidence counters",
+      "family": "logic",
+      "owner_task": "BP-MOON-020",
+      "disposition": "implemented experimentally",
+      "entry_points": "Evidence",
+      "source": [
+        "experiments/moonshot/families/logic/logic.hpp",
+        "experiments/moonshot/families/logic/cuda.cu",
+        "experiments/moonshot/families/logic/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "15\u219216 overflow, distinct saturation, random scalar thresholds",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Four-bit wrap or saturation explicitly lossy; sticky overflow retained",
+      "remaining_variants": "Weighted votes and precision/register scaling",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-SEQ",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E03",
+      "title": "Strand-covariant local grammar",
+      "family": "logic",
+      "owner_task": "BP-MOON-020",
+      "disposition": "implemented experimentally",
+      "entry_points": "grammar",
+      "source": [
+        "experiments/moonshot/families/logic/logic.hpp",
+        "experiments/moonshot/families/logic/cuda.cu",
+        "experiments/moonshot/families/logic/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "31/32 seam, reverse anchors, palindrome policies, invalid halos",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact supported motif anchors; source retained",
+      "remaining_variants": "Arbitrary spacing/exclusions and CUDA reverse grammar",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-SEQ",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E04",
+      "title": "Mask-index query algebra",
+      "family": "logic",
+      "owner_task": "BP-MOON-020",
+      "disposition": "implemented experimentally",
+      "entry_points": "route / compose_support",
+      "source": [
+        "experiments/moonshot/families/logic/logic.hpp",
+        "experiments/moonshot/families/logic/cuda.cu",
+        "experiments/moonshot/families/logic/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Empty/full/random rank-select, descriptor routing, domain rejection",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact support routing with gaps; rank remains local",
+      "remaining_variants": "General multilevel domain adapters",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-SEQ",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E05",
+      "title": "A warp is a transition function",
+      "family": "automata",
+      "owner_task": "BP-MOON-030",
+      "disposition": "implemented experimentally",
+      "entry_points": "EffectHierarchy",
+      "source": [
+        "experiments/moonshot/families/automata/automata.hpp",
+        "experiments/moonshot/families/automata/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "3906 short ACGTN sources, all entry states and split seams",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/automata/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Finite terminal effect loses source detail; original source retained",
+      "remaining_variants": "CUDA lane-as-state executor and learned transitions",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E06",
+      "title": "Counted and witnessed transducers",
+      "family": "automata",
+      "owner_task": "BP-MOON-030",
+      "disposition": "implemented experimentally",
+      "entry_points": "WitnessedEffect / replay_motif",
+      "source": [
+        "experiments/moonshot/families/automata/automata.hpp",
+        "experiments/moonshot/families/automata/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Counts/first/last witnesses versus source oracle at seams; overflow rejects",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/automata/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Counts/witness extrema omit event positions; replay recovers them",
+      "remaining_variants": "CUDA event witnesses and bounded full event replay",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E07",
+      "title": "Bounded stack grammar tiles",
+      "family": "automata",
+      "owner_task": "BP-MOON-030",
+      "disposition": "implemented experimentally",
+      "entry_points": "GrammarTile / grammar_replay",
+      "source": [
+        "experiments/moonshot/families/automata/automata.hpp",
+        "experiments/moonshot/families/automata/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Exact summaries versus stack oracle; depth overflow triggers replay",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/automata/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Bounded stack summary may be insufficient; replay explicit",
+      "remaining_variants": "CUDA stack executor and richer grammar",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E08",
+      "title": "Small-state weighted alternatives",
+      "family": "automata",
+      "owner_task": "BP-MOON-030",
+      "disposition": "implemented experimentally",
+      "entry_points": "summarize_alternatives",
+      "source": [
+        "experiments/moonshot/families/automata/weighted.hpp",
+        "experiments/moonshot/families/automata/weighted_smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Probability .42, max-plus .36, reachability1; pruning changes .42 to .06",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/automata/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Declared alternative pruning loses mass; semiring semantics separate",
+      "remaining_variants": "Trained/calibrated weights and CUDA alternatives",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E09",
+      "title": "Permutation-diagonal affine effects",
+      "family": "effects",
+      "owner_task": "BP-MOON-040",
+      "disposition": "implemented experimentally",
+      "entry_points": "ResponseHierarchy",
+      "source": [
+        "experiments/moonshot/families/effects/response.hpp",
+        "experiments/moonshot/families/effects/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Independent sequence recurrence for three entry states and seams; invalid reset",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/effects/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Monomial finite-dimensional response omits original sequence",
+      "remaining_variants": "CUDA executor, learned weights and rounding analysis",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E10",
+      "title": "Block-monomial response maps",
+      "family": "effects",
+      "owner_task": "BP-MOON-040",
+      "disposition": "implemented experimentally",
+      "entry_points": "BlockRegion",
+      "source": [
+        "experiments/moonshot/families/effects/response.hpp",
+        "experiments/moonshot/families/effects/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Source-derived 2\u00d72 blocks versus dense four-channel expansion",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/effects/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Block response permits mixing absent in monomial maps; source retained",
+      "remaining_variants": "GPU blocks and trained maps",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E11",
+      "title": "Regional polynomial jets",
+      "family": "effects",
+      "owner_task": "BP-MOON-040",
+      "disposition": "implemented experimentally",
+      "entry_points": "JetRegion",
+      "source": [
+        "experiments/moonshot/families/effects/response.hpp",
+        "experiments/moonshot/families/effects/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "In-radius truncation error4.02e-5; outside-radius source replay/reanchor",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/effects/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Approximate jet has no certified error bound",
+      "remaining_variants": "Certified bounds, adaptive order/radius, CUDA executor",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-DIFF",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E12",
+      "title": "Bidirectional effect checkpoints",
+      "family": "effects",
+      "owner_task": "BP-MOON-040",
+      "disposition": "implemented experimentally",
+      "entry_points": "SequenceCheckpoints",
+      "source": [
+        "experiments/moonshot/families/effects/response.hpp",
+        "experiments/moonshot/families/effects/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "All ten boundaries versus direct prefix/suffix context; local replay bound",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/effects/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Checkpoint maps retain bounded toy state, require O(N) construction/storage",
+      "remaining_variants": "Compressed checkpoints, CUDA scans and measured amortization",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E13",
+      "title": "Reversible lifting with residual reservoirs",
+      "family": "hierarchy",
+      "owner_task": "BP-MOON-050",
+      "disposition": "implemented experimentally",
+      "entry_points": "Reservoir",
+      "source": [
+        "experiments/moonshot/families/hierarchy/hierarchy.hpp",
+        "experiments/moonshot/families/hierarchy/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Detail roundtrip, omission changes answer, odd tail, reverse support, capacity2 stores2/drops10",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Omitted residual loses query information; retained reservoir permits decode",
+      "remaining_variants": "Compressed/multilevel reservoirs and CUDA decode",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E14",
+      "title": "Learned dynamic chunk boundaries",
+      "family": "hierarchy",
+      "owner_task": "BP-MOON-050",
+      "disposition": "implemented experimentally",
+      "entry_points": "chunks / inverse_map / CE fitted scorer",
+      "source": [
+        "experiments/moonshot/families/hierarchy/hierarchy.hpp",
+        "experiments/moonshot/families/hierarchy/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Learned/fixed/surprise cuts, exact insertion reuse, every-base reconstruction",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Synthetic score-driven segmentation; source/inverse mapping retained",
+      "remaining_variants": "Biological objective and multi-level learned hierarchy",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E15",
+      "title": "Precision as a refinable resource",
+      "family": "hierarchy",
+      "owner_task": "BP-MOON-050",
+      "disposition": "implemented experimentally",
+      "entry_points": "precision_query",
+      "source": [
+        "experiments/moonshot/families/hierarchy/hierarchy.hpp",
+        "experiments/moonshot/families/hierarchy/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Conservative intervals, equality, invalid masking, extra planes for ambiguity",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Certification covers finite integer-valued sequence latent only",
+      "remaining_variants": "Arbitrary floating embeddings and CUDA precision fetch",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E16",
+      "title": "Content-defined seam forests",
+      "family": "hierarchy",
+      "owner_task": "BP-MOON-050",
+      "disposition": "implemented experimentally",
+      "entry_points": "content_chunks / motif_query",
+      "source": [
+        "experiments/moonshot/families/hierarchy/hierarchy.hpp",
+        "experiments/moonshot/families/hierarchy/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Content reuse, repetitive caps, cross-seam motifs and replay when both forests cut",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Multiple seams help toy query; exhaustive scalar window scan retained",
+      "remaining_variants": "Optimized routing and learned alternative seams",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E17",
+      "title": "Whole-directory rendezvous",
+      "family": "rendezvous",
+      "owner_task": "BP-MOON-060",
+      "disposition": "implemented experimentally",
+      "entry_points": "extract / Directory / tiled_pairs",
+      "source": [
+        "experiments/moonshot/families/rendezvous/rendezvous.hpp",
+        "experiments/moonshot/families/rendezvous/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Whole-input valid windows and factorized directed pairs with truncation",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/rendezvous/README.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact equal-kmer groups are not biological relations",
+      "remaining_variants": "Streaming directory/cost qualification and large inputs",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-INDEX",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E18",
+      "title": "Warp-cooperative posting hash",
+      "family": "rendezvous",
+      "owner_task": "BP-MOON-060",
+      "disposition": "implemented experimentally",
+      "entry_points": "PostingHash / packed_rows",
+      "source": [
+        "experiments/moonshot/families/rendezvous/rendezvous.hpp",
+        "experiments/moonshot/families/rendezvous/e18_cuda.cu",
+        "experiments/moonshot/families/rendezvous/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Forced collisions and overflow rows; GPU209groups/210queries match CPU",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/rendezvous/README.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact payload+length collision checking; immutable publication",
+      "remaining_variants": "Scaling, sanitizers and construction/upload costs",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-INDEX",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E19",
+      "title": "Approximate nomination, exact verification",
+      "family": "rendezvous",
+      "owner_task": "BP-MOON-060",
+      "disposition": "implemented experimentally",
+      "entry_points": "nominate",
+      "source": [
+        "experiments/moonshot/families/rendezvous/rendezvous.hpp",
+        "experiments/moonshot/families/rendezvous/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Independent half sketches, deduplicated Hamming verification; tolerance2 retains two misses",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/rendezvous/README.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Approximate nomination can miss relations; source verification explicit",
+      "remaining_variants": "Bounded streaming nomination and measured recall",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-INDEX",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E20",
+      "title": "Subscriptions instead of exhaustive features",
+      "family": "rendezvous",
+      "owner_task": "BP-MOON-060",
+      "disposition": "implemented experimentally",
+      "entry_points": "subscribe",
+      "source": [
+        "experiments/moonshot/families/rendezvous/rendezvous.hpp",
+        "experiments/moonshot/families/rendezvous/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Predicate cohorts, destination domain routing and negative inspection supports",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/rendezvous/README.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Query-limited support; source retained for other questions",
+      "remaining_variants": "Bounded inspection support buffers and CUDA subscriptions",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-INDEX",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E21",
+      "title": "Object-by-feature Tensor Core tiles",
+      "family": "tensor",
+      "owner_task": "BP-MOON-070",
+      "disposition": "implemented experimentally",
+      "entry_points": "pack_windows / promote",
+      "source": [
+        "experiments/moonshot/families/tensor/include/bp_moon/tensor.hpp",
+        "experiments/moonshot/families/tensor/host.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "GGCT\u2192[7,-2], distant support preserved, NAC invalid exclusion",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": true,
+      "evidence": [
+        "experiments/moonshot/families/tensor/consumer-receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Count/feature transform loses order; original window retained",
+      "remaining_variants": "Baseplane CUDA packing consumer and trained transforms",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E22",
+      "title": "Relation tiles over promoted events",
+      "family": "tensor",
+      "owner_task": "BP-MOON-070",
+      "disposition": "implemented experimentally",
+      "entry_points": "nominate",
+      "source": [
+        "experiments/moonshot/families/tensor/include/bp_moon/tensor.hpp",
+        "experiments/moonshot/families/tensor/host.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Directed score7, self/invalid/strand exclusions and output overflow",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": true,
+      "evidence": [
+        "experiments/moonshot/families/tensor/consumer-receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Supplied cohort scoring is not candidate discovery or causality",
+      "remaining_variants": "Integrate wider retrieval, learned scores, BP GPU consumer",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E23",
+      "title": "Arithmetic finite-relation composition",
+      "family": "tensor",
+      "owner_task": "BP-MOON-070",
+      "disposition": "implemented experimentally",
+      "entry_points": "chunk_relation / concatenate_response",
+      "source": [
+        "experiments/moonshot/families/tensor/include/bp_moon/tensor.hpp",
+        "experiments/moonshot/families/tensor/host.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "A+CG versus direct ACG walk for all16 states; adjacency/domain rejection",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": true,
+      "evidence": [
+        "experiments/moonshot/families/tensor/consumer-receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Finite relation is query-specific; invalid chunk requires refinement",
+      "remaining_variants": "BP GPU consumer and larger state vocabularies",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E24",
+      "title": "Tensor tiles of possible incoming states",
+      "family": "tensor",
+      "owner_task": "BP-MOON-070",
+      "disposition": "implemented experimentally",
+      "entry_points": "sample_region / query_region",
+      "source": [
+        "experiments/moonshot/families/tensor/include/bp_moon/tensor.hpp",
+        "experiments/moonshot/families/tensor/host.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Exact sample matches; interpolation error .0600214 at .5",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": true,
+      "evidence": [
+        "experiments/moonshot/families/tensor/consumer-receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Approximate sampled nonlinear response; source revisits retained",
+      "remaining_variants": "Adaptive samples/error control, learned responses, BP GPU consumer",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E25",
+      "title": "Query-pull refinement",
+      "family": "demand",
+      "owner_task": "BP-MOON-080",
+      "disposition": "implemented experimentally",
+      "entry_points": "pull / certificate",
+      "source": [
+        "experiments/moonshot/families/demand/demand.hpp",
+        "experiments/moonshot/families/demand/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Max bound scoped to query/domain; GC cannot reuse; queue/work-budget deferral",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/demand/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact fixture certificate rescans source; query specificity explicit",
+      "remaining_variants": "Cached/learned summaries with separate certification and CUDA traversal",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-EXEC",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E26",
+      "title": "Opcode-cohort wave execution",
+      "family": "demand",
+      "owner_task": "BP-MOON-080",
+      "disposition": "implemented experimentally",
+      "entry_points": "execute",
+      "source": [
+        "experiments/moonshot/families/demand/demand.hpp",
+        "experiments/moonshot/families/demand/cuda.cu",
+        "experiments/moonshot/families/demand/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Two opcode types, three waves, empty/capacity handling and fabricated-payload rejection",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/demand/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Deferred/pending carriers retain source; selected predicate discards nonanswers",
+      "remaining_variants": "Device compaction and bounded resident CTA interpreter",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-EXEC",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E27",
+      "title": "Compute auctions with debt",
+      "family": "demand",
+      "owner_task": "BP-MOON-080",
+      "disposition": "implemented experimentally",
+      "entry_points": "auction",
+      "source": [
+        "experiments/moonshot/families/demand/demand.hpp",
+        "experiments/moonshot/families/demand/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Quiet item revisited within five waves; fixed costs and debt visibility",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/demand/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Caller-supplied estimates are heuristics; finite-population fairness scoped",
+      "remaining_variants": "CE learned score integration and varying-arrival scheduling",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-EXEC",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E28",
+      "title": "Sparse multiscale wavefront",
+      "family": "demand",
+      "owner_task": "BP-MOON-080",
+      "disposition": "implemented experimentally",
+      "entry_points": "wake / jacobi",
+      "source": [
+        "experiments/moonshot/families/demand/demand.hpp",
+        "experiments/moonshot/families/demand/cuda.cu",
+        "experiments/moonshot/families/demand/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Stable promotion, remote context wake, one-hop synchronous waves, lineage/version guards",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/demand/evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "OR tags lose arrangement; source/fine cells retained; no learned convergence claim",
+      "remaining_variants": "Asynchronous semantics, learned updates and CUDA lineage parity",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-EXEC",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E29",
+      "title": "Continuous gates hardened to LOP3",
+      "family": "compiler",
+      "owner_task": "BP-MOON-090",
+      "disposition": "implemented experimentally",
+      "entry_points": "hardened_query",
+      "source": [
+        "experiments/moonshot/families/compiler/compiler.hpp",
+        "experiments/moonshot/families/compiler/test.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Eight truth rows,64 held-out triplets, LUT234, invalid/case/seam/reverse checks",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/compiler/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Hardening loses confidence; exact triplet support retained",
+      "remaining_variants": "Larger teachers, losses and device source consumer",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-LEARNING",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E30",
+      "title": "State-conditioned predicate banks",
+      "family": "compiler",
+      "owner_task": "BP-MOON-090",
+      "disposition": "implemented experimentally",
+      "entry_points": "bank_query",
+      "source": [
+        "experiments/moonshot/families/compiler/compiler.hpp",
+        "experiments/moonshot/families/compiler/test.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "CE-trained state choice yields AC/GT hits10/10; source/state provenance",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/compiler/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Bank preference learned on synthetic states, exact predicates remain fixed",
+      "remaining_variants": "Larger banks and biological context learning",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-LEARNING",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E31",
+      "title": "Typed equality-saturation microcompiler",
+      "family": "compiler",
+      "owner_task": "BP-MOON-090",
+      "disposition": "implemented experimentally",
+      "entry_points": "compile_question / rewritten_query",
+      "source": [
+        "experiments/moonshot/families/compiler/compiler.hpp",
+        "experiments/moonshot/families/compiler/test.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Typed/domain-checked Boolean rewrite cost3\u21922; strict-float rejection",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/compiler/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Boolean equivalence scoped to masks; float rewrites not inferred",
+      "remaining_variants": "Affine/layout rewrites, movement cost and SASS",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-LEARNING",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E32",
+      "title": "Guarded partial evaluation",
+      "family": "compiler",
+      "owner_task": "BP-MOON-090",
+      "disposition": "implemented experimentally",
+      "entry_points": "prepare / guarded_query",
+      "source": [
+        "experiments/moonshot/families/compiler/compiler.hpp",
+        "experiments/moonshot/families/compiler/test.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Fresh reuse plus query/state/source-version/source-ID/origin/weights invalidation",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/compiler/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Cached computation does not cache universal biological answers",
+      "remaining_variants": "Reuse-count respecialization and compiled device specialization",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-LEARNING",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E33",
+      "title": "Repeat quotient plus contextual residual",
+      "family": "incremental",
+      "owner_task": "BP-MOON-100",
+      "disposition": "implemented experimentally",
+      "entry_points": "RepeatQuotient",
+      "source": [
+        "experiments/moonshot/families/incremental/incremental.hpp",
+        "experiments/moonshot/families/incremental/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Forced collisions, exact content sharing, packed-equal invalid distinction, context versions",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/incremental/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Shared content does not share context residual or occurrence provenance",
+      "remaining_variants": "Compressed dictionaries and GPU occurrence processing",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-REUSE",
+      "general_math_owner": "CE-IS1-ADAPT",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E34",
+      "title": "Variant-driven dirty cones",
+      "family": "incremental",
+      "owner_task": "BP-MOON-100",
+      "disposition": "implemented experimentally",
+      "entry_points": "DirtyCone",
+      "source": [
+        "experiments/moonshot/families/incremental/incremental.hpp",
+        "experiments/moonshot/families/incremental/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Value+membership dirty ancestors, posting replacement, stale versions, cycle termination",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/incremental/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Local sequence dependency fixture; original source and directory retained",
+      "remaining_variants": "Distributed invalidation and measured incremental costs",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-REUSE",
+      "general_math_owner": "CE-IS1-ADAPT",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E35",
+      "title": "Query-support memoization",
+      "family": "incremental",
+      "owner_task": "BP-MOON-100",
+      "disposition": "implemented experimentally",
+      "entry_points": "Memo / CountPlan",
+      "source": [
+        "experiments/moonshot/families/incremental/incremental.hpp",
+        "experiments/moonshot/families/incremental/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Negative inspected support, full edit chains, resize/reverse shifts, query/weight/state guards",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/incremental/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Result memo validity differs from reusable computation plan",
+      "remaining_variants": "Persistent cache interfaces and broader query support",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-REUSE",
+      "general_math_owner": "CE-IS1-ADAPT",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E36",
+      "title": "Grammar-compressed effect reuse",
+      "family": "incremental",
+      "owner_task": "BP-MOON-100",
+      "disposition": "implemented experimentally",
+      "entry_points": "Grammar",
+      "source": [
+        "experiments/moonshot/families/incremental/incremental.hpp",
+        "experiments/moonshot/families/incremental/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Multilevel ordered pair reuse, exact invalid-token expansion, source coordinates",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/incremental/receipt.md",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact grammar DAG retains source tokens; toy effect alone loses detail",
+      "remaining_variants": "Compressed formats, learned residuals and GPU updates",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-REUSE",
+      "general_math_owner": "CE-IS1-EFFECTS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E37",
+      "title": "Competing parse forests",
+      "family": "hypotheses",
+      "owner_task": "BP-MOON-110",
+      "disposition": "implemented experimentally",
+      "entry_points": "extend / retain_beam",
+      "source": [
+        "experiments/moonshot/families/hypotheses/hypotheses.hpp",
+        "experiments/moonshot/families/hypotheses/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Two CE-fitted scorers prefer different parses; beam drops later-preferred branch",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hypotheses/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Pruned interpretation may be unrecoverable without retained forest",
+      "remaining_variants": "Learned ambiguity generation, larger forests and held-out scoring",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-LEARNING",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E38",
+      "title": "Role-bound binary routing sketches",
+      "family": "hypotheses",
+      "owner_task": "BP-MOON-110",
+      "disposition": "implemented experimentally",
+      "entry_points": "role_sketch / verify_sketch",
+      "source": [
+        "experiments/moonshot/families/hypotheses/hypotheses.hpp",
+        "experiments/moonshot/families/hypotheses/sketch.cu",
+        "experiments/moonshot/families/hypotheses/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "AC/CA differ; five-base collision rejected by exact replay",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hypotheses/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "8-bit role sketch is lossy nomination only",
+      "remaining_variants": "Device correctness and larger sketch/candidate recall",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-INDEX",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E39",
+      "title": "Question-specific summary portfolios",
+      "family": "hypotheses",
+      "owner_task": "BP-MOON-110",
+      "disposition": "implemented experimentally",
+      "entry_points": "Portfolio / ask",
+      "source": [
+        "experiments/moonshot/families/hypotheses/hypotheses.hpp",
+        "experiments/moonshot/families/hypotheses/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Counts agree for AC/CA while terminal effects differ; exact motifs replay",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hypotheses/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Query-specific sufficiency; source handle does not make latent lossless",
+      "remaining_variants": "More query types and biological representation evaluation",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E40",
+      "title": "Counterexample-guided resolution",
+      "family": "hypotheses",
+      "owner_task": "BP-MOON-110",
+      "disposition": "implemented experimentally",
+      "entry_points": "RepairIndex",
+      "source": [
+        "experiments/moonshot/families/hypotheses/hypotheses.hpp",
+        "experiments/moonshot/families/hypotheses/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Collision-specific residual repairs two sites, old index intact, unseen replay/exploration",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/hypotheses/receipt.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Repair only covers demonstrated terminal-state failure",
+      "remaining_variants": "Held-out repair performance and connected alternative-seam repair loop",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-LEARNING",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E41",
+      "title": "Boundary-port response operators",
+      "family": "ports",
+      "owner_task": "BP-MOON-120",
+      "disposition": "implemented experimentally",
+      "entry_points": "expose_ports / reconstruct_region",
+      "source": [
+        "experiments/moonshot/families/ports/include/bp_moon/ports.hpp",
+        "experiments/moonshot/families/ports/probe.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "ACNTGCA condensed/full solve match; reverse endpoints and invalid coupling break",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/ports/receipts/consumer.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact only for specified synthetic linear system; source supports separate",
+      "remaining_variants": "Learned ports and more complex regional responses",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-MATH",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E42",
+      "title": "Learned multigrid correction",
+      "family": "ports",
+      "owner_task": "BP-MOON-120",
+      "disposition": "implemented experimentally",
+      "entry_points": "correct_sequence",
+      "source": [
+        "experiments/moonshot/families/ports/include/bp_moon/ports.hpp",
+        "experiments/moonshot/families/ports/probe.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Three bins, alpha1.01591, residual objective17.5\u2192.496539; zero-step control",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/ports/receipts/consumer.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Fixed-bin coarse representation approximates fine response",
+      "remaining_variants": "Learned P/R maps and selective residual correction",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-HIERARCHY",
+      "general_math_owner": "CE-IS1-MATH",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E43",
+      "title": "Hyperedge rendezvous and factor joins",
+      "family": "ports",
+      "owner_task": "BP-MOON-120",
+      "disposition": "implemented experimentally",
+      "entry_points": "discover_factors",
+      "source": [
+        "experiments/moonshot/families/ports/include/bp_moon/ports.hpp",
+        "experiments/moonshot/families/ports/probe.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Source-derived preceding-base role joins, invalid-context exclusion, capacity accounting",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/ports/receipts/consumer.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Factorized aggregates omit tuple arrangement; postings retained",
+      "remaining_variants": "Learned roles, bounded large joins and device consumers",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-INDEX",
+      "general_math_owner": "CE-IS1-OPS",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E44",
+      "title": "Counterfactual packet worlds",
+      "family": "ports",
+      "owner_task": "BP-MOON-120",
+      "disposition": "implemented experimentally",
+      "entry_points": "alternative_worlds",
+      "source": [
+        "experiments/moonshot/families/ports/include/bp_moon/ports.hpp",
+        "experiments/moonshot/families/ports/probe.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "ACNT worlds independently score7/10/10/3; equal outputs keep distinct exact worlds",
+      "baseplane_cuda_compiled": false,
+      "baseplane_gpu_run": false,
+      "gpu_scope": "not run as a Baseplane card",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/ports/receipts/consumer.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Shared numeric queries omit arrangement but alternatives/source are retained",
+      "remaining_variants": "Larger counterfactual packets and learned nonlinear world models",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-REUSE",
+      "general_math_owner": "CE-IS1-ADAPT",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E45",
+      "title": "Texture-unit response tables",
+      "family": "machine",
+      "owner_task": "BP-MOON-130",
+      "disposition": "implemented experimentally",
+      "entry_points": "response / coordinates / texture response",
+      "source": [
+        "experiments/moonshot/families/machine/reference.hpp",
+        "experiments/moonshot/families/machine/machine_cuda.cu",
+        "experiments/moonshot/families/machine/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Bilinear/discontinuous surfaces; GPU maximum texture error .00924778",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/machine/results/machine-evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Texture approximation with .04 fixture bound; order-losing features",
+      "remaining_variants": "Learned/fitted surfaces and broader texture precision evaluation",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E46",
+      "title": "Byte dots and butterfly features",
+      "family": "machine",
+      "owner_task": "BP-MOON-130",
+      "disposition": "implemented experimentally",
+      "entry_points": "features / packed_dot / butterfly32",
+      "source": [
+        "experiments/moonshot/families/machine/reference.hpp",
+        "experiments/moonshot/families/machine/machine_cuda.cu",
+        "experiments/moonshot/families/machine/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Signed DP4A and invertible butterfly host/GPU roundtrip",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/machine/results/machine-evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Byte counts lose positions; butterfly separate order-sensitive transform",
+      "remaining_variants": "Learned weights and quantization/traffic qualification",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E47",
+      "title": "Instruction-composition search",
+      "family": "machine",
+      "owner_task": "BP-MOON-130",
+      "disposition": "implemented experimentally",
+      "entry_points": "synthesize / transpose_shift / transpose_table",
+      "source": [
+        "experiments/moonshot/families/machine/reference.hpp",
+        "experiments/moonshot/families/machine/machine_cuda.cu",
+        "experiments/moonshot/families/machine/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Eight candidates, two survivors checked over65536 inputs; GPU two transposes pass",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/machine/results/machine-evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Exact16-bit transpose; six candidates rejected; resource counts not speed",
+      "remaining_variants": "Larger straight-line search and benchmarked costs",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    },
+    {
+      "id": "BP:E48",
+      "title": "Residency and recomputation choreography",
+      "family": "machine",
+      "owner_task": "BP-MOON-130",
+      "disposition": "implemented experimentally",
+      "entry_points": "fused / staged / materialized",
+      "source": [
+        "experiments/moonshot/families/machine/reference.hpp",
+        "experiments/moonshot/families/machine/machine_cuda.cu",
+        "experiments/moonshot/families/machine/smoke.cpp"
+      ],
+      "authored": true,
+      "host_compiled": true,
+      "host_run": true,
+      "host_compared": true,
+      "comparison_scope": "Host invalid/tail routes agree; GPU282words cross staging/block boundaries",
+      "baseplane_cuda_compiled": true,
+      "baseplane_gpu_run": true,
+      "gpu_scope": "bounded semantic smoke",
+      "ce_tensor_provider_gpu_compared": false,
+      "evidence": [
+        "experiments/moonshot/families/machine/results/machine-evidence.json",
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "planning/baseplane_moonshot_bootstrap/results/gpu/qualified-checks.json",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "loss_and_revisit": "Same exact GC result with different residency/traffic; source retained",
+      "remaining_variants": "Measured reuse/residency crossover and scale qualification",
+      "biological_validation": false,
+      "performance_measured": false,
+      "sequence_consumer_owner": "BP-IS1-COMPOSE",
+      "general_math_owner": "CE-IS1-LOWER",
+      "adoption_disposition": "retain current experimental implementation and evidence; integrate useful behavior in destination leaf",
+      "observed_sources_exist": true
+    }
+  ],
+  "historical_bitop": [
+    {
+      "old_id": "BITOP-00",
+      "preserved_planning_disposition": "replace_execution_root",
+      "successor_targets": [
+        "BP-MOON-000"
+      ],
+      "workshop_scope": "Preserve historical epic; broaden the scheduled effort through reviewed supersession, not by reopening the old queue.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "STACK-BITOP-01",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Repository and source reconciliation remains evidence.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "STACK-BITOP-02",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Local representation decisions remain the baseline; update experimental policy without erasing the ADR.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-03",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Preserve exact scan baseline and its original measurement scope.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "STACK-BITOP-04",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Preserve reached baseline/architecture checkpoint.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-10",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Retain validity, coordinates, owned anchors and halo semantics.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-11",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Retain motif/strand/invalid/palindrome semantics.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-12",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Retain event and output accounting contracts.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-13",
+      "preserved_planning_disposition": "preserve_completed",
+      "successor_targets": [
+        "BP-MOON-010"
+      ],
+      "workshop_scope": "Retain bounded v1 predicate verifier/preparation contract; do not force all experiments into it.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-ADOPT",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-20",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-010",
+        "BP-MOON-020",
+        "Q01"
+      ],
+      "workshop_scope": "Implement only scalar semantics needed by active experiments now; full generic oracle remains later qualification.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/logic/evidence.json"
+      ],
+      "remaining_qualification": [
+        "Q01"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-SEQ",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-21",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-010",
+        "BP-MOON-090",
+        "Q01"
+      ],
+      "workshop_scope": "Reuse prepared-program metadata and make small specialized preparation paths; defer universal backend planning.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/compiler/receipt.json"
+      ],
+      "remaining_qualification": [
+        "Q01"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-22",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-020",
+        "Q01"
+      ],
+      "workshop_scope": "Bring mask grammar/halo essentials into real experiments without making the whole grammar a prerequisite.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/logic/evidence.json"
+      ],
+      "remaining_qualification": [
+        "Q01"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-SEQ",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-23",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-010",
+        "BP-MOON-060",
+        "Q01"
+      ],
+      "workshop_scope": "Retain exact counters and one clear emit route; full stable/unordered reference fan-in later.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/rendezvous/README.md"
+      ],
+      "remaining_qualification": [
+        "Q01"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-SEQ",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-24",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "Q01"
+      ],
+      "workshop_scope": "Replace exhaustive CPU fan-in gate with tiny per-mechanism probes during invention.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q01"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-QUALIFY",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-25",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-010",
+        "BP-MOON-050",
+        "BP-MOON-060"
+      ],
+      "workshop_scope": "Use only segment operations demanded by a real composition; no generic segment platform first.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/families/rendezvous/README.md"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-HIERARCHY",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-30",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-020",
+        "BP-MOON-130"
+      ],
+      "workshop_scope": "Preserve M=1 exact scan and explore useful motif/layout mappings; remove crossover evidence as a precondition.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/families/machine/results/machine-evidence.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-SEQ",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-31",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-020",
+        "BP-MOON-130"
+      ],
+      "workshop_scope": "Keep fused/resident/allowed-family alternatives alive and move benchmarking to Q02.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/families/machine/results/machine-evidence.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-SEQ",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-32",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-020",
+        "BP-MOON-050"
+      ],
+      "workshop_scope": "Integrate CUDA grammar and halo semantics where actual experiments need them.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/logic/evidence.json",
+        "experiments/moonshot/families/hierarchy/receipt.md"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-SEQ",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-33",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-060",
+        "BP-MOON-080",
+        "Q01"
+      ],
+      "workshop_scope": "Preserve capacity correctness; develop compact routing paths without claiming production output completeness.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/rendezvous/README.md",
+        "experiments/moonshot/families/demand/evidence.json"
+      ],
+      "remaining_qualification": [
+        "Q01"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-INDEX",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-34",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-050",
+        "BP-MOON-060",
+        "Q03"
+      ],
+      "workshop_scope": "Small local segment mechanics now; shared Cellerator numerical integration stays external.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/families/rendezvous/README.md"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-35",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-010",
+        "BP-MOON-140",
+        "BP-MOON-150",
+        "Q03"
+      ],
+      "workshop_scope": "Replace production-v1 fan-in with a navigable experimental library. Full public prepare/query/bind/run qualification remains later.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-36",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-030",
+        "BP-MOON-040"
+      ],
+      "workshop_scope": "Explicitly activate diverse transition-composition experiments; no evidence-first gate.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/automata/receipt.json",
+        "experiments/moonshot/families/effects/receipt.json"
+      ],
+      "remaining_qualification": [],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-HIERARCHY",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "BP-BITOP-50",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "Q02"
+      ],
+      "workshop_scope": "Defer crossover matrix and tuned policy selection; do not erase the obligation.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q02"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-QUALIFY",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CE-BITOP-41",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-070",
+        "BP-MOON-090",
+        "Q03"
+      ],
+      "workshop_scope": "Local floating/learned probes authorized now; production weighting and shared numerical ABI remain Cellerator-owned.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/tensor/consumer-receipt.json",
+        "experiments/moonshot/families/compiler/receipt.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CE-BITOP-42",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-050",
+        "BP-MOON-110",
+        "Q03"
+      ],
+      "workshop_scope": "Explore learned hierarchy locally without a precomputed partition oracle; shared runtime partition contract is external.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/hierarchy/receipt.md",
+        "experiments/moonshot/families/hypotheses/receipt.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CE-BITOP-43",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-090",
+        "Q04"
+      ],
+      "workshop_scope": "Prototype learning-to-discrete mechanisms on small fixtures; trained biological evaluation is deferred.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/compiler/receipt.json"
+      ],
+      "remaining_qualification": [
+        "Q04"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-LEARNING",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CE-BITOP-44",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "Q03"
+      ],
+      "workshop_scope": "Do not carry forward the CE-BITOP-40 dependency. Torch integration follows an inspected current Cellerator seam, not a superseded adapter.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CE-BITOP-45",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-060",
+        "BP-MOON-120",
+        "Q03"
+      ],
+      "workshop_scope": "Prototype actual candidate construction and factors; Cellerator still owns general numerical message passing.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json",
+        "experiments/moonshot/families/rendezvous/README.md",
+        "experiments/moonshot/families/ports/receipts/consumer.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-INDEX",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CS-BITOP-60",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "Q05"
+      ],
+      "workshop_scope": "No persistence dependency now. CellShard work requires a separately accepted external handoff and concrete reuse need.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q05"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-CLOSE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "STACK-BITOP-51",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "Q05"
+      ],
+      "workshop_scope": "No multi-GPU benchmark or distributed representation authority in this campaign.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q05"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-CLOSE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "STACK-BITOP-52",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-150",
+        "Q03"
+      ],
+      "workshop_scope": "Experimental packaging now; public cross-library contract freeze later.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "STACK-BITOP-53",
+      "preserved_planning_disposition": "supersede_and_integrate",
+      "successor_targets": [
+        "BP-MOON-150",
+        "Q01",
+        "Q02",
+        "Q03"
+      ],
+      "workshop_scope": "Candid inventory now; production sanitizers, tuned performance and ABI audit remain later.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q01",
+        "Q02",
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Schedule migrated; bounded workshop evidence does not satisfy general old executor/release qualifications",
+      "integrated_substrate_owner": "BP-IS1-QUALIFY",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    },
+    {
+      "old_id": "CE-BITOP-40",
+      "preserved_planning_disposition": "preserve_superseded",
+      "successor_targets": [
+        "Q03"
+      ],
+      "workshop_scope": "Do not resurrect DeviceMathContext. Inspect Cellerator-owned CE-ARCH-40 and current ABI rather than declaring an old checkpoint reached.",
+      "evidence": [
+        "planning/baseplane_moonshot_adoption/README.md",
+        "planning/baseplane_moonshot_adoption/baseplane-supersession.json"
+      ],
+      "remaining_qualification": [
+        "Q03"
+      ],
+      "old_production_task_claimed_complete": false,
+      "status_note": "Historical completion/supersession preserved",
+      "integrated_substrate_owner": "BP-IS1-BRIDGE",
+      "adoption_disposition": "preserve applied historical status; carry remaining qualification to designated IS1 owner"
+    }
+  ],
+  "compositions": [
+    {
+      "id": "C01",
+      "title": "Sequence effects that answer questions",
+      "experiments": [
+        "E01",
+        "E05",
+        "E09",
+        "E25"
+      ],
+      "path": "Exact sequence -> local predicates -> finite/affine effect hierarchy -> incoming-state query -> source refinement. Keep both finite and floating answers identifiable.",
+      "disposition": "implemented compiled and host-tested",
+      "host_run": true,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "experiments/moonshot/compositions/sequence_effects/receipt/README.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "remaining_scope": "Scaling, biological evaluation and applicable GPU paths remain unqualified"
+    },
+    {
+      "id": "C02",
+      "title": "Residual-backed latent context",
+      "experiments": [
+        "E13",
+        "E14",
+        "E20",
+        "E21"
+      ],
+      "path": "Adaptive boundaries -> coarse/detail split -> higher-layer subscription -> compact requested objects -> dense feature mixing -> optional residual decode.",
+      "disposition": "deferred",
+      "host_run": false,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/README.md"
+      ],
+      "remaining_scope": "See explicit remaining implementation in composition inventory"
+    },
+    {
+      "id": "C03",
+      "title": "One genome, many variants",
+      "experiments": [
+        "E33",
+        "E34",
+        "E35",
+        "E44"
+      ],
+      "path": "Exact repeat DAG -> variant delta worlds -> dependency invalidation -> guarded query memo. Compare each world against separate execution on a tiny fixture.",
+      "disposition": "implemented compiled and host-tested",
+      "host_run": true,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "experiments/moonshot/compositions/variants/README.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "remaining_scope": "Scaling, biological evaluation and applicable GPU paths remain unqualified"
+    },
+    {
+      "id": "C04",
+      "title": "Real nonlocal context",
+      "experiments": [
+        "E14",
+        "E17",
+        "E22",
+        "E28"
+      ],
+      "path": "Input-derived region keys -> whole-input directory -> event relation tiles -> sparse contextual update wave. No oracle input packet.",
+      "disposition": "implemented compiled and host-tested",
+      "host_run": true,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "experiments/moonshot/compositions/nonlocal_context/README.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "remaining_scope": "Scaling, biological evaluation and applicable GPU paths remain unqualified"
+    },
+    {
+      "id": "C05",
+      "title": "Learning compiles away",
+      "experiments": [
+        "E29",
+        "E30",
+        "E31",
+        "E19"
+      ],
+      "path": "Small floating teacher -> discrete typed circuit -> state-conditioned predicate bank -> approximate candidate nomination -> exact or richer verification.",
+      "disposition": "implemented compiled and host-tested",
+      "host_run": true,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "experiments/moonshot/compositions/compiled_learning/README.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "remaining_scope": "Scaling, biological evaluation and applicable GPU paths remain unqualified"
+    },
+    {
+      "id": "C06",
+      "title": "Ports and factorized hypotheses",
+      "experiments": [
+        "E41",
+        "E43",
+        "E44"
+      ],
+      "path": "Condensed regional response ports -> multi-role factor join -> counterfactual packet evaluation. Separate synthetic algebra from biological interpretation.",
+      "disposition": "implemented compiled and host-tested",
+      "host_run": true,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/validation/receipt.md",
+        "experiments/moonshot/compositions/ports_factor/README.md",
+        "planning/baseplane_moonshot_bootstrap/results/final-build/receipt.md"
+      ],
+      "remaining_scope": "Scaling, biological evaluation and applicable GPU paths remain unqualified"
+    },
+    {
+      "id": "C07",
+      "title": "Dense possible states, sparse execution",
+      "experiments": [
+        "E24",
+        "E29",
+        "E05"
+      ],
+      "path": "Evaluate a bounded state vocabulary through tensor tiles -> distill a discrete transition table -> execute the hardened regional effect through shuffles.",
+      "disposition": "deferred",
+      "host_run": false,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/README.md"
+      ],
+      "remaining_scope": "See explicit remaining implementation in composition inventory"
+    },
+    {
+      "id": "C08",
+      "title": "Hierarchy repairs its own blind spots",
+      "experiments": [
+        "E16",
+        "E37",
+        "E39",
+        "E40"
+      ],
+      "path": "Alternative seams/parse forest -> query-specific summary portfolio -> detected representation collision -> targeted split/residual/predicate addition.",
+      "disposition": "deferred",
+      "host_run": false,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/README.md"
+      ],
+      "remaining_scope": "See explicit remaining implementation in composition inventory"
+    },
+    {
+      "id": "C09",
+      "title": "Precision follows a budget",
+      "experiments": [
+        "E15",
+        "E27",
+        "E26"
+      ],
+      "path": "Early precision planes -> uncertainty/priority buckets -> opcode cohorts -> extra planes only for unresolved work, with starvation debt visible.",
+      "disposition": "deferred",
+      "host_run": false,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/README.md"
+      ],
+      "remaining_scope": "See explicit remaining implementation in composition inventory"
+    },
+    {
+      "id": "C10",
+      "title": "Cheap role sketches, precise relations",
+      "experiments": [
+        "E38",
+        "E19",
+        "E17",
+        "E22"
+      ],
+      "path": "Role-bound binary sketches -> multi-probe nomination -> full posting lookup -> small learned relation tile with exact source-pair provenance.",
+      "disposition": "deferred",
+      "host_run": false,
+      "gpu_run": false,
+      "evidence": [
+        "experiments/moonshot/compositions/README.md"
+      ],
+      "remaining_scope": "See explicit remaining implementation in composition inventory"
+    }
+  ],
+  "qualification": {
+    "scheduled_in_workshop": false,
+    "activation": "A later explicitly authorized qualification campaign; these IDs are document obligations, not imported active tasks.",
+    "obligations": [
+      {
+        "id": "Q01",
+        "title": "Exactness, contracts and safety",
+        "scope": "Complete required general CPU/CUDA semantics, differential/adversarial tests, stable/unordered output guarantees, relevant sanitizers and public API audit."
+      },
+      {
+        "id": "Q02",
+        "title": "Performance and policy selection",
+        "scope": "Measure end-to-end costs including packing, directory building, replay, bytes and information loss. Select executors from real workloads; preserve failures."
+      },
+      {
+        "id": "Q03",
+        "title": "Production stack interfaces",
+        "scope": "Inspect current Cellerator ABI/runtime/operator ownership, then design producer-owned adapter handoffs and optional Torch views without binding obsolete DeviceMathContext."
+      },
+      {
+        "id": "Q04",
+        "title": "Learned biological evaluation",
+        "scope": "Choose an explicit sequence-to-target objective, split by appropriate biological units, compare fixed/local/dense/learned baselines and investigate leakage, non-identifiability and counterfactual limits."
+      },
+      {
+        "id": "Q05",
+        "title": "Distribution and persistent reuse",
+        "scope": "Only after concrete need, request Cellerator partition and CellShard persistence integration through their separate authorities; account for communication and invalidation."
+      }
+    ]
+  },
+  "other_sources": [
+    {
+      "id": "BP:EXACT-SEQ",
+      "sources": [
+        "include/Baseplane/seq/dna2_validity.hh",
+        "include/Baseplane/seq/sequence_event.hh",
+        "include/Baseplane/seq/predicate_plan.hh",
+        "src/seq/predicate_plan.cpp"
+      ],
+      "destination": "BP-IS1-SEQ",
+      "disposition": "retain version1 predicates and exact source ownership; extend through scoped leaf; standalone Baseplane::seq"
+    },
+    {
+      "id": "BP:CUDA-LAB",
+      "sources": [
+        "experiments/cuda_lab/results/selection/report.md"
+      ],
+      "destination": "BP-IS1-QUALIFY",
+      "disposition": "retain CarryFold candidate and negative BitLift/Rethread/Rendezvous evidence; no production or biological claim"
+    },
+    {
+      "id": "BP:DOCS",
+      "sources": [
+        "docs/design/overview.md",
+        "docs/development/source-map.md"
+      ],
+      "destination": "BP-IS1-DOCS",
+      "disposition": "retain architecture/evidence boundaries; update docs after source leaves"
+    }
+  ],
+  "claim": "current source inspected; per-card runtime/GPU results historical; fresh checks recorded separately"
+}

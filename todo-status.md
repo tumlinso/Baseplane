@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Status v2 Projection
 
-Project revision: `377`
+Project revision: `380`
 
 ## Workstreams
 - `STACK-BITOP-01` | status: done | execution: closed | next: Verify the recorded evidence against current Git/source without changing implementation; run context, changes, guard, and audit; then complete validated.
@@ -28,7 +28,7 @@ Project revision: `377`
 - `BP-BITOP-35` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
 - `CE-BITOP-40` | status: superseded | execution: closed | next: No implementation. This task is terminally superseded by CellStack CE-ARCH-40 and CELLERATOR_BASEPLANE_COMMON_ABI_V1_READY.
 - `CE-BITOP-41` | status: superseded | execution: closed | next: Deferred by user on 2026-09-29 for an intermediary epic. Do not claim, activate, or implement this task. Resume only after explicit user authorization and a replacement BitOP plan has been reviewed and applied.
-- `BP-IS1-ADOPT` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
+- `BP-IS1-ADOPT` | status: in_progress | execution: claimed | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
 - `BP-IS1-BRIDGE` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
 - `BP-IS1-BUILD` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
 - `BP-IS1-CLOSE` | status: planned | execution: ready | next: Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.

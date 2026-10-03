@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /tmp/bp-is1-adopt-installed
+Test project /tmp/bp-is1-adopt-installed
+    Start 1: bp_adoption_seq_consumer
+1/1 Test #1: bp_adoption_seq_consumer .........   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.00 sec

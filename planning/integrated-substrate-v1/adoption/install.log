@@ -1,0 +1,23 @@
+-- Install configuration: "Debug"
+-- Installing: /tmp/bp-is1-adopt-install/lib/libbaseplane_seq.a
+-- Installing: /tmp/bp-is1-adopt-install/include
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/dna2.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_scan.cuh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_allowed.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/sequence_event.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_ops.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_motif.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_scan.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_validity.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/predicate_plan.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2_views.hh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/seq/dna2.cuh
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/core
+-- Installing: /tmp/bp-is1-adopt-install/include/Baseplane/core/status.hh
+-- Installing: /tmp/bp-is1-adopt-install/lib/cmake/Baseplane/BaseplaneTargets.cmake
+-- Installing: /tmp/bp-is1-adopt-install/lib/cmake/Baseplane/BaseplaneTargets-debug.cmake
+-- Installing: /tmp/bp-is1-adopt-install/lib/cmake/Baseplane/BaseplaneConfig.cmake
+-- Installing: /tmp/bp-is1-adopt-install/lib/cmake/Baseplane/BaseplaneConfigVersion.cmake
+-- Installing: /tmp/bp-is1-adopt-install/lib/cmake/Baseplane/BaseplaneRepresentation.cmake

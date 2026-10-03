@@ -1,0 +1,21 @@
+[ 14%] Building CXX object baseplane/CMakeFiles/baseplane_seq.dir/src/seq/dna2_allowed.cpp.o
+[ 28%] Building CXX object baseplane/CMakeFiles/baseplane_seq.dir/src/seq/dna2_scalar.cpp.o
+[ 42%] Building CXX object baseplane/CMakeFiles/baseplane_seq.dir/src/seq/dna2_validity.cpp.o
+[ 57%] Building CXX object baseplane/CMakeFiles/baseplane_seq.dir/src/seq/predicate_plan.cpp.o
+[ 71%] Linking CXX static library libbaseplane_seq.a
+[ 71%] Built target baseplane_seq
+[ 85%] Building CXX object CMakeFiles/bp_adoption_seq_consumer.dir/seq_consumer.cpp.o
+[100%] Linking CXX executable bp_adoption_seq_consumer
+[100%] Built target bp_adoption_seq_consumer
+[ 71%] Built target baseplane_seq
+[ 85%] Building CXX object CMakeFiles/bp_adoption_effect_consumer.dir/home/tumlinson/Baseplane/experiments/moonshot/compositions/sequence_effects/tests/smoke.cpp.o
+[100%] Linking CXX executable bp_adoption_effect_consumer
+[100%] Built target bp_adoption_effect_consumer
+[ 71%] Built target baseplane_seq
+[ 85%] Building CXX object baseplane/CMakeFiles/baseplaneBitOpContractTest.dir/tests/seq/test_predicate_plan.cpp.o
+[100%] Linking CXX executable baseplaneBitOpContractTest
+[100%] Built target baseplaneBitOpContractTest
+[ 71%] Built target baseplane_seq
+[ 85%] Building CXX object baseplane/CMakeFiles/baseplaneDna2ValidityTest.dir/tests/seq/test_dna2_validity.cpp.o
+[100%] Linking CXX executable baseplaneDna2ValidityTest
+[100%] Built target baseplaneDna2ValidityTest

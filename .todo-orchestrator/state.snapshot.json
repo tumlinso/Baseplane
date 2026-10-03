@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T16:38:08Z",
+  "generated_at": "2026-10-03T09:27:31Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 377,
+  "project_revision": 380,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -4400,6 +4400,36 @@
         "revision": 377,
         "seq": 377,
         "timestamp": "2026-10-02T16:38:08Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-L",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-IS1-ADOPT-L\", \"run_id\": \"BP-IS1-RUN-V1\", \"status\": \"claimed\", \"task_id\": \"BP-IS1-ADOPT\"}",
+        "revision": 378,
+        "seq": 378,
+        "timestamp": "2026-10-03T09:17:32Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "146152e9-2deb-4d07-903e-315a6940ac24",
+        "entity_type": "gate_binding",
+        "event_type": "workflow.gates.bound",
+        "payload_json": "{\"gate_count\": 4}",
+        "revision": 379,
+        "seq": 379,
+        "timestamp": "2026-10-03T09:23:52Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-L",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-IS1-ADOPT-L\", \"run_id\": \"BP-IS1-RUN-V1\", \"status\": \"resumed\", \"task_id\": \"BP-IS1-ADOPT\"}",
+        "revision": 380,
+        "seq": 380,
+        "timestamp": "2026-10-03T09:27:31Z"
       }
     ],
     "evidence": [
@@ -6409,12 +6439,64 @@
       },
       {
         "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/adoption/check_dispositions.py\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\"]}",
+        "id": "BP-IS1-ADOPT-DISPOSITIONS",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 379,
+        "status": "pending",
+        "task_id": "BP-IS1-ADOPT",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
         "config_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/tools\", \"planning/integrated-substrate-v1/local-config.json\", \"planning/integrated-substrate-v1/machine\"]}",
         "id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
         "input_fingerprint": null,
         "last_run_at": null,
         "required": 1,
         "revision": 377,
+        "status": "pending",
+        "task_id": "BP-IS1-ADOPT",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"cmake\", \"--build\", \"/tmp/bp-is1-adopt-host\", \"--target\", \"bp_adoption_seq_consumer\", \"bp_adoption_effect_consumer\", \"baseplaneBitOpContractTest\", \"baseplaneDna2ValidityTest\", \"-j\", \"2\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\", \"cmake\", \"include/Baseplane/seq\", \"src/seq\"]}",
+        "id": "BP-IS1-ADOPT-HOST-BUILD",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 379,
+        "status": "pending",
+        "task_id": "BP-IS1-ADOPT",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"cmake\", \"-S\", \"planning/integrated-substrate-v1/adoption\", \"-B\", \"/tmp/bp-is1-adopt-host\", \"-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot\", \"-DCMAKE_BUILD_TYPE=Debug\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\", \"CMakeLists.txt\", \"cmake\", \"include/Baseplane/seq\", \"src/seq\"]}",
+        "id": "BP-IS1-ADOPT-HOST-CONFIGURE",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 379,
+        "status": "pending",
+        "task_id": "BP-IS1-ADOPT",
+        "type": "command",
+        "valid": 0
+      },
+      {
+        "checkpoint_id": null,
+        "config_json": "{\"argv\": [\"ctest\", \"--test-dir\", \"/tmp/bp-is1-adopt-host\", \"-R\", \"^bp_adoption_\", \"--output-on-failure\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\", \"include/Baseplane/seq\", \"src/seq\"]}",
+        "id": "BP-IS1-ADOPT-HOST-TEST",
+        "input_fingerprint": null,
+        "last_run_at": null,
+        "required": 1,
+        "revision": 379,
         "status": "pending",
         "task_id": "BP-IS1-ADOPT",
         "type": "command",
@@ -16731,12 +16813,12 @@
         "priority": 100,
         "result": null,
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 377,
-        "status": "planned",
+        "revision": 378,
+        "status": "in_progress",
         "tags_json": "[]",
         "title": "Reconcile finished predecessors and publish the small shared foundation",
-        "updated_at": "2026-10-02T16:38:08Z",
-        "version": 1
+        "updated_at": "2026-10-03T09:17:32Z",
+        "version": 2
       },
       {
         "attention_reason": null,
@@ -19882,13 +19964,13 @@
         "task_id": "BP-DOCS-000"
       },
       {
-        "activated_at": null,
+        "activated_at": "2026-10-03T09:17:32Z",
         "completed_at": null,
         "enqueued_at": "2026-10-02T16:38:08Z",
         "lane_id": "BP-IS1-ADOPT-L",
         "position": 0,
-        "revision": 377,
-        "state": "queued",
+        "revision": 378,
+        "state": "active",
         "task_id": "BP-IS1-ADOPT"
       },
       {
@@ -20544,11 +20626,11 @@
         "created_at": "2026-10-02T16:38:08Z",
         "id": "BP-IS1-ADOPT-L",
         "parent_lane_id": null,
-        "revision": 377,
+        "revision": 378,
         "role": "implementer",
         "run_id": "BP-IS1-RUN-V1",
-        "state": "ready",
-        "updated_at": "2026-10-02T16:38:08Z",
+        "state": "active",
+        "updated_at": "2026-10-03T09:17:32Z",
         "workspace_mode": "exclusive"
       },
       {

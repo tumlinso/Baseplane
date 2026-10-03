@@ -9,3 +9,4 @@ if(@BASEPLANE_HAS_HIGHWAY@)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneRepresentation.cmake")
