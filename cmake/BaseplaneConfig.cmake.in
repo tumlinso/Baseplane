@@ -10,3 +10,8 @@ endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneTargets.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneRepresentation.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneSubstrate.cmake")
+if(Baseplane_FIND_COMPONENTS)
+    baseplane_load_substrate(COMPONENTS ${Baseplane_FIND_COMPONENTS})
+endif()
+check_required_components(Baseplane)

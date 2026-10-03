@@ -1,0 +1,21 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -217,5 +217,6 @@ install(FILES
+     ${CMAKE_CURRENT_BINARY_DIR}/BaseplaneConfig.cmake
+     ${CMAKE_CURRENT_BINARY_DIR}/BaseplaneConfigVersion.cmake
+     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/BaseplaneRepresentation.cmake
++    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/substrate/BaseplaneSubstrate.cmake
+     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Baseplane
+ )
+diff --git a/cmake/BaseplaneConfig.cmake.in b/cmake/BaseplaneConfig.cmake.in
+--- a/cmake/BaseplaneConfig.cmake.in
++++ b/cmake/BaseplaneConfig.cmake.in
+@@ -11,2 +11,7 @@ endif()
+ include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneTargets.cmake")
+ include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneRepresentation.cmake")
++include("${CMAKE_CURRENT_LIST_DIR}/BaseplaneSubstrate.cmake")
++if(Baseplane_FIND_COMPONENTS)
++    baseplane_load_substrate(COMPONENTS ${Baseplane_FIND_COMPONENTS})
++endif()
++check_required_components(Baseplane)

@@ -210,5 +210,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/BaseplaneConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/BaseplaneConfigVersion.cmake
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/BaseplaneRepresentation.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/substrate/BaseplaneSubstrate.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Baseplane
 )
