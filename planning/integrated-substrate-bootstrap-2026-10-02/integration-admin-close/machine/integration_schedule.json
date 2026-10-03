@@ -1,0 +1,11 @@
+{
+  "phases": [
+    {
+      "integration_task": "BP-IS1-CLOSE",
+      "required_tasks": [
+        "BP-IS1-QUALIFY",
+        "BP-IS1-DOCS"
+      ]
+    }
+  ]
+}
