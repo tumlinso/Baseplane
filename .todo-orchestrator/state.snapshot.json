@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T09:31:45Z",
+  "generated_at": "2026-10-03T09:32:26Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 382,
+  "project_revision": 393,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -4450,6 +4450,116 @@
         "revision": 382,
         "seq": 382,
         "timestamp": "2026-10-03T09:31:45Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-DISPOSITIONS",
+        "entity_type": "gate",
+        "event_type": "gate.started",
+        "payload_json": "{\"gate_id\": \"BP-IS1-ADOPT-DISPOSITIONS\"}",
+        "revision": 383,
+        "seq": 383,
+        "timestamp": "2026-10-03T09:32:03Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-DISPOSITIONS",
+        "entity_type": "gate",
+        "event_type": "gate.completed",
+        "payload_json": "{\"evidence_id\": \"eaa88e67-7073-4dd0-a450-abb008020edd\", \"status\": \"passed\", \"valid\": true}",
+        "revision": 384,
+        "seq": 384,
+        "timestamp": "2026-10-03T09:32:03Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+        "entity_type": "gate",
+        "event_type": "gate.started",
+        "payload_json": "{\"gate_id\": \"BP-IS1-ADOPT-GLOBAL-BARRIER\"}",
+        "revision": 385,
+        "seq": 385,
+        "timestamp": "2026-10-03T09:32:03Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+        "entity_type": "gate",
+        "event_type": "gate.completed",
+        "payload_json": "{\"evidence_id\": \"ba89e7eb-a9b1-4a49-9678-4b67599c7c96\", \"status\": \"passed\", \"valid\": true}",
+        "revision": 386,
+        "seq": 386,
+        "timestamp": "2026-10-03T09:32:25Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-HOST-BUILD",
+        "entity_type": "gate",
+        "event_type": "gate.started",
+        "payload_json": "{\"gate_id\": \"BP-IS1-ADOPT-HOST-BUILD\"}",
+        "revision": 387,
+        "seq": 387,
+        "timestamp": "2026-10-03T09:32:25Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-HOST-BUILD",
+        "entity_type": "gate",
+        "event_type": "gate.completed",
+        "payload_json": "{\"evidence_id\": \"449c8acc-d9f2-4e0d-95f5-e0dcf77d2cd7\", \"status\": \"passed\", \"valid\": true}",
+        "revision": 388,
+        "seq": 388,
+        "timestamp": "2026-10-03T09:32:26Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-HOST-CONFIGURE",
+        "entity_type": "gate",
+        "event_type": "gate.started",
+        "payload_json": "{\"gate_id\": \"BP-IS1-ADOPT-HOST-CONFIGURE\"}",
+        "revision": 389,
+        "seq": 389,
+        "timestamp": "2026-10-03T09:32:26Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-HOST-CONFIGURE",
+        "entity_type": "gate",
+        "event_type": "gate.completed",
+        "payload_json": "{\"evidence_id\": \"720e3813-3ee7-4d04-8a58-c9aa9db9bbd8\", \"status\": \"passed\", \"valid\": true}",
+        "revision": 390,
+        "seq": 390,
+        "timestamp": "2026-10-03T09:32:26Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-HOST-TEST",
+        "entity_type": "gate",
+        "event_type": "gate.started",
+        "payload_json": "{\"gate_id\": \"BP-IS1-ADOPT-HOST-TEST\"}",
+        "revision": 391,
+        "seq": 391,
+        "timestamp": "2026-10-03T09:32:26Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT-HOST-TEST",
+        "entity_type": "gate",
+        "event_type": "gate.completed",
+        "payload_json": "{\"evidence_id\": \"23179cbe-c13d-41df-ba7b-74985b89030c\", \"status\": \"passed\", \"valid\": true}",
+        "revision": 392,
+        "seq": 392,
+        "timestamp": "2026-10-03T09:32:26Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-IS1-ADOPT",
+        "entity_type": "task",
+        "event_type": "task.completed",
+        "payload_json": "{\"completion_revision\": 393, \"disposition\": \"implemented\", \"reached_checkpoints\": []}",
+        "revision": 393,
+        "seq": 393,
+        "timestamp": "2026-10-03T09:32:26Z"
       }
     ],
     "evidence": [
@@ -4542,6 +4652,19 @@
         "metadata_json": "{\"exists\": true, \"inputs\": {\"command_contract\": {\"path\": \"docs/bitop_baseline_evidence.md\"}, \"diff_fingerprint\": \"f8e85754fc6c06cfa7e713dcebea4ae5c9278f53bd3353d4198ef4dfee080bea\", \"dirty_paths\": [\".todo-orchestrator/state.snapshot.json\", \"bitop-plan.json\", \"docs/bitop_baseline_evidence.md\", \"todo-status.md\", \"todos.md\", \"todos/bitop-00.md\", \"todos/bp-bitop-03.md\", \"todos/bp-bitop-10.md\", \"todos/bp-bitop-11.md\", \"todos/bp-bitop-12.md\", \"todos/bp-bitop-13.md\", \"todos/bp-bitop-20.md\", \"todos/bp-bitop-21.md\", \"todos/bp-bitop-22.md\", \"todos/bp-bitop-23.md\", \"todos/bp-bitop-24.md\", \"todos/bp-bitop-25.md\", \"todos/bp-bitop-30.md\", \"todos/bp-bitop-31.md\", \"todos/bp-bitop-32.md\", \"todos/bp-bitop-33.md\", \"todos/bp-bitop-34.md\", \"todos/bp-bitop-35.md\", \"todos/bp-bitop-36.md\", \"todos/bp-bitop-50.md\", \"todos/ce-bitop-40.md\", \"todos/ce-bitop-41.md\", \"todos/ce-bitop-42.md\", \"todos/ce-bitop-43.md\", \"todos/ce-bitop-44.md\", \"todos/ce-bitop-45.md\", \"todos/cs-bitop-60.md\", \"todos/stack-bitop-01.md\", \"todos/stack-bitop-02.md\", \"todos/stack-bitop-04.md\", \"todos/stack-bitop-51.md\", \"todos/stack-bitop-52.md\", \"todos/stack-bitop-53.md\"], \"files\": [], \"interfaces\": [], \"recorded_git_head\": \"768065b4bdd6693429a22a49c0fdeb2f1946180f\"}, \"locks\": [], \"path\": \"docs/bitop_baseline_evidence.md\", \"resources\": [], \"started_revision\": 50}",
         "path": "/home/tumlinson/CellStack/.git/modules/Baseplane/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/1d37f427-4f3b-4295-a223-0f5c70e34aa3",
         "revision": 51,
+        "status": "passed"
+      },
+      {
+        "checkpoint_id": null,
+        "claim_id": null,
+        "content_hash": null,
+        "created_at": "2026-10-03T09:32:26Z",
+        "gate_id": "BP-IS1-ADOPT-HOST-TEST",
+        "id": "23179cbe-c13d-41df-ba7b-74985b89030c",
+        "kind": "command",
+        "metadata_json": "{\"argv\": [\"ctest\", \"--test-dir\", \"/tmp/bp-is1-adopt-host\", \"-R\", \"^bp_adoption_\", \"--output-on-failure\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"7b48b4456efbb812aa701d2c2a99f33939a793bf2b9bafb3de2628a0da9364a4\", \"inputs\": {\"command_contract\": {\"argv\": [\"ctest\", \"--test-dir\", \"/tmp/bp-is1-adopt-host\", \"-R\", \"^bp_adoption_\", \"--output-on-failure\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"include/Baseplane/seq\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}, {\"path\": \"src/seq\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 391}",
+        "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/23179cbe-c13d-41df-ba7b-74985b89030c",
+        "revision": 392,
         "status": "passed"
       },
       {
@@ -4698,6 +4821,19 @@
         "metadata_json": "{\"argv\": [\"git\", \"diff\", \"--check\", \"--\", \"include/Baseplane/seq/dna2_validity.hh\", \"src/seq/dna2_validity.cpp\", \"tests/seq/test_dna2_validity.cpp\"], \"environment\": {}, \"expected_exit_code\": 0, \"inputs\": {\"command_contract\": {\"argv\": [\"git\", \"diff\", \"--check\", \"--\", \"include/Baseplane/seq/dna2_validity.hh\", \"src/seq/dna2_validity.cpp\", \"tests/seq/test_dna2_validity.cpp\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"eb19a6a5c3f45e0c260139b2730dd664352b65f6ab31e325436a00eb37e06fb2\", \"dirty_paths\": [\".ctxpp/cache/freshness.json\", \".ctxpp/index.jsonl\", \".ctxpp/manifest.json\", \".ctxpp/token-cache.json\", \".todo-orchestrator/state.snapshot.json\", \"bitop-plan.json\", \"docs/bitop_baseline_evidence.md\", \"include/Baseplane/seq/dna2_validity.hh\", \"src/seq/dna2_validity.cpp\", \"tests/seq/test_dna2_validity.cpp\", \"todo-status.md\", \"todos.md\", \"todos/bitop-00.md\", \"todos/bp-bitop-03.md\", \"todos/bp-bitop-10.md\", \"todos/bp-bitop-11.md\", \"todos/bp-bitop-12.md\", \"todos/bp-bitop-13.md\", \"todos/bp-bitop-20.md\", \"todos/bp-bitop-21.md\", \"todos/bp-bitop-22.md\", \"todos/bp-bitop-23.md\", \"todos/bp-bitop-24.md\", \"todos/bp-bitop-25.md\", \"todos/bp-bitop-30.md\", \"todos/bp-bitop-31.md\", \"todos/bp-bitop-32.md\", \"todos/bp-bitop-33.md\", \"todos/bp-bitop-34.md\", \"todos/bp-bitop-35.md\", \"todos/bp-bitop-36.md\", \"todos/bp-bitop-50.md\", \"todos/ce-bitop-40.md\", \"todos/ce-bitop-41.md\", \"todos/ce-bitop-42.md\", \"todos/ce-bitop-43.md\", \"todos/ce-bitop-44.md\", \"todos/ce-bitop-45.md\", \"todos/cs-bitop-60.md\", \"todos/stack-bitop-01.md\", \"todos/stack-bitop-02.md\", \"todos/stack-bitop-04.md\", \"todos/stack-bitop-51.md\", \"todos/stack-bitop-52.md\", \"todos/stack-bitop-53.md\"], \"files\": [{\"path\": \"include/Baseplane/seq/dna2_validity.hh\", \"sha256\": \"8c16a74c3b36914d33a70851ac10deee0ab58fd3c3323d4030cbe48a8efc2ff3\"}, {\"path\": \"src/seq/dna2_validity.cpp\", \"sha256\": \"f1d4721b5f014e034ea15dcb671b92ccf6ea781d2ab367ceab366ea4a2233337\"}, {\"path\": \"tests/seq/test_dna2_validity.cpp\", \"sha256\": \"d04030307190710f03854204a312f13270ef1470a4db1055ff05e07e47c5fc46\"}], \"git_head\": \"768065b4bdd6693429a22a49c0fdeb2f1946180f\", \"interfaces\": [], \"recorded_git_head\": \"768065b4bdd6693429a22a49c0fdeb2f1946180f\"}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 63}",
         "path": "/home/tumlinson/CellStack/.git/modules/Baseplane/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/40c89a7f-59d7-4104-aae1-a97e0b5abe11",
         "revision": 64,
+        "status": "passed"
+      },
+      {
+        "checkpoint_id": null,
+        "claim_id": null,
+        "content_hash": null,
+        "created_at": "2026-10-03T09:32:26Z",
+        "gate_id": "BP-IS1-ADOPT-HOST-BUILD",
+        "id": "449c8acc-d9f2-4e0d-95f5-e0dcf77d2cd7",
+        "kind": "command",
+        "metadata_json": "{\"argv\": [\"cmake\", \"--build\", \"/tmp/bp-is1-adopt-host\", \"--target\", \"bp_adoption_seq_consumer\", \"bp_adoption_effect_consumer\", \"baseplaneBitOpContractTest\", \"baseplaneDna2ValidityTest\", \"-j\", \"2\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"6aee0dc973b5d300d1969b337c905922e52b179e6e384150ca3b247d4437a301\", \"inputs\": {\"command_contract\": {\"argv\": [\"cmake\", \"--build\", \"/tmp/bp-is1-adopt-host\", \"--target\", \"bp_adoption_seq_consumer\", \"bp_adoption_effect_consumer\", \"baseplaneBitOpContractTest\", \"baseplaneDna2ValidityTest\", \"-j\", \"2\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"cmake\", \"sha256\": \"missing\"}, {\"path\": \"include/Baseplane/seq\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}, {\"path\": \"src/seq\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 387}",
+        "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/449c8acc-d9f2-4e0d-95f5-e0dcf77d2cd7",
+        "revision": 388,
         "status": "passed"
       },
       {
@@ -4932,6 +5068,19 @@
         "metadata_json": "{\"argv\": [\"python3\", \"planning/doc-refresh/tools/check.py\", \"--local\", \"--evidence\", \"--project\", \"baseplane\", \"--repo\", \".\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"dcd64d292630a35d2e06932314976620dff9f0224ee365af8cc1f051050e3948\", \"inputs\": {\"command_contract\": {\"argv\": [\"python3\", \"planning/doc-refresh/tools/check.py\", \"--local\", \"--evidence\", \"--project\", \"baseplane\", \"--repo\", \".\"], \"cwd\": \".\", \"expected_exit_code\": 0}, \"diff_fingerprint\": \"df53b64609abf76c2130960a794f8defe8c6a884cefb18e99849ea1a768d16e1\", \"dirty_paths\": [\".todo-orchestrator/state.snapshot.json\", \"AGENTS.md\", \"CONTRIBUTING.md\", \"README.md\", \"docs/archive/README.md\", \"docs/design/overview.md\", \"docs/design/program.md\", \"docs/development/source-map.md\", \"docs/development/start.md\", \"docs/index.md\", \"docs/results/assets/bp-carryfold.png\", \"docs/results/assets/bp-carryfold.svg\", \"docs/results/bp-carryfold.md\", \"docs/results/data/bp-carryfold.json\", \"docs/results/index.md\", \"docs/status/current.md\", \"experiments/cuda_lab/README.md\", \"experiments/cuda_lab/START_HERE.md\", \"planning/doc-refresh/inputs/bindings.json\", \"planning/doc-refresh/inputs/inventory.json\", \"planning/doc-refresh/inputs/moves.json\", \"planning/doc-refresh/inputs/results/bp-carryfold.json\", \"planning/doc-refresh/inputs/results/bp-rethread.json\", \"planning/doc-refresh/inputs/review.json\", \"planning/doc-refresh/inputs/selection-notes.md\", \"planning/doc-refresh/run.v3.json\", \"planning/doc-refresh/staged/.docstage.json\", \"planning/doc-refresh/staged/AGENTS.md\", \"planning/doc-refresh/staged/CONTRIBUTING.md\", \"planning/doc-refresh/staged/README.md\", \"planning/doc-refresh/staged/docs/archive/README.md\", \"planning/doc-refresh/staged/docs/design/overview.md\", \"planning/doc-refresh/staged/docs/design/program.md\", \"planning/doc-refresh/staged/docs/development/source-map.md\", \"planning/doc-refresh/staged/docs/development/start.md\", \"planning/doc-refresh/staged/docs/index.md\", \"planning/doc-refresh/staged/docs/results/assets/bp-carryfold.png\", \"planning/doc-refresh/staged/docs/results/assets/bp-carryfold.svg\", \"planning/doc-refresh/staged/docs/results/bp-carryfold.md\", \"planning/doc-refresh/staged/docs/results/bp-rethread.md\", \"planning/doc-refresh/staged/docs/results/data/bp-carryfold.json\", \"planning/doc-refresh/staged/docs/results/data/bp-rethread.json\", \"planning/doc-refresh/staged/docs/results/index.md\", \"planning/doc-refresh/staged/docs/status/current.md\", \"planning/doc-refresh/templates/AGENTS.md\", \"planning/doc-refresh/templates/README.md\", \"planning/doc-refresh/templates/docs/results/index.md\", \"todo-status.md\", \"todos.md\", \"todos/bp-docs-000.md\", \"todos/bp-docs-10.md\", \"todos/bp-docs-20.md\", \"todos/bp-docs-30.md\", \"todos/bp-docs-90.md\"], \"files\": [{\"path\": \"AGENTS.md\", \"sha256\": \"34f0df48991db3852c9f6e19d166e84a799d6c541cdaa7065d1d5b15d25fc6ed\"}, {\"path\": \"README.md\", \"sha256\": \"ecdf43cbc6561ca06bb8653ea6bef52da886bdccc1f4baf6ebc2549a476f1e02\"}, {\"path\": \"docs\", \"sha256\": \"missing\"}, {\"path\": \"planning/doc-refresh\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"271843a2d2ceff434c97c8eb5fd13555567034c4\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 208}",
         "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/695ca9d5-963e-4725-8862-d62285b86627",
         "revision": 209,
+        "status": "passed"
+      },
+      {
+        "checkpoint_id": null,
+        "claim_id": null,
+        "content_hash": null,
+        "created_at": "2026-10-03T09:32:26Z",
+        "gate_id": "BP-IS1-ADOPT-HOST-CONFIGURE",
+        "id": "720e3813-3ee7-4d04-8a58-c9aa9db9bbd8",
+        "kind": "command",
+        "metadata_json": "{\"argv\": [\"cmake\", \"-S\", \"planning/integrated-substrate-v1/adoption\", \"-B\", \"/tmp/bp-is1-adopt-host\", \"-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot\", \"-DCMAKE_BUILD_TYPE=Debug\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"ca5ade834e520a188dde88b85db7c504e0a6522e8fcc3d18b529f65413e6b3df\", \"inputs\": {\"command_contract\": {\"argv\": [\"cmake\", \"-S\", \"planning/integrated-substrate-v1/adoption\", \"-B\", \"/tmp/bp-is1-adopt-host\", \"-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot\", \"-DCMAKE_BUILD_TYPE=Debug\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"CMakeLists.txt\", \"sha256\": \"7a0e81d360bc05541ce0a3295810184bada9c2538340f277b5c4a9d4ab1f8e52\"}, {\"path\": \"cmake\", \"sha256\": \"missing\"}, {\"path\": \"include/Baseplane/seq\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}, {\"path\": \"src/seq\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 389}",
+        "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/720e3813-3ee7-4d04-8a58-c9aa9db9bbd8",
+        "revision": 390,
         "status": "passed"
       },
       {
@@ -5198,6 +5347,19 @@
         "checkpoint_id": null,
         "claim_id": null,
         "content_hash": null,
+        "created_at": "2026-10-03T09:32:25Z",
+        "gate_id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+        "id": "ba89e7eb-a9b1-4a49-9678-4b67599c7c96",
+        "kind": "command",
+        "metadata_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"946b49c0e241ec7ac44c9c47158365220e3dbedb4ab2a9aba5f8f7894f02842e\", \"inputs\": {\"command_contract\": {\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"planning/integrated-substrate-v1/local-config.json\", \"sha256\": \"6affbf20eb5dc2444f45bab333a7ae3e0f0b55839994dd8e67f74b5cc4dfcc4a\"}, {\"path\": \"planning/integrated-substrate-v1/machine\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/tools\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 385}",
+        "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/ba89e7eb-a9b1-4a49-9678-4b67599c7c96",
+        "revision": 386,
+        "status": "passed"
+      },
+      {
+        "checkpoint_id": null,
+        "claim_id": null,
+        "content_hash": null,
         "created_at": "2026-10-02T14:13:38Z",
         "gate_id": "BP-MOON-140-HOST-POST-MERGE",
         "id": "c032e42e-48f3-4541-aac2-a0a42d70163f",
@@ -5270,6 +5432,19 @@
         "metadata_json": "{\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--result\", \"rethread\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"a50a029b161d1fecf92d10bf4bec763562f67fb671379b28cdc838b37ce29536\", \"inputs\": {\"command_contract\": {\"argv\": [\"python3\", \"experiments/cuda_lab/tools/check.py\", \"--result\", \"rethread\"], \"cwd\": \".\", \"expected_exit_code\": 0}, \"diff_fingerprint\": \"1b330ae5f84e916e381e80d2586d4c78c8ef5ff7a96aa8a546f6cde25a51218c\", \"dirty_paths\": [\".DS_Store\", \".todo-orchestrator/state.snapshot.json\", \"experiments/cuda_lab/cuda/driver.cu\", \"experiments/cuda_lab/cuda/kernels.cuh\", \"experiments/cuda_lab/results/adoption.md\", \"experiments/cuda_lab/results/rethread.json\", \"experiments/cuda_lab/results/rethread/bench-1025.json\", \"experiments/cuda_lab/results/rethread/bench-65536.json\", \"experiments/cuda_lab/results/rethread/build-cuda.log\", \"experiments/cuda_lab/results/rethread/cuda-gate-final.log\", \"experiments/cuda_lab/results/rethread/initcheck.json\", \"experiments/cuda_lab/results/rethread/memcheck.json\", \"experiments/cuda_lab/results/rethread/quality.json\", \"experiments/cuda_lab/results/rethread/quality_probe.cc\", \"experiments/cuda_lab/results/rethread/racecheck.json\", \"experiments/cuda_lab/results/rethread/report.md\", \"experiments/cuda_lab/results/rethread/synccheck.json\", \"experiments/cuda_lab/tests/host_tests.cc\", \"experiments/cuda_lab/tools/run.py\", \"planning/cuda_lab_run.v3.json\", \"todo-status.md\", \"todos.md\", \"todos/bp-cuda-lab-00.md\", \"todos/bp-cuda-lab-01.md\", \"todos/bp-cuda-lab-10.md\", \"todos/bp-cuda-lab-20.md\", \"todos/bp-cuda-lab-30.md\", \"todos/bp-cuda-lab-40.md\", \"todos/bp-cuda-lab-90.md\"], \"files\": [{\"path\": \"experiments/cuda_lab/results/rethread\", \"sha256\": \"missing\"}, {\"path\": \"experiments/cuda_lab/results/rethread.json\", \"sha256\": \"8681f206f98924a9ccd22ab657d27392b4b831d75f73863cd0195f40e558cff5\"}, {\"path\": \"experiments/cuda_lab/tools/check.py\", \"sha256\": \"cefb5708bd863b14112dee00734db45ddbdaab4e86ed0c9a12d37e83c3f065e1\"}], \"interfaces\": [], \"recorded_git_head\": \"09bb2024874a3232964e2cce4812a87004fa7878\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 157}",
         "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/df3ee96a-c9f6-4804-b087-14c5da8ab69a",
         "revision": 158,
+        "status": "passed"
+      },
+      {
+        "checkpoint_id": null,
+        "claim_id": null,
+        "content_hash": null,
+        "created_at": "2026-10-03T09:32:03Z",
+        "gate_id": "BP-IS1-ADOPT-DISPOSITIONS",
+        "id": "eaa88e67-7073-4dd0-a450-abb008020edd",
+        "kind": "command",
+        "metadata_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/adoption/check_dispositions.py\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"35e1ca7f2d04c016fde439eecaffc6930b8cdfa8ee51841d2b81a9c4be8e6619\", \"inputs\": {\"command_contract\": {\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/adoption/check_dispositions.py\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 383}",
+        "path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/eaa88e67-7073-4dd0-a450-abb008020edd",
+        "revision": 384,
         "status": "passed"
       },
       {
@@ -6461,66 +6636,66 @@
         "checkpoint_id": null,
         "config_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/adoption/check_dispositions.py\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\"]}",
         "id": "BP-IS1-ADOPT-DISPOSITIONS",
-        "input_fingerprint": null,
-        "last_run_at": null,
+        "input_fingerprint": "35e1ca7f2d04c016fde439eecaffc6930b8cdfa8ee51841d2b81a9c4be8e6619",
+        "last_run_at": "2026-10-03T09:32:03Z",
         "required": 1,
-        "revision": 379,
-        "status": "pending",
+        "revision": 384,
+        "status": "passed",
         "task_id": "BP-IS1-ADOPT",
         "type": "command",
-        "valid": 0
+        "valid": 1
       },
       {
         "checkpoint_id": null,
         "config_json": "{\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/tools\", \"planning/integrated-substrate-v1/local-config.json\", \"planning/integrated-substrate-v1/machine\"]}",
         "id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
-        "input_fingerprint": null,
-        "last_run_at": null,
+        "input_fingerprint": "946b49c0e241ec7ac44c9c47158365220e3dbedb4ab2a9aba5f8f7894f02842e",
+        "last_run_at": "2026-10-03T09:32:25Z",
         "required": 1,
-        "revision": 377,
-        "status": "pending",
+        "revision": 386,
+        "status": "passed",
         "task_id": "BP-IS1-ADOPT",
         "type": "command",
-        "valid": 0
+        "valid": 1
       },
       {
         "checkpoint_id": null,
         "config_json": "{\"argv\": [\"cmake\", \"--build\", \"/tmp/bp-is1-adopt-host\", \"--target\", \"bp_adoption_seq_consumer\", \"bp_adoption_effect_consumer\", \"baseplaneBitOpContractTest\", \"baseplaneDna2ValidityTest\", \"-j\", \"2\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\", \"cmake\", \"include/Baseplane/seq\", \"src/seq\"]}",
         "id": "BP-IS1-ADOPT-HOST-BUILD",
-        "input_fingerprint": null,
-        "last_run_at": null,
+        "input_fingerprint": "6aee0dc973b5d300d1969b337c905922e52b179e6e384150ca3b247d4437a301",
+        "last_run_at": "2026-10-03T09:32:26Z",
         "required": 1,
-        "revision": 379,
-        "status": "pending",
+        "revision": 388,
+        "status": "passed",
         "task_id": "BP-IS1-ADOPT",
         "type": "command",
-        "valid": 0
+        "valid": 1
       },
       {
         "checkpoint_id": null,
         "config_json": "{\"argv\": [\"cmake\", \"-S\", \"planning/integrated-substrate-v1/adoption\", \"-B\", \"/tmp/bp-is1-adopt-host\", \"-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot\", \"-DCMAKE_BUILD_TYPE=Debug\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\", \"CMakeLists.txt\", \"cmake\", \"include/Baseplane/seq\", \"src/seq\"]}",
         "id": "BP-IS1-ADOPT-HOST-CONFIGURE",
-        "input_fingerprint": null,
-        "last_run_at": null,
+        "input_fingerprint": "ca5ade834e520a188dde88b85db7c504e0a6522e8fcc3d18b529f65413e6b3df",
+        "last_run_at": "2026-10-03T09:32:26Z",
         "required": 1,
-        "revision": 379,
-        "status": "pending",
+        "revision": 390,
+        "status": "passed",
         "task_id": "BP-IS1-ADOPT",
         "type": "command",
-        "valid": 0
+        "valid": 1
       },
       {
         "checkpoint_id": null,
         "config_json": "{\"argv\": [\"ctest\", \"--test-dir\", \"/tmp/bp-is1-adopt-host\", \"-R\", \"^bp_adoption_\", \"--output-on-failure\"], \"cwd\": \".\", \"input_paths\": [\"planning/integrated-substrate-v1/adoption\", \"include/Baseplane/seq\", \"src/seq\"]}",
         "id": "BP-IS1-ADOPT-HOST-TEST",
-        "input_fingerprint": null,
-        "last_run_at": null,
+        "input_fingerprint": "7b48b4456efbb812aa701d2c2a99f33939a793bf2b9bafb3de2628a0da9364a4",
+        "last_run_at": "2026-10-03T09:32:26Z",
         "required": 1,
-        "revision": 379,
-        "status": "pending",
+        "revision": 392,
+        "status": "passed",
         "task_id": "BP-IS1-ADOPT",
         "type": "command",
-        "valid": 0
+        "valid": 1
       },
       {
         "checkpoint_id": null,
@@ -7193,6 +7368,16 @@
         "payload_json": "{\"authority_commit\": \"2d4ca88e3ba2354cb643362a605e864519f7f942\", \"changed_owned_paths\": [], \"checkpoints\": [], \"completion_commit\": \"2d4ca88e3ba2354cb643362a605e864519f7f942\", \"completion_gates\": [], \"completion_revision\": 283, \"finalized_checkpoints\": [], \"gates\": [], \"git_diffstat\": \"\", \"git_head\": \"2d4ca88e3ba2354cb643362a605e864519f7f942\", \"integration_commit\": null, \"interfaces\": [], \"note\": \"Owned family implementation committed; focused host semantic tests passed. Receipt records provider identity, source correctness and compiled versus executed coverage. GPU execution and broad qualification remain unrun.\", \"producer_commit\": \"2d4ca88e3ba2354cb643362a605e864519f7f942\", \"producer_root\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-effects\", \"resources\": [], \"task_id\": \"BP-MOON-040\"}",
         "revision": 283,
         "task_id": "BP-MOON-040"
+      },
+      {
+        "claim_id": null,
+        "created_at": "2026-10-03T09:32:26Z",
+        "id": "548cbd19-d5fb-485e-b830-2d2b032e80a3",
+        "kind": "complete",
+        "note": "Explicit selected-component representation target installed alongside independently buildable Baseplane::seq. Expanded48cards+33BitOpdispositions retain obligations. Native2/2hostconsumers+predicate/validity+installedseq1/1tested; shared seam accepted438c288, freshglobalreview. No newCUDA/performance/biologyqualification.",
+        "payload_json": "{\"authority_commit\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"changed_owned_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"checkpoints\": [], \"completion_commit\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"completion_gates\": [{\"evidence_id\": \"eaa88e67-7073-4dd0-a450-abb008020edd\", \"evidence_revision\": 384, \"id\": \"BP-IS1-ADOPT-DISPOSITIONS\", \"input_fingerprint\": \"35e1ca7f2d04c016fde439eecaffc6930b8cdfa8ee51841d2b81a9c4be8e6619\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\"}, {\"evidence_id\": \"ba89e7eb-a9b1-4a49-9678-4b67599c7c96\", \"evidence_revision\": 386, \"id\": \"BP-IS1-ADOPT-GLOBAL-BARRIER\", \"input_fingerprint\": \"946b49c0e241ec7ac44c9c47158365220e3dbedb4ab2a9aba5f8f7894f02842e\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\"}, {\"evidence_id\": \"449c8acc-d9f2-4e0d-95f5-e0dcf77d2cd7\", \"evidence_revision\": 388, \"id\": \"BP-IS1-ADOPT-HOST-BUILD\", \"input_fingerprint\": \"6aee0dc973b5d300d1969b337c905922e52b179e6e384150ca3b247d4437a301\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\"}, {\"evidence_id\": \"720e3813-3ee7-4d04-8a58-c9aa9db9bbd8\", \"evidence_revision\": 390, \"id\": \"BP-IS1-ADOPT-HOST-CONFIGURE\", \"input_fingerprint\": \"ca5ade834e520a188dde88b85db7c504e0a6522e8fcc3d18b529f65413e6b3df\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\"}, {\"evidence_id\": \"23179cbe-c13d-41df-ba7b-74985b89030c\", \"evidence_revision\": 392, \"id\": \"BP-IS1-ADOPT-HOST-TEST\", \"input_fingerprint\": \"7b48b4456efbb812aa701d2c2a99f33939a793bf2b9bafb3de2628a0da9364a4\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\"}], \"completion_revision\": 393, \"finalized_checkpoints\": [], \"gates\": [{\"id\": \"BP-IS1-ADOPT-GLOBAL-BARRIER\", \"input_fingerprint\": \"946b49c0e241ec7ac44c9c47158365220e3dbedb4ab2a9aba5f8f7894f02842e\", \"last_run_at\": \"2026-10-03T09:32:25Z\", \"revision\": 386, \"status\": \"passed\", \"valid\": 1}, {\"id\": \"BP-IS1-ADOPT-DISPOSITIONS\", \"input_fingerprint\": \"35e1ca7f2d04c016fde439eecaffc6930b8cdfa8ee51841d2b81a9c4be8e6619\", \"last_run_at\": \"2026-10-03T09:32:03Z\", \"revision\": 384, \"status\": \"passed\", \"valid\": 1}, {\"id\": \"BP-IS1-ADOPT-HOST-CONFIGURE\", \"input_fingerprint\": \"ca5ade834e520a188dde88b85db7c504e0a6522e8fcc3d18b529f65413e6b3df\", \"last_run_at\": \"2026-10-03T09:32:26Z\", \"revision\": 390, \"status\": \"passed\", \"valid\": 1}, {\"id\": \"BP-IS1-ADOPT-HOST-BUILD\", \"input_fingerprint\": \"6aee0dc973b5d300d1969b337c905922e52b179e6e384150ca3b247d4437a301\", \"last_run_at\": \"2026-10-03T09:32:26Z\", \"revision\": 388, \"status\": \"passed\", \"valid\": 1}, {\"id\": \"BP-IS1-ADOPT-HOST-TEST\", \"input_fingerprint\": \"7b48b4456efbb812aa701d2c2a99f33939a793bf2b9bafb3de2628a0da9364a4\", \"last_run_at\": \"2026-10-03T09:32:26Z\", \"revision\": 392, \"status\": \"passed\", \"valid\": 1}], \"git_diffstat\": \"\", \"git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"integration_commit\": null, \"interfaces\": [], \"note\": \"Explicit selected-component representation target installed alongside independently buildable Baseplane::seq. Expanded48cards+33BitOpdispositions retain obligations. Native2/2hostconsumers+predicate/validity+installedseq1/1tested; shared seam accepted438c288, freshglobalreview. No newCUDA/performance/biologyqualification.\", \"producer_commit\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"producer_root\": \"/home/tumlinson/Baseplane\", \"resources\": [], \"task_id\": \"BP-IS1-ADOPT\"}",
+        "revision": 393,
+        "task_id": "BP-IS1-ADOPT"
       },
       {
         "claim_id": null,
@@ -12494,6 +12679,71 @@
         "validation_git_head": "271843a2d2ceff434c97c8eb5fd13555567034c4"
       },
       {
+        "completion_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_revision": 393,
+        "evidence_id": "eaa88e67-7073-4dd0-a450-abb008020edd",
+        "evidence_revision": 384,
+        "gate_id": "BP-IS1-ADOPT-DISPOSITIONS",
+        "input_fingerprint": "35e1ca7f2d04c016fde439eecaffc6930b8cdfa8ee51841d2b81a9c4be8e6619",
+        "provenance_json": "{\"claim_id\": \"146152e9-2deb-4d07-903e-315a6940ac24\", \"evidence_content_hash\": null, \"evidence_kind\": \"command\", \"evidence_metadata\": {\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/adoption/check_dispositions.py\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"35e1ca7f2d04c016fde439eecaffc6930b8cdfa8ee51841d2b81a9c4be8e6619\", \"inputs\": {\"command_contract\": {\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/adoption/check_dispositions.py\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 383}, \"evidence_path\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/eaa88e67-7073-4dd0-a450-abb008020edd\", \"source\": \"completion_transaction\"}",
+        "status": "passed",
+        "task_id": "BP-IS1-ADOPT",
+        "valid": 1,
+        "validation_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664"
+      },
+      {
+        "completion_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_revision": 393,
+        "evidence_id": "ba89e7eb-a9b1-4a49-9678-4b67599c7c96",
+        "evidence_revision": 386,
+        "gate_id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+        "input_fingerprint": "946b49c0e241ec7ac44c9c47158365220e3dbedb4ab2a9aba5f8f7894f02842e",
+        "provenance_json": "{\"claim_id\": \"146152e9-2deb-4d07-903e-315a6940ac24\", \"evidence_content_hash\": null, \"evidence_kind\": \"command\", \"evidence_metadata\": {\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"946b49c0e241ec7ac44c9c47158365220e3dbedb4ab2a9aba5f8f7894f02842e\", \"inputs\": {\"command_contract\": {\"argv\": [\"python3\", \"-B\", \"planning/integrated-substrate-v1/tools/gates.py\", \"activation\", \"--config\", \"planning/integrated-substrate-v1/local-config.json\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"planning/integrated-substrate-v1/local-config.json\", \"sha256\": \"6affbf20eb5dc2444f45bab333a7ae3e0f0b55839994dd8e67f74b5cc4dfcc4a\"}, {\"path\": \"planning/integrated-substrate-v1/machine\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/tools\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 385}, \"evidence_path\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/ba89e7eb-a9b1-4a49-9678-4b67599c7c96\", \"source\": \"completion_transaction\"}",
+        "status": "passed",
+        "task_id": "BP-IS1-ADOPT",
+        "valid": 1,
+        "validation_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664"
+      },
+      {
+        "completion_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_revision": 393,
+        "evidence_id": "449c8acc-d9f2-4e0d-95f5-e0dcf77d2cd7",
+        "evidence_revision": 388,
+        "gate_id": "BP-IS1-ADOPT-HOST-BUILD",
+        "input_fingerprint": "6aee0dc973b5d300d1969b337c905922e52b179e6e384150ca3b247d4437a301",
+        "provenance_json": "{\"claim_id\": \"146152e9-2deb-4d07-903e-315a6940ac24\", \"evidence_content_hash\": null, \"evidence_kind\": \"command\", \"evidence_metadata\": {\"argv\": [\"cmake\", \"--build\", \"/tmp/bp-is1-adopt-host\", \"--target\", \"bp_adoption_seq_consumer\", \"bp_adoption_effect_consumer\", \"baseplaneBitOpContractTest\", \"baseplaneDna2ValidityTest\", \"-j\", \"2\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"6aee0dc973b5d300d1969b337c905922e52b179e6e384150ca3b247d4437a301\", \"inputs\": {\"command_contract\": {\"argv\": [\"cmake\", \"--build\", \"/tmp/bp-is1-adopt-host\", \"--target\", \"bp_adoption_seq_consumer\", \"bp_adoption_effect_consumer\", \"baseplaneBitOpContractTest\", \"baseplaneDna2ValidityTest\", \"-j\", \"2\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"cmake\", \"sha256\": \"missing\"}, {\"path\": \"include/Baseplane/seq\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}, {\"path\": \"src/seq\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 387}, \"evidence_path\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/449c8acc-d9f2-4e0d-95f5-e0dcf77d2cd7\", \"source\": \"completion_transaction\"}",
+        "status": "passed",
+        "task_id": "BP-IS1-ADOPT",
+        "valid": 1,
+        "validation_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664"
+      },
+      {
+        "completion_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_revision": 393,
+        "evidence_id": "720e3813-3ee7-4d04-8a58-c9aa9db9bbd8",
+        "evidence_revision": 390,
+        "gate_id": "BP-IS1-ADOPT-HOST-CONFIGURE",
+        "input_fingerprint": "ca5ade834e520a188dde88b85db7c504e0a6522e8fcc3d18b529f65413e6b3df",
+        "provenance_json": "{\"claim_id\": \"146152e9-2deb-4d07-903e-315a6940ac24\", \"evidence_content_hash\": null, \"evidence_kind\": \"command\", \"evidence_metadata\": {\"argv\": [\"cmake\", \"-S\", \"planning/integrated-substrate-v1/adoption\", \"-B\", \"/tmp/bp-is1-adopt-host\", \"-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot\", \"-DCMAKE_BUILD_TYPE=Debug\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"ca5ade834e520a188dde88b85db7c504e0a6522e8fcc3d18b529f65413e6b3df\", \"inputs\": {\"command_contract\": {\"argv\": [\"cmake\", \"-S\", \"planning/integrated-substrate-v1/adoption\", \"-B\", \"/tmp/bp-is1-adopt-host\", \"-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot\", \"-DCMAKE_BUILD_TYPE=Debug\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"CMakeLists.txt\", \"sha256\": \"7a0e81d360bc05541ce0a3295810184bada9c2538340f277b5c4a9d4ab1f8e52\"}, {\"path\": \"cmake\", \"sha256\": \"missing\"}, {\"path\": \"include/Baseplane/seq\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}, {\"path\": \"src/seq\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 389}, \"evidence_path\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/720e3813-3ee7-4d04-8a58-c9aa9db9bbd8\", \"source\": \"completion_transaction\"}",
+        "status": "passed",
+        "task_id": "BP-IS1-ADOPT",
+        "valid": 1,
+        "validation_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664"
+      },
+      {
+        "completion_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_revision": 393,
+        "evidence_id": "23179cbe-c13d-41df-ba7b-74985b89030c",
+        "evidence_revision": 392,
+        "gate_id": "BP-IS1-ADOPT-HOST-TEST",
+        "input_fingerprint": "7b48b4456efbb812aa701d2c2a99f33939a793bf2b9bafb3de2628a0da9364a4",
+        "provenance_json": "{\"claim_id\": \"146152e9-2deb-4d07-903e-315a6940ac24\", \"evidence_content_hash\": null, \"evidence_kind\": \"command\", \"evidence_metadata\": {\"argv\": [\"ctest\", \"--test-dir\", \"/tmp/bp-is1-adopt-host\", \"-R\", \"^bp_adoption_\", \"--output-on-failure\"], \"environment\": {}, \"expected_exit_code\": 0, \"input_fingerprint\": \"7b48b4456efbb812aa701d2c2a99f33939a793bf2b9bafb3de2628a0da9364a4\", \"inputs\": {\"command_contract\": {\"argv\": [\"ctest\", \"--test-dir\", \"/tmp/bp-is1-adopt-host\", \"-R\", \"^bp_adoption_\", \"--output-on-failure\"], \"cwd\": \".\"}, \"diff_fingerprint\": \"4ec7c738d512a3b82ab0fcdf010f8e65a301c4941743afc8f573bf8277620f76\", \"dirty_paths\": [\"planning/integrated-substrate-v1/adoption/seq_consumer.cpp\"], \"files\": [{\"path\": \"include/Baseplane/seq\", \"sha256\": \"missing\"}, {\"path\": \"planning/integrated-substrate-v1/adoption\", \"sha256\": \"missing\"}, {\"path\": \"src/seq\", \"sha256\": \"missing\"}], \"interfaces\": [], \"recorded_git_head\": \"4afce6be9a08b9d50803f7720b6f29e9249ae664\", \"static_path\": null}, \"locks\": [], \"resources\": [], \"returncode\": 0, \"started_revision\": 391}, \"evidence_path\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/evidence/23179cbe-c13d-41df-ba7b-74985b89030c\", \"source\": \"completion_transaction\"}",
+        "status": "passed",
+        "task_id": "BP-IS1-ADOPT",
+        "valid": 1,
+        "validation_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664"
+      },
+      {
         "completion_git_head": "82417df1ecc5713868a554021b0b6b27a048ff0d",
         "completion_revision": 372,
         "evidence_id": "28b20afc-72c1-488d-8068-3ec5508c6c78",
@@ -16817,9 +17067,9 @@
       },
       {
         "attention_reason": null,
-        "completion_commit": null,
-        "completion_git_head": null,
-        "completion_revision": null,
+        "completion_commit": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_git_head": "4afce6be9a08b9d50803f7720b6f29e9249ae664",
+        "completion_revision": 393,
         "created_at": "2026-10-02T16:38:08Z",
         "id": "BP-IS1-ADOPT",
         "kind": "task",
@@ -16831,14 +17081,14 @@
         "parallel_policy": "integration_exclusive",
         "parent_id": "BP-IS1-000",
         "priority": 100,
-        "result": null,
+        "result": "implemented",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 378,
-        "status": "in_progress",
+        "revision": 393,
+        "status": "done",
         "tags_json": "[]",
         "title": "Reconcile finished predecessors and publish the small shared foundation",
-        "updated_at": "2026-10-03T09:17:32Z",
-        "version": 2
+        "updated_at": "2026-10-03T09:32:26Z",
+        "version": 3
       },
       {
         "attention_reason": null,
@@ -19985,12 +20235,12 @@
       },
       {
         "activated_at": "2026-10-03T09:17:32Z",
-        "completed_at": null,
+        "completed_at": "2026-10-03T09:32:26Z",
         "enqueued_at": "2026-10-02T16:38:08Z",
         "lane_id": "BP-IS1-ADOPT-L",
         "position": 0,
-        "revision": 378,
-        "state": "active",
+        "revision": 393,
+        "state": "completed",
         "task_id": "BP-IS1-ADOPT"
       },
       {
@@ -20646,11 +20896,11 @@
         "created_at": "2026-10-02T16:38:08Z",
         "id": "BP-IS1-ADOPT-L",
         "parent_lane_id": null,
-        "revision": 378,
+        "revision": 393,
         "role": "implementer",
         "run_id": "BP-IS1-RUN-V1",
-        "state": "active",
-        "updated_at": "2026-10-03T09:17:32Z",
+        "state": "closed",
+        "updated_at": "2026-10-03T09:32:26Z",
         "workspace_mode": "exclusive"
       },
       {

@@ -3,7 +3,7 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # Todo Orchestrator v2 Projection
 
-Project revision: `382`
+Project revision: `393`
 
 ## Workstreams
 - `STACK-BITOP-01` | kind: validation_task | status: done | parent: BITOP-00 | objective: Record actual repository relationships, HEADs, branches, upstreams, worktrees, dirty paths, active coordination conflicts, source/API/target state, historical SequenceBits evidence, and published-baseline deviations.
@@ -28,7 +28,7 @@ Project revision: `382`
 - `BP-BITOP-35` | kind: integration_task | status: superseded | parent: BITOP-00 | objective: Provide allocation-explicit prepare/query/bind/run surface, integrate all CUDA families, and publish executable Baseplane BitOp v1.
 - `CE-BITOP-40` | kind: workstream | status: superseded | parent: BITOP-00 | objective: Preserve the historical external-adapter proposal as superseded; authoritative Cellerator integration is CE-ARCH-40 and must not bind Baseplane to DeviceMathContext.
 - `CE-BITOP-41` | kind: workstream | status: superseded | parent: BITOP-00 | objective: Park learned sparse event weighting until the Cellerator common ABI, execution order, unified runtime, operation core, and measured planner foundations exist.
-- `BP-IS1-ADOPT` | kind: task | status: in_progress | parent: BP-IS1-000 | objective: After the global predecessor barrier, inventory the completed frontier, assign every useful behavior/unfinished obligation, and integrate the minimum contracts needed by parallel lanes.
+- `BP-IS1-ADOPT` | kind: task | status: done | parent: BP-IS1-000 | objective: After the global predecessor barrier, inventory the completed frontier, assign every useful behavior/unfinished obligation, and integrate the minimum contracts needed by parallel lanes.
 - `BP-IS1-BRIDGE` | kind: task | status: planned | parent: BP-IS1-000 | objective: Consume source-bound installed CE capabilities and repair optional target/interface boundaries.
 - `BP-IS1-BUILD` | kind: task | status: planned | parent: BP-IS1-000 | objective: Build/install optional representation/query components and external-consumer fixtures without sibling-source coupling.
 - `BP-IS1-CLOSE` | kind: task | status: planned | parent: BP-IS1-000 | objective: Resolve final integration findings and publish the capability/results handoff for sibling consumption.
