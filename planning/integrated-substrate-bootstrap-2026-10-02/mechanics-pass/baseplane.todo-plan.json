@@ -1,0 +1,442 @@
+{
+  "schema_version": 3,
+  "project": {
+    "name": "baseplane"
+  },
+  "invariants": [
+    {
+      "id": "BP-IS1-OWNERSHIP",
+      "severity": "error",
+      "rule": "Cellerator owns reusable mathematical/dynamical computation; Baseplane owns sequence meaning and representations; GlassHelix owns scientific experiments. Reuse existing numerical/lifetime owners, preserve real consumers and separate Todo authorities."
+    },
+    {
+      "id": "BP-IS1-PRESERVE",
+      "severity": "error",
+      "rule": "Execute only after the reviewed predecessor barrier. Preserve useful mechanisms, source, successful outcomes and negative evidence. No hand editing Todo/generated authority, no Ampere activation, no preprint edits, no CellShard authority changes."
+    },
+    {
+      "id": "BP-IS1-EXTEND",
+      "severity": "error",
+      "rule": "Keep the libraries easy to extend and fast. No compulsory Cellpack format, universal hidden axis, second general runtime, or unmeasured default. Distinguish equivalent lowering, model choices and approximations."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "BP-IS1-000",
+      "kind": "epic",
+      "title": "Baseplane integrated sequence substrate",
+      "objective": "Closure-only aggregate; no child depends on this epic.",
+      "priority": 0,
+      "parallel_policy": "serial",
+      "scope": {
+        "read_paths": [
+          "planning/integrated-substrate-v1"
+        ],
+        "exclusive_paths": []
+      },
+      "completion_contract": {
+        "required": [
+          "All local required outcomes are integrated and truthfully evidenced; preserve unfinished frontier work."
+        ]
+      },
+      "gates": [
+        {
+          "id": "BP-IS1-CLOSURE",
+          "type": "task_state",
+          "task_id": "BP-IS1-CLOSE",
+          "status": "done",
+          "required": true
+        }
+      ],
+      "parent_id": null,
+      "status": "planned",
+      "result": "",
+      "next_action": "",
+      "notes": "",
+      "tags": [],
+      "result_policy": {}
+    },
+    {
+      "id": "BP-IS1-BRIDGE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Accept the real Cellerator provider and bind the sequence bridge",
+      "objective": "Consume source-bound installed CE capabilities and repair optional target/interface boundaries.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "src/interop",
+          "include/Baseplane/interop",
+          "tests/substrate/interop",
+          "planning/integrated-substrate-v1/receipts"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-MERGE-A"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "External CE-INTEGRATE is effectively done and provider receipt hashes/source/capabilities validate.",
+          "A real installed consumer uses CE general effects/math; sequence identity stays BP-owned.",
+          "No dependency cycle, stale DeviceMathContext or imported private implementation."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-BRIDGE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "gates": [
+        {
+          "id": "BP-IS1-BRIDGE-CELLERATOR-PROVIDER",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "planning/integrated-substrate-v1/tools/gates.py",
+            "provider",
+            "--config",
+            "planning/integrated-substrate-v1/local-config.json",
+            "--consumer",
+            "BP-IS1-BRIDGE",
+            "--provider",
+            "cellerator"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/tools",
+            "planning/integrated-substrate-v1/local-config.json",
+            "planning/integrated-substrate-v1/machine"
+          ]
+        }
+      ],
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-IS1-COMPOSE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Deliver an end-to-end adaptive sequence tool",
+      "objective": "Compose predicates, effects, questions, nonlocal candidates and selective richer math through one prepared/client path.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "examples/substrate/sequence_tool",
+          "tests/substrate/composition",
+          "bench/substrate/composition"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-MERGE-A"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "A bounded example includes order sensitivity, exact revisit, nonlocal group, learned option and edit repair.",
+          "Question/capacity/output/approximation contracts survive composition; ordinary branch/cohort alternatives are allowed.",
+          "Users do not need to import experimental directories or rebuild a new driver for each query.",
+          "Mechanics amendment (2026-10-03): before dispatch or completion, consume effectively finished CE-IS1-MERGE-B native core and source-bound acceptance evidence. Use existing supported native/Torch routes only. New bindings, packaging and a newly qualified installed provider remain deferred. The root must bind a real native-core prerequisite gate when this task is claimed; this amendment supplies no provider receipt and does not satisfy deferred BRIDGE provider contracts."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-COMPOSE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nMechanics amendment (2026-10-03): before dispatch or completion, consume effectively finished CE-IS1-MERGE-B native core and source-bound acceptance evidence. Use existing supported native/Torch routes only. New bindings, packaging and a newly qualified installed provider remain deferred. The root must bind a real native-core prerequisite gate when this task is claimed; this amendment supplies no provider receipt and does not satisfy deferred BRIDGE provider contracts.",
+      "status": "planned",
+      "result": "",
+      "notes": "Mechanics amendment (2026-10-03): before dispatch or completion, consume effectively finished CE-IS1-MERGE-B native core and source-bound acceptance evidence. Use existing supported native/Torch routes only. New bindings, packaging and a newly qualified installed provider remain deferred. The root must bind a real native-core prerequisite gate when this task is claimed; this amendment supplies no provider receipt and does not satisfy deferred BRIDGE provider contracts.",
+      "tags": []
+    },
+    {
+      "id": "BP-IS1-QUALIFY",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Qualify sequence semantics, total cost and meaningful learning scope",
+      "objective": "Activate relevant Q01\u2013Q04 obligations and retain Q05 as an explicit external handoff.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "bench/substrate/qualification",
+          "tests/substrate/qualification",
+          "planning/integrated-substrate-v1/results/bp"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-COMPOSE"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "Adversarial sequence/edit/output tests and cold/reuse/directory/refinement costs are recorded.",
+          "Learned comparisons use a declared objective and proper split; unavailable biological data is not replaced by a toy claim.",
+          "A new query/summary is added through the documented seam; current baseline/vendor losses remain visible."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-QUALIFY.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-IS1-DOCS",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Publish usable sequence APIs and the open research frontier",
+      "objective": "Explain exact input, learned representation, question/refinement and real results through one human reading path.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "README.md",
+          "AGENTS.md",
+          "docs"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-COMPOSE"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "Minimal exact and hierarchical examples execute through installed components.",
+          "All 48 cards retain source/evidence/destination/disposition, without claiming 48 supported implementations.",
+          "Historical lab, active status and design rationale are not conflated."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-DOCS.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-IS1-CLOSE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Accept the integrated, extensible sequence library",
+      "objective": "Resolve final integration findings and publish the capability/results handoff for sibling consumption.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "CMakeLists.txt",
+          "cmake",
+          "include",
+          "src",
+          "components",
+          "tests",
+          "examples",
+          "experiments",
+          "python",
+          "docs",
+          "planning/integrated-substrate-v1/receipts"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-QUALIFY"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-DOCS"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "Core sequence vertical slice, optional CE bridge and extension exercise pass.",
+          "Publish receipts/provider.json with real installed-consumer evidence for the joint witness.",
+          "Unfinished obligations have explicit ownership/trigger; no implicit CellShard or Ampere activation."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-CLOSE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    }
+  ],
+  "runs": []
+}

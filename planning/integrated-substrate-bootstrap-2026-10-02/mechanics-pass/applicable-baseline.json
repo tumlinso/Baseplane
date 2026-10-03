@@ -1,0 +1,172 @@
+{
+  "observed_at": "2026-10-03T12:53:39.433768+00:00",
+  "project": "baseplane",
+  "authority_revision": 508,
+  "authority_fingerprint": "55a770bd22289bafa222ad84a1ad0948338a0611ff711b4dab3701665c86e507",
+  "semantic_revision": 508,
+  "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
+  "runtime_fingerprint": "15521b1576eab3f0f8aec70519cd2d06f52396db6d48b3a681d5bfb9e6a3464d",
+  "runtime_package_root": "/home/tumlinson/.local/share/project-control/candidates/call-audit-256m-20260926/lib/python3.13/site-packages/todo_orchestrator",
+  "source_head": "7113aa62c85beb00326febe202849324a23c4aec",
+  "applied_plan": "/home/tumlinson/Baseplane/planning/integrated-substrate-bootstrap-2026-10-02/baseplane.todo-plan.json",
+  "applied_plan_sha256": "56024952650fba5526e9f63f3e6d04bd977da428aed8df62db27ced41ff47487",
+  "proposal_sha256": "8b8b14f8865ea24b1998aaf530deb359b8c0b8969176344762eb19559e9c97e0",
+  "selected_record_verification": [
+    {
+      "task_id": "BP-IS1-000",
+      "task_revision": 377,
+      "verified": [
+        "metadata",
+        "scope",
+        "dependencies",
+        "invariants",
+        "locks",
+        "resources",
+        "artifacts",
+        "gates",
+        "completion_contract",
+        "references"
+      ]
+    },
+    {
+      "task_id": "BP-IS1-BRIDGE",
+      "task_revision": 377,
+      "verified": [
+        "metadata",
+        "scope",
+        "dependencies",
+        "invariants",
+        "locks",
+        "resources",
+        "artifacts",
+        "gates",
+        "completion_contract",
+        "references"
+      ]
+    },
+    {
+      "task_id": "BP-IS1-COMPOSE",
+      "task_revision": 377,
+      "verified": [
+        "metadata",
+        "scope",
+        "dependencies",
+        "invariants",
+        "locks",
+        "resources",
+        "artifacts",
+        "gates",
+        "completion_contract",
+        "references"
+      ]
+    },
+    {
+      "task_id": "BP-IS1-QUALIFY",
+      "task_revision": 377,
+      "verified": [
+        "metadata",
+        "scope",
+        "dependencies",
+        "invariants",
+        "locks",
+        "resources",
+        "artifacts",
+        "gates",
+        "completion_contract",
+        "references"
+      ]
+    },
+    {
+      "task_id": "BP-IS1-DOCS",
+      "task_revision": 377,
+      "verified": [
+        "metadata",
+        "scope",
+        "dependencies",
+        "invariants",
+        "locks",
+        "resources",
+        "artifacts",
+        "gates",
+        "completion_contract",
+        "references"
+      ]
+    },
+    {
+      "task_id": "BP-IS1-CLOSE",
+      "task_revision": 377,
+      "verified": [
+        "metadata",
+        "scope",
+        "dependencies",
+        "invariants",
+        "locks",
+        "resources",
+        "artifacts",
+        "gates",
+        "completion_contract",
+        "references"
+      ]
+    }
+  ],
+  "current_claims": [],
+  "claim_scope": "BP-IS1-",
+  "excluded_claimed_task": null,
+  "read_capability": "SemanticReader.state plus public Service(read_only=True).export filtered in memory; SemanticReader.task unavailable",
+  "unchanged_dependency_closure": [
+    {
+      "task_id": "BP-MOON-000",
+      "status": "done",
+      "task_revision": 377,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-ADOPT",
+      "status": "done",
+      "task_revision": 393,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-SEQ",
+      "status": "done",
+      "task_revision": 421,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-HIERARCHY",
+      "status": "done",
+      "task_revision": 425,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-INDEX",
+      "status": "done",
+      "task_revision": 432,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-REUSE",
+      "status": "done",
+      "task_revision": 439,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-LEARNING",
+      "status": "done",
+      "task_revision": 446,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-BUILD",
+      "status": "done",
+      "task_revision": 453,
+      "active_claim": null
+    },
+    {
+      "task_id": "BP-IS1-MERGE-A",
+      "status": "done",
+      "task_revision": 508,
+      "active_claim": null
+    }
+  ]
+}

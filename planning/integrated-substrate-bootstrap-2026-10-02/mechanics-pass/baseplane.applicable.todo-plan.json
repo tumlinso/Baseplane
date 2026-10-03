@@ -1,0 +1,1470 @@
+{
+  "schema_version": 3,
+  "project": {
+    "name": "baseplane"
+  },
+  "invariants": [
+    {
+      "id": "BP-IS1-OWNERSHIP",
+      "severity": "error",
+      "rule": "Cellerator owns reusable mathematical/dynamical computation; Baseplane owns sequence meaning and representations; GlassHelix owns scientific experiments. Reuse existing numerical/lifetime owners, preserve real consumers and separate Todo authorities."
+    },
+    {
+      "id": "BP-IS1-PRESERVE",
+      "severity": "error",
+      "rule": "Execute only after the reviewed predecessor barrier. Preserve useful mechanisms, source, successful outcomes and negative evidence. No hand editing Todo/generated authority, no Ampere activation, no preprint edits, no CellShard authority changes."
+    },
+    {
+      "id": "BP-IS1-EXTEND",
+      "severity": "error",
+      "rule": "Keep the libraries easy to extend and fast. No compulsory Cellpack format, universal hidden axis, second general runtime, or unmeasured default. Distinguish equivalent lowering, model choices and approximations."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "BP-IS1-000",
+      "kind": "epic",
+      "title": "Baseplane integrated sequence substrate",
+      "objective": "Closure-only aggregate; no child depends on this epic.",
+      "priority": 0,
+      "parallel_policy": "serial",
+      "scope": {
+        "read_paths": [
+          "planning/integrated-substrate-v1"
+        ],
+        "exclusive_paths": []
+      },
+      "completion_contract": {
+        "required": [
+          "All local required outcomes are integrated and truthfully evidenced; preserve unfinished frontier work."
+        ]
+      },
+      "gates": [
+        {
+          "id": "BP-IS1-CLOSURE",
+          "type": "task_state",
+          "task_id": "BP-IS1-CLOSE",
+          "status": "done",
+          "required": true
+        }
+      ],
+      "parent_id": null,
+      "status": "planned",
+      "result": "",
+      "next_action": "",
+      "notes": "",
+      "tags": [],
+      "result_policy": {}
+    },
+    {
+      "id": "BP-IS1-BRIDGE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Accept the real Cellerator provider and bind the sequence bridge",
+      "objective": "Consume source-bound installed CE capabilities and repair optional target/interface boundaries.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "src/interop",
+          "include/Baseplane/interop",
+          "tests/substrate/interop",
+          "planning/integrated-substrate-v1/receipts"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-MERGE-A"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "External CE-INTEGRATE is effectively done and provider receipt hashes/source/capabilities validate.",
+          "A real installed consumer uses CE general effects/math; sequence identity stays BP-owned.",
+          "No dependency cycle, stale DeviceMathContext or imported private implementation."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-BRIDGE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "gates": [
+        {
+          "id": "BP-IS1-BRIDGE-CELLERATOR-PROVIDER",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "planning/integrated-substrate-v1/tools/gates.py",
+            "provider",
+            "--config",
+            "planning/integrated-substrate-v1/local-config.json",
+            "--consumer",
+            "BP-IS1-BRIDGE",
+            "--provider",
+            "cellerator"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/tools",
+            "planning/integrated-substrate-v1/local-config.json",
+            "planning/integrated-substrate-v1/machine"
+          ]
+        }
+      ],
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-IS1-COMPOSE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Deliver an end-to-end adaptive sequence tool",
+      "objective": "Compose predicates, effects, questions, nonlocal candidates and selective richer math through one prepared/client path.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "examples/substrate/sequence_tool",
+          "tests/substrate/composition",
+          "bench/substrate/composition"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-MERGE-A"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "A bounded example includes order sensitivity, exact revisit, nonlocal group, learned option and edit repair.",
+          "Question/capacity/output/approximation contracts survive composition; ordinary branch/cohort alternatives are allowed.",
+          "Users do not need to import experimental directories or rebuild a new driver for each query.",
+          "Mechanics amendment (2026-10-03): before dispatch or completion, consume effectively finished CE-IS1-MERGE-B native core and source-bound acceptance evidence. Use existing supported native/Torch routes only. New bindings, packaging and a newly qualified installed provider remain deferred. The root must bind a real native-core prerequisite gate when this task is claimed; this amendment supplies no provider receipt and does not satisfy deferred BRIDGE provider contracts."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-COMPOSE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nMechanics amendment (2026-10-03): before dispatch or completion, consume effectively finished CE-IS1-MERGE-B native core and source-bound acceptance evidence. Use existing supported native/Torch routes only. New bindings, packaging and a newly qualified installed provider remain deferred. The root must bind a real native-core prerequisite gate when this task is claimed; this amendment supplies no provider receipt and does not satisfy deferred BRIDGE provider contracts.",
+      "status": "planned",
+      "result": "",
+      "notes": "Mechanics amendment (2026-10-03): before dispatch or completion, consume effectively finished CE-IS1-MERGE-B native core and source-bound acceptance evidence. Use existing supported native/Torch routes only. New bindings, packaging and a newly qualified installed provider remain deferred. The root must bind a real native-core prerequisite gate when this task is claimed; this amendment supplies no provider receipt and does not satisfy deferred BRIDGE provider contracts.",
+      "tags": []
+    },
+    {
+      "id": "BP-IS1-QUALIFY",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Qualify sequence semantics, total cost and meaningful learning scope",
+      "objective": "Activate relevant Q01\u2013Q04 obligations and retain Q05 as an explicit external handoff.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "bench/substrate/qualification",
+          "tests/substrate/qualification",
+          "planning/integrated-substrate-v1/results/bp"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-COMPOSE"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "Adversarial sequence/edit/output tests and cold/reuse/directory/refinement costs are recorded.",
+          "Learned comparisons use a declared objective and proper split; unavailable biological data is not replaced by a toy claim.",
+          "A new query/summary is added through the documented seam; current baseline/vendor losses remain visible."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-QUALIFY.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-IS1-DOCS",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Publish usable sequence APIs and the open research frontier",
+      "objective": "Explain exact input, learned representation, question/refinement and real results through one human reading path.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "README.md",
+          "AGENTS.md",
+          "docs"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-COMPOSE"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "Minimal exact and hierarchical examples execute through installed components.",
+          "All 48 cards retain source/evidence/destination/disposition, without claiming 48 supported implementations.",
+          "Historical lab, active status and design rationale are not conflated."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-DOCS.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-IS1-CLOSE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Accept the integrated, extensible sequence library",
+      "objective": "Resolve final integration findings and publish the capability/results handoff for sibling consumption.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "CMakeLists.txt",
+          "cmake",
+          "include",
+          "src",
+          "components",
+          "tests",
+          "examples",
+          "experiments",
+          "python",
+          "docs",
+          "planning/integrated-substrate-v1/receipts"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-QUALIFY"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-DOCS"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE",
+        "BP-IS1-EXTEND"
+      ],
+      "completion_contract": {
+        "required": [
+          "Core sequence vertical slice, optional CE bridge and extension exercise pass.",
+          "Publish receipts/provider.json with real installed-consumer evidence for the joint witness.",
+          "Unfinished obligations have explicit ownership/trigger; no implicit CellShard or Ampere activation."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-CLOSE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.\n\nUser hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "status": "blocked",
+      "result": "",
+      "notes": "User hold (2026-10-03): defer packaging, frontends, provider delivery and final qualification while continuing native mechanics. Resume only after an explicit user instruction to resume this deferred scope and owner review of current prerequisite evidence; retain all existing completion/provider contracts.",
+      "tags": [
+        "deferred",
+        "is1-packaging-deferred"
+      ]
+    },
+    {
+      "id": "BP-MOON-000",
+      "parent_id": null,
+      "kind": "epic",
+      "title": "Baseplane moonshot workshop: sequence that organizes its computation",
+      "objective": "Aggregate the experimental outcomes and honest dispositions. This is not a prerequisite of its children and does not declare a final architecture.",
+      "status": "done",
+      "priority": 0,
+      "parallel_policy": "serial",
+      "result": "implemented",
+      "next_action": "Close only after every workshop outcome has a truthful artifact/disposition and the later-qualification handoff is recorded.",
+      "notes": "User authorized broad lightly qualified experiments on 2026-10-02. Runtime installation and old-program supersession must precede implementation; this plan file itself changes no authority.",
+      "tags": [],
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated"
+        ]
+      },
+      "scope": {
+        "exclusive_paths": [],
+        "read_paths": [
+          "experiments/moonshot",
+          "planning/baseplane_moonshot_bootstrap"
+        ],
+        "forbidden_paths": []
+      },
+      "gates": [],
+      "invariants": [],
+      "produced_artifacts": [],
+      "depends_on": [],
+      "completion_contract": null
+    },
+    {
+      "id": "BP-IS1-ADOPT",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Reconcile finished predecessors and publish the small shared foundation",
+      "objective": "After the global predecessor barrier, inventory the completed frontier, assign every useful behavior/unfinished obligation, and integrate the minimum contracts needed by parallel lanes.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "planning/integrated-substrate-v1",
+          "include",
+          "src",
+          "CMakeLists.txt",
+          "cmake"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-MOON-000"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "Global activation gate passes against live authorities; current claims, pending patches and frozen interfaces are reconciled without taking over predecessor work.",
+          "Expanded preservation and source-to-destination maps include all current predecessor outcomes and newly discovered work.",
+          "Small contract and dependency-target decision is committed and available to every child worktree; no broad new framework or numerical reset."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-ADOPT.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "gates": [
+        {
+          "id": "BP-IS1-ADOPT-DISPOSITIONS",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "planning/integrated-substrate-v1/adoption/check_dispositions.py"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/adoption"
+          ]
+        },
+        {
+          "id": "BP-IS1-ADOPT-GLOBAL-BARRIER",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "planning/integrated-substrate-v1/tools/gates.py",
+            "activation",
+            "--config",
+            "planning/integrated-substrate-v1/local-config.json"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/tools",
+            "planning/integrated-substrate-v1/local-config.json",
+            "planning/integrated-substrate-v1/machine"
+          ]
+        },
+        {
+          "id": "BP-IS1-ADOPT-HOST-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "/tmp/bp-is1-adopt-host",
+            "--target",
+            "bp_adoption_seq_consumer",
+            "bp_adoption_effect_consumer",
+            "baseplaneBitOpContractTest",
+            "baseplaneDna2ValidityTest",
+            "-j",
+            "2"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/adoption",
+            "cmake",
+            "include/Baseplane/seq",
+            "src/seq"
+          ]
+        },
+        {
+          "id": "BP-IS1-ADOPT-HOST-CONFIGURE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            "planning/integrated-substrate-v1/adoption",
+            "-B",
+            "/tmp/bp-is1-adopt-host",
+            "-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+            "-DCMAKE_BUILD_TYPE=Debug"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/adoption",
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane/seq",
+            "src/seq"
+          ]
+        },
+        {
+          "id": "BP-IS1-ADOPT-HOST-TEST",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "ctest",
+            "--test-dir",
+            "/tmp/bp-is1-adopt-host",
+            "-R",
+            "^bp_adoption_",
+            "--output-on-failure"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "planning/integrated-substrate-v1/adoption",
+            "include/Baseplane/seq",
+            "src/seq"
+          ]
+        }
+      ],
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": []
+    },
+    {
+      "id": "BP-IS1-SEQ",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Integrate exact sequence and source/query contracts",
+      "objective": "Retain the standalone exact core while giving higher representations a common source, validity and question boundary.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/seq",
+          "src/seq",
+          "tests/seq",
+          "include/Baseplane/query/contracts"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-ADOPT"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "Existing exact predicates remain usable without Cellerator representation dependencies.",
+          "Coordinates/strand/invalid bases/halos and output capacity are checked against scalar references.",
+          "Higher query contracts distinguish exact answers, certified bounds, learned confidence and detail requests."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-SEQ.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": [
+        {
+          "id": "BP-IS1-SEQ-10-COMPILE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "g++",
+            "-std=c++17",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-I",
+            "include",
+            "tests/seq/test_sequence_question.cpp",
+            "src/seq/dna2_validity.cpp",
+            "-o",
+            "/tmp/bp-is1-seq-native/sequence_question_gate"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq",
+            "include/Baseplane/query/contracts",
+            "src/seq",
+            "tests/seq"
+          ]
+        },
+        {
+          "id": "BP-IS1-SEQ-20-NATIVE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "/tmp/bp-is1-seq-native/sequence_question_gate"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/seq",
+            "include/Baseplane/query/contracts",
+            "src/seq",
+            "tests/seq"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BP-IS1-HIERARCHY",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Make effects and refinable hierarchy a usable component",
+      "objective": "Integrate effect, lifting, learned/chosen chunks and question-specific summary portfolios using CE numerical providers.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/representation",
+          "src/representation",
+          "tests/substrate/hierarchy"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-ADOPT"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "Order-sensitive composition, source revisits and coarse/detail pathways share one ownership model.",
+          "Competing boundaries, multiple summary kinds and nonuniform scale remain possible.",
+          "Generic numerical math is not duplicated; current provider interfaces or explicit demands are used."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-HIERARCHY.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": []
+    },
+    {
+      "id": "BP-IS1-INDEX",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Integrate real rendezvous, subscriptions and factor joins",
+      "objective": "Build coherent whole-input nomination/index/query paths that scale beyond warp-local demonstrations.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/index",
+          "src/index",
+          "tests/substrate/index"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-ADOPT"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "Complete equal-key posting ranges cross warp boundaries and handle oversized groups without silent truncation.",
+          "Candidate nomination recall, exact verification and relation scoring have separate evidence.",
+          "Subscription and factorized hyperedge paths preserve source roles and output/capacity accounting."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-INDEX.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": [
+        {
+          "id": "BP-IS1-INDEX-10-NATIVE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "tests/substrate/index/run_host.py",
+            "--provider-include",
+            "/home/tumlinson/Cellerator/experiments/baseplane_moonshot/families/mechanisms/include",
+            "--sanitize"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/index",
+            "tests/substrate/index"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BP-IS1-REUSE",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Integrate edit invalidation and contextual reuse",
+      "objective": "Unify source/version dependency tracking, repeat sharing, memoized answers and counterfactual occurrences.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/incremental",
+          "src/incremental",
+          "tests/substrate/incremental"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-ADOPT"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "A seam edit invalidates both affected values and directory memberships correctly.",
+          "Identical content may share context-free work while occurrence/context differences remain distinct.",
+          "Result caches, plan caches, residual stores and world deltas use complete version/guard keys."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-REUSE.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": [
+        {
+          "id": "BP-IS1-REUSE-10-NATIVE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "tests/substrate/incremental/run_host.py",
+            "--sanitize"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/incremental",
+            "tests/substrate/incremental"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BP-IS1-LEARNING",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Keep learned representation and routing in the integrated path",
+      "objective": "Integrate sequence-conditioned learned chunking, gates, portfolios and counterexample refinement as explicit model options.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "include/Baseplane/learning",
+          "src/learning",
+          "python/baseplane",
+          "tests/substrate/learning"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-ADOPT"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "A small declared learned task runs through the same representation/provider interface as constructed alternatives.",
+          "Teacher, discrete/hardened route and residual correction are separately versioned; gradient conventions are stated.",
+          "No annotation oracle, surprise-equals-function assumption or permanent starvation of quiet regions."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-LEARNING.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": [
+        {
+          "id": "BP-IS1-LEARNING-10-DECLARED-TASK",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "tests/substrate/learning/run_host.py",
+            "--provider-include",
+            "/home/tumlinson/Cellerator/experiments/baseplane_moonshot/families/learning",
+            "--sanitize"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "include/Baseplane/learning",
+            "tests/substrate/learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BP-IS1-BUILD",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Make exact and representation components cleanly installable",
+      "objective": "Build/install optional representation/query components and external-consumer fixtures without sibling-source coupling.",
+      "priority": 100,
+      "parallel_policy": "parallel_safe",
+      "scope": {
+        "exclusive_paths": [
+          "cmake/substrate",
+          "tests/substrate/install",
+          "examples/substrate/install"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-ADOPT"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "Exact core builds alone; higher components consume selected installed CE capabilities.",
+          "Acyclic target graph and CPU/CUDA availability are checked.",
+          "Shared root build patch is accepted by MERGE-A, not independently rewritten by every leaf."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-BUILD.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "implemented",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": [
+        {
+          "id": "BP-IS1-BUILD-10-INSTALL",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "tests/substrate/install/run_host.py"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "cmake/substrate",
+            "tests/substrate/install",
+            "examples/substrate/install"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BP-IS1-MERGE-A",
+      "parent_id": "BP-IS1-000",
+      "kind": "task",
+      "title": "Integrate the sequence-facing domains",
+      "objective": "Merge independent sequence, hierarchy, indexing, reuse, learning and package work into a coherent client surface.",
+      "priority": 100,
+      "parallel_policy": "integration_exclusive",
+      "scope": {
+        "exclusive_paths": [
+          "CMakeLists.txt",
+          "cmake",
+          "include",
+          "src",
+          "components",
+          "tests",
+          "examples",
+          "experiments",
+          "python",
+          "planning/integrated-substrate-v1/receipts"
+        ],
+        "read_paths": [
+          "AGENTS.md",
+          "README.md",
+          "include",
+          "src",
+          "planning",
+          "experiments",
+          "tests",
+          "docs"
+        ],
+        "forbidden_paths": [
+          ".todo-orchestrator",
+          "todos",
+          "todos.md",
+          "todo-status.md",
+          "preprint"
+        ]
+      },
+      "depends_on": [
+        {
+          "type": "task",
+          "task_id": "BP-IS1-SEQ"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-HIERARCHY"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-INDEX"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-REUSE"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-LEARNING"
+        },
+        {
+          "type": "task",
+          "task_id": "BP-IS1-BUILD"
+        }
+      ],
+      "invariants": [
+        "BP-IS1-EXTEND",
+        "BP-IS1-OWNERSHIP",
+        "BP-IS1-PRESERVE"
+      ],
+      "completion_contract": {
+        "required": [
+          "All accepted patches are present in the integrator lineage before dependent worktrees begin.",
+          "The exact\u2192representation\u2192question route is callable, with missing new CE capabilities explicitly blocked.",
+          "Old isolated drivers are mapped to integrated or optional experimental routes."
+        ]
+      },
+      "result_policy": {
+        "allowed_dispositions": [
+          "implemented",
+          "validated",
+          "no_change_required"
+        ]
+      },
+      "references": [
+        "planning/integrated-substrate-v1/tasks/BP-IS1-MERGE-A.md"
+      ],
+      "next_action": "Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.",
+      "status": "done",
+      "result": "validated",
+      "notes": "",
+      "tags": [],
+      "produced_artifacts": [],
+      "gates": [
+        {
+          "id": "BP-IS1-MERGE-A-10-SDK-CONFIGURE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            ".",
+            "-B",
+            "/tmp/bp-is1-build-integrated",
+            "-DBASEPLANE_ENABLE_CUDA=OFF",
+            "-DBASEPLANE_ENABLE_HIGHWAY=OFF",
+            "-DBUILD_TESTING=OFF",
+            "-DCMAKE_INSTALL_PREFIX=/tmp/bp-is1-sdk-a"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-20-SDK-BUILD",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "/tmp/bp-is1-build-integrated",
+            "-j",
+            "2"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-30-SDK-INSTALL",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--install",
+            "/tmp/bp-is1-build-integrated"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-40-INSTALLED-SLICE",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "python3",
+            "-B",
+            "tests/substrate/install/run_host.py",
+            "--require-integrated",
+            "--baseplane-prefix",
+            "/tmp/bp-is1-sdk-a",
+            "--ce-prefix",
+            "/tmp/ce-is1-sdk-a"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-50-HIERARCHY",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "-S",
+            "tests/substrate/hierarchy",
+            "-B",
+            "/tmp/bp-is1-hierarchy-integrated",
+            "-DCE_MOON_SOURCE_DIR=/home/tumlinson/Cellerator/experiments/baseplane_moonshot",
+            "-DCMAKE_BUILD_TYPE=Debug"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-60-HIERARCHY",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "cmake",
+            "--build",
+            "/tmp/bp-is1-hierarchy-integrated",
+            "--target",
+            "baseplaneHierarchyTest",
+            "-j",
+            "2"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-70-HIERARCHY",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "ctest",
+            "--test-dir",
+            "/tmp/bp-is1-hierarchy-integrated",
+            "-R",
+            "^baseplaneHierarchyTest$",
+            "--output-on-failure"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-80-HIERARCHY",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "g++",
+            "-std=c++17",
+            "-Wall",
+            "-Wextra",
+            "-Werror",
+            "-fsanitize=address,undefined",
+            "-fno-omit-frame-pointer",
+            "-I",
+            "include",
+            "-isystem",
+            "/home/tumlinson/Cellerator/experiments/baseplane_moonshot/include",
+            "tests/substrate/hierarchy/test_hierarchy.cpp",
+            "src/seq/dna2_validity.cpp",
+            "-o",
+            "/tmp/bp-is1-hierarchy-integrated/hierarchy_sanitized"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        },
+        {
+          "id": "BP-IS1-MERGE-A-90-HIERARCHY",
+          "type": "command",
+          "required": true,
+          "argv": [
+            "/tmp/bp-is1-hierarchy-integrated/hierarchy_sanitized"
+          ],
+          "cwd": ".",
+          "input_paths": [
+            "CMakeLists.txt",
+            "cmake",
+            "include/Baseplane",
+            "src/seq",
+            "tests/substrate",
+            "examples/substrate/install"
+          ]
+        }
+      ]
+    }
+  ],
+  "runs": []
+}
