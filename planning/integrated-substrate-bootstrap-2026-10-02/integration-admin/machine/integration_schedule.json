@@ -1,0 +1,15 @@
+{
+  "phases": [
+    {
+      "integration_task": "BP-IS1-MERGE-A",
+      "required_tasks": [
+        "BP-IS1-SEQ",
+        "BP-IS1-HIERARCHY",
+        "BP-IS1-INDEX",
+        "BP-IS1-REUSE",
+        "BP-IS1-LEARNING",
+        "BP-IS1-BUILD"
+      ]
+    }
+  ]
+}
