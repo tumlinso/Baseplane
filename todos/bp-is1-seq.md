@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-IS1-SEQ: Integrate exact sequence and source/query contracts
 
-Task revision: `377`; current project revision is in `todo-status.md`.
+Task revision: `513`; current project revision is in `todo-status.md`.
 
 ## Objective
 Retain the standalone exact core while giving higher representations a common source, validity and question boundary.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.

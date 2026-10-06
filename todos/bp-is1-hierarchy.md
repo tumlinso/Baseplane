@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-IS1-HIERARCHY: Make effects and refinable hierarchy a usable component
 
-Task revision: `377`; current project revision is in `todo-status.md`.
+Task revision: `513`; current project revision is in `todo-status.md`.
 
 ## Objective
 Integrate effect, lifting, learned/chosen chunks and question-specific summary portfolios using CE numerical providers.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.

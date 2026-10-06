@@ -1,16 +1,18 @@
+
+
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-IS1-BUILD: Make exact and representation components cleanly installable
 
-Task revision: `377`; current project revision is in `todo-status.md`.
+Task revision: `513`; current project revision is in `todo-status.md`.
 
 ## Objective
 Build/install optional representation/query components and external-consumer fixtures without sibling-source coupling.
 
 ## State
-- Lifecycle: `planned`
-- Execution: `ready`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Use the task brief and accepted predecessor source. Implement a substantive integrated outcome; bind real acceptance commands before completion. Do not split ordinary inspect/build/retry work into procedural tasks.
