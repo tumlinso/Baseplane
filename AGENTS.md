@@ -16,6 +16,26 @@ Use the installed Project Control/Codex front door and this repository's Todo au
 - Keep CPU reference correctness and optional CUDA usability; caller-owned buffers, explicit streams/capacity/overflow and target capability remain visible.
 - The isolated CUDA lab is experimental, not a production interface. Preserve its evidence and completed negative decisions. Cellerator general numerical ownership and Baseplane sequence-native experiments must not be conflated.
 
+## scVelo and CellRank library probes
+
+During a user-authorized scVelo or CellRank probe with a scoped Project Control
+task, additive Baseplane changes are permitted without renewed permission
+when evidence shows an intrinsically sequence-grounded primitive is needed.
+Keep additions general, clean, and maintainable, with explicit contracts and
+validation; use small architectural cleanup only to resolve demonstrated
+friction. General numerical, graph, statistical, and iterative computation
+belongs in Cellerator. Preserve native scientific computation by default. An
+optional, opportunistic FP16 Tensor Core mode is the only permitted deliberate
+numerical deviation. Compare it with upstream/native computation; a higher-
+precision reference may supplement that comparison. Prefer FP32 accumulation
+where supported, and declare and qualify actual accumulation and output policy.
+Use the mode only within its demonstrated numerical envelope, retaining native
+fallback for unsupported or unsafe regimes. Report missing or insufficient
+reusable primitives promptly, with the concrete computation, evidence, existing
+capability and gap, proposed
+owner and general contract, and downstream impact. Discuss major API,
+granularity, or ownership choices with the user before committing to them.
+
 External compatibility is not an absolute constraint at this stage. A reviewed internal move may change names/interfaces if it improves development; repair real sibling consumers and relevant tests together. Frozen contracts and overlapping active work still require their owner's explicit reconciliation. Do not use a documentation task to rewrite numerical behavior, introduce another planner, or complete unrelated old epics.
 
 ## Validate what changed
