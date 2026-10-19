@@ -3,16 +3,16 @@
 <!-- todo-orchestrator:v2-managed:start -->
 # BP-MOON-050: Adaptive and refinable hierarchy
 
-Task revision: `250`; current project revision is in `todo-status.md`.
+Task revision: `258`; current project revision is in `todo-status.md`.
 
 ## Objective
 Implement a diverse set of concrete adaptive and refinable hierarchy experiments from the assigned catalogue; preserve semantic distinctions, report uncertainty, and stop qualification from consuming the invention budget.
 
 ## State
-- Lifecycle: `in_progress`
-- Execution: `claimed`
+- Lifecycle: `done`
+- Execution: `closed`
 - Parallel policy: `parallel_safe`
-- Result: `-`
+- Result: `implemented`
 
 ## Next Action
 Read planning/baseplane_moonshot_bootstrap/tasks/BP-MOON-050.md and implement the assigned family, adapting within its scope.
