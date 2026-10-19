@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T13:34:43Z",
+  "generated_at": "2026-10-02T13:43:10Z",
   "project": {
     "configuration": {
       "busy_timeout_ms": 5000,
@@ -18,7 +18,7 @@
     "project_uuid": "1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3",
     "schema_version": 2
   },
-  "project_revision": 246,
+  "project_revision": 255,
   "schema_version": 2,
   "snapshot_version": 3,
   "tables": {
@@ -3090,6 +3090,96 @@
         "revision": 246,
         "seq": 246,
         "timestamp": "2026-10-02T13:34:43Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "07382658-6fef-4cfc-9bef-ed4acf8f4921",
+        "entity_type": "workflow_workspace",
+        "event_type": "workflow_workspace_reserved",
+        "payload_json": "{\"base_commit\": \"e6f08398f1b018caa7def3b0cc6a845eccd4ca29\", \"lane_id\": \"BP-MOON-L-INTEGRATION\", \"mode\": \"exclusive\", \"run_id\": \"BP-MOON-RUN-1\"}",
+        "revision": 247,
+        "seq": 247,
+        "timestamp": "2026-10-02T13:37:05Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "07382658-6fef-4cfc-9bef-ed4acf8f4921",
+        "entity_type": "workflow_workspace",
+        "event_type": "workflow_workspace_created",
+        "payload_json": "{\"base_commit\": \"e6f08398f1b018caa7def3b0cc6a845eccd4ca29\", \"lane_id\": \"BP-MOON-L-INTEGRATION\", \"mode\": \"exclusive\", \"run_id\": \"BP-MOON-RUN-1\"}",
+        "revision": 248,
+        "seq": 248,
+        "timestamp": "2026-10-02T13:37:05Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-L-AUTOMATA",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-MOON-L-AUTOMATA\", \"run_id\": \"BP-MOON-RUN-1\", \"status\": \"claimed\", \"task_id\": \"BP-MOON-030\"}",
+        "revision": 249,
+        "seq": 249,
+        "timestamp": "2026-10-02T13:37:16Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-L-HIERARCHY",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-MOON-L-HIERARCHY\", \"run_id\": \"BP-MOON-RUN-1\", \"status\": \"claimed\", \"task_id\": \"BP-MOON-050\"}",
+        "revision": 250,
+        "seq": 250,
+        "timestamp": "2026-10-02T13:37:16Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-L-RENDEZVOUS",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-MOON-L-RENDEZVOUS\", \"run_id\": \"BP-MOON-RUN-1\", \"status\": \"claimed\", \"task_id\": \"BP-MOON-060\"}",
+        "revision": 251,
+        "seq": 251,
+        "timestamp": "2026-10-02T13:37:16Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-L-DEMAND",
+        "entity_type": "workflow_dispatch",
+        "event_type": "workflow.next_task",
+        "payload_json": "{\"lane_id\": \"BP-MOON-L-DEMAND\", \"run_id\": \"BP-MOON-RUN-1\", \"status\": \"claimed\", \"task_id\": \"BP-MOON-080\"}",
+        "revision": 252,
+        "seq": 252,
+        "timestamp": "2026-10-02T13:42:03Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "b313e66c-5a9f-4fc9-9e07-d8897e4316cb",
+        "entity_type": "workflow_patch_artifact",
+        "event_type": "workflow_patch_artifact_published",
+        "payload_json": "{\"content_hash\": \"a9a1b67dea6350aa1ecc830a5ae746fe55d7702151ac5c78c3ea1f6f10cf9067\", \"kind\": \"commit\", \"task_id\": \"BP-MOON-020\", \"workspace_id\": \"1038e5f0-c06c-4fff-829c-bc445e5cc7eb\"}",
+        "revision": 253,
+        "seq": 253,
+        "timestamp": "2026-10-02T13:43:10Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "085cbc9e-a9ca-46f1-98ff-1dfce8af000a",
+        "entity_type": "workflow_integration_queue",
+        "event_type": "workflow_artifact_queued",
+        "payload_json": "{\"artifact_id\": \"b313e66c-5a9f-4fc9-9e07-d8897e4316cb\", \"integration_task_id\": \"BP-MOON-140\", \"integrator_lane_id\": \"BP-MOON-L-INTEGRATION\"}",
+        "revision": 254,
+        "seq": 254,
+        "timestamp": "2026-10-02T13:43:10Z"
+      },
+      {
+        "actor_session_id": null,
+        "entity_id": "BP-MOON-020",
+        "entity_type": "task",
+        "event_type": "task.completed",
+        "payload_json": "{\"completion_revision\": 255, \"disposition\": \"implemented\", \"reached_checkpoints\": []}",
+        "revision": 255,
+        "seq": 255,
+        "timestamp": "2026-10-02T13:43:10Z"
       }
     ],
     "evidence": [
@@ -5510,6 +5600,16 @@
         "payload_json": "{\"authority_commit\": \"271843a2d2ceff434c97c8eb5fd13555567034c4\", \"changed_owned_paths\": [\"AGENTS.md\", \"CONTRIBUTING.md\", \"README.md\", \"docs/archive/README.md\", \"docs/design/overview.md\", \"docs/design/program.md\", \"docs/development/source-map.md\", \"docs/development/start.md\", \"docs/index.md\", \"docs/results/index.md\", \"docs/status/current.md\", \"experiments/cuda_lab/README.md\", \"experiments/cuda_lab/START_HERE.md\", \"planning/doc-refresh/inputs/bindings.json\", \"planning/doc-refresh/inputs/inventory.json\", \"planning/doc-refresh/inputs/moves.json\", \"planning/doc-refresh/run.v3.json\", \"planning/doc-refresh/staged/.docstage.json\", \"planning/doc-refresh/staged/AGENTS.md\", \"planning/doc-refresh/staged/CONTRIBUTING.md\", \"planning/doc-refresh/staged/README.md\", \"planning/doc-refresh/staged/docs/archive/README.md\", \"planning/doc-refresh/staged/docs/design/overview.md\", \"planning/doc-refresh/staged/docs/design/program.md\", \"planning/doc-refresh/staged/docs/development/source-map.md\", \"planning/doc-refresh/staged/docs/development/start.md\", \"planning/doc-refresh/staged/docs/index.md\", \"planning/doc-refresh/staged/docs/results/assets/bp-carryfold.png\", \"planning/doc-refresh/staged/docs/results/assets/bp-carryfold.svg\", \"planning/doc-refresh/staged/docs/results/bp-carryfold.md\", \"planning/doc-refresh/staged/docs/results/bp-rethread.md\", \"planning/doc-refresh/staged/docs/results/data/bp-carryfold.json\", \"planning/doc-refresh/staged/docs/results/data/bp-rethread.json\", \"planning/doc-refresh/staged/docs/results/index.md\", \"planning/doc-refresh/staged/docs/status/current.md\", \"planning/doc-refresh/templates/AGENTS.md\", \"planning/doc-refresh/templates/README.md\", \"planning/doc-refresh/templates/docs/results/index.md\", \"planning/doc-refresh/tools/__pycache__/figures.cpython-313.pyc\"], \"checkpoints\": [], \"completion_commit\": \"271843a2d2ceff434c97c8eb5fd13555567034c4\", \"completion_gates\": [{\"evidence_id\": \"48189822-3378-40fc-9ce4-092db0870f19\", \"evidence_revision\": 205, \"id\": \"BP-DOCS-20-CHECK\", \"input_fingerprint\": \"9e6e1143fa87cf0eeb2d91420ef99335415e8a30e720e23f28249fd56d58cb19\", \"status\": \"passed\", \"valid\": true, \"validation_git_head\": \"271843a2d2ceff434c97c8eb5fd13555567034c4\"}], \"completion_revision\": 206, \"finalized_checkpoints\": [], \"gates\": [{\"id\": \"BP-DOCS-20-CHECK\", \"input_fingerprint\": \"9e6e1143fa87cf0eeb2d91420ef99335415e8a30e720e23f28249fd56d58cb19\", \"last_run_at\": \"2026-09-29T12:35:59Z\", \"revision\": 205, \"status\": \"passed\", \"valid\": 1}], \"git_diffstat\": \".todo-orchestrator/state.snapshot.json             | 365 +++++++++++++++++++--\\n AGENTS.md                                          | 224 +------------\\n README.md                                          | 101 ++----\\n experiments/cuda_lab/README.md                     |  20 +-\\n experiments/cuda_lab/START_HERE.md                 |  72 ++--\\n planning/doc-refresh/inputs/bindings.json          |  10 +-\\n planning/doc-refresh/inputs/moves.json             |  13 +-\\n planning/doc-refresh/templates/AGENTS.md           |   2 +-\\n planning/doc-refresh/templates/README.md           |   2 +-\\n .../doc-refresh/templates/docs/results/index.md    |  19 +-\\n todo-status.md                                     |   6 +-\\n todos.md                                           |   6 +-\\n todos/bp-docs-000.md                               |   4 +-\\n todos/bp-docs-10.md                                |  10 +-\\n todos/bp-docs-20.md                                |   8 +-\\n todos/bp-docs-30.md                                |   4 +-\\n todos/bp-docs-90.md                                |   4 +-\\n 17 files changed, 474 insertions(+), 396 deletions(-)\", \"git_head\": \"271843a2d2ceff434c97c8eb5fd13555567034c4\", \"integration_commit\": null, \"interfaces\": [], \"note\": \"No source move chosen; current library/lab paths and BitOp queue preserved. Updated stale lab guides, path bindings and explicit delegation boundary. Local package/lab-result/link checks pass.\", \"producer_commit\": \"271843a2d2ceff434c97c8eb5fd13555567034c4\", \"producer_root\": \"/home/tumlinson/Baseplane\", \"resources\": [], \"task_id\": \"BP-DOCS-20\"}",
         "revision": 206,
         "task_id": "BP-DOCS-20"
+      },
+      {
+        "claim_id": null,
+        "created_at": "2026-10-02T13:43:10Z",
+        "id": "6901d719-b5a1-4d5f-b6b8-27cb4e2aa006",
+        "kind": "complete",
+        "note": "E01-E04 implemented experimentally;4 host mechanisms pass,4 sm70 kernels compile/no GPU run. Source3aadce34; projection-only evidence commit added by root to satisfy immutable publication. Material diff restricted to families/logic; receipt evidence.json.",
+        "payload_json": "{\"authority_commit\": \"9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b\", \"changed_owned_paths\": [], \"checkpoints\": [], \"completion_commit\": \"9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b\", \"completion_gates\": [], \"completion_revision\": 255, \"finalized_checkpoints\": [], \"gates\": [], \"git_diffstat\": \"\", \"git_head\": \"9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b\", \"integration_commit\": null, \"interfaces\": [], \"note\": \"E01-E04 implemented experimentally;4 host mechanisms pass,4 sm70 kernels compile/no GPU run. Source3aadce34; projection-only evidence commit added by root to satisfy immutable publication. Material diff restricted to families/logic; receipt evidence.json.\", \"producer_commit\": \"9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b\", \"producer_root\": \"/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-logic\", \"resources\": [], \"task_id\": \"BP-MOON-020\"}",
+        "revision": 255,
+        "task_id": "BP-MOON-020"
       },
       {
         "claim_id": null,
@@ -13510,9 +13610,9 @@
       },
       {
         "attention_reason": null,
-        "completion_commit": null,
-        "completion_git_head": null,
-        "completion_revision": null,
+        "completion_commit": "9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b",
+        "completion_git_head": "9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b",
+        "completion_revision": 255,
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-020",
         "kind": "task",
@@ -13524,14 +13624,14 @@
         "parallel_policy": "parallel_safe",
         "parent_id": "BP-MOON-000",
         "priority": 100,
-        "result": null,
+        "result": "implemented",
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 246,
-        "status": "in_progress",
+        "revision": 255,
+        "status": "done",
         "tags_json": "[]",
         "title": "Masks as executable geometry",
-        "updated_at": "2026-10-02T13:34:43Z",
-        "version": 2
+        "updated_at": "2026-10-02T13:43:10Z",
+        "version": 3
       },
       {
         "attention_reason": null,
@@ -13551,12 +13651,12 @@
         "priority": 100,
         "result": null,
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 217,
-        "status": "planned",
+        "revision": 249,
+        "status": "in_progress",
         "tags_json": "[]",
         "title": "Finite-state effect machines",
-        "updated_at": "2026-10-02T13:11:58Z",
-        "version": 1
+        "updated_at": "2026-10-02T13:37:16Z",
+        "version": 2
       },
       {
         "attention_reason": null,
@@ -13601,12 +13701,12 @@
         "priority": 100,
         "result": null,
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 217,
-        "status": "planned",
+        "revision": 250,
+        "status": "in_progress",
         "tags_json": "[]",
         "title": "Adaptive and refinable hierarchy",
-        "updated_at": "2026-10-02T13:11:58Z",
-        "version": 1
+        "updated_at": "2026-10-02T13:37:16Z",
+        "version": 2
       },
       {
         "attention_reason": null,
@@ -13626,12 +13726,12 @@
         "priority": 100,
         "result": null,
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 217,
-        "status": "planned",
+        "revision": 251,
+        "status": "in_progress",
         "tags_json": "[]",
         "title": "Real nonlocal candidate discovery",
-        "updated_at": "2026-10-02T13:11:58Z",
-        "version": 1
+        "updated_at": "2026-10-02T13:37:16Z",
+        "version": 2
       },
       {
         "attention_reason": null,
@@ -13676,12 +13776,12 @@
         "priority": 100,
         "result": null,
         "result_policy_json": "{\"allowed_dispositions\": [\"implemented\", \"validated\", \"no_change_required\"]}",
-        "revision": 217,
-        "status": "planned",
+        "revision": 252,
+        "status": "in_progress",
         "tags_json": "[]",
         "title": "Question-driven execution",
-        "updated_at": "2026-10-02T13:11:58Z",
-        "version": 1
+        "updated_at": "2026-10-02T13:42:03Z",
+        "version": 2
       },
       {
         "attention_reason": null,
@@ -15597,7 +15697,21 @@
         "version": 1
       }
     ],
-    "workflow_integration_queue": [],
+    "workflow_integration_queue": [
+      {
+        "conflict_json": "{}",
+        "created_at": "2026-10-02T13:43:10Z",
+        "id": "085cbc9e-a9ca-46f1-98ff-1dfce8af000a",
+        "integration_task_id": "BP-MOON-140",
+        "integrator_lane_id": "BP-MOON-L-INTEGRATION",
+        "merge_result_json": "{}",
+        "patch_artifact_id": "b313e66c-5a9f-4fc9-9e07-d8897e4316cb",
+        "position": 0,
+        "run_id": "BP-MOON-RUN-1",
+        "state": "queued",
+        "updated_at": "2026-10-02T13:43:10Z"
+      }
+    ],
     "workflow_lane_tasks": [
       {
         "activated_at": "2026-09-29T08:59:45Z",
@@ -15720,13 +15834,13 @@
         "task_id": "BP-DOCS-000"
       },
       {
-        "activated_at": null,
+        "activated_at": "2026-10-02T13:37:16Z",
         "completed_at": null,
         "enqueued_at": "2026-10-02T13:11:58Z",
         "lane_id": "BP-MOON-L-AUTOMATA",
         "position": 0,
-        "revision": 217,
-        "state": "queued",
+        "revision": 249,
+        "state": "active",
         "task_id": "BP-MOON-030"
       },
       {
@@ -15740,13 +15854,13 @@
         "task_id": "BP-MOON-090"
       },
       {
-        "activated_at": null,
+        "activated_at": "2026-10-02T13:42:03Z",
         "completed_at": null,
         "enqueued_at": "2026-10-02T13:11:58Z",
         "lane_id": "BP-MOON-L-DEMAND",
         "position": 0,
-        "revision": 217,
-        "state": "queued",
+        "revision": 252,
+        "state": "active",
         "task_id": "BP-MOON-080"
       },
       {
@@ -15770,13 +15884,13 @@
         "task_id": "BP-MOON-010"
       },
       {
-        "activated_at": null,
+        "activated_at": "2026-10-02T13:37:16Z",
         "completed_at": null,
         "enqueued_at": "2026-10-02T13:11:58Z",
         "lane_id": "BP-MOON-L-HIERARCHY",
         "position": 0,
-        "revision": 217,
-        "state": "queued",
+        "revision": 250,
+        "state": "active",
         "task_id": "BP-MOON-050"
       },
       {
@@ -15831,12 +15945,12 @@
       },
       {
         "activated_at": "2026-10-02T13:34:43Z",
-        "completed_at": null,
+        "completed_at": "2026-10-02T13:43:10Z",
         "enqueued_at": "2026-10-02T13:11:58Z",
         "lane_id": "BP-MOON-L-LOGIC",
         "position": 0,
-        "revision": 246,
-        "state": "active",
+        "revision": 255,
+        "state": "completed",
         "task_id": "BP-MOON-020"
       },
       {
@@ -15860,13 +15974,13 @@
         "task_id": "BP-MOON-120"
       },
       {
-        "activated_at": null,
+        "activated_at": "2026-10-02T13:37:16Z",
         "completed_at": null,
         "enqueued_at": "2026-10-02T13:11:58Z",
         "lane_id": "BP-MOON-L-RENDEZVOUS",
         "position": 0,
-        "revision": 217,
-        "state": "queued",
+        "revision": 251,
+        "state": "active",
         "task_id": "BP-MOON-060"
       },
       {
@@ -16242,11 +16356,11 @@
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-AUTOMATA",
         "parent_lane_id": "BP-MOON-L-FOUNDATION",
-        "revision": 217,
+        "revision": 249,
         "role": "implementer",
         "run_id": "BP-MOON-RUN-1",
-        "state": "ready",
-        "updated_at": "2026-10-02T13:11:58Z",
+        "state": "active",
+        "updated_at": "2026-10-02T13:37:16Z",
         "workspace_mode": "isolated_merge"
       },
       {
@@ -16266,11 +16380,11 @@
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-DEMAND",
         "parent_lane_id": "BP-MOON-L-FOUNDATION",
-        "revision": 217,
+        "revision": 252,
         "role": "implementer",
         "run_id": "BP-MOON-RUN-1",
-        "state": "ready",
-        "updated_at": "2026-10-02T13:11:58Z",
+        "state": "active",
+        "updated_at": "2026-10-02T13:42:03Z",
         "workspace_mode": "isolated_merge"
       },
       {
@@ -16302,11 +16416,11 @@
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-HIERARCHY",
         "parent_lane_id": "BP-MOON-L-FOUNDATION",
-        "revision": 217,
+        "revision": 250,
         "role": "implementer",
         "run_id": "BP-MOON-RUN-1",
-        "state": "ready",
-        "updated_at": "2026-10-02T13:11:58Z",
+        "state": "active",
+        "updated_at": "2026-10-02T13:37:16Z",
         "workspace_mode": "isolated_merge"
       },
       {
@@ -16350,11 +16464,11 @@
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-LOGIC",
         "parent_lane_id": "BP-MOON-L-FOUNDATION",
-        "revision": 246,
+        "revision": 255,
         "role": "implementer",
         "run_id": "BP-MOON-RUN-1",
-        "state": "active",
-        "updated_at": "2026-10-02T13:34:43Z",
+        "state": "closed",
+        "updated_at": "2026-10-02T13:43:10Z",
         "workspace_mode": "isolated_merge"
       },
       {
@@ -16386,11 +16500,11 @@
         "created_at": "2026-10-02T13:11:58Z",
         "id": "BP-MOON-L-RENDEZVOUS",
         "parent_lane_id": "BP-MOON-L-FOUNDATION",
-        "revision": 217,
+        "revision": 251,
         "role": "implementer",
         "run_id": "BP-MOON-RUN-1",
-        "state": "ready",
-        "updated_at": "2026-10-02T13:11:58Z",
+        "state": "active",
+        "updated_at": "2026-10-02T13:37:16Z",
         "workspace_mode": "isolated_merge"
       },
       {
@@ -16421,7 +16535,19 @@
     "workflow_message_receipts": [],
     "workflow_message_recipients": [],
     "workflow_messages": [],
-    "workflow_patch_artifacts": [],
+    "workflow_patch_artifacts": [
+      {
+        "artifact_ref": "9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b",
+        "base_commit": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+        "content_hash": "a9a1b67dea6350aa1ecc830a5ae746fe55d7702151ac5c78c3ea1f6f10cf9067",
+        "created_at": "2026-10-02T13:43:10Z",
+        "id": "b313e66c-5a9f-4fc9-9e07-d8897e4316cb",
+        "kind": "commit",
+        "state": "queued",
+        "task_id": "BP-MOON-020",
+        "workspace_id": "1038e5f0-c06c-4fff-829c-bc445e5cc7eb"
+      }
+    ],
     "workflow_recovery_audit": [
       {
         "actor_identity": "root_retirement",
@@ -16569,10 +16695,29 @@
         "artifact_kind": null,
         "artifact_ref": null,
         "base_commit": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
+        "branch": "codex/bp-moon-l-integration",
+        "cleanup_eligible": 0,
+        "created_at": "2026-10-02T13:37:05Z",
+        "diff_hash": null,
+        "id": "07382658-6fef-4cfc-9bef-ed4acf8f4921",
+        "integration_task_id": "BP-MOON-140",
+        "lane_id": "BP-MOON-L-INTEGRATION",
+        "merge_result_json": "{}",
+        "mode": "exclusive",
+        "repository_identity": "5797f0a3a6f6363f79ec3f5550dc3fd2ee354c5d88f87c04ca50b55e58d47911",
+        "run_id": "BP-MOON-RUN-1",
+        "state": "active",
+        "updated_at": "2026-10-02T13:37:05Z",
+        "worktree_path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-integration"
+      },
+      {
+        "artifact_kind": "commit",
+        "artifact_ref": "9b9551f58e5e8ce05c4acdec500ccdfc4bb90e8b",
+        "base_commit": "e6f08398f1b018caa7def3b0cc6a845eccd4ca29",
         "branch": "codex/bp-moon-l-logic",
         "cleanup_eligible": 0,
         "created_at": "2026-10-02T13:34:27Z",
-        "diff_hash": null,
+        "diff_hash": "a9a1b67dea6350aa1ecc830a5ae746fe55d7702151ac5c78c3ea1f6f10cf9067",
         "id": "1038e5f0-c06c-4fff-829c-bc445e5cc7eb",
         "integration_task_id": "BP-MOON-140",
         "lane_id": "BP-MOON-L-LOGIC",
@@ -16580,8 +16725,8 @@
         "mode": "isolated_merge",
         "repository_identity": "5797f0a3a6f6363f79ec3f5550dc3fd2ee354c5d88f87c04ca50b55e58d47911",
         "run_id": "BP-MOON-RUN-1",
-        "state": "active",
-        "updated_at": "2026-10-02T13:34:27Z",
+        "state": "queued",
+        "updated_at": "2026-10-02T13:43:10Z",
         "worktree_path": "/home/tumlinson/Baseplane/.git/todo-orchestrator/1a7de0f4-347d-4707-9fc3-5f89d7c4d6b3/workflow-workspaces/bp-moon-l-logic"
       },
       {
