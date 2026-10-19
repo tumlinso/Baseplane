@@ -1,0 +1,17 @@
+{
+  "schema_version": 3,
+  "project": {
+    "name": "cellerator"
+  },
+  "tasks": [],
+  "runs": [],
+  "invariants": [
+    {
+      "id": "VENDOR-FIRST",
+      "rule": "Use cuSPARSE for conventional CSR/BELL, cuBLASLt for ordinary dense work, CUB for data movement primitives, and custom CUDA only for CellPack structure vendor APIs cannot express.\nMoonshot amendment (2026-10-02): For the explicitly authorized CE-MOON research outcomes, isolated experiments/baseplane_moonshot kernels may implement alternative numerical and learned mechanisms from inception; use meaningful vendor comparators where applicable. This exception grants no production promotion, frozen-contract change, new general runtime, or activation of unrelated epics; existing BENCH-EVIDENCE, FAIR-NUMERICS and REAL-DATA-PROMOTION requirements remain.",
+      "scope": {},
+      "severity": "error",
+      "enforcement": null
+    }
+  ]
+}
